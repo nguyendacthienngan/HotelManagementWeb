@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room_type.name %>
+</p>
+
+<p>
+  <strong>Hour price:</strong>
+  <%= @room_type.hour_price %>
+</p>
+
+<p>
+  <strong>Date price:</strong>
+  <%= @room_type.date_price %>
+</p>
+
+<p>
+  <strong>Past night price:</strong>
+  <%= @room_type.past_night_price %>
+</p>
+
+<p>
+  <strong>Week price:</strong>
+  <%= @room_type.week_price %>
+</p>
+
+<p>
+  <strong>Month price:</strong>
+  <%= @room_type.month_price %>
+</p>
+
+<p>
+  <strong>Add adult price:</strong>
+  <%= @room_type.add_adult_price %>
+</p>
+
+<p>
+  <strong>Add child price:</strong>
+  <%= @room_type.add_child_price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @room_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_room_type_path(@room_type) %> |
+<%= link_to 'Back', room_types_path %>

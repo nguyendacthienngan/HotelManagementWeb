@@ -1,0 +1,62 @@
+<%= form_with(model: room_type) do |form| %>
+  <% if room_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room_type.errors.count, "error") %> prohibited this room_type from being saved:</h2>
+
+      <ul>
+        <% room_type.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour_price %>
+    <%= form.text_field :hour_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_price %>
+    <%= form.text_field :date_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :past_night_price %>
+    <%= form.text_field :past_night_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :week_price %>
+    <%= form.text_field :week_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :month_price %>
+    <%= form.text_field :month_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :add_adult_price %>
+    <%= form.text_field :add_adult_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :add_child_price %>
+    <%= form.text_field :add_child_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

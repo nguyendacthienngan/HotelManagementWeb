@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Citizen</th>
+      <th>Isfemale</th>
+      <th>Nationality</th>
+      <th>Date of birth</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.type %></td>
+        <td><%= employee.citizen_id %></td>
+        <td><%= employee.isFemale %></td>
+        <td><%= employee.nationality %></td>
+        <td><%= employee.date_of_birth %></td>
+        <td><%= employee.email %></td>
+        <td><%= employee.status %></td>
+        <td><%= link_to 'Show', employee %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

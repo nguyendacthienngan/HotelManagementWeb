@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 1
+  citizen_id: MyString
+  isFemale: false
+  nationality: MyString
+  date_of_birth: 2021-04-20 16:05:17
+  email: MyString
+  status: 1
+
+two:
+  name: MyString
+  type: 1
+  citizen_id: MyString
+  isFemale: false
+  nationality: MyString
+  date_of_birth: 2021-04-20 16:05:17
+  email: MyString
+  status: 1

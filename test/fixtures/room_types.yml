@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  hour_price: 9.99
+  date_price: 9.99
+  past_night_price: 9.99
+  week_price: 9.99
+  month_price: 9.99
+  add_adult_price: 9.99
+  add_child_price: 9.99
+  description: MyString
+
+two:
+  name: MyString
+  hour_price: 9.99
+  date_price: 9.99
+  past_night_price: 9.99
+  week_price: 9.99
+  month_price: 9.99
+  add_adult_price: 9.99
+  add_child_price: 9.99
+  description: MyString

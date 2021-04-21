@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reservation date:</strong>
+  <%= @payment.reservation_date %>
+</p>
+
+<p>
+  <strong>Is paid:</strong>
+  <%= @payment.is_paid %>
+</p>
+
+<p>
+  <strong>Deposit:</strong>
+  <%= @payment.deposit %>
+</p>
+
+<p>
+  <strong>Temp total:</strong>
+  <%= @payment.temp_total %>
+</p>
+
+<p>
+  <strong>Check out date:</strong>
+  <%= @payment.check_out_date %>
+</p>
+
+<p>
+  <strong>Payment type:</strong>
+  <%= @payment.payment_type %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @payment.total %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @payment.description %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

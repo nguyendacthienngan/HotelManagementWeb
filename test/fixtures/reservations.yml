@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  arrivalDate: 2021-04-21 15:51:13
+  leaveDate: 2021-04-21 15:51:13
+  checkInDate: 2021-04-21 15:51:13
+  total: 9.99
+
+two:
+  status: 1
+  arrivalDate: 2021-04-21 15:51:13
+  leaveDate: 2021-04-21 15:51:13
+  checkInDate: 2021-04-21 15:51:13
+  total: 9.99

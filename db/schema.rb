@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_20_090645) do
+ActiveRecord::Schema.define(version: 2021_04_21_091816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.string "name"
-    t.string "citizen_id"
+    t.string "name", null: false
+    t.string "citizen_id", null: false
     t.boolean "is_female"
     t.string "nationality"
     t.datetime "date_of_birth"
@@ -28,37 +28,81 @@ ActiveRecord::Schema.define(version: 2021_04_20_090645) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "type"
-    t.string "citizen_id"
-    t.boolean "isFemale"
+    t.string "citizen_id", null: false
+    t.boolean "is_female"
     t.string "nationality"
     t.datetime "date_of_birth"
     t.string "email"
-    t.integer "status"
+    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "reservation_date", null: false
+    t.boolean "is_paid", null: false
+    t.decimal "deposit"
+    t.decimal "temp_total"
+    t.datetime "check_out_date"
+    t.integer "payment_type", null: false
+    t.decimal "total"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "reservation_id"
+    t.index ["reservation_id"], name: "index_payments_on_reservation_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "status", null: false
+    t.datetime "arrival_date", null: false
+    t.datetime "leave_date", null: false
+    t.datetime "check_in_date", null: false
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_id"
+    t.bigint "employee_id"
+    t.bigint "room_id"
+    t.index ["client_id"], name: "index_reservations_on_client_id"
+    t.index ["employee_id"], name: "index_reservations_on_employee_id"
+    t.index ["room_id"], name: "index_reservations_on_room_id"
   end
 
   create_table "room_types", force: :cascade do |t|
-    t.string "name"
-    t.decimal "hour_price"
-    t.decimal "date_price"
-    t.decimal "past_night_price"
-    t.decimal "week_price"
-    t.decimal "month_price"
-    t.decimal "add_adult_price"
-    t.decimal "add_child_price"
+    t.string "name", null: false
+    t.decimal "hour_price", null: false
+    t.decimal "date_price", null: false
+    t.decimal "past_night_price", null: false
+    t.decimal "week_price", null: false
+    t.decimal "month_price", null: false
+    t.decimal "add_adult_price", null: false
+    t.decimal "add_child_price", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "name"
-    t.decimal "unit_price"
+  create_table "rooms", force: :cascade do |t|
+    t.integer "beds", null: false
+    t.integer "status", null: false
+    t.integer "floor", null: false
+    t.integer "capacity"
+    t.decimal "price", null: false
     t.string "description"
-    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "roomType_id"
+    t.index ["roomType_id"], name: "index_rooms_on_roomType_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "unit_price", null: false
+    t.string "description"
+    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

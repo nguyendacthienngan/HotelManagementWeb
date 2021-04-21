@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_091816) do
+ActiveRecord::Schema.define(version: 2021_04_21_095014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2021_04_21_091816) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "reservation_id"
     t.index ["reservation_id"], name: "index_payments_on_reservation_id"
+  end
+
+  create_table "reservation_details", force: :cascade do |t|
+    t.datetime "date_charged", null: false
+    t.integer "quantity", null: false
+    t.decimal "total", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "reservation_id"
+    t.bigint "service_id"
+    t.index ["reservation_id"], name: "index_reservation_details_on_reservation_id"
+    t.index ["service_id"], name: "index_reservation_details_on_service_id"
   end
 
   create_table "reservations", force: :cascade do |t|

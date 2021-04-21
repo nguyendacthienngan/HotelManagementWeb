@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date charged:</strong>
+  <%= @reservation_detail.date_charged %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @reservation_detail.quantity %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @reservation_detail.total %>
+</p>
+
+<%= link_to 'Edit', edit_reservation_detail_path(@reservation_detail) %> |
+<%= link_to 'Back', reservation_details_path %>

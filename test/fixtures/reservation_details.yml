@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_charged: 2021-04-21 16:32:19
+  quantity: 1
+  total: 9.99
+
+two:
+  date_charged: 2021-04-21 16:32:19
+  quantity: 1
+  total: 9.99

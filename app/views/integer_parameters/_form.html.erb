@@ -1,0 +1,27 @@
+<%= form_with(model: integer_parameter) do |form| %>
+  <% if integer_parameter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(integer_parameter.errors.count, "error") %> prohibited this integer_parameter from being saved:</h2>
+
+      <ul>
+        <% integer_parameter.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :param_name %>
+    <%= form.text_field :param_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :param_value %>
+    <%= form.number_field :param_value %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

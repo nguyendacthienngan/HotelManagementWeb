@@ -1,0 +1,2 @@
+class IntegerParameter < ApplicationRecord
+end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Param name:</strong>
+  <%= @integer_parameter.param_name %>
+</p>
+
+<p>
+  <strong>Param value:</strong>
+  <%= @integer_parameter.param_value %>
+</p>
+
+<%= link_to 'Edit', edit_integer_parameter_path(@integer_parameter) %> |
+<%= link_to 'Back', integer_parameters_path %>

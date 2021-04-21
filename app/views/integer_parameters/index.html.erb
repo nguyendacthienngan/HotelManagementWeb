@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Integer Parameters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param name</th>
+      <th>Param value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @integer_parameters.each do |integer_parameter| %>
+      <tr>
+        <td><%= integer_parameter.param_name %></td>
+        <td><%= integer_parameter.param_value %></td>
+        <td><%= link_to 'Show', integer_parameter %></td>
+        <td><%= link_to 'Edit', edit_integer_parameter_path(integer_parameter) %></td>
+        <td><%= link_to 'Destroy', integer_parameter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Integer Parameter', new_integer_parameter_path %>

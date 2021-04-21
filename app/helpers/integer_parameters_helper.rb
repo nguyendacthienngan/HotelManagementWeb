@@ -1,0 +1,2 @@
+module IntegerParametersHelper
+end

@@ -22,20 +22,22 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.string "nationality"
     t.datetime "date_of_birth"
     t.string "email"
-    t.integer "type"
+    t.integer "client_type"
+    t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type"
+    t.integer "employee_type"
     t.string "citizen_id", null: false
     t.boolean "is_female"
     t.string "nationality"
     t.datetime "date_of_birth"
     t.string "email"
     t.integer "status", null: false
+    t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

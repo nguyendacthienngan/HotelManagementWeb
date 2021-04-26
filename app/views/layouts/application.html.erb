@@ -14,85 +14,106 @@
 
   <body>
   <div class="container">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-        </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">
-                Log in
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <%= render 'layouts/header' %>
     <section class="main-content columns is-fullheight">
 
-      <aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
-        <p class="menu-label is-hidden-touch">Navigation</p>
+      <aside class="column is-3 is-narrow-mobile is-fullheight section is-hidden-mobile">
+        <p class="menu-label is-hidden-touch">Menu</p>
         <ul class="menu-list">
           <li>
-            <a href="#" class="">
-              <span class="icon"><i class="fa fa-home"></i></span> Home
-            </a>
+            <%= link_to root_path do %>
+              <span class="icon"><i class="fa fa-home"></i></span>
+              Trang chủ
+            <% end %>
           </li>
           <li>
-            <a href="#" class="is-active">
-              <span class="icon"><i class="fa fa-table"></i></span> Links
+            <a href="#">
+              <span class="icon"><i class="fa fa-table"></i></span> Lễ Tân
             </a>
 
             <ul>
               <li>
                 <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Link1
+                  <span class="icon is-small"><i class="fa fa-link"></i></span> Sơ đồ phòng
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Link2
+                  <span class="icon is-small"><i class="fa fa-link"></i></span> Danh sách đặt phòng
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon is-small"><i class="fa fa-link"></i></span> Khách lẻ
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon is-small"><i class="fa fa-link"></i></span> Khách đoàn
                 </a>
               </li>
             </ul>
           </li>
           <li>
+            <%= link_to services_path do %>
+              <span class="icon"><i class="fa fa-home"></i></span>
+              Dịch vụ
+            <% end %>
+          </li>
+          <li>
             <a href="#" class="">
-              <span class="icon"><i class="fa fa-info"></i></span> About
+              <span class="icon"><i class="fa fa-info"></i></span> Cấu hình
             </a>
+            <ul>
+              <li>
+                <%= link_to rooms_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Phòng
+                <% end %>
+              </li>
+              <li>
+                <%= link_to room_types_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Loại phòng
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Giá phòng
+                <% end %>
+              </li>
+              <li>
+                <%= link_to services_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Dịch vụ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to employees_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Nhân viên
+                <% end %>
+              </li>
+              <li>
+                <%= link_to clients_path do %>
+                  <span class="icon is-small"><i class="fa fa-link"></i></span>
+                  Khách hàng
+                <% end %>
+              </li>
+            </ul>
           </li>
         </ul>
       </aside>
 
-      <div class="container column is-10">
+      <div class="container column is-9">
         <div class="section">
           <%= yield %>
         </div>
       </div>
 
     </section>
-
-    <footer class="footer is-hidden">
-      <div class="container">
-        <div class="content has-text-centered">
-          <p>Hello</p>
-        </div>
-      </div>
-    </footer>
+    <%= render 'layouts/footer' %>
   </div>
   </body>
 </html>

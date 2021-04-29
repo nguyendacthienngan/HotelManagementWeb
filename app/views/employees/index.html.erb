@@ -1,40 +1,56 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="notification is-primary is-light" style="">
+    <%= notice %>
+  </div>
+<% end %>
 
-<h1>Employees</h1>
 
-<table>
+<h1 class="title is-2">Employees</h1>
+
+<table class="table is-hoverable" >
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Citizen</th>
-      <th>Isfemale</th>
-      <th>Nationality</th>
-      <th>Date of birth</th>
-      <th>Email</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th><abbr title="id">ID</abbr></th>
+    <th><abbr title="name">Name</abbr></th>
+    <th><abbr title="employee_type">Type</abbr></th>
+    <th><abbr title="citizen_id">Citizen ID</abbr></th>
+    <th><abbr title="is_female">Is Female</abbr></th>
+    <th><abbr title="nationality">Nationality</abbr></th>
+    <th><abbr title="dob">DOB</abbr></th>
+    <th><abbr title="email">Email</abbr></th>
+    <th><abbr title="status">Status</abbr></th>
+    <th><abbr title="show">Show</abbr></th>
+    <th><abbr title="edit">Edit</abbr></th>
+    <th><abbr title="destroy">Destroy</abbr></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.name %></td>
-        <td><%= employee.employee_type %></td>
-        <td><%= employee.citizen_id %></td>
-        <td><%= employee.is_female %></td>
-        <td><%= employee.nationality %></td>
-        <td><%= employee.date_of_birth %></td>
-        <td><%= employee.email %></td>
-        <td><%= employee.status %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
+  <% @employees.each do |employee| %>
+    <tr>
+      <th><%= employee.id %></th>
+      <td><%= employee.name %></td>
+      <td><%= employee.employee_type %></td>
+      <td><%= employee.citizen_id %></td>
+      <td><%= employee.is_female %></td>
+      <td><%= employee.nationality %></td>
+      <td><%= employee.date_of_birth.strftime("%m/%d/%Y")  %></td>
+      <td><%= employee.email %></td>
+      <td><%= employee.status %></td>
+      <td><%= link_to  employee do %> <i class="fa fa-eye" style="font-size:1.25rem"></i><% end %></td>
+      <td><%= link_to  edit_employee_path(employee) do %> <i class="fa fa-edit" style="font-size:1.25rem"></i><% end %></td>
+      <td><%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %> <i class="fa fa-trash-o" style="font-size:1.25rem"></i><% end %></td>
+    </tr>
+  <% end %>
+
   </tbody>
 </table>
+
+
+
+
+
 
 <br>
 

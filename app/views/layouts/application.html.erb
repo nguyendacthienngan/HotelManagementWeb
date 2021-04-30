@@ -7,115 +7,81 @@
     <%= csp_meta_tag %>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <div class="container">
-    <%= render 'layouts/header' %>
-    <section class="main-content columns is-fullheight">
-
-      <aside class="column is-3 is-narrow-mobile is-fullheight section is-hidden-mobile">
-        <p class="menu-label is-hidden-touch">Menu</p>
-        <ul class="menu-list">
-          <li>
-            <%= link_to root_path do %>
-              <span class="icon"><i class="fa fa-home"></i></span>
-              Trang chủ
-            <% end %>
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+      </div>
+      <div class="p-4 pt-5">
+        <h1><a href="index.html" class="logo">Splash</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <%= link_to 'Trang Chủ', root_path, data: { toggle: 'tooltip' } %>
           </li>
           <li>
-            <a href="#">
-              <span class="icon"><i class="fa fa-table"></i></span> Lễ Tân
-            </a>
-
-            <ul>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Lễ Tân</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
-                <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Sơ đồ phòng
-                </a>
+                <%= link_to 'Sơ đồ phòng', root_path %>
               </li>
               <li>
-                <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Danh sách đặt phòng
-                </a>
+                <%= link_to 'Khách lẻ', root_path %>
               </li>
               <li>
-                <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Khách lẻ
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="icon is-small"><i class="fa fa-link"></i></span> Khách đoàn
-                </a>
+                <%= link_to 'Khách đoàn', root_path %>
               </li>
             </ul>
           </li>
           <li>
-            <%= link_to services_path do %>
-              <span class="icon"><i class="fa fa-home"></i></span>
-              Dịch vụ
-            <% end %>
+            <%= link_to 'Dịch Vụ', services_path, data: { toggle: 'tooltip' }, aria: { expanded: false} %>
           </li>
           <li>
-            <a href="#" class="">
-              <span class="icon"><i class="fa fa-info"></i></span> Cấu hình
-            </a>
-            <ul>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cấu hình</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
-                <%= link_to rooms_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Phòng
-                <% end %>
+                <%= link_to 'Phòng', rooms_path %>
               </li>
               <li>
-                <%= link_to room_types_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Loại phòng
-                <% end %>
+                <%= link_to 'Loại phòng', room_types_path %>
               </li>
               <li>
-                <%= link_to root_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Giá phòng
-                <% end %>
+                <%= link_to 'Giá phòng', root_path %>
               </li>
               <li>
-                <%= link_to services_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Dịch vụ
-                <% end %>
+                <%= link_to 'Dịch vụ', services_path %>
               </li>
               <li>
-                <%= link_to employees_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Nhân viên
-                <% end %>
+                <%= link_to 'Nhân viên', employees_path %>
               </li>
               <li>
-                <%= link_to clients_path do %>
-                  <span class="icon is-small"><i class="fa fa-link"></i></span>
-                  Khách hàng
-                <% end %>
+                <%= link_to 'Khách hàng', clients_path %>
               </li>
             </ul>
           </li>
         </ul>
-      </aside>
 
-      <div class="container column is-9">
-        <div class="section">
-          <%= yield %>
-        </div>
       </div>
+    </nav>
 
-    </section>
-    <%= render 'layouts/footer' %>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+      <%= yield %>
+    </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <%= render 'layouts/footer' %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -10,7 +10,8 @@ class CreateRoomTypes < ActiveRecord::Migration[6.1]
       t.decimal :add_adult_price, null: false
       t.decimal :add_child_price, null: false
       t.string :description
-
+      t.integer :capacity
+      t.integer :beds, null: false
       t.timestamps
     end
   end

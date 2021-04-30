@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
   create_table "clients", force: :cascade do |t|
     t.string "name", null: false
     t.string "citizen_id", null: false
-    t.boolean "is_female"
+    t.integer "gender"
     t.string "nationality"
     t.datetime "date_of_birth"
     t.string "email"
@@ -32,12 +32,13 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.string "name", null: false
     t.integer "employee_type"
     t.string "citizen_id", null: false
-    t.boolean "is_female"
+    t.integer "gender"
     t.string "nationality"
     t.datetime "date_of_birth"
     t.string "email"
     t.integer "status", null: false
     t.string "phone_number"
+    t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -102,17 +103,17 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.decimal "add_adult_price", null: false
     t.decimal "add_child_price", null: false
     t.string "description"
+    t.integer "capacity"
+    t.integer "beds", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "beds", null: false
     t.integer "status", null: false
     t.integer "floor", null: false
-    t.integer "capacity"
-    t.decimal "price", null: false
     t.string "description"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "roomType_id"

@@ -11,9 +11,62 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<center>
+<div class="_form_container tColumn">
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :name %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field  :name %>
+      <div class="error_msg">This name is not valid !</div>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label 'Ma loai phong' %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :add_adult_price %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label 'So nguoi lon mac dinh' %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.number_field :add_adult_price , min: 0 %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label 'So tre em mac dinh' %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.number_field :add_adult_price , min: 0 %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label 'Gia' %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :add_adult_price %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <%= form.label :add_adult_price %>
+    <%= form.text_field :add_adult_price %>
+  </div>
+
+  <div class="field tRow">
+    <%= form.label :add_child_price %>
+    <%= form.text_field :add_child_price %>
   </div>
 
   <div class="field">
@@ -42,21 +95,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :add_adult_price %>
-    <%= form.text_field :add_adult_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :add_child_price %>
-    <%= form.text_field :add_child_price %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
 
-  <div class="actions">
+  <div class="actions button_submit">
     <%= form.submit %>
   </div>
+</div>
+</center>
 <% end %>

@@ -1,3 +1,106 @@
 // Place all the styles related to the RoomTypes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.notice_success{
+    background-color: #effaf5;
+    color: #257953;
+    font-size: 17px;
+    padding: 10px 0px;
+}
+
+.title{
+    margin-bottom: 40px;
+    color: #6749b9;
+}
+.tColumn{
+    display: flex;
+    flex-direction: column;
+}
+.tRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.roomtype_sum_container{
+    color: #000000;
+    justify-content: space-between;
+    margin: 30px 0px 30px 0px;
+    font-size: 20px;
+    i{
+        font-size: 3rem;
+    }
+}
+
+.roomtype_list_container{
+    color: #000000;
+    font-size: 17px;
+    max-width: 800px;
+    .item{
+        padding: 0px 10px 0px 10px;
+        margin: 5px 10px 5px 10px;
+        border: solid 3px black;
+        justify-content: space-between;
+        & > div{
+            padding: 10px;
+        }
+        .section{
+            justify-content: space-between;
+            align-items: center;
+            & > div{
+                margin: 0px 8px 0px 8px;
+                text-align: left;
+            }
+        }
+    }
+    i{
+        font-size: 2.2rem;
+    }
+}
+
+._form_container{
+    color: black;
+    & > div{
+        width: 100%;
+    }
+    font-size: 20px;
+    max-width: 700px;
+    width: 100% ;
+    ._form_item_name{
+        text-align: left;
+        width: 230px;
+        
+    }
+    ._form_item_input{
+        flex-grow: 1;
+        & > input {
+            width: 100%;
+            outline: none;
+            border: solid 1px gray;
+            border-radius: 2px;
+            &:focus{
+                background-color: rgb(255, 255, 255);
+                border: solid 1px #866ec7;
+            }
+        }
+        .error_msg{
+            color: red;
+            font-size: 0.9375rem;
+            display: none;
+        }
+        .show_error_msg ~ .error_msg{
+            display: block;
+        }
+    }
+    .button_submit{
+        margin: 15px;
+    }
+}
+
+.button_back{
+    background-color: #ffffff;
+    border: solid 1px #866ec7;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+    

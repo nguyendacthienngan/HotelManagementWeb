@@ -63,7 +63,7 @@
         width: 100%;
     }
     font-size: 20px;
-    max-width: 600px;
+    max-width: 700px;
     width: 100% ;
     ._form_item_name{
         text-align: left;
@@ -76,7 +76,7 @@
             width: 100%;
             outline: none;
             border: solid 1px gray;
-            // background-color: rgb(193, 193, 199);
+            border-radius: 2px;
             &:focus{
                 background-color: rgb(255, 255, 255);
                 border: solid 1px #866ec7;
@@ -93,7 +93,6 @@
     }
     .button_submit{
         margin: 15px;
-        
     }
 }
 

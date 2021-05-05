@@ -1,4 +1,8 @@
-<p id="notice" class="notice_success"><%= notice %></p>
+<% if notice %>
+  <div class="notification notice_success">
+    <%= notice %>
+  </div>
+<% end %>
 
 <center><h1 class="title">Room Types</h1></center>
 

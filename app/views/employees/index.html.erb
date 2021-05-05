@@ -1,13 +1,48 @@
 <% if notice %>
-  <div class="notification is-primary is-light" style="">
+  <div class="notification notice_success">
     <%= notice %>
   </div>
 <% end %>
 
+<center><h1 class="title">Employees</h1></center>
 
-<h1 class="title is-2">Employees</h1>
+<div class="roomtype_sum_container tRow">
+  <div>
+      Danh sach nhan vien ( Tong so nhan vien )
+  </div>
+  <div>
+      <%= link_to new_employee_path do%><i class="fas fa-plus-circle"></i><% end %>
+  </div>
+</div>
 
-<table class="table is-hoverable" >
+<center>
+  <div class="roomtype_list_container tColumn">
+    <% @employees.each do |employee| %>
+      <div class="item tRow">
+          <div class="section tRow">
+              <div class="">
+                  <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-minus-circle"></i><% end %>
+              </div>
+              <div class="tColumn employee_name">
+                  <div>
+                      <%= employee.name %>
+                  </div>
+                  <div class="employee_type">
+                      <%= employee.employee_type %>
+                  </div>
+              </div>
+          </div>
+          <div class="section tRow">
+              <div class="">
+                  <%= link_to edit_employee_path(employee) do%><i class="fas fa-pencil-alt"></i><% end %>
+              </div>
+          </div>
+      </div>
+      <% end %>
+  </div>
+  </center>
+
+<!-- <table class="table is-hoverable" >
   <thead>
   <tr>
     <th><abbr title="id">ID</abbr></th>
@@ -45,13 +80,8 @@
   <% end %>
 
   </tbody>
-</table>
-
-
-
-
-
+</table> -->
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<!-- <%= link_to 'New Employee', new_employee_path %> -->

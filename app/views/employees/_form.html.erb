@@ -11,47 +11,83 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<center>
+<div class="_form_container tColumn">
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :name %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :name %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :employee_type %>
-    <%= form.number_field :employee_type %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :employee_type %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.number_field :employee_type %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :citizen_id %>
-    <%= form.text_field :citizen_id %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :citizen_id %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :citizen_id %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :is_female %>
-    <%= form.check_box :is_female %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :is_female %>
+    </div>
+    <div class="">
+      <%= form.check_box :is_female %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :nationality %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :nationality %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.datetime_select :date_of_birth %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :date_of_birth %>
+    </div>
+    <div class="">
+      <%= form.datetime_select :date_of_birth %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :email %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :email %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :status %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.number_field :status %>
+    </div>
   </div>
 
-  <div class="actions">
+  <div class="actions button_submit">
     <%= form.submit %>
   </div>
+</div>
+</center>
 <% end %>

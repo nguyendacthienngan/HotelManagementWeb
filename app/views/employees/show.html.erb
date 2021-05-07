@@ -1,44 +1,58 @@
+<center>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<div class="show_container tColumn">
+<p class="tRow">
+  <strong class="show_employee_name">Name</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.name %>
 </p>
 
-<p>
-  <strong>Type:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Type</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.employee_type %>
 </p>
 
-<p>
-  <strong>Citizen:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Citizen</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.citizen_id %>
 </p>
 
-<p>
-  <strong>Isfemale:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Gender</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.is_female %>
 </p>
 
-<p>
-  <strong>Nationality:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Nationality</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.nationality %>
 </p>
 
-<p>
-  <strong>Date of birth:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Date of birth</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.date_of_birth %>
 </p>
 
-<p>
-  <strong>Email:</strong>
+<p class="tRow">
+  <strong  class="show_employee_name">Email</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.email %>
 </p>
 
-<p>
-  <strong>Status:</strong>
+<p class="tRow">
+  <strong class="show_employee_name">Status</strong>
+  <strong class="show_sign">:</strong>
   <%= @employee.status %>
 </p>
+</div>
 
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<button class="button_back"><%= link_to 'Back', employees_path %></button>
+<button class="button_edit"><%= link_to 'Edit', edit_employee_path(@employee) %></button>
+
+
+</center>

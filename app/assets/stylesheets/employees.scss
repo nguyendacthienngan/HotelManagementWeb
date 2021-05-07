@@ -10,3 +10,24 @@
 ._form_checkbox{
     font-size: 17px;
 }
+
+.show_container{
+    color: black;
+    & > div{
+        width: 100%;
+    }
+    font-size: 20px;
+    max-width: 500px;
+    width: 100% ;
+    text-align: left;
+    .show_employee_name{
+        width: 150px;
+    }
+    .show_roomtype_name{
+        width: 200px;
+    }
+    .show_sign{
+        width: 50px;
+    }
+}
+

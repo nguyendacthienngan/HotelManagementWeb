@@ -50,6 +50,9 @@
                 margin: 0px 8px 0px 8px;
                 text-align: left;
             }
+            .icon_costom{
+                margin: 0 20px;
+            }
         }
     }
     i{
@@ -101,6 +104,17 @@
     border: solid 1px #866ec7;
     border-radius: 4px;
     font-size: 16px;
+    padding: 5px 20px;
 }
+
+.button_show,
+.button_edit{
+    background-color: 	#ece6ff;
+    border: solid 1px #866ec7;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
 
     

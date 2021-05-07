@@ -42,10 +42,11 @@
   </tbody>
 </table> -->
 
+<!-- <%= link_to 'New Room Type', new_room_type_path %> -->
 
 <div class="roomtype_sum_container tRow">
     <div>
-        Danh sach loai phong ( Tong so loai phong )
+        Danh sach loai phong ( <%= @room_types.ids.count %> )
     </div>
     <div>
         <%= link_to new_room_type_path do%><i class="fas fa-plus-circle"></i><% end %>
@@ -69,10 +70,13 @@
             </div>
         </div>
         <div class="section tRow">
-            <div class="">
+            <div class="icon_costom">
+              <%= link_to  room_type do %> <i class="fa fa-eye" style="font-size:2rem"></i><% end %>
+            </div>
+            <div class="icon_costom">
                 <%= link_to edit_room_type_path(room_type) do%><i class="fas fa-pencil-alt"></i><% end %>
             </div>
-            <div class="">
+            <div class="icon_costom">
                 <i class="fas fa-dollar-sign"></i></div>
         </div>
     </div>
@@ -81,4 +85,3 @@
 </center>
 <br>
 
-<!-- <%= link_to 'New Room Type', new_room_type_path %> -->

@@ -1,3 +1,83 @@
 // Place all the styles related to the room_diagram controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.page-section{
+  margin-bottom: 15px
+}
+
+#switcher .btn{
+  border: 1px solid  #6749b9;
+  width: 120px !important;
+}
+
+#switcher .inactive{
+  background-color: white;
+}
+
+#switcher .active{
+  background-color: #6749b9;
+}
+
+.btn-group .dropdown .btn {
+  padding-right: 25px;
+  border: 1px solid  #ced4da;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+}
+.btn-group .dropdown .btn::after {
+  right: 10px;
+  color: #6749b9;
+}
+.btn-group .dropdown .btn:active{
+  box-shadow: #6749b9;
+}
+
+.has-search input {
+  border-left: 0px solid #ced4da;
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: block;
+  width: 2rem;
+  line-height: 2.375rem;
+  pointer-events: none;
+  color: #6749b9;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  //margin: 0 -3rem;
+}
+.filter-wrapper .filter-item {
+  align-self: center;
+  margin: 0 .5rem 0 .5rem;
+
+  background-color: #6749b9;
+  color: white;
+  padding: 10px 20px 0px 20px;
+  max-width: 120px;
+}
+
+.room-wrapper {
+  width: 250px;
+}
+
+
+.room-wrapper .card {
+  border: 1px solid  black;
+}
+
+
+.room-wrapper .card .card-body .order-btn {
+  justify-content: space-between;
+}

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :services
   resources :employees
   resources :clients
+
+  get "/room_diagram", to: "room_diagram#index"
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

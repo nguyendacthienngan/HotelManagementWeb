@@ -1,5 +1,35 @@
 <%= stylesheet_link_tag "room_diagram" %>
-<div id="overlay-back"></div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-bottom" role="document">
+   <h3>Phòng A102</h3>
+    <p>Trạng thái: đã nhận</p>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>
+          <span>
+            <i class="fa fa-user fa-4x"></i>
+          </span>
+        </th>
+        <td>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-primary">Danh sách phòng</button>
+    </div>
+  </div>
+</div>
 <div>
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <div class="row">
@@ -424,6 +454,7 @@
     </div>
   </div>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function(){

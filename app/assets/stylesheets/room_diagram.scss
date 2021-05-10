@@ -116,3 +116,27 @@ body {
   -moz-transform: translate(0px, -70px);
   z-index: 99999;
 }
+
+.modal-bottom {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 50px 0 50px 0;
+}
+
+.modal-bottom .table {
+  border: 0 white;
+
+}
+.modal-bottom .table tbody tr th {
+  text-align: right;
+  width: 50%;
+  margin: 0;
+}
+.modal-bottom .table tbody tr td {
+  text-align: left;
+  width: 50%;
+
+}

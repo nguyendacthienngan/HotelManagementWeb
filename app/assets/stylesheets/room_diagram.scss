@@ -1,6 +1,11 @@
 // Place all the styles related to the room_diagram controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  height: 100% !important;
+  //background: image-url("background.jpg") no-repeat !important;
+  //background-size: cover !important;
+}
 
 .page-section{
   margin-bottom: 15px
@@ -33,13 +38,17 @@
   box-shadow: #6749b9;
 }
 
-.has-search input {
+.has-search .dropdown {
+  background-color: white;
+}
+
+.has-search .form-group input {
   border-left: 0px solid #ced4da;
   border-top-left-radius: unset;
   border-bottom-left-radius: unset;
 }
 
-.has-search .form-control-feedback {
+.has-search .form-group .form-control-feedback {
   position: absolute;
   top: 0;
   right: 0;
@@ -56,28 +65,54 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  //margin: 0 -3rem;
 }
+
 .filter-wrapper .filter-item {
-  align-self: center;
   margin: 0 .5rem 0 .5rem;
 
   background-color: #6749b9;
   color: white;
-  padding: 10px 20px 0px 20px;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
   max-width: 120px;
 }
 
 .room-wrapper {
   width: 250px;
+  margin: 0px 16px 20px 0px;
+
 }
 
+.room-wrapper .reservation-list {
+  display: block;
+  margin: -30px 0 0 0 ;
+}
 
 .room-wrapper .card {
   border: 1px solid  black;
+  background-color: #ffffff;
+  transition: transform 0.5s ease;
+
 }
 
+.room-wrapper .card .card-body .card-text .dropdown .dropdown-menu{
+  margin-top: -20px;
+  //z-index: 9999999999;
+}
 
 .room-wrapper .card .card-body .order-btn {
   justify-content: space-between;
+}
+
+.fa {
+  margin-right: 10px;
+}
+
+.pushObject {
+  transform: translate(0px, -70px);
+  -webkit-transform: translate(0px, -70px);
+  -ms-transform: translate(0px, -70px);
+  -o-transform: translate(0px, -70px);
+  -moz-transform: translate(0px, -70px);
+  z-index: 99999;
 }

@@ -1,82 +1,484 @@
 <%= stylesheet_link_tag "room_diagram" %>
-<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-  <div class="row">
-    <div class="col-6">
-      <div class="d-flex justify-content-start">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Lễ tân</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Sơ đồ phòng</li>
-        </ol>
-      </div>
+
+
+
+
+<div class="modal" id="roomModal" tabindex="-1" role="dialog">
+  <div class="modal-bottom" role="document">
+   <h3>Phòng A102</h3>
+    <p>Trạng thái: đã nhận</p>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>
+          <span>
+            <i class="fa fa-user fa-4x"></i>
+          </span>
+        </th>
+        <td>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+          Ngày đến: 1/1/2021 <br>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-primary">Danh sách phòng</button>
     </div>
-    <div class="col-6">
-      <div id="search" class="d-flex justify-content-end">
-        <div class="btn-group">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Tầng
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
+
+
+<div>
+  <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-start">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Lễ tân</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sơ đồ phòng</li>
+          </ol>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div id="search" class="d-flex">
+          <div class="has-search">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tầng
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <div class="form-group">
+
+              <input  aria-label="Search" type="text" class="form-control" placeholder="Tìm kiếm...">
+              <span class="fa fa-search form-control-feedback"></span>
+
             </div>
           </div>
-          <div class="form-group has-search">
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="page-section d-flex justify-content-center">
+    <div id="switcher" class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary">Tầng</button>
+      <button type="button" class="btn inactive">Loại phòng</button>
+    </div>
+  </div>
+  <div class="page-section">
+    <div class="filter-wrapper">
+    <span class="filter-item">
+      Tất cả (6)
+    </span>
+      <span class="filter-item">
+      Tất cả (6)
+    </span>
+      <span class="filter-item">
+      Tất cả (6)
+    </span>
+      <span class="filter-item">
+      Tất cả (6)
+    </span>
+    </div>
+  </div>
+  <h3 class="row-title">Tầng 1</h3>
+  <div class="page-section d-flex rooms"  >
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
 
-            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-            <span class="fa fa-search form-control-feedback"></span>
-
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</nav>
-<div class="page-section d-flex justify-content-center">
-  <div id="switcher" class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-primary">Tầng</button>
-    <button type="button" class="btn inactive">Loại phòng</button>
-  </div>
-</div>
-<div class="page-section">
-  <div class="filter-wrapper">
-    <div class="filter-item">
-      <p>Tất cả (6)</p>
-    </div>
-    <div class="filter-item">
-      <p>Tất cả (6)</p>
-    </div>
-    <div class="filter-item">
-      <p>Tất cả (6)</p>
-    </div>
-    <div class="filter-item">
-      <p>Tất cả (6)</p>
-    </div>
-  </div>
-</div>
-<h3>Tầng 1</h3>
-<div class="page-section d-flex">
-  <div class="room-wrapper">
-    <div class="card" style="">
-      <div class="card-body" style="padding-bottom: 0px;">
-        <div class="card-text row">
-          <p class="col-6">A101</p>
-          <span class="col-6 d-flex justify-content-end"><i class="fas fa-ellipsis-v"></i></span>
-        </div>
-        <div class="card-text d-flex justify-content-center">
-          <span><i class="fa fa-user"></i></span>
-          <span style="width: 5px"></span>
-          <h5 class="child">Trống</h5>
-        </div>
-      </div>
-      <hr>
-      <div class="card-body" style="padding-top: 0px;">
-        <div class="d-flex order-btn">
-          <a href="#" class="btn btn-primary">Đặt nhanh</a>
-          <a href="#" class="btn btn-primary">Khách lẻ</a>
-        </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
       </div>
     </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+  </div>
+  <h3 class="row-title">Tầng 1</h3>
+  <div class="page-section d-flex rooms">
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
+    <div class="room-wrapper">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
+          <div class="card-text row">
+            <p class="col-md-6">A101</p>
+            <div class="dropdown col-md-6 d-flex justify-content-end">
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-bars"></i></span>
+                  Danh sách đặt phòng
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-calendar-alt"></i></span>
+                  Đặt phòng nhanh
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  Khách lẻ
+                </a>
+                <a class="dropdown-item" href="#">
+                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  Phòng bẩn
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-text d-flex justify-content-center">
+            <span><i class="fa fa-user"></i></span>
+            <h5 class="child">Trống</h5>
+          </div>
+        </div>
+        <hr>
+        <div class="card-body" style="padding-top: 0;">
+          <div class="d-flex order-btn">
+            <a href="#" class="btn btn-primary">Đặt nhanh</a>
+            <a href="#" class="btn btn-primary">Khách lẻ</a>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-list">
+        <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        cardHover();
+        $('*[data-target="#roomModal"]').click(function(event){
+            if ($(event.target).hasClass('btn'))
+                event.stopPropagation();
+        });
+        $('#roomModal').on('show.bs.modal', function (e) {
+            var cardTarget = e.relatedTarget;
+            if ($(cardTarget).hasClass('pushObject'))
+            {
+                $(cardTarget).removeClass('pushObject');
+            }
+
+
+        });
+    })
+    function cardHover() {
+        $('.card').hover(function () {
+            if (!$('body').hasClass('modal-open')) // Khi modal mở, đang removeClass pushobject, thì chuột hover => lên lại => xóa
+              $(this).toggleClass('pushObject');
+        });
+    }
+</script>

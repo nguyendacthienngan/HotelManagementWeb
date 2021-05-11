@@ -1,10 +1,12 @@
 <%= stylesheet_link_tag "room_diagram" %>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomModal">
   Launch demo modal
 </button>
 
-<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+<div class="modal" id="roomModal" tabindex="-1" role="dialog">
   <div class="modal-bottom" role="document">
    <h3>Phòng A102</h3>
     <p>Trạng thái: đã nhận</p>
@@ -30,6 +32,9 @@
     </div>
   </div>
 </div>
+
+
+
 <div>
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <div class="row">
@@ -56,7 +61,7 @@
             </div>
             <div class="form-group">
 
-              <input type="text" class="form-control" placeholder="Tìm kiếm...">
+              <input  aria-label="Search" type="text" class="form-control" placeholder="Tìm kiếm...">
               <span class="fa fa-search form-control-feedback"></span>
 
             </div>
@@ -90,12 +95,12 @@
   <h3 class="row-title">Tầng 1</h3>
   <div class="page-section d-flex rooms justify-content-center"  >
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -123,7 +128,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -135,12 +140,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -168,7 +173,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -180,12 +185,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -213,7 +218,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -225,12 +230,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -258,7 +263,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -273,12 +278,12 @@
   <h3 class="row-title">Tầng 1</h3>
   <div class="page-section d-flex rooms justify-content-center">
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -306,7 +311,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -318,12 +323,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -351,7 +356,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -363,12 +368,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -396,7 +401,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -408,12 +413,12 @@
       </div>
     </div>
     <div class="room-wrapper">
-      <div class="card" style="">
-        <div class="card-body" style="padding-bottom: 0px;">
+      <div class="card" style="" data-toggle="modal" data-target="#roomModal">
+        <div class="card-body" style="padding-bottom: 0;">
           <div class="card-text row">
             <p class="col-6">A101</p>
             <div class="dropdown col-6 d-flex justify-content-end">
-              <i class="fas fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+              <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">
                   <span><i class="fa fa-bars"></i></span>
@@ -441,7 +446,7 @@
           </div>
         </div>
         <hr>
-        <div class="card-body" style="padding-top: 0px;">
+        <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
             <a href="#" class="btn btn-primary">Đặt nhanh</a>
             <a href="#" class="btn btn-primary">Khách lẻ</a>
@@ -458,7 +463,12 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        cardHover();
+        // cardHover();
+
+        $('.card').click(function(){
+          // console.log("Click card");
+          // $('#roomModal').fadeIn();
+        });
     })
     function cardHover() {
         $('.card').hover(function () {

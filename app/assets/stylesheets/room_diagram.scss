@@ -37,23 +37,63 @@ body {
 .btn-group .dropdown .btn:active{
   box-shadow: #6749b9;
 }
+@media (max-width: 575px)
+{
+  .has-search{
+    width: 100%;
+  }
+  .has-search .dropdown{
+    //width: 50%;
+  }
+  .has-search .dropdown button {
+    text-align: left !important;
+  }
+  .has-search .dropdown .dropdown-toggle{
+    width: 100%;
+  }
+  .dropdown-menu{
+    width: 100% !important;
+  }
+  .has-search .form-group{
+    display: flex;
+  }
+  .has-search .form-group .form-control-feedback {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+}
+@media (min-width: 576px)
+{
+  .has-search {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: flex-end !important;
+
+  }
+  .has-search .form-group .form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+  }
+}
+
 
 .has-search .dropdown {
   background-color: white;
 }
 
 .has-search .form-group input {
-  border-left: 0px solid #ced4da;
+  border-left: 0 solid #ced4da;
   border-top-left-radius: unset;
   border-bottom-left-radius: unset;
 }
 
 .has-search .form-group .form-control-feedback {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  display: block;
+
   width: 2rem;
   line-height: 2.375rem;
   pointer-events: none;
@@ -79,7 +119,7 @@ body {
 
 .room-wrapper {
   width: 250px;
-  margin: 0px 16px 20px 0px;
+  margin: 0 16px 20px 0;
 
 }
 
@@ -97,7 +137,6 @@ body {
 
 .room-wrapper .card .card-body .card-text .dropdown .dropdown-menu{
   margin-top: -20px;
-  //z-index: 9999999999;
 }
 
 .room-wrapper .card .card-body .order-btn {
@@ -139,4 +178,36 @@ body {
   text-align: left;
   width: 50%;
 
+}
+
+@media (min-width: 1001px)
+{
+  .rooms {
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 1000px) and (min-width: 600px)
+{
+  .rooms {
+    //flex-direction: column !important;
+    justify-content: left !important;
+  }
+
+}
+
+@media (max-width: 1000px)
+{
+  .card-body .d-flex {
+    flex-direction: column !important;
+  }
+}
+@media (max-width: 600px)
+{
+  .rooms {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center;
+    }
 }

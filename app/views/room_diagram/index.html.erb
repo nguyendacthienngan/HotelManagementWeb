@@ -460,17 +460,25 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        // cardHover();
+        cardHover();
+        $('*[data-target="#roomModal"]').click(function(event){
+            if ($(event.target).hasClass('btn'))
+                event.stopPropagation();
+        });
+        $('#roomModal').on('show.bs.modal', function (e) {
+            var cardTarget = e.relatedTarget;
+            if ($(cardTarget).hasClass('pushObject'))
+            {
+                $(cardTarget).removeClass('pushObject');
+            }
 
-        $('.card').click(function(){
-          // console.log("Click card");
-          // $('#roomModal').fadeIn();
+
         });
     })
     function cardHover() {
         $('.card').hover(function () {
-            $(this).toggleClass('pushObject');
-            // $(this).closest('div').next().toggleClass('active')
+            if (!$('body').hasClass('modal-open')) // Khi modal mở, đang removeClass pushobject, thì chuột hover => lên lại => xóa
+              $(this).toggleClass('pushObject');
         });
     }
 </script>

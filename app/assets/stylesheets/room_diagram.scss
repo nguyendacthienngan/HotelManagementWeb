@@ -23,18 +23,16 @@ body {
 #switcher .active{
   background-color: #6749b9;
 }
-
-.btn-group .dropdown .btn {
+.has-search .dropdown .btn::after {
+  color: #6749b9 !important;
+}
+.has-search .dropdown .btn {
   padding-right: 25px;
   border: 1px solid  #ced4da;
   border-top-right-radius: unset;
   border-bottom-right-radius: unset;
 }
-.btn-group .dropdown .btn::after {
-  right: 10px;
-  color: #6749b9;
-}
-.btn-group .dropdown .btn:active{
+.has-search.dropdown .btn:active{
   box-shadow: #6749b9;
 }
 @media (max-width: 575px)
@@ -55,12 +53,18 @@ body {
     width: 100% !important;
   }
   .has-search .form-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
   }
   .has-search .form-group .form-control-feedback {
     position: absolute;
-    right: 0;
+    right: 15px;
     z-index: 2;
+  }
+
+  .has-search .dropdown .btn::after {
+    right: 20px;
   }
 }
 @media (min-width: 576px)
@@ -78,6 +82,10 @@ body {
     right: 0;
     z-index: 2;
     display: block;
+  }
+
+  .has-search .dropdown .btn::after {
+    right: 10px;
   }
 }
 
@@ -132,7 +140,7 @@ body {
   border: 1px solid  black;
   background-color: #ffffff;
   transition: transform 0.5s ease;
-
+  cursor: pointer;
 }
 
 .room-wrapper .card .card-body .card-text .dropdown .dropdown-menu{
@@ -199,8 +207,11 @@ body {
 
 @media (max-width: 1000px)
 {
-  .card-body .d-flex {
+  .order-btn {
     flex-direction: column !important;
+  }
+  .order-btn .btn:first-child {
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 600px)

@@ -87,6 +87,11 @@ body {
   .has-search .dropdown .btn::after {
     right: 10px;
   }
+  .has-search .form-group input {
+    border-left: 0 solid #ced4da;
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+  }
 }
 
 
@@ -94,11 +99,7 @@ body {
   background-color: white;
 }
 
-.has-search .form-group input {
-  border-left: 0 solid #ced4da;
-  border-top-left-radius: unset;
-  border-bottom-left-radius: unset;
-}
+
 
 .has-search .form-group .form-control-feedback {
 
@@ -113,6 +114,7 @@ body {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  cursor: pointer;
 }
 
 .filter-wrapper .filter-item {

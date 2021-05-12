@@ -481,7 +481,7 @@
         // });
         $('.card').hover(function () {
             if (!$('body').hasClass('modal-open')) // Khi modal mở, đang removeClass pushobject, thì chuột hover => lên lại => xóa
-                $(this).closest('.card').toggleClass('pushObject');
+                $(this).toggleClass('pushObject');
 
         });
     }

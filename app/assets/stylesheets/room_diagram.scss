@@ -141,7 +141,7 @@ body {
 .room-wrapper .card {
   border: 1px solid  black;
   background-color: #ffffff;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
   cursor: pointer;
 }
 
@@ -162,6 +162,8 @@ body {
 
 .pushObject {
   transform: translate(0px, -70px);
+  /* Enable hardware acceleration to fix laggy transitions */
+
   -webkit-transform: translate(0px, -70px);
   -ms-transform: translate(0px, -70px);
   -o-transform: translate(0px, -70px);

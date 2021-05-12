@@ -1,8 +1,5 @@
 <%= stylesheet_link_tag "room_diagram" %>
-
-
-
-
+<!--Màn hình phụ thao tác với phòng-->
 <div class="modal fade" id="roomModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="display:none">
@@ -18,26 +15,42 @@
       <tr>
         <th>
           <span>
-            <i class="fa fa-user fa-4x"></i>
+            <i class="fa fa-info-circle fa-4x"></i>
           </span>
         </th>
         <td>
           Ngày đến: 1/1/2021 <br>
-          Ngày đến: 1/1/2021 <br>
-          Ngày đến: 1/1/2021 <br>
-          Ngày đến: 1/1/2021 <br>
+          Ngày đi: 1/1/2021 <br>
+          Tên khách: Nguyễn Văn A <br>
+          Ngày check-in: 1/1/2021 <br>
         </td>
       </tr>
       </tbody>
     </table>
-    <div class="btn-group">
-      <button class="btn btn-primary">Danh sách phòng</button>
+    <div class="rooms-btn">
+      <div class="room-btn">
+        <span><i class="fa fa-bars fa-3x"></i></span>
+        <p>Danh sách phòng</p>
+      </div>
+      <div class="room-btn">
+        <span><i class="fa fa-edit fa-3x"></i></span>
+        <p>Chỉnh sửa</p>
+      </div>
+      <div class="room-btn">
+        <span><i class="fa fa-expand-arrows-alt fa-3x"></i></span>
+        <p>Chuyển phòng</p>
+      </div>
+      <div class="room-btn">
+        <span><i class="fa fa-broom fa-3x"></i></span>
+        <p>Phòng bẩn</p>
+      </div>
     </div>
   </div>
 </div>
 
-
-
+<!--Modal đặt phòng nhanh thao tác với phòng-->
+<!--<div class="modal-dialog modal-dialog-centered">-->
+<!--</div>-->
 <div>
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <div class="row">
@@ -121,7 +134,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -166,7 +179,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -211,7 +224,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -256,7 +269,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -304,7 +317,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -349,7 +362,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -394,7 +407,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>
@@ -439,7 +452,7 @@
                   Khách lẻ
                 </a>
                 <a class="dropdown-item" href="#">
-                  <span><i class="fa fa-exclamation-triangle"></i></span>
+                  <span><i class="fa fa-broom"></i></span>
                   Phòng bẩn
                 </a>
               </div>

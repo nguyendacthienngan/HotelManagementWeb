@@ -188,11 +188,25 @@ body {
   text-align: right;
   width: 50%;
   margin: 0;
+  vertical-align: middle;
 }
 .modal-bottom .table tbody tr td {
   text-align: left;
   width: 50%;
 
+}
+
+.modal-bottom .rooms-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-bottom .room-btn {
+  margin: 0 20px 0 20px;
+}
+
+.modal-bottom .room-btn .fa{
+  margin-bottom: 5px;
 }
 
 @media (min-width: 1001px)
@@ -228,3 +242,4 @@ body {
     align-items: center;
     }
 }
+

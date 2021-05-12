@@ -193,7 +193,6 @@ body {
 .modal-bottom .table tbody tr td {
   text-align: left;
   width: 50%;
-
 }
 
 .modal-bottom .rooms-btn {
@@ -208,6 +207,7 @@ body {
 .modal-bottom .room-btn .fa{
   margin-bottom: 5px;
 }
+
 
 @media (min-width: 1001px)
 {
@@ -242,4 +242,22 @@ body {
     align-items: center;
     }
 }
+//#quickResModal .modal-dialog .modal-content .modal-body .row .col-6 .d-flex p {
+//  padding-left: 15px;
+//}
+#quickResModal .modal-dialog .modal-content .modal-body .row{
+  margin-top: 15px;
+}
 
+.modal-lg {
+  max-width: 70% !important;
+}
+
+#quickResModal .modal-dialog .modal-content .modal-body .table {
+  border: 0 white;
+  margin-top: 10px;
+}
+#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td:nth-child(2) .d-flex{
+  margin-left: 15px;
+}
+//#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td {}

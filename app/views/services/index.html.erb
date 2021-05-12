@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Services</h1>
+<h1><b>Dịch vụ</b></h1>
 
-<table>
-  <thead>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
     <tr>
-      <th>Name</th>
-      <th>Unit price</th>
-      <th>Description</th>
-      <th>Status</th>
+      <th>Tên</th>
+      <th>Đơn vị tính</th>
+      <th>Mô tả</th>
+      <th>Trạng thái</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
         <td><%= service.unit_price %></td>
         <td><%= service.description %></td>
         <td><%= service.status %></td>
-        <td><%= link_to 'Show', service %></td>
-        <td><%= link_to 'Edit', edit_service_path(service) %></td>
-        <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Chi tiết', service %></td>
+        <td><%= link_to 'Chỉnh sửa', edit_service_path(service) %></td>
+        <td><%= link_to 'Xoá dịch vụ', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

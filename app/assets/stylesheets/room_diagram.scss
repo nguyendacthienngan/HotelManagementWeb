@@ -152,6 +152,9 @@ body {
 .room-wrapper .card .card-body .order-btn {
   justify-content: space-between;
 }
+.active-reservation .fa {
+  margin-top: 10px;
+}
 
 .fa {
   margin-right: 10px;
@@ -201,7 +204,6 @@ body {
 @media (max-width: 1000px) and (min-width: 600px)
 {
   .rooms {
-    //flex-direction: column !important;
     justify-content: left !important;
   }
 

@@ -49,7 +49,6 @@
 </div>
 
 <!-- Màn hình modal đặt hàng nhanh -->
-<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">
   Launch demo modal
 </button>
@@ -176,6 +175,7 @@
     </div>
   </div>
 </div>
+
 <div>
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <div class="row">
@@ -274,8 +274,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -319,8 +319,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -364,8 +364,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -409,8 +409,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -457,8 +457,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -502,8 +502,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -547,8 +547,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -592,8 +592,8 @@
         <hr>
         <div class="card-body" style="padding-top: 0;">
           <div class="d-flex order-btn">
-            <a href="#" class="btn btn-primary">Đặt nhanh</a>
-            <a href="#" class="btn btn-primary">Khách lẻ</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
+            <button class="btn btn-primary">Khách lẻ</button>
           </div>
         </div>
       </div>
@@ -624,11 +624,31 @@
         });
     }
     function cardClick(){
-        $('*[data-target="#roomModal"]').click(function(event){
-            if ($(event.target).hasClass('btn') || $(event.target).hasClass('fa') )
-                event.stopPropagation();
+        $('*[data-target="#roomModal"]').click(function(event) {
+            if ($(event.target).hasClass('btn') || $(event.target).hasClass('fa'))
+            {
+                event.stopPropagation(); // Nếu click vào card nhưng trúng các icon hay button thì không hiển thị roomModal
+                if ($(event.target).hasClass('btn')) // Nhưng nếu click button thì hiển thị quickResModal
+                {
+                    var cardTarget = event.target.closest('.card');
+                    if ($(cardTarget).hasClass('pushObject'))
+                    {
+                        $(cardTarget).removeClass('pushObject');
+                    }
+                    $(("#quickResModal")).modal('toggle');
+                }
+
+            }
         });
         $('#roomModal').on('show.bs.modal', function (e) {
+            var cardTarget = e.relatedTarget;
+            if ($(cardTarget).hasClass('pushObject'))
+            {
+                $(cardTarget).removeClass('pushObject');
+            }
+
+        });
+        $('#quickResModal').on('show.bs.modal', function (e) {
             var cardTarget = e.relatedTarget;
             if ($(cardTarget).hasClass('pushObject'))
             {

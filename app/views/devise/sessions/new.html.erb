@@ -1,25 +1,45 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field form-group">
-    <% f.label :email %><br />
-    <%= f.email_field :email, class:"form-control", placeholder: "Email", autofocus: true, autocomplete: "email" %>
-  </div>
+<%= stylesheet_link_tag "log_in" %>
 
-  <div class="field form-group">
-    <% f.label :password %><br />
-    <%= f.password_field :password, class:"form-control", placeholder: "Password", autocomplete: "current-password" %>
-  </div>
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('https://images.unsplash.com/photo-1517840901100-8179e982acb7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login100-form validate-form"}) do |f| %>
+					<span class="login100-form-title p-b-49">
+						Chào mừng !
+					</span>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field form-check">
-      <%= f.check_box :remember_me, class:"form-check-input" %>
-      <%= f.label :remember_me %>
+        <div class="wrap-input100 alidate-input m-b-23" data-validate = "Valid email is required: ex@abc.xyz">
+          <%= f.label :email, class: "label-input100" %><br />
+          <%= f.email_field :email, class:"input100", autofocus: true, autocomplete: "email" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+          <%= f.label :password, class: "label-input100" %><br />
+          <%= f.password_field :password, class:"input100", autocomplete: "current-password" %>
+          <span class="focus-input100 "></span>
+        </div>
+
+        <div class="text-right p-t-8 p-b-31">
+          <%= link_to "Quên mật khẩu?", new_password_path(resource_name) %><br />
+        </div>
+
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn">
+              Đăng nhập
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-col-c p-t-155">
+          <%= link_to "Đăng ký", new_registration_path(resource_name), class:"txt2" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+
+<div id="dropDownSelect1"></div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :room_prices
   # devise_for :users
   devise_for :users, controllers: { registrations: "users/registrations" }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_040018) do
+ActiveRecord::Schema.define(version: 2021_06_03_124721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,18 +98,23 @@ ActiveRecord::Schema.define(version: 2021_06_03_040018) do
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end
 
+  create_table "room_prices", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "price_type"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.boolean "is_available", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_room_prices_on_room_type_id"
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "hour_price", null: false
-    t.decimal "date_price", null: false
-    t.decimal "past_night_price", null: false
-    t.decimal "week_price", null: false
-    t.decimal "month_price", null: false
-    t.decimal "add_adult_price", null: false
-    t.decimal "add_child_price", null: false
     t.string "description"
-    t.integer "capacity"
-    t.integer "beds", null: false
+    t.integer "beds", default: 0, null: false
+    t.integer "available_rooms", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -121,8 +126,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_040018) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "roomType_id"
-    t.index ["roomType_id"], name: "index_rooms_on_roomType_id"
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_rooms_on_room_type_id"
   end
 
   create_table "services", force: :cascade do |t|

@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+
  */
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -63,7 +64,11 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block; }
+.bg-primary {
+    background-color: #6749b9 !important;
+}
 
+header
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

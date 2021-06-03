@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_100317) do
+ActiveRecord::Schema.define(version: 2021_06_03_124721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
+    t.string "client_name", null: false
+    t.string "client_citizen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,11 +78,14 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "arrival_date", null: false
     t.datetime "leave_date", null: false
     t.datetime "check_in_date", null: false
     t.decimal "total"
+    t.integer "children", default: 0, null: false
+    t.integer "adults", default: 0, null: false
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"
@@ -93,18 +98,22 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end
 
+  create_table "room_prices", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "price_type"
+    t.datetime "date"
+    t.boolean "is_available", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_room_prices_on_room_type_id"
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "hour_price", null: false
-    t.decimal "date_price", null: false
-    t.decimal "past_night_price", null: false
-    t.decimal "week_price", null: false
-    t.decimal "month_price", null: false
-    t.decimal "add_adult_price", null: false
-    t.decimal "add_child_price", null: false
     t.string "description"
-    t.integer "capacity"
-    t.integer "beds", null: false
+    t.integer "beds", default: 0, null: false
+    t.integer "available_rooms", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -116,8 +125,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "roomType_id"
-    t.index ["roomType_id"], name: "index_rooms_on_roomType_id"
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_rooms_on_room_type_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -127,6 +136,20 @@ ActiveRecord::Schema.define(version: 2021_04_21_100317) do
     t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "employee_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["employee_id"], name: "index_users_on_employee_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -101,8 +101,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
   create_table "room_prices", force: :cascade do |t|
     t.decimal "price"
     t.integer "price_type"
-    t.datetime "begin_date"
-    t.datetime "end_date"
+    t.datetime "date"
     t.boolean "is_available", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

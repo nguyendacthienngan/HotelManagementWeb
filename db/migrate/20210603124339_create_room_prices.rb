@@ -3,8 +3,7 @@ class CreateRoomPrices < ActiveRecord::Migration[6.1]
     create_table :room_prices do |t|
       t.decimal :price
       t.integer :price_type
-      t.datetime :begin_date
-      t.datetime :end_date
+      t.datetime :date
       t.boolean :is_available
 
       t.timestamps

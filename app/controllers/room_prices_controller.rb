@@ -1,14 +1,13 @@
 class RoomPricesController < ApplicationController
   before_action :set_room_price, only: %i[ show edit update destroy ]
   @@price_types = {
-    "0" =>  "hour_price",
-    "1" =>  "day_price",
-    "2" =>  "week_price",
-    "3" =>  "month_price",
-    "4" =>  "year_price",
-    "5" =>  "holiday_price",
-    "6" =>  "add_child",
-    "7" =>  "add_child",
+    "1" => {"code" => "hour_price", "text" => "Giá theo giờ" } ,
+    "2" => {"code" => "day_price", "text" => "Giá theo ngày" } ,
+    "3" => {"code" => "week_price", "text" => "Giá theo tuần" } ,
+    "4" => {"code" => "month_price", "text" => "Giá theo tháng" } ,
+    "5" => {"code" => "year_price", "text" => "Giá theo năm" } ,
+    "6" => {"code" => "add_adult_price", "text" => "Giá thêm 1 người lớn" } ,
+    "7" => {"code" => "add_child_price", "text" => "Giá thêm 1 trẻ con" } ,
   }
   # GET /room_prices or /room_prices.json
   def index

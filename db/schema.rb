@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_132953) do
+ActiveRecord::Schema.define(version: 2021_06_03_040018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_06_02_132953) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
+    t.string "client_name", null: false
+    t.string "client_citizen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,11 +78,14 @@ ActiveRecord::Schema.define(version: 2021_06_02_132953) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "arrival_date", null: false
     t.datetime "leave_date", null: false
     t.datetime "check_in_date", null: false
     t.decimal "total"
+    t.integer "children", default: 0, null: false
+    t.integer "adults", default: 0, null: false
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"
@@ -137,7 +142,9 @@ ActiveRecord::Schema.define(version: 2021_06_02_132953) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "employee_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["employee_id"], name: "index_users_on_employee_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

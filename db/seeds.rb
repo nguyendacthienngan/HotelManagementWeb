@@ -5,7 +5,7 @@
   clients = Client.create([
                             { name: 'Nguyễn Lê Bách' ,
                               citizen_id: '0123456789',
-                              is_female: false,
+                              gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,11,11,0),
                               email: 'nlebachnlb@gmail.com',
@@ -14,7 +14,7 @@
                             },
                             { name: 'Tăng Khánh Chương',
                               citizen_id: '0123456788',
-                              is_female: false,
+                              gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,4,21,0),
                               email: 'tangkhanhchuong@gmail.com',
@@ -23,7 +23,7 @@
                             },
                             { name: 'Đỗ Ngọc Cường',
                               citizen_id: '0123456787',
-                              is_female: false,
+                              gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,4,10,0),
                               email: 'dongoccuong@gmail.com',
@@ -36,7 +36,7 @@
                                 {
                                   name: 'Nguyễn Đắc Thiên Ngân',
                                   citizen_id: '0123456786',
-                                  is_female: true,
+                                  gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(2000,5,15,0),
                                   email: 'nguyendacthienngan@gmail.com',
@@ -47,7 +47,7 @@
                                 {
                                   name: 'Ung Bao Tien',
                                   citizen_id: '0123456785',
-                                  is_female: true,
+                                  gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1999,12,25,0),
                                   email: 'ungbaotien@gmail.com',
@@ -58,7 +58,7 @@
                                 {
                                   name: 'Nguyễn Thị Quỳnh Ngân',
                                   citizen_id: '0123456784',
-                                  is_female: true,
+                                  gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(2000,9,25,0),
                                   email: 'nguyenthiquynhngan@gmail.com',
@@ -68,3 +68,18 @@
                                 },
                               ])
 
+
+services = Service.create([
+                            { name: 'Cháo',
+                              unit_price: '24000',
+                              status: 0
+                            },
+                            { name: 'Cơm',
+                              unit_price: '20000',
+                              status: 0
+                            },
+                            { name: 'Phở',
+                              unit_price: '30000',
+                              status: 0
+                            }
+                          ])

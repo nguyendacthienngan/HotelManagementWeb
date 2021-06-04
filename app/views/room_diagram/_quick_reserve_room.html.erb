@@ -1,4 +1,5 @@
-<%= form_with model: @reservation do |form| %>
+<%= form_with model: @reservation  do |form| %>
+  <%#= room %>
   <table class="table">
     <tbody>
     <tr>
@@ -6,19 +7,17 @@
         <div class="d-flex justify-content-end">
           <p class="col-3">Tên khách</p>
           <div class="col-7 form-group">
-            <%= form.text_field :title %>
-
-            <!--            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
+            <%= form.text_field :client_name, class:"form-control", autofocus: true, placeholder: "Nguyễn Văn A" %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
       <td>
         <div class="d-flex d-flex">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">CCCD</p>
           <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+            <%= form.text_field :client_citizen_id, class:"form-control", autofocus: true, placeholder: "0123456789" %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
@@ -26,17 +25,19 @@
     <tr>
       <td>
         <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Loại phòng</p>
           <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+            <%#= room  %>
+            <%#= form.collection_select(:room_type_id, RoomType.all, :id, :name, {include_blank: false}, { class: "form-control" })  %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
       <td>
         <div class="d-flex d-flex">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Phòng</p>
           <div class="col-7 form-group">
+
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>
           </div>

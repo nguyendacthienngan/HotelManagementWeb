@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username", null: false
-    t.string "password", null: false
   end
 
   create_table "integer_parameters", force: :cascade do |t|
@@ -85,6 +83,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.datetime "leave_date", null: false
     t.datetime "check_in_date", null: false
     t.decimal "total"
+    t.string "client_name", null: false
+    t.string "client_citizen_id", null: false
     t.integer "children", default: 0, null: false
     t.integer "adults", default: 0, null: false
     t.string "description"

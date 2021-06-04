@@ -36,7 +36,6 @@
         <div class="wrap-input100 validate-input employees-dropdown">
           <%= f.label :Employee, class: "label-input100" %><br />
           <%= f.collection_select(:employee_id, Employee.all, :id, :name, {include_blank: false}, { class: "btn btn-light dropdown-toggle" })  %>
-<!--          <span class="focus-input100 "></span>-->
         </div>
         <div style="height: 50px">
 

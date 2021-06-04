@@ -4,4 +4,17 @@ class RoomDiagramController < ApplicationController
     @rooms = Room.all
   end
 
-end
+  def helper
+    @helper ||= Class.new do
+      include ActionView::Helpers::NumberHelper
+    end.new
+  end
+
+  def quick_reserve_room
+    @room_name = Room.find(params[:room_id]).name
+    @room_type_id = Room.find(params[:room_id]).room_type_id
+    @room_type_name = RoomType.find(@room_type_id).name
+    @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 2).pluck(:price).to_s
+    # @room_price = helper.number_to_currency(@room_price, unit: "VND", separator: ",", delimiter:"", format: "%n %u")
+  end
+end 

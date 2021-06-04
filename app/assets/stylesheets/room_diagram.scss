@@ -69,6 +69,10 @@ body {
 }
 @media (min-width: 576px)
 {
+  .searchbar {
+    display: flex!important;
+    justify-content: flex-end!important;
+  }
   .has-search {
     position: relative;
     display: inline-flex;
@@ -151,6 +155,10 @@ body {
 
 .room-wrapper .card .card-body .order-btn {
   justify-content: space-between;
+}
+
+.room-wrapper .card .card-body .order-btn .btn a {
+  color: white !important;
 }
 .active-reservation .fa {
   margin-top: 10px;

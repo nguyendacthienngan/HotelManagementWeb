@@ -49,11 +49,6 @@
 </div>
 
 <!-- Màn hình modal đặt hàng nhanh -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">
-  Launch demo modal
-</button>
-<li><%= link_to "Quick Reserve Room", room_diagram_quick_reserve_room_path, :remote => true %></li>
-
 <!--<div class="modal fade" id="quickResModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
 <!--  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
 <!--    <div class="modal-content">-->
@@ -85,7 +80,7 @@
           </ol>
         </div>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-6 d-flex justify-content-end">
         <div id="search" class="d-flex">
           <div class="has-search">
             <div class="dropdown">
@@ -177,8 +172,16 @@
               <hr>
               <div class="card-body" style="padding-top: 0;">
                 <div class="d-flex order-btn">
-                  <button class="btn btn-primary" data-toggle="modal" data-target="#quickResModal">Đặt nhanh</button>
-                  <button class="btn btn-primary">Khách lẻ</button>
+                  <div class="btn btn-primary">
+                    <%= link_to room_diagram_quick_reserve_room_path, remote: true do %>
+                      Đặt nhanh
+                    <% end %>
+                  </div>
+                  <div class="btn btn-primary">
+                    <%= link_to room_diagram_quick_reserve_room_path, remote: true do %>
+                      Khách lẻ
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>

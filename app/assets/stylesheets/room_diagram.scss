@@ -152,6 +152,10 @@ body {
 .room-wrapper .card .card-body .order-btn {
   justify-content: space-between;
 }
+
+.room-wrapper .card .card-body .order-btn .btn a {
+  color: white !important;
+}
 .active-reservation .fa {
   margin-top: 10px;
 }

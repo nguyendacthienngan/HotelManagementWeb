@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<div class="show_container tColumn">
+<p class="tRow">
+  <strong class="show_roomtype_name">Name:</strong>
+  <strong class="show_sign">:</strong>
   <%= @room_type.name %>
 </p>
 
@@ -9,6 +11,6 @@
   <strong>Description:</strong>
   <%= @room_type.description %>
 </p>
-
-<%= link_to 'Edit', edit_room_type_path(@room_type) %> |
-<%= link_to 'Back', room_types_path %>
+</div>
+<button class="button_back"><%= link_to 'Back', room_types_path %></button>
+<button class="button_edit"><%= link_to 'Edit', edit_room_type_path(@room_type) %></button>

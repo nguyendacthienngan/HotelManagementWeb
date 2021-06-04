@@ -1,5 +1,4 @@
 <%= form_with model: @reservation  do |form| %>
-  <%#= room %>
   <table class="table">
     <tbody>
     <tr>
@@ -27,8 +26,7 @@
         <div class="d-flex d-flex justify-content-end">
           <p class="col-3">Loại phòng</p>
           <div class="col-7 form-group">
-            <%#= room  %>
-            <%#= form.collection_select(:room_type_id, RoomType.all, :id, :name, {include_blank: false}, { class: "form-control" })  %>
+            <%= form.text_field :room_type_id, class:"form-control", readonly:true, placeholder: @room_type_name %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -107,107 +105,3 @@
     </tbody>
   </table>
 <% end %>
-<!--<table class="table">-->
-<!--  <tbody>-->
-<!--  <tr>-->
-<!--    <td>-->
-<!--      <div class="d-flex justify-content-end">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <div class="d-flex d-flex">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>-->
-<!--      <div class="d-flex d-flex justify-content-end">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <div class="d-flex d-flex">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>-->
-<!--      <div class="d-flex d-flex justify-content-end">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <div class="d-flex d-flex">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>-->
-<!--      <div class="d-flex justify-content-end">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <div class="d-flex">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <td>-->
-<!--      <div class="d-flex justify-content-end">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--    <td>-->
-<!--      <div class="d-flex">-->
-<!--        <p class="col-3">Tên khách</p>-->
-<!--        <div class="col-7 form-group">-->
-<!--          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--          <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->

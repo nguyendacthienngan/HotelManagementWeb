@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @room_price.price %>
+</p>
+
+<p>
+  <strong>Price type:</strong>
+  <%= @room_price.price_type %>
+</p>
+
+
+<p>
+  <strong>End date:</strong>
+  <%= @room_price.date %>
+</p>
+
+<p>
+  <strong>Is available:</strong>
+  <%= @room_price.is_available %>
+</p>
+
+<%= link_to 'Edit', edit_room_price_path(@room_price) %> |
+<%= link_to 'Back', room_prices_path %>

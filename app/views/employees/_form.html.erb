@@ -15,58 +15,76 @@
 <div class="_form_container tColumn">
   <div class="field tRow">
     <div class="_form_item_name">
+      <%= form.label :employee_type %>
+    </div>
+    <div class="">
+      <%= form.select :employee_type, ['Nhân viên Lễ Tân', 'Nhân viên Vệ Sinh', 'Quản Lý'] %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :username %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :username %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :password %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :password %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :Confirm_Password%>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :password %>
+    </div>
+  </div>
+
+  <div class="field tRow">
+    <div class="_form_item_name">
       <%= form.label :name %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :name %>
     </div>
   </div>
-
+  
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :employee_type %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.number_field :employee_type %>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :citizen_id %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :citizen_id %>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :is_female %>
+      <%= form.label :Gender %>
     </div>
     <div class="">
-      <%= form.check_box :is_female %>
+      <%= form.select :is_female, ['Male', 'Female', 'Other'] %>
     </div>
   </div>
-
+  
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :nationality %>
+      <%= form.label :phone_number %>
     </div>
     <div class="_form_item_input">
-      <%= form.text_field :nationality %>
+      <%= form.text_field :phone_number %>
     </div>
   </div>
-
+  
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :date_of_birth %>
+      <%= form.label :address %>
     </div>
-    <div class="">
-      <%= form.datetime_select :date_of_birth %>
+    <div class="_form_item_input">
+      <%= form.text_field :address %>
     </div>
   </div>
-
+  
   <div class="field tRow">
     <div class="_form_item_name">
       <%= form.label :email %>
@@ -75,18 +93,45 @@
       <%= form.text_field :email %>
     </div>
   </div>
-
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :date_of_birth %>
+    </div>
+    <div class="">
+      <%= form.date_select :date_of_birth, order: [:day, :month, :year] %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :citizen_id %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :citizen_id %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :nationality %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :nationality %>
+    </div>
+  </div>
+  
   <div class="field tRow">
     <div class="_form_item_name">
       <%= form.label :status %>
     </div>
-    <div class="_form_item_input">
-      <%= form.number_field :status %>
+    <div class="">
+      <%= form.select :status, options_for_select([ ['Đang làm việc', '0'],['Nghỉ', '1']])%>
     </div>
   </div>
 
   <div class="actions button_submit">
-    <%= form.submit %>
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
 </div>
 </center>

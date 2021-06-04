@@ -35,7 +35,7 @@
 <p class="tRow">
   <strong class="show_employee_name">Date of birth</strong>
   <strong class="show_sign">:</strong>
-  <%= @employee.date_of_birth %>
+  <%= Date.parse(@employee.date_of_birth.to_s) %>
 </p>
 
 <p class="tRow">
@@ -47,7 +47,6 @@
 <p class="tRow">
   <strong class="show_employee_name">Status</strong>
   <strong class="show_sign">:</strong>
-  <%= @employee.status %>
 </p>
 </div>
 

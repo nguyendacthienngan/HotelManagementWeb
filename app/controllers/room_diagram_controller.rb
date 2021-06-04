@@ -15,6 +15,7 @@ class RoomDiagramController < ApplicationController
     @room_type_id = Room.find(params[:room_id]).room_type_id
     @room_type_name = RoomType.find(@room_type_id).name
     @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 2).pluck(:price).to_s
-    # @room_price = helper.number_to_currency(@room_price, unit: "VND", separator: ",", delimiter:"", format: "%n %u")
+    @room_price = @room_price.tr('[]', '')
+    @room_price = helper.number_to_currency(@room_price, unit: "VND",  format: "%n %u")
   end
 end 

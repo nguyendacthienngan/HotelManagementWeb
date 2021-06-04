@@ -46,8 +46,8 @@
         <div class="d-flex d-flex justify-content-end">
           <p class="col-3">Ngày đến</p>
           <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+            <%= form.datetime_select :arrival_date, class:"form-control" %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
@@ -66,7 +66,7 @@
         <div class="d-flex justify-content-end">
           <p class="col-3">Ngày đi</p>
           <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <%= form.datetime_select :leave_date, class:"form-control" %>
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>
           </div>
         </div>

@@ -26,7 +26,7 @@
         <div class="d-flex d-flex justify-content-end">
           <p class="col-3">Loại phòng</p>
           <div class="col-7 form-group">
-            <%= form.text_field :room_type_id, class:"form-control", readonly:true, placeholder: @room_type_name %>
+            <%= form.label @room_type_name, class:"form-control", readonly:true %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -35,9 +35,8 @@
         <div class="d-flex d-flex">
           <p class="col-3">Phòng</p>
           <div class="col-7 form-group">
-
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+            <%= form.label @room_name, class:"form-control", readonly:true %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
@@ -45,7 +44,7 @@
     <tr>
       <td>
         <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Ngày đến</p>
           <div class="col-7 form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>
@@ -54,7 +53,27 @@
       </td>
       <td>
         <div class="d-flex d-flex">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Giá</p>
+          <div class="col-7 form-group">
+            <%= form.label @room_price, class:"form-control", readonly:true %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="d-flex justify-content-end">
+          <p class="col-3">Ngày đi</p>
+          <div class="col-7 form-group">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex">
+          <p class="col-3">Đặt cọc</p>
           <div class="col-7 form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>
@@ -65,7 +84,7 @@
     <tr>
       <td>
         <div class="d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Hình thức TT</p>
           <div class="col-7 form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>
@@ -74,27 +93,7 @@
       </td>
       <td>
         <div class="d-flex">
-          <p class="col-3">Tên khách</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex">
-          <p class="col-3">Tên khách</p>
+          <p class="col-3">Người lớn</p>
           <div class="col-7 form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">Email helpers</small>

@@ -1,0 +1,263 @@
+// Place all the styles related to the room_diagram controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  height: 100% !important;
+  //background: image-url("background.jpg") no-repeat !important;
+  //background-size: cover !important;
+}
+
+.page-section{
+  margin-bottom: 15px
+}
+
+#switcher .btn{
+  border: 1px solid  #6749b9;
+  width: 120px !important;
+}
+
+#switcher .inactive{
+  background-color: white;
+}
+
+#switcher .active{
+  background-color: #6749b9;
+}
+.has-search .dropdown .btn::after {
+  color: #6749b9 !important;
+}
+.has-search .dropdown .btn {
+  padding-right: 25px;
+  border: 1px solid  #ced4da;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+}
+.has-search.dropdown .btn:active{
+  box-shadow: #6749b9;
+}
+@media (max-width: 575px)
+{
+  .has-search{
+    width: 100%;
+  }
+  .has-search .dropdown{
+    //width: 50%;
+  }
+  .has-search .dropdown button {
+    text-align: left !important;
+  }
+  .has-search .dropdown .dropdown-toggle{
+    width: 100%;
+  }
+  .dropdown-menu{
+    width: 100% !important;
+  }
+  .has-search .form-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+  }
+  .has-search .form-group .form-control-feedback {
+    position: absolute;
+    right: 15px;
+    z-index: 2;
+  }
+
+  .has-search .dropdown .btn::after {
+    right: 20px;
+  }
+}
+@media (min-width: 576px)
+{
+  .has-search {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: flex-end !important;
+
+  }
+  .has-search .form-group .form-control-feedback {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+  }
+
+  .has-search .dropdown .btn::after {
+    right: 10px;
+  }
+  .has-search .form-group input {
+    border-left: 0 solid #ced4da;
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+  }
+}
+
+
+.has-search .dropdown {
+  background-color: white;
+}
+
+
+
+.has-search .form-group .form-control-feedback {
+
+  width: 2rem;
+  line-height: 2.375rem;
+  pointer-events: none;
+  color: #6749b9;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.filter-wrapper .filter-item {
+  margin: 0 .5rem 0 .5rem;
+
+  background-color: #6749b9;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  max-width: 120px;
+}
+
+.room-wrapper {
+  width: 250px;
+  margin: 0 16px 20px 0;
+
+}
+
+.room-wrapper .reservation-list {
+  display: block;
+  margin: -30px 0 0 0 ;
+}
+
+.room-wrapper .card {
+  border: 1px solid  black;
+  background-color: #ffffff;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.room-wrapper .card .card-body .card-text .dropdown .dropdown-menu{
+  margin-top: -20px;
+}
+
+.room-wrapper .card .card-body .order-btn {
+  justify-content: space-between;
+}
+.active-reservation .fa {
+  margin-top: 10px;
+}
+
+.fa {
+  margin-right: 10px;
+}
+
+.pushObject {
+  transform: translate(0px, -70px);
+  /* Enable hardware acceleration to fix laggy transitions */
+
+  -webkit-transform: translate(0px, -70px);
+  -ms-transform: translate(0px, -70px);
+  -o-transform: translate(0px, -70px);
+  -moz-transform: translate(0px, -70px);
+  z-index: 99999;
+}
+
+.modal-bottom {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 50px 0 50px 0;
+}
+
+.modal-bottom .table {
+  border: 0 white;
+
+}
+.modal-bottom .table tbody tr th {
+  text-align: right;
+  width: 50%;
+  margin: 0;
+  vertical-align: middle;
+}
+.modal-bottom .table tbody tr td {
+  text-align: left;
+  width: 50%;
+}
+
+.modal-bottom .rooms-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-bottom .room-btn {
+  margin: 0 20px 0 20px;
+}
+
+.modal-bottom .room-btn .fa{
+  margin-bottom: 5px;
+}
+
+
+@media (min-width: 1001px)
+{
+  .rooms {
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 1000px) and (min-width: 600px)
+{
+  .rooms {
+    justify-content: left !important;
+  }
+
+}
+
+@media (max-width: 1000px)
+{
+  .order-btn {
+    flex-direction: column !important;
+  }
+  .order-btn .btn:first-child {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 600px)
+{
+  .rooms {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center;
+    }
+}
+//#quickResModal .modal-dialog .modal-content .modal-body .row .col-6 .d-flex p {
+//  padding-left: 15px;
+//}
+#quickResModal .modal-dialog .modal-content .modal-body .row{
+  margin-top: 15px;
+}
+
+.modal-lg {
+  max-width: 70% !important;
+}
+
+#quickResModal .modal-dialog .modal-content .modal-body .table {
+  border: 0 white;
+  margin-top: 10px;
+}
+#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td:nth-child(2) .d-flex{
+  margin-left: 15px;
+}
+//#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td {}

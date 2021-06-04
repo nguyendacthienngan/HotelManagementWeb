@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag "log_in" %>
+<%= stylesheet_link_tag "sign_up" %>
+
+<div class="limiter">
+  <div class="container-login100" style="background-image: url('https://images.unsplash.com/photo-1517840901100-8179e982acb7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');">
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login100-form validate-form"}) do |f| %>
+					<span class="login100-form-title p-b-49">
+						Chào mừng !
+					</span>
+
+        <div class="wrap-input100 alidate-input m-b-23" data-validate = "Valid email is required: ex@abc.xyz">
+          <%= f.label :email, class: "label-input100" %><br />
+          <%= f.email_field :email, class:"input100", autofocus: true, autocomplete: "email" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+          <%= f.label :password, class: "label-input100" %><br />
+          <%= f.password_field :password, class:"input100", autocomplete: "current-password" %>
+          <span class="focus-input100 "></span>
+          <%# if @minimum_password_length %>
+          <!--            <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+          <!--          <%# end %><br /><%# if @minimum_password_length %>-->
+          <!--            <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+          <!--          <%# end %><br />-->
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
+          <%= f.label :password_confirmation, class: "label-input100" %><br />
+          <%= f.password_field :password_confirmation, class:"input100", autocomplete: "current-password" %>
+          <span class="focus-input100 "></span>
+        </div>
+
+        <div class="wrap-input100 validate-input employees-dropdown">
+          <%= f.label :Employee, class: "label-input100" %><br />
+          <%= f.collection_select(:employee_id, Employee.all, :id, :name, {include_blank: false}, { class: "btn btn-light dropdown-toggle" })  %>
+<!--          <span class="focus-input100 "></span>-->
+        </div>
+        <div style="height: 50px">
+
+        </div>
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn">
+              Đăng ký
+            </button>
+          </div>
+        </div>
+
+        <div class="flex-col-c p-t-155">
+          <%= render "devise/shared/links" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>

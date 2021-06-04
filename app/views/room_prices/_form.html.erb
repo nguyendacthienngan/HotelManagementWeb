@@ -1,0 +1,37 @@
+<%= form_with(model: room_price) do |form| %>
+  <% if room_price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room_price.errors.count, "error") %> prohibited this room_price from being saved:</h2>
+
+      <ul>
+        <% room_price.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_type %>
+    <%= form.number_field :price_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_available %>
+    <%= form.check_box :is_available %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

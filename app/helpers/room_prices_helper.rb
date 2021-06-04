@@ -1,0 +1,2 @@
+module RoomPricesHelper
+end

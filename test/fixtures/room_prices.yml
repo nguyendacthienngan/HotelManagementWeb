@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 9.99
+  price_type: 1
+  begin_date: 2021-06-03 19:43:39
+  end_date: 2021-06-03 19:43:39
+  is_available: false
+
+two:
+  price: 9.99
+  price_type: 1
+  begin_date: 2021-06-03 19:43:39
+  end_date: 2021-06-03 19:43:39
+  is_available: false

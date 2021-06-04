@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .notice_success{
-    background-color: #effaf5;
+    // background-color: #effaf5;
+    background-color: #C7E6C9;
     color: #257953;
     font-size: 17px;
     padding: 10px 0px;
@@ -71,7 +72,6 @@
     ._form_item_name{
         text-align: left;
         width: 230px;
-        
     }
     ._form_item_input{
         flex-grow: 1;

@@ -7,20 +7,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "chartkick/chart.js"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-// var fullHeight = function() {
-//
-//     $('.js-fullheight').css('height', $(window).height());
-//     $(window).resize(function(){
-//         $('.js-fullheight').css('height', $(window).height());
-//     });
-//
-// };
-// fullHeight();
-//
-// $('#sidebarCollapse').on('click', function () {
-//     $('#sidebar').toggleClass('active');
-// });

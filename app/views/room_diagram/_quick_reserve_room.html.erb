@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-end">
           <p class="col-3">Tên khách</p>
           <div class="col-7 form-group">
-            <%= form.text_field :client_name, class:"form-control", autofocus: true, placeholder: "Nguyễn Văn A" %>
+            <%= form.text_field :client_name, class:"form-control", placeholder: "Nguyễn Văn A" %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="d-flex d-flex">
           <p class="col-3">CCCD</p>
           <div class="col-7 form-group">
-            <%= form.text_field :client_citizen_id, class:"form-control", autofocus: true, placeholder: "0123456789" %>
+            <%= form.number_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -46,7 +46,14 @@
         <div class="d-flex d-flex justify-content-end">
           <p class="col-3">Ngày đến</p>
           <div class="col-7 form-group">
-            <%= form.datetime_select :arrival_date, class:"form-control" %>
+            <%= form.text_field :arrival_date,
+                                data: {
+                                  controller: "flatpickr",
+                                  flatpickr_date_format: "d-m-Y",
+                                  flatpickr_min_date: Time.zone.now
+                                },
+                                class: "form-control datepicker",
+                                placeholder: "Chọn ngày đến"%>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -55,7 +62,7 @@
         <div class="d-flex d-flex">
           <p class="col-3">Giá</p>
           <div class="col-7 form-group">
-            <%= form.label @room_price, class:"form-control", readonly:true %>
+            <%= form.number_field @room_price, class:"form-control", readonly:true %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -69,11 +76,12 @@
             <%= form.text_field :leave_date,
                              data: {
                                controller: "flatpickr",
-                               flatpickr_date_format: "Y-m-d",
+                               flatpickr_date_format: "d-m-Y",
                                flatpickr_min_date: Time.zone.now
-                             } %>
-            <%#= form.datetime_select :leave_date, class:"form-control" %>
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+                             },
+                                class: "form-control datepicker",
+                                placeholder: "Chọn ngày đi"%>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>
@@ -81,8 +89,9 @@
         <div class="d-flex">
           <p class="col-3">Đặt cọc</p>
           <div class="col-7 form-group">
+            <%#= form.number_field , class:"form-control"%>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>

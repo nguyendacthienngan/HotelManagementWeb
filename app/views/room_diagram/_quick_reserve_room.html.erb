@@ -160,7 +160,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
+        $('#quickResModal').on('hidden.bs.modal', function () {
+            $('#quickResModal').remove()
+        })
     })
 
 </script>

@@ -52,7 +52,7 @@
                                   flatpickr_date_format: "d-m-Y",
                                   flatpickr_min_date: Time.zone.now
                                 },
-                                class: "form-control datepicker",
+                                class: "form-control read-only-white",
                                 placeholder: "Chọn ngày đến"%>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
@@ -79,7 +79,7 @@
                                flatpickr_date_format: "d-m-Y",
                                flatpickr_min_date: Time.zone.now
                              },
-                                class: "form-control datepicker",
+                                class: "form-control read-only-white",
                                 placeholder: "Chọn ngày đi"%>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
@@ -89,8 +89,9 @@
         <div class="d-flex">
           <p class="col-3">Đặt cọc</p>
           <div class="col-7 form-group">
-            <%#= form.number_field , class:"form-control"%>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <%= form.fields_for :payment do |section| %>
+              <%= section.number_field :deposit, class:"form-control"%>
+
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
@@ -101,8 +102,9 @@
         <div class="d-flex justify-content-end">
           <p class="col-3">Hình thức TT</p>
           <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+            <%= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+            <% end %>
           </div>
         </div>
       </td>
@@ -111,7 +113,7 @@
           <p class="col-3">Người lớn</p>
           <div class="col-7 form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
+<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>
       </td>

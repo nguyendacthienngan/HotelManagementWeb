@@ -9,8 +9,6 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.integer :payment_type, null: false
       t.decimal :total
       t.string :description
-      t.string :client_name, null: false
-      t.string :client_citizen_id, null: false
       t.timestamps
     end
   end

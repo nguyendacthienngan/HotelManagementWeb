@@ -17,5 +17,9 @@ class RoomDiagramController < ApplicationController
     @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 2).pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = helper.number_to_currency(@room_price, unit: "VND",  format: "%n %u")
+    @payment_type = @@payment_type
+    @payment_type_view = convert_nested_hash_to_text(@payment_type)
+
+    @deposit = Payment.new
   end
 end 

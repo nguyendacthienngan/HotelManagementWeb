@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :room_prices
   # devise_for :users
   devise_for :users, controllers: { registrations: "users/registrations" }
 
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   resources :services
   resources :employees
   resources :clients
+  resources :room_prices
 
   get "/room_diagram", to: "room_diagram#index"
   get "/room_diagram/quick_reserve_room", to: "room_diagram#quick_reserve_room"

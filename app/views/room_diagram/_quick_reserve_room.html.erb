@@ -1,124 +1,125 @@
 <%= form_with model: @reservation  do |form| %>
-  <table class="table">
-    <tbody>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
-          <div class="col-7 form-group">
-            <%= form.text_field :client_name, class:"form-control", placeholder: "Nguyễn Văn A" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Tên khách</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :client_name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row row">
+        <p class="col-lg-3">CCCD</p>
+        <div class="col-lg-7 form-group">
+          <%= form.number_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Loại phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.label @room_type_name, class:"form-control", readonly:true %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.label @room_name, class:"form-control", readonly:true %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row row end-row-md">
+        <p class="col-lg-3">Ngày đến</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :arrival_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-control read-only-white",
+                              placeholder: "Chọn ngày đến"%>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row row">
+        <p class="col-lg-3">Giá</p>
+        <div class="col-lg-7 form-group">
+          <%= form.label @room_price, class:"form-control", readonly:true %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Ngày đi</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :leave_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-control read-only-white",
+                              placeholder: "Chọn ngày đi"%>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Đặt cọc</p>
+        <div class="col-lg-7 form-group">
+          <%= form.fields_for :payment do |section| %>
+            <%= section.number_field :deposit, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Hình thức TT</p>
+        <div class="col-lg-7 form-group">
+          <%= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          <% end %>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <div class="col-lg-6 row">
+          <p class="col-lg-7">Người lớn</p>
+          <div class="col-lg-5 form-group">
+            <%= form.number_field :adults, class:"form-control" %>
           </div>
         </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">CCCD</p>
-          <div class="col-7 form-group">
-            <%= form.number_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        <div class="col-lg-6 row">
+          <p class="col-lg-6">Trẻ em</p>
+          <div class="col-lg-5 form-group">
+            <%= form.number_field :children, class:"form-control" %>
           </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Loại phòng</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_type_name, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">Phòng</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_name, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Ngày đến</p>
-          <div class="col-7 form-group">
-            <%= form.text_field :arrival_date,
-                                data: {
-                                  controller: "flatpickr",
-                                  flatpickr_date_format: "d-m-Y",
-                                  flatpickr_min_date: Time.zone.now
-                                },
-                                class: "form-control read-only-white",
-                                placeholder: "Chọn ngày đến"%>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">Giá</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_price, class:"form-control", readonly:true %>
-            <%#= form.number_field @room_price, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Ngày đi</p>
-          <div class="col-7 form-group">
-            <%= form.text_field :leave_date,
-                             data: {
-                               controller: "flatpickr",
-                               flatpickr_date_format: "d-m-Y",
-                               flatpickr_min_date: Time.zone.now
-                             },
-                                class: "form-control read-only-white",
-                                placeholder: "Chọn ngày đi"%>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex">
-          <p class="col-3">Đặt cọc</p>
-          <div class="col-7 form-group">
-            <%= form.fields_for :payment do |section| %>
-              <%= section.number_field :deposit, class:"form-control"%>
+      </div>
+    </div>
+  </div>
 
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Hình thức TT</p>
-          <div class="col-7 form-group">
-            <%= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-            <% end %>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex">
-          <p class="col-3">Người lớn</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
 <% end %>

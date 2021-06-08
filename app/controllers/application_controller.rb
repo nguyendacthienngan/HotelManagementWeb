@@ -27,7 +27,22 @@ class ApplicationController < ActionController::Base
     { code: "out_of_stock", text: "Hết hàng" },
     { code: "wont_import", text: "Không còn nhập" },
   ]
-
+  @@price_types = [
+    { code: "hour_price", text: "Giá theo giờ" },
+    { code: "day_price", text: "Giá theo ngày" },
+    { code: "week_price", text: "Giá theo tuần" },
+    { code: "month_price", text: "Giá theo tháng" },
+    { code: "year_price", text: "Giá theo năm" },
+    { code: "add_adult_price", text: "Giá thêm 1 người lớn" },
+    { code: "add_child_price", text: "Giá thêm 1 trẻ con" },
+  ]
+  @@reservation_types = [
+    { code: "hour_reservation", text: "Đặt theo giờ" },
+    { code: "day_reservation", text: "Đặt theo ngày" },
+    { code: "week_reservation", text: "Đặt theo tuần" },
+    { code: "month_reservation", text: "Đặt theo tháng" },
+    { code: "year_reservation", text: "Đặt theo năm" },
+  ]
   protected
 
   def configure_permitted_parameters
@@ -38,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def convert_nested_hash_to_text (hash)
     result = Hash.new
-    index = 0
+    index = 1
     hash.each do |h|
       result[h[:text]] = index
       index +=1

@@ -58,7 +58,7 @@
     </div>
     <div class="col-lg-6 row">
       <div class="row row">
-        <p class="col-lg-3">Giá</p>
+        <p class="col-lg-3">Giá phòng</p>
         <div class="col-lg-7 form-group">
           <%= form.label @room_price, class:"form-control", readonly:true %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
@@ -121,5 +121,32 @@
       </div>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Loại đặt phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.select @reservation_type_chosen, options_for_select(@reservation_type_view), {}, class: "form-control read-only-white" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Tổng tiền</p>
+        <div class="col-lg-7 form-group">
+          <%= form.number_field :deposit, min: 0, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  <div class="row">-->
+<!--    <div class="col-lg-1"></div>-->
+<!--    <div class="col-lg-10 row">-->
+<!--      <p class="col-lg-2">Ghi chú</p>-->
+<!--      <div class="col-lg-9 form-group">-->
+        <%#= form.text_field :description, class: "form-control" %>
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-lg-1"></div>-->
+<!--  </div>-->
 <% end %>

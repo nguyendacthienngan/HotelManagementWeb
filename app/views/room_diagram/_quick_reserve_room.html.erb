@@ -62,7 +62,8 @@
         <div class="d-flex d-flex">
           <p class="col-3">Giá</p>
           <div class="col-7 form-group">
-            <%= form.number_field @room_price, class:"form-control", readonly:true %>
+            <%= form.label @room_price, class:"form-control", readonly:true %>
+            <%#= form.number_field @room_price, class:"form-control", readonly:true %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
           </div>
         </div>

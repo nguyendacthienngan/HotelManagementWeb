@@ -109,13 +109,13 @@
         <div class="col-lg-6 row">
           <p class="col-lg-7">Người lớn</p>
           <div class="col-lg-5 form-group">
-            <%= form.number_field :adults, in: 1 .. 20, class:"form-control" %>
+            <%= form.number_field :adults, in: 0 .. 20, class:"form-control" %>
           </div>
         </div>
         <div class="col-lg-6 row">
           <p class="col-lg-6">Trẻ em</p>
           <div class="col-lg-5 form-group">
-            <%= form.number_field :children, in: 1 .. 20 ,class:"form-control" %>
+            <%= form.number_field :children, in: 0 .. 20 ,class:"form-control" %>
           </div>
         </div>
       </div>
@@ -149,4 +149,18 @@
 <!--    </div>-->
 <!--    <div class="col-lg-1"></div>-->
 <!--  </div>-->
+
+  <div class="d-flex actions justify-content-end">
+    <%= form.submit "Save changes", class: "btn btn-primary" %>
+    <span style="width:10px"></span>
+    <%= link_to 'Destroy', room_diagram_path, data: { dismiss: "modal", confirm:
+                                                            'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation' %>
+  </div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    })
+
+</script>

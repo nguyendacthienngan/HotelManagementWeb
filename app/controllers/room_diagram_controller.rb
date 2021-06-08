@@ -11,7 +11,18 @@ class RoomDiagramController < ApplicationController
   end
 
   def quick_reserve_room
+
     @modal_title = "Đặt phòng nhanh"
+    @payment = Payment.new
+
+
+
+    # #Khách lữ hành
+    # @reservation.client_id = 1
+    # # employee_id = current_user.employee_id
+    # @reservation.employee_id = current_user.employee_id
+    # # room_id = params[:room_id]
+    # @reservation.room_id = params[:room_id]
 
     @room_name = Room.find(params[:room_id]).name
     @room_type_id = Room.find(params[:room_id]).room_type_id
@@ -29,43 +40,7 @@ class RoomDiagramController < ApplicationController
 
     @reservation_type_chosen = nil
 
-    #Payment
-    @payment = Payment.new
 
-    @reservation = Reservation.new
-
-
-    #client_id = 1
-    # employee_id = current_user.employee_id
-    # room_id = params[:room_id]
 
   end
-
-  def create_reservation
-    # @reservation = Reservation.new(reservation_params)
-
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def create_payment
-    # @payment = Payment.new(payment_params)
-
-    respond_to do |format|
-      if @payment.save
-        format.html { redirect_to @payment, notice: "Payment was successfully created." }
-        format.json { render :show, status: :created, location: @payment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-end 
+end

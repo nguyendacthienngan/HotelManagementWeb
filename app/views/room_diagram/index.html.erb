@@ -256,5 +256,8 @@
                 $('.modal close').click();
             }
         })
+        $('#quickResModal').on('hidden.bs.modal', function () {
+            $('#quickResModal').remove()
+        })
     }
 </script>

@@ -12,7 +12,6 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    puts "New Reservation"
     @reservation = Reservation.new
   end
 
@@ -22,11 +21,6 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
-    @reservation = Reservation.new
-    puts "Create Reservation"
-    puts @reservation
-    # @reservation = Reservation.new(reservation_params)
-
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: "Reservation was successfully created." }

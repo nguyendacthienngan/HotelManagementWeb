@@ -60,7 +60,7 @@
       <div class="row row">
         <p class="col-lg-3">Giá phòng</p>
         <div class="col-lg-7 form-group">
-         <%= form.label RoomPrice.where(room_type_id: @room_type_id, price_type: 2).pluck(:price).to_s.tr('[]', ''), class:"form-control", readonly:true %>
+         <%= form.label @room_price, class:"form-control", readonly:true %>
         </div>
       </div>
     </div>
@@ -138,8 +138,11 @@
       </div>
     </div>
   </div>
+  <%= form.hidden_field(:client_id, :value => 1) %>
+  <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
+  <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
+  <%= form.hidden_field(:payment_id, :value => 1) %>
   <div class="d-flex actions justify-content-end">
-    <%= @reservation.inspect %>
     <%= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
     <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>
     <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation, arrival_date: @reservation.arrival_date, leave_date: @reservation.leave_date, client_name: @reservation.client_name, client_citizen_id: @reservation.client_citizen_id, children: @reservation.children, adults: @reservation.adults, client_id: @reservation.client_id, employee_id: @reservation.employee_id, room_id: @reservation.room_id, payment_id: @reservation.payment_id), method: :post	 %>
@@ -155,7 +158,6 @@
             $('#quickResModal').remove()
         })
         $('.add_reservation').click(function(event){
-            <%#= puts "HELLOOOOOOOOOOO" %>
             <%#= puts @reservation.inspect %>
         })
     })

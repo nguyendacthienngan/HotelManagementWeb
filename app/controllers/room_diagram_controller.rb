@@ -24,29 +24,6 @@ class RoomDiagramController < ApplicationController
     @reservation_type_chosen = nil
 
     @modal_title = "Đặt phòng nhanh"
-    @payment = Payment.new
-    @reservation = Reservation.new
-
-
-    # #Khách lữ hành
-    @reservation.client_id = 1
-    # employee_id = current_user.employee_id
-    @reservation.employee_id = current_user.employee_id
-    # room_id = params[:room_id]
-    @reservation.room_id = params[:room_id]
-    @reservation.total = 100000
-    @reservation.adults = 0
-    @reservation.children = 0
-    @reservation.payment_id = 1
-    @reservation.arrival_date = Date.today
-    @reservation.leave_date = Date.today
-    @reservation.check_in_date = Date.today
-    @reservation.created_at = Date.today
-    @reservation.updated_at = Date.today
-    @reservation.client_name = "Test"
-    @reservation.client_citizen_id = "12350"
-    # @reservation.id = 1
-
 
     @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 2)
     @room_price = @room_price.pluck(:price).to_s

@@ -1,4 +1,4 @@
-<%= form_with(model: @reservation)  do |form| %>
+<%= form_with url: "/reservations", method: :post  do |form| %>
   <div class="row">
     <div class="col-lg-6 row">
       <div class="row end-row-md">
@@ -86,8 +86,8 @@
       <div class="row">
         <p class="col-lg-3">Đặt cọc</p>
         <div class="col-lg-7 form-group">
-          <%= form.fields_for :payment do |section| %>
-            <%= section.number_field :deposit, min: 0, class:"form-control"%>
+          <%#= form.fields_for :payment do |section| %>
+            <%#= section.number_field :deposit, min: 0, class:"form-control"%>
         </div>
       </div>
     </div>
@@ -97,9 +97,9 @@
       <div class="row end-row-md">
         <p class="col-lg-3">Hình thức TT</p>
         <div class="col-lg-7 form-group">
-          <%= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+          <%#= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          <% end %>
+          <%# end %>
           </div>
       </div>
     </div>
@@ -138,21 +138,11 @@
       </div>
     </div>
   </div>
-<!--  <div class="row">-->
-<!--    <div class="col-lg-1"></div>-->
-<!--    <div class="col-lg-10 row">-->
-<!--      <p class="col-lg-2">Ghi chú</p>-->
-<!--      <div class="col-lg-9 form-group">-->
-        <%#= form.text_field :description, class: "form-control" %>
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col-lg-1"></div>-->
-<!--  </div>-->
   <div class="d-flex actions justify-content-end">
     <%= @reservation.inspect %>
-    <%#= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
+    <%= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
     <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>
-    <%= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation, arrival_date: @reservation.arrival_date, leave_date: @reservation.leave_date, client_name: @reservation.client_name, client_citizen_id: @reservation.client_citizen_id, children: @reservation.children, adults: @reservation.adults, client_id: @reservation.client_id, employee_id: @reservation.employee_id, room_id: @reservation.room_id, payment_id: @reservation.payment_id), method: :post	 %>
+    <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation, arrival_date: @reservation.arrival_date, leave_date: @reservation.leave_date, client_name: @reservation.client_name, client_citizen_id: @reservation.client_citizen_id, children: @reservation.children, adults: @reservation.adults, client_id: @reservation.client_id, employee_id: @reservation.employee_id, room_id: @reservation.room_id, payment_id: @reservation.payment_id), method: :post	 %>
     <span style="width:10px"></span>
     <%= link_to 'Destroy', room_diagram_path, data: { dismiss: "modal", confirm:
                                                             'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation' %>

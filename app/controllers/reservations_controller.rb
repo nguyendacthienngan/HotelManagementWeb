@@ -23,6 +23,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     respond_to do |format|
+      # payment = Payment.create(params[:payment])
+      # @reservation.payment_id = payment.id
       if @reservation.save
         format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
         format.json { render :show, status: :created, location: @reservation }
@@ -64,8 +66,7 @@ class ReservationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reservation_params
       # params.require(:reservation).permit(:status, :arrivalDate, :leaveDate, :checkInDate, :total)
-      # params.require(:reservation).permit(:status, :arrival_date, :leave_date, check_in_date, :total, :client_name, :client_citizen_id, :children, :adults, :description, :client_id, :employee_id, :room_id, :payment_id)
-      params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :client_id, :employee_id, :room_id, :payment_id)
+      params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :client_id, :employee_id, :room_id, :total, payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type])
 
     end
 end

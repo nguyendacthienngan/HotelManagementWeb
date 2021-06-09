@@ -29,23 +29,7 @@ class RoomDiagramController < ApplicationController
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
+
   end
 
-  def create
-    @reservation = Reservation.new(reservation_params)
-    respond_to do |format|
-      if @reservation.save
-        format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def reservation_params
-    # params.require(:reservation).permit(:status, :arrivalDate, :leaveDate, :checkInDate, :total)
-    params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :client_id, :employee_id, :room_id, :payment_id)
-  end
 end

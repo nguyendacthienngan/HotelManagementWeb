@@ -86,8 +86,10 @@
       <div class="row">
         <p class="col-lg-3">Đặt cọc</p>
         <div class="col-lg-7 form-group">
-          <%#= form.fields_for :payment do |section| %>
-            <%#= section.number_field :deposit, min: 0, class:"form-control"%>
+          <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+            <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+            <%= p.hidden_field(:is_paid, :value => false)  %>
+            <%= p.number_field :deposit, min: 0, class:"form-control"%>
         </div>
       </div>
     </div>
@@ -97,9 +99,9 @@
       <div class="row end-row-md">
         <p class="col-lg-3">Hình thức TT</p>
         <div class="col-lg-7 form-group">
-          <%#= section.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          <%# end %>
+
           </div>
       </div>
     </div>
@@ -133,7 +135,9 @@
       <div class="row">
         <p class="col-lg-3">Tổng tiền</p>
         <div class="col-lg-7 form-group">
-          <%= form.number_field :total, min: 0, class:"form-control"%>
+          <%= form.number_field :total, min: 0, class:"form-control", id: "total"%>
+          <%= p.hidden_field(:temp_total, :id=> "temp-total")  %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -141,7 +145,7 @@
   <%= form.hidden_field(:client_id, :value => 1) %>
   <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
   <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
-  <%= form.hidden_field(:payment_id, :value => 1) %>
+  <%#= form.hidden_field(:payment_id, :value => 1) %>
   <div class="d-flex actions justify-content-end">
     <%= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
     <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>
@@ -150,16 +154,18 @@
     <%= link_to 'Destroy', room_diagram_path, data: { dismiss: "modal", confirm:
                                                             'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation' %>
   </div>
-<% end %>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
         $('#quickResModal').on('hidden.bs.modal', function () {
             $('#quickResModal').remove()
         })
-        $('.add_reservation').click(function(event){
-            <%#= puts @reservation.inspect %>
+        $('#total').keyup(function(){
+            $('#temp-total').val($('#total').val());
         })
     })
 
 </script>
+
+<% end %>

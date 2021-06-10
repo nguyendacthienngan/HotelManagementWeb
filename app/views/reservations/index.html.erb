@@ -16,9 +16,9 @@
     <% @reservations.each do |reservation| %>
       <tr>
         <td><%= reservation.status %></td>
-        <td><%= reservation.arrivalDate %></td>
-        <td><%= reservation.leaveDate %></td>
-        <td><%= reservation.checkInDate %></td>
+        <td><%= reservation.arrival_date %></td>
+        <td><%= reservation.leave_date %></td>
+        <td><%= reservation.check_in_date %></td>
         <td><%= reservation.total %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>

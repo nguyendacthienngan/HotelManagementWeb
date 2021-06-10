@@ -12,28 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+    <%= form.label :arrival_date %>
+    <%= form.datetime_select :arrival_date %>
   </div>
 
   <div class="field">
-    <%= form.label :arrivalDate %>
-    <%= form.datetime_select :arrivalDate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :leaveDate %>
-    <%= form.datetime_select :leaveDate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :checkInDate %>
-    <%= form.datetime_select :checkInDate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total %>
-    <%= form.text_field :total %>
+    <%= form.label :leave_date %>
+    <%= form.datetime_select :leave_date %>
   </div>
 
   <div class="actions">

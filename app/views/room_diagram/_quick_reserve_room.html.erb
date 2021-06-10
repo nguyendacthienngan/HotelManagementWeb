@@ -1,106 +1,171 @@
-<%= form_with model: @reservation  do |form| %>
-  <table class="table">
-    <tbody>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Tên khách</p>
-          <div class="col-7 form-group">
-            <%= form.text_field :client_name, class:"form-control", autofocus: true, placeholder: "Nguyễn Văn A" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+<%= form_with url: "/reservations", method: :post  do |form| %>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Tên khách</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :client_name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row row">
+        <p class="col-lg-3">CCCD</p>
+        <div class="col-lg-7 form-group">
+          <%= form.number_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Loại phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.label @room_type_name, class:"form-control", readonly:true %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.label @room_name, class:"form-control", readonly:true %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row row end-row-md">
+        <p class="col-lg-3">Ngày đến</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :arrival_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-control read-only-white",
+                              placeholder: "Chọn ngày đến"%>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row row">
+        <p class="col-lg-3">Giá phòng</p>
+        <div class="col-lg-7 form-group">
+         <%= form.label @room_price, class:"form-control", readonly:true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Ngày đi</p>
+        <div class="col-lg-7 form-group">
+          <%= form.text_field :leave_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-control read-only-white",
+                              placeholder: "Chọn ngày đi"%>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Đặt cọc</p>
+        <div class="col-lg-7 form-group">
+          <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+            <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+            <%= p.hidden_field(:is_paid, :value => false)  %>
+            <%= p.number_field :deposit, min: 0, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Hình thức TT</p>
+        <div class="col-lg-7 form-group">
+          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <div class="col-lg-6 row">
+          <p class="col-lg-7">Người lớn</p>
+          <div class="col-lg-5 form-group">
+            <%= form.number_field :adults, in: 0 .. 20, class:"form-control" %>
           </div>
         </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">CCCD</p>
-          <div class="col-7 form-group">
-            <%= form.text_field :client_citizen_id, class:"form-control", autofocus: true, placeholder: "0123456789" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        <div class="col-lg-6 row">
+          <p class="col-lg-6">Trẻ em</p>
+          <div class="col-lg-5 form-group">
+            <%= form.number_field :children, in: 0 .. 20 ,class:"form-control" %>
           </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Loại phòng</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_type_name, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Loại đặt phòng</p>
+        <div class="col-lg-7 form-group">
+          <%= form.select @reservation_type_chosen, options_for_select(@reservation_type_view), {}, class: "form-control read-only-white" %>
         </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">Phòng</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_name, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Tổng tiền</p>
+        <div class="col-lg-7 form-group">
+          <%= form.number_field :total, min: 0, class:"form-control", id: "total"%>
+          <%= p.hidden_field(:temp_total, :id=> "temp-total")  %>
+          <% end %>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex d-flex justify-content-end">
-          <p class="col-3">Ngày đến</p>
-          <div class="col-7 form-group">
-            <%= form.datetime_select :arrival_date, class:"form-control" %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex d-flex">
-          <p class="col-3">Giá</p>
-          <div class="col-7 form-group">
-            <%= form.label @room_price, class:"form-control", readonly:true %>
-<!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Ngày đi</p>
-          <div class="col-7 form-group">
-            <%= form.datetime_select :leave_date, class:"form-control" %>
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex">
-          <p class="col-3">Đặt cọc</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="d-flex justify-content-end">
-          <p class="col-3">Hình thức TT</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-      <td>
-        <div class="d-flex">
-          <p class="col-3">Người lớn</p>
-          <div class="col-7 form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">Email helpers</small>
-          </div>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+      </div>
+    </div>
+  </div>
+  <%= form.hidden_field(:client_id, :value => 1) %>
+  <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
+  <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
+  <%#= form.hidden_field(:payment_id, :value => 1) %>
+  <div class="d-flex actions justify-content-end">
+    <%= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
+    <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>
+    <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation, arrival_date: @reservation.arrival_date, leave_date: @reservation.leave_date, client_name: @reservation.client_name, client_citizen_id: @reservation.client_citizen_id, children: @reservation.children, adults: @reservation.adults, client_id: @reservation.client_id, employee_id: @reservation.employee_id, room_id: @reservation.room_id, payment_id: @reservation.payment_id), method: :post	 %>
+    <span style="width:10px"></span>
+    <%= link_to 'Destroy', room_diagram_path, data: { dismiss: "modal", confirm:
+                                                            'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation' %>
+  </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#quickResModal').on('hidden.bs.modal', function () {
+            $('#quickResModal').remove()
+        })
+        $('#total').keyup(function(){
+            $('#temp-total').val($('#total').val());
+        })
+    })
+
+</script>
+
 <% end %>

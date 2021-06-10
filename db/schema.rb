@@ -59,8 +59,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
-    t.string "client_name", null: false
-    t.string "client_citizen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -81,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "status", default: 0, null: false
     t.datetime "arrival_date", null: false
     t.datetime "leave_date", null: false
-    t.datetime "check_in_date", null: false
+    t.datetime "check_in_date"
     t.decimal "total"
     t.string "client_name", null: false
     t.string "client_citizen_id", null: false

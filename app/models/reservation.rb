@@ -5,4 +5,6 @@ class Reservation < ApplicationRecord
   belongs_to :payment
   has_many :reservation_details
   has_many :services, through: :reservation_details
+
+  accepts_nested_attributes_for :payment
 end

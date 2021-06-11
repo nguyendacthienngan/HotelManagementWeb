@@ -11,14 +11,9 @@
         <a class="dropdown-item" href="#">Another action</a>
       </div>
     </div>
-    <%= form_with url: "/room_diagram/search", class:"form-group" do |form| %>
-      <%= form.text_field :name, class: "form-control", placeholder: "Tìm kiếm..." %>
-
-      <%= link_to room_diagram_path(:name => "104") do %>
-        Search
-      <% end %>
-
-      <%#= form.submit "Search" %>
+    <%= form_with url: "/room_diagram", class:"form-group" do |form| %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Tìm kiếm...", id: "search_name" %>
+      <%= form.submit "Search" %>
 
   <% end %>
 <!--    <div class="form-group">-->

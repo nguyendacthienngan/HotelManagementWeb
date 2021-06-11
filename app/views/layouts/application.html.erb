@@ -23,12 +23,13 @@
 
   <body>
   <% if user_signed_in? %>
-    <%= render 'layouts/header' %>
+    <%#= render 'layouts/header' %>
     <div class="wrapper d-flex align-items-stretch">
       <nav id="sidebar">
         <%= render 'layouts/sidebar' %>
       </nav>
       <!-- Page Content  -->
+
       <div id="content" class="p-4 p-md-5 pt-5">
         <% if notice %>
           <%= render 'layouts/alerts' %>

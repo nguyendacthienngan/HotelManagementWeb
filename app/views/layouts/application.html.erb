@@ -44,7 +44,45 @@
 
   <%= render 'layouts/footer' %>
 
-    <script>
+  <script>
+        var path = window.location.pathname
+        // console.log(path)
+        if (path === '/' || path === '' ) {
+            $('#home').addClass('active')
+        }
+        if (path === '/room_diagram') {
+            $('#room_diagram').addClass('active')
+        }
+        if (path === '/service_room') {
+            $('#services').addClass('active')
+        }
+        if (path === '/individual_reservation') {
+            $('#individual').addClass('active')
+        }
+        if (path === '/cooperate_reservation') {
+            $('#cooperate').addClass('active')
+        }
+        if (path === '/rooms') {
+            $('#setting_rooms').addClass('active')
+        }
+        if (path === '/room_types') {
+            $('#setting_room_types').addClass('active')
+        }
+        if (path === '/services') {
+            $('#setting_services').addClass('active')
+        }
+        if (path === '/room_prices') {
+            $('#setting_room_prices').addClass('active')
+        }
+        if (path === '/employees') {
+            $('#setting_employees').addClass('active')
+        }
+        if (path === '/clients') {
+            $('#setting_clients').addClass('active')
+        }
+        if (path === '/users/edit') {
+            $('#profile').addClass('active')
+        }
         var fullHeight = function() {
 
             $('.js-fullheight').css('height', $(window).height());
@@ -58,6 +96,6 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
-    </script>
+  </script>
   </body>
 </html>

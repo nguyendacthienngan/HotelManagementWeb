@@ -3,7 +3,15 @@ include ActionView::Helpers::NumberHelper
 class RoomDiagramController < ApplicationController
   def index
     @floors = [1,2,3]
-    @rooms = Room.all
+
+    @rooms = if params[:name]
+               Room.where('name LIKE ?', "%#{params[:name]}%")
+             else
+               Room.all
+             end
+    puts @rooms.inspect
+    # puts "INDEX ROOM "
+    # puts @rooms.inspect
   end
 
   def helper
@@ -11,9 +19,18 @@ class RoomDiagramController < ApplicationController
       include ActionView::Helpers::NumberHelper
     end.new
   end
+  def search
+    puts "SEARCH NAME: "
+    puts params[:name]
+    @rooms = if params[:name]
+               Room.where('name LIKE ?', "%#{params[:name]}%")
+             else
+               Room.all
+             end
+    puts @rooms.inspect
+  end
 
   def quick_reserve_room
-
     @room_name = Room.find(params[:room_id]).name
     @room_type_id = Room.find(params[:room_id]).room_type_id
     @room_type_name = RoomType.find(@room_type_id).name
@@ -29,7 +46,12 @@ class RoomDiagramController < ApplicationController
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
-
   end
 
+
+
+
+  def room_params
+    params.require(:room).permit(:name)
+  end
 end

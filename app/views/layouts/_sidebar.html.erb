@@ -1,55 +1,104 @@
+<%= stylesheet_link_tag "sidebar" %>
 <div class="custom-menu">
   <button type="button" id="sidebarCollapse" class="btn btn-primary">
     <i class="fa fa-bars"></i>
     <span class="sr-only">Toggle Menu</span>
   </button>
 </div>
-<div class="p-4">
+<div class="sidebar-content">
   <ul class="list-unstyled components mb-5">
-    <li class="active">
-      <%= link_to 'Trang Chủ', root_path, data: { toggle: 'tooltip' } %>
+    <li>
+      <%= link_to root_path, class:"nav-brand" do %>
+        <%= image_tag "Logo-White.png", width: "200px", height: "66px" %>
+      <% end %>
+    </li>
+    <li id="home">
+      <%= link_to root_path, data: { toggle: 'tooltip' } do %>
+        <span class="fa fa-home"></span> Trang chủ
+      <% end %>
     </li>
     <li>
-      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Lễ Tân</a>
+<!--      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">-->
+<!--        <i><span class="fa fa-hotel"> </span></i> <b>Lễ Tân</b>-->
+<!--      </a>-->
+      <h6>Lễ Tân</h6>
       <ul class="list-unstyled" id="homeSubmenu">
-        <li>
-          <%= link_to 'Sơ đồ phòng', room_diagram_path %>
+        <li id="room_diagram">
+          <%= link_to room_diagram_path do %>
+            <span class="fa fa-person-booth"></span> Sơ đồ phòng
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Khách lẻ', root_path %>
+        <li id="services">
+          <%= link_to services_path, data: { toggle: 'tooltip' }, aria: { expanded: false} do %>
+            <span class="fa fa-concierge-bell"></span> Dịch vụ
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Khách đoàn', root_path %>
+        <li id="individual">
+          <%= link_to root_path do %>
+            <span class="fa fa-briefcase"></span> Khách lẻ
+          <% end %>
+        </li>
+        <li id="cooperate">
+          <%= link_to root_path do %>
+            <span class="fa fa-users"></span> Khách đoàn
+          <% end %>
         </li>
       </ul>
     </li>
+
     <li>
-      <%= link_to 'Dịch Vụ', services_path, data: { toggle: 'tooltip' }, aria: { expanded: false} %>
-    </li>
-    <li>
-      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Cấu hình</a>
+      <h6>Cấu hình</h6>
       <ul class="list-unstyled" id="pageSubmenu">
-        <li>
-          <%= link_to 'Phòng', rooms_path %>
+        <li id="setting_rooms">
+          <%= link_to rooms_path do %>
+            <span class="fa fa-user"></span> Phòng
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Loại phòng', room_types_path %>
+        <li id="setting_room_types">
+          <%= link_to room_types_path do %>
+            <span class="fa fa-user"></span> Loại Phòng
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Giá phòng', room_prices_path %>
+        <li id="setting_room_prices">
+          <%= link_to room_prices_path do %>
+            <span class="fa fa-money-bill-wave-alt"></span> Giá Phòng
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Dịch vụ', services_path %>
+        <li id="setting_services">
+          <%= link_to services_path do %>
+            <span class="fa fa-utensils"></span> Dịch vụ
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Nhân viên', employees_path %>
+        <li id="setting_employees">
+          <%= link_to employees_path do %>
+            <span class="fa fa-id-card-alt"></span> Nhân viên
+          <% end %>
         </li>
-        <li>
-          <%= link_to 'Khách hàng', clients_path %>
+        <li id="setting_clients">
+          <%= link_to clients_path do %>
+            <span class="fa fa-user-secret"></span> Khách hàng
+          <% end %>
         </li>
+
       </ul>
+
     </li>
-
+    <li>
+      <h6>Thông tin cá nhân</h6>
+      <% if user_signed_in? %>
+        <ul class="list-unstyled" id="profileSubmenu">
+          <li id="profile">
+            <%= link_to edit_user_registration_path, class:"dropdown-item" do %>
+              <i class="fa fa-edit "></i> Thông tin cá nhân
+            <% end %>
+          </li>
+          <li id="sign_out">
+            <%= link_to destroy_user_session_path, method: :delete, class:"dropdown-item" do %>
+              <i class="fa fa-sign-out-alt "></i> Đăng xuất
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </li>
   </ul>
-
 </div>

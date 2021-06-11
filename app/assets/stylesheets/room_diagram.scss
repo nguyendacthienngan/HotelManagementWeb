@@ -12,7 +12,7 @@ body {
 }
 
 #switcher .btn{
-  border: 1px solid  #6749b9;
+  border: 1px solid  #436bd5;
   width: 120px !important;
 }
 
@@ -21,10 +21,10 @@ body {
 }
 
 #switcher .active{
-  background-color: #6749b9;
+  background-color: #436bd5;
 }
 .has-search .dropdown .btn::after {
-  color: #6749b9 !important;
+  color: #436bd5 !important;
 }
 .has-search .dropdown .btn {
   padding-right: 25px;
@@ -33,7 +33,7 @@ body {
   border-bottom-right-radius: unset;
 }
 .has-search.dropdown .btn:active{
-  box-shadow: #6749b9;
+  box-shadow: #436bd5;
 }
 @media (max-width: 575px)
 {
@@ -111,7 +111,7 @@ body {
   width: 2rem;
   line-height: 2.375rem;
   pointer-events: none;
-  color: #6749b9;
+  color: #436bd5;
 }
 
 .filter-wrapper {
@@ -125,7 +125,7 @@ body {
 .filter-wrapper .filter-item {
   margin: 0 .5rem 0 .5rem;
 
-  background-color: #6749b9;
+  background-color: #436bd5;
   color: white;
   border-radius: 5px;
   padding: 10px 20px 10px 20px;

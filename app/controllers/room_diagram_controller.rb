@@ -15,29 +15,8 @@ class RoomDiagramController < ApplicationController
 
     search_input = params[:name]
     chosen_type = params[:chosen_type]
-    @rooms =
-      if search_input
-        if chosen_type
-          if chosen_type == "0"
-            Room.where('name LIKE ?', "%#{search_input}%")
-          else
-            if chosen_type == "1"
-              Room.where(floor: search_input)
-            else
-              room_t_id = find_room_type_id(search_input)
-              if (room_t_id != -1)
-                Room.where(room_type_id: room_t_id)
-              else
-                Room.all
-              end
-            end
-          end
-        else
-          Room.all
-        end
-      else
-        Room.all
-      end
+    @rooms = search_result(search_input, chosen_type)
+      
   end
 
   def helper
@@ -52,6 +31,31 @@ class RoomDiagramController < ApplicationController
       return room_type.pluck(:id)
     else
       return -1
+    end
+  end
+
+  def search_result(search_input, chosen_type)
+    if search_input
+      if chosen_type
+        if chosen_type == "0"
+          Room.where('name LIKE ?', "%#{search_input}%")
+        else
+          if chosen_type == "1"
+            Room.where(floor: search_input)
+          else
+            room_t_id = find_room_type_id(search_input)
+            if (room_t_id != -1)
+              Room.where(room_type_id: room_t_id)
+            else
+              Room.all
+            end
+          end
+        end
+      else
+        Room.all
+      end
+    else
+      Room.all
     end
   end
 

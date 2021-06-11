@@ -2,16 +2,12 @@
 
 <div id="search" class="d-flex">
   <div class="has-search">
-<!--    <div class="dropdown">-->
-<!--      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        Tên-->
-<!--      </button>-->
-<!--      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">-->
-<!--        <a class="dropdown-item" href="#">Tên</a>-->
-<!--        <a class="dropdown-item" href="#">Loại phòng</a>-->
-<!--      </div>-->
-<!--    </div>-->
+
+
     <%= form_with url: "/room_diagram", class:"form-group d-flex" do |form| %>
+      <div class="dropdown">
+        <%= form.select :chosen_type, options_for_select(@search_types), {}, class: "btn dropdown-toggle" %>
+      </div>
       <%= form.text_field :name, class: "form-control", placeholder: "Tìm kiếm...", id: "search_name" %>
       <%= form.submit "Search", class: "btn btn-primary" %>
 

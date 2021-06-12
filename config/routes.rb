@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get "/room_diagram/room_info/", to: "room_diagram#room_info"
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
+  get "/individual_reservation", to: "individual_reservation#index"
+  get "/cooperate_reservation", to: "cooperate_reservation#index"
+
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

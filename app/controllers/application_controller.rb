@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     "1" => "female"
   }
   @@employee_types = [
+    { code: "manager", text: "Quản lý" },
+    { code: "receptionist", text: "Nhân viên lễ tân" }
+  ]
+  @@employee_statuses = [
     { code: "working", text: "Đi làm" },
     { code: "left", text: "Nghỉ làm" }
   ]

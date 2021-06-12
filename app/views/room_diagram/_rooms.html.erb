@@ -13,10 +13,13 @@
   <div class="page-section row rooms" >
     <% @rooms.each do |room| %>
       <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] ) || (@flilter != "1" && @filter!="2"  && room.floor == f )) %>
-        <% color = @room_colors[room.status - 1] %>
+        <% background_color = @room_colors[room.status - 1] %>
+        <% color = "#000000" %>
+        <% if (background_color != "#ffffff")  %>
+          <% color = "#ffffff" %>
+        <% end %>
         <div class="room-wrapper col-3" >
-          <div class="card" style="background-color: <%= color %> " data-toggle="modal" data-target="#roomModal">
-
+          <div class="card" data-toggle="modal" data-target="#roomModal">
             <div class="card-body" style="padding-bottom: 0;">
               <div class="card-text row">
                 <p class="col-md-6">
@@ -46,14 +49,15 @@
 
               </div>
               <div class="card-text d-flex justify-content-center">
-                <span><i class="fa fa-user"></i></span>
+                <% index = room.status - 1 %>
+                <span><i class="fa fa-user"  style="color: <%= @room_colors[index] %>"></i></span>
                 <h5 class="child">
-                  <%= room.status %>
+                  <%= @room_statuses[index][:text] %>
                 </h5>
               </div>
             </div>
-            <hr>
-            <div class="card-body" style="padding-top: 0;">
+            <hr style="">
+            <div class="card-body" style="padding-top: 0; ">
               <div class="d-flex order-btn">
                 <div class="btn btn-primary">
                   <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id), remote: true do %>

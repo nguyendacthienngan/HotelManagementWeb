@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
     { code: "client", text: "Khách hàng" }
   ]
   @@room_statuses = [
-    { code: "empty", text: "Trống", color: "#ffc8dd" },
-    { code: "reserved", text: "Đã đặt", color: "#00b4d8" },
-    { code: "late_arrival", text: "Quá hạn", color: "#ff6b35" },
-    { code: "nonempty", text: "Nhận phòng", color: "#ffc300" }, # Đã check in
-    { code: "dirty", text: "Bẩn", color: "#b4c5e4" } #Đã check out
+    { code: "empty", text: "Trống", color: "#000000" },
+    { code: "reserved", text: "Đã đặt", color: "#669bbc" },
+    { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
+    { code: "nonempty", text: "Nhận phòng", color: "#003049" }, # Đã check in
+    { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
   ]
   @@reservation_statuses = [
     { code: "wait_for_check_in", text: "Đợi để check in" },

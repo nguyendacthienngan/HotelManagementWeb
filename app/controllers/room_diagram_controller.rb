@@ -67,24 +67,24 @@ class RoomDiagramController < ApplicationController
     if search_input
       if chosen_type
         if chosen_type == "0"
-          Room.where('name LIKE ?', "%#{search_input}%")
+          return Room.where('name LIKE ?', "%#{search_input}%")
         else
           if chosen_type == "1"
-            Room.where(floor: search_input)
+            return Room.where(floor: search_input)
           else
             room_t_id = find_room_type_id(search_input)
             if (room_t_id != -1)
-              Room.where(room_type_id: room_t_id)
+              return Room.where(room_type_id: room_t_id)
             else
-              Room.all
+              return Room.all
             end
           end
         end
       else
-        Room.all
+        return Room.all
       end
     else
-      Room.all
+      return Room.all
     end
   end
 
@@ -110,6 +110,8 @@ class RoomDiagramController < ApplicationController
       else
         return Room.where(status: room_status)
       end
+    else
+      return Room.all
     end
   end
 

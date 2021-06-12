@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   ]
   @@room_statuses = [
     { code: "empty", text: "Trống", color: "#000000" },
-    { code: "reserved", text: "Đã đặt", color: "#669bbc" },
+    { code: "reserved", text: "Đã đặt", color: "#fdc500" },
     { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
     { code: "nonempty", text: "Nhận phòng", color: "#003049" }, # Đã check in
     { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out

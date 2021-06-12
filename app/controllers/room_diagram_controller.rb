@@ -31,6 +31,9 @@ class RoomDiagramController < ApplicationController
     if @index
       @count_status = room_status_count(@index)
     end
+
+    @rooms.order(:id)
+    puts @rooms.inspect
   end
 
   def helper
@@ -70,24 +73,24 @@ class RoomDiagramController < ApplicationController
     if search_input
       if chosen_type
         if chosen_type == "0"
-          return Room.where('name LIKE ?', "%#{search_input}%")
+          return Room.where('name LIKE ?', "%#{search_input}%").order(:id)
         else
           if chosen_type == "1"
-            return Room.where(floor: search_input)
+            return Room.where(floor: search_input).order(:id)
           else
             room_t_id = find_room_type_id(search_input)
             if (room_t_id != -1)
-              return Room.where(room_type_id: room_t_id)
+              return Room.where(room_type_id: room_t_id).order(:id)
             else
-              return Room.all
+              return Room.all.order(:id)
             end
           end
         end
       else
-        return Room.all
+        return Room.all.order(:id)
       end
     else
-      return Room.all
+      return Room.all.order(:id)
     end
   end
 
@@ -109,12 +112,12 @@ class RoomDiagramController < ApplicationController
   def room_status_filter(room_status)
     if (room_status)
       if (room_status == "all")
-        return Room.all
+        return Room.all.order(:id)
       else
-        return Room.where(status: room_status)
+        return Room.where(status: room_status).order(:id)
       end
     else
-      return Room.all
+      return Room.all.order(:id)
     end
   end
 
@@ -147,6 +150,15 @@ class RoomDiagramController < ApplicationController
   end
 
   def room_info
+    @room_name = Room.find(params[:room_id]).name
+    @room_statuses = @@room_statuses
+    @room_status = Room.find(params[:room_id]).status
+    @room_status_name = @room_statuses[@room_status - 1][:text]
+
+  # Ngày đến
+  # Ngày đi
+  # Ngày check-in
+  # Tên khách
 
   end
 

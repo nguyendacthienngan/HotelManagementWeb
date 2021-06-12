@@ -26,8 +26,14 @@ class ReservationsController < ApplicationController
       # payment = Payment.create(params[:payment])
       # @reservation.payment_id = payment.id
       if @reservation.save
-        format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
-        format.json { render :show, status: :created, location: @reservation }
+        @room = Room.find(reservation_params[:room_id])
+        if @room.update(status: 2)
+          format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
+          format.json { render :show, status: :created, location: @reservation }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @reservation.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }

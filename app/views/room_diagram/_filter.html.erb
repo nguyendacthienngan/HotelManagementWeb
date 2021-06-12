@@ -1,4 +1,4 @@
 <div id="switcher" class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary">Tầng</button>
-  <button type="button" class="btn inactive">Loại phòng</button>
+  <%= link_to "Tầng", room_diagram_path(:filter => 1), class: "btn btn-primary" %>
+  <%= link_to "Loại phòng", room_diagram_path(:filter => 2), class: "btn inactive"%>
 </div>

@@ -2,19 +2,12 @@
 
 <div id="search" class="d-flex">
   <div class="has-search">
-
-
     <%= form_with url: "/room_diagram", class:"form-group d-flex" do |form| %>
       <div class="dropdown">
         <%= form.select :chosen_type, options_for_select(@search_types), {}, class: "btn dropdown-toggle" %>
       </div>
       <%= form.text_field :name, class: "form-control", placeholder: "Tìm kiếm...", id: "search_name" %>
       <%= form.submit "Search", class: "btn btn-primary" %>
-
-  <% end %>
-<!--    <div class="form-group">-->
-<!--      <input  aria-label="Search" type="text" class="form-control" placeholder="Tìm kiếm...">-->
-<!--      <span class="fa fa-search form-control-feedback"></span>-->
-<!--    </div>-->
+    <% end %>
   </div>
 </div>

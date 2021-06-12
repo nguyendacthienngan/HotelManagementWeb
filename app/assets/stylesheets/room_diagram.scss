@@ -23,44 +23,6 @@ body {
 #switcher .active{
   background-color: #436bd5;
 }
-.filter-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  cursor: pointer;
-}
-
-.filter-wrapper a  {
-  margin: 0 .5rem 0 .5rem;
-
-  background-color: #436bd5;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px 10px 20px;
-  max-width: 120px;
-}
-[id="status1"] {
-  background-color: red !important;
-}
-[id="status2"] {
-  background-color: red !important;
-}
-[id="status3"] {
-  background-color: red !important;
-}
-[id="status4"] {
-  background-color: red !important;
-}
-[id="status5"] {
-  background-color: red !important;
-}
-[id="status6"] {
-  background-color: red !important;
-}
-[id="status7"] {
-  background-color: red !important;
-}
 .room-wrapper {
   width: 250px;
   margin: 0 16px 20px 0;

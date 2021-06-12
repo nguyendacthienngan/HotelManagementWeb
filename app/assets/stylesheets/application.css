@@ -77,7 +77,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #F4F3F9;
+    background-color: #f1f2f6;
 }
 
 [tabindex="-1"]:focus {
@@ -191,11 +191,13 @@ a[data-toggle="collapse"] {
     min-height: 100vh;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s; }
+    transition: all 0.3s;
+    background-color: #f3f5ff
+}
 
 .btn.btn-primary {
-    background: #07153a;
-    border-color: #07153a; }
+    background: #436bd5;
+    border-color: #436bd5; }
 .btn.btn-primary:hover, .btn.btn-primary:focus {
     background: #07153a !important;
     border-color: #07153a !important; }

@@ -1,10 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
 
-  clients = Client.create([
+clients = Client.create([
                             {
                               name: "Khách lữ hành",
                               citizen_id: '',
@@ -44,7 +41,7 @@
                             },
                           ])
 
-  employees = Employee.create([
+employees = Employee.create([
                                 {
                                   name: 'Nguyễn Đắc Thiên Ngân',
                                   citizen_id: '0123456786',
@@ -512,14 +509,14 @@ Room.create!([
                         room_type_id: 1
                       },
                       {
-                        name: "106",
+                        name: "105",
                         status: 1,
                         floor: 1,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 2,
                       },
                       {
-                        name: "107",
+                        name: "106",
                         status: 1,
                         floor: 1,
                         description: "Phòng sang xịn mịn",

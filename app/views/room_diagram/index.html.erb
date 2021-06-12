@@ -48,27 +48,6 @@
   </div>
 </div>
 
-<!-- Màn hình modal đặt hàng nhanh -->
-<!--<div class="modal fade" id="quickResModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="exampleModalLabel">Nhận phòng nhanh</h5>-->
-<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--          <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-        <%#= render 'quick_reserve_room' %>
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
-<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div>
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <div class="row">
@@ -91,84 +70,7 @@
   <div class="page-section">
     <%= render 'room_status' %>
   </div>
-    <% @filters.each do |f| %>
-      <h3 class="row-title">
-        <% if @filter == "1" %>
-          Tầng <%= f %>
-        <% else %>
-          <% if @filter == "2"  %>
-            <%= f[:text] %>
-            <% else %>
-            Tầng <%= f %>
-          <% end %>
-        <% end %>
-      </h3>
-      <div class="page-section row rooms" >
-        <% @rooms.each do |room| %>
-          <%# if (room.floor == f && @filter == "1")  %>
-            <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] ) || (@flilter != "1" && @filter!="2"  && room.floor == f )) %>
-            <div class="room-wrapper col-3">
-              <div class="card" style="" data-toggle="modal" data-target="#roomModal">
-
-                <div class="card-body" style="padding-bottom: 0;">
-                  <div class="card-text row">
-                    <p class="col-md-6">
-                      <%= room.name %>
-                    </p>
-                    <div class="dropdown col-md-6 d-flex justify-content-end">
-                      <i class="fas fa-ellipsis-v" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">
-                          <span><i class="fa fa-bars"></i></span>
-                          Danh sách đặt phòng
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <span><i class="fa fa-calendar-alt"></i></span>
-                          Đặt phòng nhanh
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <span><i class="fa fa-user-plus"></i></span>
-                          Khách lẻ
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <span><i class="fa fa-broom"></i></span>
-                          Phòng bẩn
-                        </a>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="card-text d-flex justify-content-center">
-                    <span><i class="fa fa-user"></i></span>
-                    <h5 class="child">
-                      <%= room.status %>
-                    </h5>
-                  </div>
-                </div>
-                <hr>
-                <div class="card-body" style="padding-top: 0;">
-                  <div class="d-flex order-btn">
-                    <div class="btn btn-primary">
-                      <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id), remote: true do %>
-                        Đặt nhanh
-                      <% end %>
-                    </div>
-                    <div class="btn btn-primary">
-                      <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id), remote: true do %>
-                        Khách lẻ
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="reservation-list">
-                <div class="d-flex justify-content-center">Danh sách đặt phòng gần đây</div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+  <%= render 'rooms' %>
 </div>
 
 <script type="text/javascript">

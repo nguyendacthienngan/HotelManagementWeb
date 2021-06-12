@@ -24,13 +24,10 @@ class RoomDiagramController < ApplicationController
     # Filter Room Status
     @room_statuses = @@room_statuses
     room_status = params[:room_status]
-    if (room_status)
-      if (room_status == "all")
-        @rooms = Room.all
-      else
-        @rooms = Room.where(status: room_status)
-      end
-    end
+    @rooms = room_status_filter(room_status)
+
+    @room_colors = convert_nested_hash_to_color(@@room_statuses)
+
   end
 
   def helper
@@ -106,6 +103,15 @@ class RoomDiagramController < ApplicationController
     return @filters
   end
 
+  def room_status_filter(room_status)
+    if (room_status)
+      if (room_status == "all")
+        return Room.all
+      else
+        return Room.where(status: room_status)
+      end
+    end
+  end
 
   def quick_reserve_room
     @room_name = Room.find(params[:room_id]).name

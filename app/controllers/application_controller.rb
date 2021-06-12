@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
     { code: "client", text: "Khách hàng" }
   ]
   @@room_statuses = [
-    { code: "empty", text: "Trống" },
-    { code: "reserved", text: "Đã đặt" },
-    { code: "late_arrival", text: "Quá hạn" },
-    { code: "nonempty", text: "Nhận phòng" }, # Đã check in
-    { code: "dirty", text: "Bẩn" } #Đã check out
+    { code: "empty", text: "Trống", color: "#ffc8dd" },
+    { code: "reserved", text: "Đã đặt", color: "#00b4d8" },
+    { code: "late_arrival", text: "Quá hạn", color: "#ff6b35" },
+    { code: "nonempty", text: "Nhận phòng", color: "#ffc300" }, # Đã check in
+    { code: "dirty", text: "Bẩn", color: "#b4c5e4" } #Đã check out
   ]
   @@reservation_statuses = [
     { code: "wait_for_check_in", text: "Đợi để check in" },
@@ -64,6 +64,14 @@ class ApplicationController < ActionController::Base
     hash.each do |h|
       result[h[:text]] = index
       index +=1
+    end
+    return result
+  end
+
+  def convert_nested_hash_to_color (hash)
+    result = []
+    hash.each do |h|
+      result.push(h[:color])
     end
     return result
   end

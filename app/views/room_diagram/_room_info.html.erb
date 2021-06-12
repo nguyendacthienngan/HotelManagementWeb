@@ -9,23 +9,26 @@
 
     <h3>Phòng <%= @room_name %></h3>
     <p>Trạng thái: <%= @room_status_name %></p>
-    <table class="table">
-      <tbody>
-      <tr>
-        <th>
+
+    <% if @room_status > 1 %>
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>
           <span>
             <i class="fa fa-info-circle fa-4x"></i>
           </span>
-        </th>
-        <td>
-          Ngày đến: 1/1/2021 <br>
-          Ngày đi: 1/1/2021 <br>
-          Tên khách: Nguyễn Văn A <br>
-          Ngày check-in: 1/1/2021 <br>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+          </th>
+          <td>
+            Ngày đến: <%= @arrival_date %> <br>
+            Ngày đi: <%= @leave_date %> <br>
+            Tên khách: <%= @client_name %> <br>
+<!--            Ngày check-in: 1/1/2021 <br>-->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    <% end %>
     <div class="rooms-btn">
       <div class="room-btn">
         <span><i class="fa fa-bars fa-3x"></i></span>

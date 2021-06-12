@@ -32,8 +32,6 @@ class RoomDiagramController < ApplicationController
       @count_status = room_status_count(@index)
     end
 
-    @rooms.order(:id)
-    puts @rooms.inspect
   end
 
   def helper
@@ -55,13 +53,11 @@ class RoomDiagramController < ApplicationController
     room_types = RoomType.all
     results =  []
     if room_types
-      # puts @result.inspect
       room_types.each do |r|
         temp = {}
         temp[:code] = r.id
         temp[:text] = r.name
         results.push(temp)
-        # results[r.name] = r.id
       end
       return results
     else
@@ -155,10 +151,17 @@ class RoomDiagramController < ApplicationController
     @room_status = Room.find(params[:room_id]).status
     @room_status_name = @room_statuses[@room_status - 1][:text]
 
-  # Ngày đến
-  # Ngày đi
-  # Ngày check-in
-  # Tên khách
+    if @room_status > 1
+      @reservations = Reservation.where(room_id: params[:room_id]).order(arrival_date: :desc).limit(1)
+      if @reservations
+        puts @reservations.inspect
+        @arrival_date = @reservations[0].arrival_date.strftime("%d/%m/%Y")
+        @leave_date = @reservations[0].leave_date.strftime("%d/%m/%Y")
+        # @check_in_date = @reservations[0].check_in_date.strftime("%d/%m/%Y")
+        @client_name = @reservations[0].client_name
+      end
+    end
+
 
   end
 

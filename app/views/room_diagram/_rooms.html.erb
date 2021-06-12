@@ -13,9 +13,7 @@
   <div class="page-section row rooms" >
     <% @rooms.each do |room| %>
       <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] ) || (@flilter != "1" && @filter!="2"  && room.floor == f )) %>
-        <% color = @room_colors[room.status] %>
-        <% puts "COLOR ROOM" %>
-        <% puts @room_colors %>
+        <% color = @room_colors[room.status - 1] %>
         <div class="room-wrapper col-3" >
           <div class="card" style="background-color: <%= color %> " data-toggle="modal" data-target="#roomModal">
 

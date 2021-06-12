@@ -28,6 +28,9 @@ class RoomDiagramController < ApplicationController
 
     @room_colors = convert_nested_hash_to_color(@@room_statuses)
 
+    if @index
+      @count_status = room_status_count(@index)
+    end
   end
 
   def helper
@@ -113,6 +116,16 @@ class RoomDiagramController < ApplicationController
     else
       return Room.all
     end
+  end
+
+  def room_status_count(room_status)
+    if (room_status > 0)
+      count = Room.where(status: room_status).count
+      return count
+    else
+      return -1
+    end
+
   end
 
   def quick_reserve_room

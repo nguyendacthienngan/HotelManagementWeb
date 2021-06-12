@@ -14,9 +14,13 @@ Rails.application.routes.draw do
   resources :room_prices
 
   get "/room_diagram", to: "room_diagram#index"
+  post "/room_diagram", to: "room_diagram#index"
+
   get "/room_diagram/quick_reserve_room", to: "room_diagram#quick_reserve_room"
   get "/room_diagram/quick_reserve_room/:room_id", to: "room_diagram#quick_reserve_room"
-  post "/room_diagram", to: "room_diagram#index"
+
+  get "/room_diagram/room_info/", to: "room_diagram#room_info"
+  get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

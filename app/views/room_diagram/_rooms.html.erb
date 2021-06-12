@@ -18,13 +18,8 @@
     <div class="page-section row rooms" >
       <% @rooms.each do |room| %>
         <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] ) || (@flilter != "1" && @filter!="2"  && room.floor == f )) %>
-          <% background_color = @room_colors[room.status - 1] %>
-          <% color = "#000000" %>
-          <% if (background_color != "#ffffff")  %>
-            <% color = "#ffffff" %>
-          <% end %>
           <div class="room-wrapper col-3" >
-            <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id), remote: true, class: "col" do %>
+            <%= link_to room_diagram_room_info_path(:room_id => room.id), remote: true , class: "col" do %>
               <div class="card" data-toggle="modal" data-target="#roomModal">
                 <div class="card-body" style="padding-bottom: 0;">
                   <div class="card-text row">

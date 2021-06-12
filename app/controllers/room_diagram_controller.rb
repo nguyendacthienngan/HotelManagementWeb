@@ -146,6 +146,9 @@ class RoomDiagramController < ApplicationController
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
   end
 
+  def room_info
+
+  end
 
   def room_params
     params.require(:room).permit(:name, :chosen_type, :filter, :room_status)

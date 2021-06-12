@@ -83,6 +83,23 @@
         if (path === '/users/edit') {
             $('#profile').addClass('active')
         }
+        if (path === '/room_types') {
+            $('#setting_room_types').addClass('active')
+        }
+        var params = window.location.search;
+        if (params === '?filter=1') {
+            console.log("FILTER ")
+            $('#switcher1').addClass('btn-primary')
+            $('#switcher1').removeClass('inactive')
+            $('#switcher2').addClass('inactive')
+            $('#switcher2').removeClass('btn-primary')
+        }
+        if (params === '?filter=2') {
+            $('#switcher2').addClass('btn-primary')
+            $('#switcher2').removeClass('inactive')
+            $('#switcher1').addClass('inactive')
+            $('#switcher1').removeClass('btn-primary')
+        }
         var fullHeight = function() {
 
             $('.js-fullheight').css('height', $(window).height());

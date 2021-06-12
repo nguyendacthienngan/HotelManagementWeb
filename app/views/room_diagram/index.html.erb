@@ -109,13 +109,17 @@
         <% if @filter == "1" %>
           Tầng <%= f %>
         <% else %>
-          <%= f[:text] %>
+          <% if @filter == "2"  %>
+            <%= f[:text] %>
+            <% else %>
+            Tầng <%= f %>
+          <% end %>
         <% end %>
       </h3>
       <div class="page-section row rooms" >
         <% @rooms.each do |room| %>
           <%# if (room.floor == f && @filter == "1")  %>
-            <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] )) %>
+            <% if ((room.floor == f && @filter == "1") || (@filter == "2" && room.room_type_id ==  f[:code] ) || (@flilter != "1" && @filter!="2"  && room.floor == f )) %>
             <div class="room-wrapper col-3">
               <div class="card" style="" data-toggle="modal" data-target="#roomModal">
 

@@ -53,6 +53,12 @@ body {
 .room-wrapper .card .card-body .order-btn .btn a {
   color: white !important;
 }
+
+.end-dropdown a{
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
 .active-reservation .fa {
   margin-top: 10px;
 }

@@ -5,35 +5,18 @@
         Tất cả
     </span>
   <% end %>
-  <%= link_to room_diagram_path(:room_status => "all"), id:"status2" do %>
-      <span class="filter-item">
-          Trống
-      </span>
-  <% end %>
-  <%= link_to room_diagram_path(:room_status => "all"), id:"status3" do %>
-      <span class="filter-item">
-          Đã đặt
-      </span>
+  <% index = 1 %>
+  <% if @room_statuses %>
+    <% @room_statuses.each do |rs| %>
+      <% id = "status" + index.to_s %>
+      <%= link_to room_diagram_path(:room_status => index), id:id  do %>
+        <span class="filter-item">
+            <%= rs[:text] %>
+        </span>
+        <% index +=1 %>
+      <% end %>
+    <% end %>
   <% end %>
 
-  <%= link_to room_diagram_path(:room_status => "all"), id: "status4" do %>
-      <span class="filter-item">
-          Quá hạn
-      </span>
-  <% end %>
-  <%= link_to room_diagram_path(:room_status => "all"), id: "status5"  do %>
-      <span class="filter-item">
-          Nhận phòng
-      </span>
-  <% end %>
-  <%= link_to room_diagram_path(:room_status => "all"), id: "status6" do %>
-      <span class="filter-item">
-          Bẩn
-      </span>
-  <% end %>
-  <%= link_to room_diagram_path(:room_status => "all"), id: "status7" do %>
-      <span class="filter-item">
-          Đang sửa
-      </span>
-  <% end %>
+
 </div>

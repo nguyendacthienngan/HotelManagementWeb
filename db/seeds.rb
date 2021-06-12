@@ -485,77 +485,77 @@ prices = RoomPrice.create!([
 Room.create!([
                       {
                         name: "101",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "102",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "103",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "104",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "106",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 2,
                       },
                       {
                         name: "107",
-                        status: 0,
-                        floor: 2,
+                        status: 1,
+                        floor: 1,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 3
                       },
                       {
                         name: "201",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 4
                       },
                       {
                         name: "202",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 4
                       },
                       {
                         name: "203",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 5
                       },
                       {
                         name: "204",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 5
                       },
                       {
                         name: "301",
-                        status: 0,
+                        status: 1,
                         floor: 3,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 6

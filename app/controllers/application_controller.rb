@@ -17,6 +17,13 @@ class ApplicationController < ActionController::Base
     { code: "traveller", text: "Khách lữ hành" },
     { code: "client", text: "Khách hàng" }
   ]
+  @@room_statuses = [
+    { code: "empty", text: "Trống" },
+    { code: "reserved", text: "Đã đặt" },
+    { code: "late_arrival", text: "Quá hạn" },
+    { code: "nonempty", text: "Nhận phòng" }, # Đã check in
+    { code: "dirty", text: "Bẩn" } #Đã check out
+  ]
   @@reservation_statuses = [
     { code: "wait_for_check_in", text: "Đợi để check in" },
     { code: "checked_in", text: "Đã check in" },

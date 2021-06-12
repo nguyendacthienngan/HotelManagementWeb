@@ -9,14 +9,28 @@ class RoomDiagramController < ApplicationController
       "Loại phòng" => "2"
     }
 
-    @filters = {}
+    # Filter Switch Button
     @filter = params[:filter]
     @filters = switch_filter(@filter)
-    puts @filters
 
+
+    # Search button
     search_input = params[:name]
     chosen_type = params[:chosen_type]
+
+
     @rooms = search_result(search_input, chosen_type)
+
+    # Filter Room Status
+    @room_statuses = @@room_statuses
+    room_status = params[:room_status]
+    if (room_status)
+      if (room_status == "all")
+        @rooms = Room.all
+      else
+        @rooms = Room.where(status: room_status)
+      end
+    end
   end
 
   def helper
@@ -110,8 +124,6 @@ class RoomDiagramController < ApplicationController
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
   end
-
-
 
 
   def room_params

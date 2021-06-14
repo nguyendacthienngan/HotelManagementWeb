@@ -1,37 +1,64 @@
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
-
-<p>
-  <strong>Citizen:</strong>
-  <%= @client.citizen_id %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @client.gender %>
-</p>
-
-<p>
-  <strong>Nationality:</strong>
-  <%= @client.nationality %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @client.date_of_birth %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @client.client_type %>
-</p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<center>
+  <p id="notice"><%= notice %></p>
+  
+  <div class="show_container tColumn">
+  <p class="tRow">
+    <strong class="show_employee_name">Họ tên</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.name %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Loại</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.client_type %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Giới tính</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.gender %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Số điện thoại</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.phone_number %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Địa chỉ</strong>
+    <strong class="show_sign">:</strong>
+    
+  </p>
+  
+  <p class="tRow">
+    <strong  class="show_employee_name">Email</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.email %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Ngày sinh</strong>
+    <strong class="show_sign">:</strong>
+    <%= Date.parse(@client.date_of_birth.to_s) %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Thành Phố</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.citizen_id %>
+  </p>
+  
+  <p class="tRow">
+    <strong class="show_employee_name">Quốc tịch</strong>
+    <strong class="show_sign">:</strong>
+    <%= @client.nationality %>
+  </p>
+  </div>
+</center>
+  
+  <div class="bottom_container">
+    <button class="button_back"><%= link_to 'Quay lại', clients_path %></button>
+    <button class="button_edit button_edit_center"><%= link_to 'Chỉnh sửa', edit_client_path(@client) %></button>
+  </div>

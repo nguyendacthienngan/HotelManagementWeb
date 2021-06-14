@@ -26,7 +26,8 @@
     color: #000000;
     justify-content: space-between;
     margin: 30px 0px 30px 0px;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: 500;
     i{
         font-size: 3rem;
     }
@@ -41,6 +42,7 @@
         margin: 5px 10px 5px 10px;
         border: solid 3px black;
         justify-content: space-between;
+        // background-color: #FFFF93;
         & > div{
             padding: 10px;
         }
@@ -58,6 +60,10 @@
     }
     i{
         font-size: 2.2rem;
+        color: #866ec7;
+        &:hover{
+            color: #6749b9;
+        }
     }
 }
 
@@ -69,6 +75,9 @@
     font-size: 20px;
     max-width: 700px;
     width: 100% ;
+    .field{
+        margin: 4px 0px;
+    }
     ._form_item_name{
         text-align: left;
         width: 230px;
@@ -77,13 +86,16 @@
         flex-grow: 1;
         & > input {
             width: 100%;
-            outline: none;
-            border: solid 1px gray;
+            outline: solid 1px gray;
             border-radius: 2px;
             &:focus{
                 background-color: rgb(255, 255, 255);
-                border: solid 1px #866ec7;
+                outline: solid 1px #866ec7;
             }
+        }
+        &:focus {
+            background-color: rgb(255, 255, 255);
+            outline: solid 1px #6749b9;
         }
         .error_msg{
             color: red;
@@ -94,11 +106,18 @@
             display: block;
         }
     }
+    
     .button_submit{
         margin: 15px;
     }
 }
 
+.bottom_container{
+    margin-top: 50px;
+    .button_edit_center{
+        margin-left: 630px;
+    }
+}
 .button_back{
     background-color: #ffffff;
     border: solid 1px #866ec7;

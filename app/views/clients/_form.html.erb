@@ -1,7 +1,8 @@
+
 <%= form_with(model: client) do |form| %>
   <% if client.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
       <ul>
         <% client.errors.each do |error| %>
@@ -11,42 +12,93 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<center>
+<div class="_form_container tColumn">
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :client_type, "Loại khách hàng" %>
+    </div>
+    <div class="">
+      <%= form.select :client_type, ['Thành viên', 'Khách lữ hành'] %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :citizen_id %>
-    <%= form.text_field :citizen_id %>
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :name, "Họ tên" %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :name %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :Gender, "Giới tính" %>
+    </div>
+    <div class="">
+      <%= form.select :gender, ['Male', 'Female', 'Other'] %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :phone_number, "Số điện thoại" %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :phone_number %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :address, "Địa chỉ" %>
+    </div>
+    <div class="_form_item_input">
+
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :email %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :email %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :date_of_birth, "Ngày sinh" %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.date_select :date_of_birth, order: [:day, :month, :year] %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :citizen_id, "Thành phố" %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :citizen_id %>
+    </div>
+  </div>
+  
+  <div class="field tRow">
+    <div class="_form_item_name">
+      <%= form.label :nationality, "Quốc tịch" %>
+    </div>
+    <div class="_form_item_input">
+      <%= form.text_field :nationality %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :gender %>
-    <%= form.check_box :gender %>
+  <div class="actions button_submit">
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
-
-  <div class="field">
-    <%= form.label :nationality %>
-    <%= form.text_field :nationality %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_birth %>
-    <%= form.datetime_select :date_of_birth %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.number_field :client_type %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
+</center>
 <% end %>
+

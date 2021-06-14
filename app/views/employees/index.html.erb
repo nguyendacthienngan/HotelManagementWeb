@@ -4,24 +4,47 @@
   </div>
 <% end %>
 
-<center><h1 class="title">Employees</h1></center>
+<center><h1 class="title">NHÂN VIÊN</h1></center>
 
 <div class="roomtype_sum_container tRow">
-  <div>
-      Danh sach nhan vien ( <%= @employees.ids.count %> )
+  <div class="tColumn" >
+      Danh sách nhân viên: <%= @employees.ids.count %> nhân viên
   </div>
-  <div>
+  <div class="searchBar tColumn">
+    <div class="tRow">
+      <select id="typeSearch tColumn">
+        <option value="name" selected>Tên</option>
+        <option value="emp_type">Loại nhân viên</option>
+        <option value="phone">Số điện thoại</option>
+        <option value="address">Địa chỉ</option>
+        <option value="gender">Giới tính</option>
+        <option value="nationality">Quốc tịch</option>
+        <option value="city">Thành phố</option>
+        <option value="DOB">Ngày sinh</option>
+        <option value="email">Email</option>
+      </select>
+      <div class="tform-group">
+        <input  aria-label="Search" type="text" class="tform-control tColumn" placeholder="Tìm kiếm...">
+        <span class="fa fa-search tform-control-feedback"></span>
+      </div>
+    </div>
+  </div>
+  <div class="tColumn newIcon e_tooltip">
       <%= link_to new_employee_path do%><i class="fas fa-plus-circle"></i><% end %>
+        <span class="tooltiptext">Tạo mới</span>
   </div>
 </div>
 
+
 <center>
+
   <div class="roomtype_list_container tColumn">
     <% @employees.each do |employee| %>
       <div class="item tRow">
           <div class="section tRow">
-              <div class="">
+              <div class="e_tooltip">
                   <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-minus-circle"></i><% end %>
+                  <span class="tooltiptext">Xóa</span>
               </div>
               <div class="tColumn employee_name">
                   <div>
@@ -33,58 +56,18 @@
               </div>
           </div>
           <div class="section tRow">
-            <div class="icon_costom">
-              <%= link_to  employee do %> <i class="fa fa-eye" style="font-size:2rem"></i><% end %>
+            <div class="icon_costom e_tooltip">
+              <%= link_to  employee do %> <i class="fa fa-eye"></i><% end %>
+              <span class="tooltiptext">Xem chi tiết</span>
             </div>
-            <div class="icon_costom">
+            <div class="icon_costom e_tooltip">
                 <%= link_to edit_employee_path(employee) do%><i class="fas fa-pencil-alt"></i><% end %>
+                  <span class="tooltiptext">Sửa</span>
             </div>
           </div>
       </div>
       <% end %>
   </div>
-  </center>
 
-<!-- <table class="table is-hoverable" >
-  <thead>
-  <tr>
-    <th><abbr title="id">ID</abbr></th>
-    <th><abbr title="name">Name</abbr></th>
-    <th><abbr title="employee_type">Type</abbr></th>
-    <th><abbr title="citizen_id">Citizen ID</abbr></th>
-    <th><abbr title="is_female">Is Female</abbr></th>
-    <th><abbr title="nationality">Nationality</abbr></th>
-    <th><abbr title="dob">DOB</abbr></th>
-    <th><abbr title="email">Email</abbr></th>
-    <th><abbr title="status">Status</abbr></th>
-    <th><abbr title="show">Show</abbr></th>
-    <th><abbr title="edit">Edit</abbr></th>
-    <th><abbr title="destroy">Destroy</abbr></th>
-  </tr>
-  </thead>
+</center>
 
-  <tbody>
-
-  <% @employees.each do |employee| %>
-    <tr>
-      <th><%= employee.id %></th>
-      <td><%= employee.name %></td>
-      <td><%= employee.employee_type %></td>
-      <td><%= employee.citizen_id %></td>
-      <td><%= employee.gender %></td>
-      <td><%= employee.nationality %></td>
-      <td><%= employee.date_of_birth.strftime("%m/%d/%Y")  %></td>
-      <td><%= employee.email %></td>
-      <td><%= employee.status %></td>
-      <td><%= link_to  employee do %> <i class="fa fa-eye" style="font-size:1.25rem"></i><% end %></td>
-      <td><%= link_to  edit_employee_path(employee) do %> <i class="fa fa-edit" style="font-size:1.25rem"></i><% end %></td>
-      <td><%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %> <i class="fa fa-trash-o" style="font-size:1.25rem"></i><% end %></td>
-    </tr>
-  <% end %>
-
-  </tbody>
-</table> -->
-
-<br>
-
-<!-- <%= link_to 'New Employee', new_employee_path %> -->

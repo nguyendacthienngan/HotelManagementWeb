@@ -15,7 +15,7 @@
 <div class="_form_container tColumn">
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :employee_type %>
+      <%= form.label :employee_type, "Loại nhân viên" %>
     </div>
     <div class="">
       <%= form.select :employee_type, ['Nhân viên Lễ Tân', 'Nhân viên Vệ Sinh', 'Quản Lý'] %>
@@ -24,7 +24,7 @@
 
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :username %>
+      <%= form.label :username, "Tên đăng nhập" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :username %>
@@ -33,7 +33,7 @@
 
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :password %>
+      <%= form.label :password, "Mật khẩu" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :password %>
@@ -42,7 +42,7 @@
 
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :Confirm_Password%>
+      <%= form.label :Confirm_Password, "Nhập lại mật khẩu"%>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :password %>
@@ -51,7 +51,7 @@
 
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :name %>
+      <%= form.label :name, "Họ tên" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :name %>
@@ -60,7 +60,7 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :Gender %>
+      <%= form.label :Gender, "Giới tính" %>
     </div>
     <div class="">
       <%= form.select :gender, ['Male', 'Female', 'Other'] %>
@@ -69,7 +69,7 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :phone_number %>
+      <%= form.label :phone_number, "Số điện thoại" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :phone_number %>
@@ -78,7 +78,7 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :address %>
+      <%= form.label :address, "Địa chỉ" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :address %>
@@ -96,16 +96,16 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :date_of_birth %>
+      <%= form.label :date_of_birth, "Ngày sinh" %>
     </div>
-    <div class="">
+    <div class="_form_item_input">
       <%= form.date_select :date_of_birth, order: [:day, :month, :year] %>
     </div>
   </div>
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :citizen_id %>
+      <%= form.label :citizen_id, "Thành phố" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :citizen_id %>
@@ -114,7 +114,7 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :nationality %>
+      <%= form.label :nationality, "Quốc tịch" %>
     </div>
     <div class="_form_item_input">
       <%= form.text_field :nationality %>
@@ -123,10 +123,10 @@
   
   <div class="field tRow">
     <div class="_form_item_name">
-      <%= form.label :status %>
+      <%= form.label :status, "Trạng thái" %>
     </div>
     <div class="">
-      <%= form.select :status, options_for_select([ ['Đang làm việc', '0'],['Nghỉ', '1']])%>
+      <input type="checkbox" id="switch" name="isWorking" value="1" checked /><label class="label-status" for="switch">Toggle</label>
     </div>
   </div>
 

@@ -13,6 +13,7 @@
         <%= link_to new_room_type_path do%><i class="fas fa-plus-circle"></i><% end %>
     </div>
 </div>
+<center>
 <div class="roomtype_list_container tColumn">
     <% @room_types.each do |room_type| %>
     <div class="item tRow">
@@ -30,7 +31,7 @@
         </div>
         <div class="section tRow">
             <div class="icon_costom">
-              <%= link_to  room_type do %> <i class="fa fa-eye" style="font-size:2rem"></i><% end %>
+              <%= link_to  room_type do %> <i class="fa fa-eye"></i><% end %>
             </div>
             <div class="icon_costom">
                 <%= link_to edit_room_type_path(room_type) do%><i class="fas fa-pencil-alt"></i><% end %>
@@ -41,5 +42,6 @@
     </div>
     <% end %>
 </div>
+</center>
 <br>
 

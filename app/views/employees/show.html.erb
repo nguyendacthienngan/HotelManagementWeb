@@ -3,39 +3,33 @@
 
 <div class="show_container tColumn">
 <p class="tRow">
-  <strong class="show_employee_name">Name</strong>
+  <strong class="show_employee_name">Họ tên</strong>
   <strong class="show_sign">:</strong>
   <%= @employee.name %>
 </p>
 
 <p class="tRow">
-  <strong class="show_employee_name">Type</strong>
+  <strong class="show_employee_name">Loại</strong>
   <strong class="show_sign">:</strong>
   <%= @employee.employee_type %>
 </p>
 
 <p class="tRow">
-  <strong class="show_employee_name">Citizen</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.citizen_id %>
-</p>
-
-<p class="tRow">
-  <strong class="show_employee_name">Gender</strong>
+  <strong class="show_employee_name">Giới tính</strong>
   <strong class="show_sign">:</strong>
   <%= @employee.gender %>
 </p>
 
 <p class="tRow">
-  <strong class="show_employee_name">Nationality</strong>
+  <strong class="show_employee_name">Số điện thoại</strong>
   <strong class="show_sign">:</strong>
-  <%= @employee.nationality %>
+  <%= @employee.phone_number %>
 </p>
 
 <p class="tRow">
-  <strong class="show_employee_name">Date of birth</strong>
+  <strong class="show_employee_name">Địa chỉ</strong>
   <strong class="show_sign">:</strong>
-  <%= Date.parse(@employee.date_of_birth.to_s) %>
+  <%= @employee.address %>
 </p>
 
 <p class="tRow">
@@ -45,13 +39,33 @@
 </p>
 
 <p class="tRow">
+  <strong class="show_employee_name">Ngày sinh</strong>
+  <strong class="show_sign">:</strong>
+  <%= Date.parse(@employee.date_of_birth.to_s) %>
+</p>
+
+<p class="tRow">
+  <strong class="show_employee_name">Thành Phố</strong>
+  <strong class="show_sign">:</strong>
+  <%= @employee.citizen_id %>
+</p>
+
+<p class="tRow">
+  <strong class="show_employee_name">Quốc tịch</strong>
+  <strong class="show_sign">:</strong>
+  <%= @employee.nationality %>
+</p>
+
+<p class="tRow">
   <strong class="show_employee_name">Status</strong>
   <strong class="show_sign">:</strong>
+    <input type="checkbox" id="switch" name="isWorking" value="1" checked /><label class="label-status" for="switch">Toggle</label>
 </p>
 </div>
-
-<button class="button_back"><%= link_to 'Back', employees_path %></button>
-<button class="button_edit"><%= link_to 'Edit', edit_employee_path(@employee) %></button>
-
-
 </center>
+
+<div class="bottom_container">
+  <button class="button_back"><%= link_to 'Quay lại', employees_path %></button>
+  <button class="button_edit button_edit_center"><%= link_to 'Chỉnh sửa', edit_employee_path(@employee) %></button>
+</div>
+

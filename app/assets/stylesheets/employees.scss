@@ -20,6 +20,7 @@
     max-width: 500px;
     width: 100% ;
     text-align: left;
+    margin-left: 200px;
     .show_employee_name{
         width: 150px;
     }
@@ -41,3 +42,126 @@
 .error_explanation{
     background-color: red;
 }
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.label-status {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 200px*0.3;
+	height: 100px*0.3;
+	background: grey;
+	display: inline-block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.label-status:after {
+	content: '';
+	position: absolute;
+	top: 5px*0.3;
+	left: 5px*0.3;
+	width: 90px*0.3;
+	height: 90px*0.3;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + .label-status {
+	background: #bada55;
+}
+
+input:checked + .label-status:after {
+	left: calc(100% - 5px*0.3);
+	transform: translateX(-100%);
+}
+
+.label-status:active:after {
+	width: 130px*0.3;
+}
+
+.searchBar{
+    display: flex!important;
+    justify-content: flex-end!important;
+    select{
+        color: #ffffff;
+        background-color: #6749b9;
+    }
+    .tform-group .tform-control-feedback {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        display: block;
+      }
+    input{
+        border: solid 0.5px gray;
+        width: 300px;
+    }
+    input:focus{
+        outline: 1px solid #6749b9;
+        width: 300px;
+    }
+    
+}
+
+// .searchbar {
+    
+//   }
+  
+//   .has-search 
+
+//   .has-search .dropdown .btn::after {
+//     right: 10px;
+//   }
+//   .has-search .form-group input {
+//     border-left: 0 solid #ced4da;
+//     border-top-left-radius: unset;
+//     border-bottom-left-radius: unset;
+//   }
+
+.newIcon{
+    i{
+        color: #866ec7 !important;
+        &:hover{
+            color: #6749b9 !important;
+        }
+    }
+}
+
+.show_container>p{
+    font-size: 17px !important;
+}
+
+.e_tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .e_tooltip .tooltiptext {
+    visibility: hidden;
+    width: 50px;
+    background-color: white;
+    color: #000000;
+    text-align: center;
+    border: solid 1px #000000;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 13px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .e_tooltip:hover .tooltiptext {
+    visibility: visible;
+  }

@@ -107,3 +107,23 @@
 .bg-faded, .bg-secondary {
   background-color: #f5f5f5 !important;
 }
+
+
+
+
+.row {
+  margin-top: 5px;
+}
+.read-only-white {
+  background-color: white !important;
+}
+
+@media (min-width: 900px){
+  .end-row-md {
+    justify-content: flex-end !important;
+  }
+
+  .padding-left {
+    padding-left: 25px !important;
+  }
+}

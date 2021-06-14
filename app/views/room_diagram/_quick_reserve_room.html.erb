@@ -107,18 +107,17 @@
     </div>
     <div class="col-lg-6 row">
       <div class="row">
-        <div class="col-lg-6 row">
-          <p class="col-lg-7">Người lớn</p>
-          <div class="col-lg-5 form-group">
+        <p class="col-lg-3">Người lớn</p>
+        <div class="col-lg-7 row" style="padding-right: 0; margin-right: 0">
+          <div class="col-lg-4  form-group"  style="padding-right: 0; margin-right: 0">
             <%= form.number_field :adults, in: 0 .. 20, class:"form-control" %>
           </div>
-        </div>
-        <div class="col-lg-6 row">
-          <p class="col-lg-6">Trẻ em</p>
-          <div class="col-lg-5 form-group">
-            <%= form.number_field :children, in: 0 .. 20 ,class:"form-control" %>
+          <p class="col-lg-4 padding-left">Trẻ em</p>
+          <div class="col-lg-4 form-group"  style="padding-right: 0; margin-right: 0">
+            <%= form.number_field :children, in: 0 .. 20 ,class:"form-control " %>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -146,6 +145,7 @@
   <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
   <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
   <%#= form.hidden_field(:payment_id, :value => 1) %>
+  <br>
   <div class="d-flex actions justify-content-end">
     <%= form.submit "Save changes", class: "btn btn-primary add_reservation" %>
     <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>

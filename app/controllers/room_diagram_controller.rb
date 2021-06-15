@@ -1,4 +1,4 @@
-include ActionView::Helpers::NumberHelper
+
 
 class RoomDiagramController < ApplicationController
   def index

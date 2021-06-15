@@ -4,6 +4,7 @@ class IndividualReservationController < ApplicationController
   end
 
   def new
+    @reservation = Reservation.new
     @room_name = Room.find(params[:room_id]).name
     @room_type_id = Room.find(params[:room_id]).room_type_id
     @room_type_name = RoomType.find(@room_type_id).name

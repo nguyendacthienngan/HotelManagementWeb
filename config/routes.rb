@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :integer_parameters
   resources :reservation_details
   resources :payments
-  resources :reservations
+  get "/reservations/new/:room_id", to: "reservations#new"
+  get "/reservations/new/", to: "reservations#new"
+  resources :reservations,except: :new
   resources :rooms
   resources :room_types
   resources :services

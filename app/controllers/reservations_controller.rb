@@ -82,7 +82,7 @@ class ReservationsController < ApplicationController
         puts "BACK !!!!!"
         @reservation.previous_step
       elsif @reservation.last_step?
-        @reservation.save if @reservation.all_valid?
+        # @reservation.save if @reservation.all_valid?
       else
         puts "NEXT !!!!!"
         @reservation.next_step

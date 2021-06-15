@@ -54,23 +54,5 @@
         <p><%= form.submit "Back", :name => "back_button", class:"btn btn-secondary" unless @reservation.first_step? %></p>
       </div>
     </div>
-  <script>
-      $(document).ready(function () {
-          var stepper = new Stepper($('.bs-stepper')[0])
-      })
 
-      var stepperEl = document.getElementById('stepper')
-      var stepper = new Stepper(stepperEl)
-
-      stepperEl.addEventListener('show.bs-stepper', function (event) {
-          // You can call preventDefault to stop the rendering of your step
-          // event.preventDefault()
-
-          console.warn(event.detail.indexStep)
-      })
-
-      stepperEl.addEventListener('shown.bs-stepper', function (event) {
-          console.warn('step shown')
-      })
-  </script>
 <% end %>

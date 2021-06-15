@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
     { code: "cash", text: "Tiền mặt" },
     { code: "momo", text: "Momo"     }
   ]
-  @@gender = {
-    "0" => "male",
-    "1" => "female"
-  }
+  @@gender = [
+    { code: "male", text: "Nam" },
+    { code: "female", text: "Nữ" }
+  ]
   @@employee_types = [
     { code: "manager", text: "Quản lý" },
     { code: "receptionist", text: "Nhân viên lễ tân" }
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   ]
   @@client_types = [
     { code: "traveller", text: "Khách lữ hành" },
-    { code: "client", text: "Khách hàng" }
+    { code: "client", text: "Khách hàng thành viên" }
   ]
   @@room_statuses = [
     { code: "empty", text: "Trống", color: "#000000" },

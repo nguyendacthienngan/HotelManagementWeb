@@ -28,6 +28,8 @@ class ReservationsController < ApplicationController
     @reservation_type = @@reservation_types
     @reservation_type_view = convert_nested_hash_to_text(@reservation_type)
 
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
 
     @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 2)
     @room_price = @room_price.pluck(:price).to_s
@@ -76,6 +78,8 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
 
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
 
     if @reservation.valid?
       if params[:back_button]

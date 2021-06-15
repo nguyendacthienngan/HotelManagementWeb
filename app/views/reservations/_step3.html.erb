@@ -1,9 +1,9 @@
-<div class="row">
+<%= form.fields_for :payment_attributes, Payment.new do |p| %>
+  <div class="row">
   <div class="col-lg-6 row">
     <div class="row end-row-md">
       <p class="col-lg-3">Đặt cọc</p>
       <div class="col-lg-7 form-group">
-        <%= form.fields_for :payment_attributes, Payment.new do |p| %>
           <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
           <%= p.hidden_field(:is_paid, :value => false)  %>
           <%= p.number_field :deposit, min: 0, class:"form-control"%>

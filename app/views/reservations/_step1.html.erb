@@ -143,5 +143,5 @@
           </div>
           <%= form.hidden_field(:client_id, :value => 1) %>
           <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
-          <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
+          <%= form.hidden_field(:room_id, :value => @room_id) %>
         <% end %>

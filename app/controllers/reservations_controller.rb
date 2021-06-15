@@ -19,10 +19,6 @@ class ReservationsController < ApplicationController
       session[:reservation_params][:room_id] = @room_id
       # session[:reservation_params].deep_merge!(params[:room_id])
     end
-    # puts "Sessions Params in New"
-    # puts session[:reservation_params]
-    # puts "ROOM ID IN NEW"
-    # puts session[:reservation_params]["room_id"]
 
     @room_name = Room.find(@room_id).name
     @room_type_id = Room.find(@room_id).room_type_id
@@ -38,6 +34,11 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
 
+    puts "--------------------NEW------------------------"
+    puts "---Session : Reservation Params:"
+    puts session[:reservation_params]
+    puts "---Current Step"
+    puts @reservation.current_step
   end
 
   # GET /reservations/1/edit
@@ -46,35 +47,20 @@ class ReservationsController < ApplicationController
 
   # POST /reservations or /reservations.json
   def create
-    session[:reservation_params].deep_merge!(params[:reservation_params]) if params[:reservation_params]
+
+    session[:reservation_params].deep_merge!(reservation_params) if reservation_params
     @reservation = Reservation.new(session[:reservation_params])
     @reservation.current_step = session[:reservation_step]
-    # puts "Sessions Params in Create"
-    # puts session[:reservation_params]
-    # puts "Room ID IN CREATE"
-    # puts session[:reservation_params]["room_id"]
 
-
-    # Chưa xét coi có phải multistep không?
-    # respond_to do |format|
-    #   if @reservation.save
-    #     @room = Room.find(reservation_params[:room_id])
-    #     if @room.update(status: 2)
-    #       format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
-    #       format.json { render :show, status: :created, location: @reservation }
-    #     else
-    #       format.html { render :new, status: :unprocessable_entity }
-    #       format.json { render json: @reservation.errors, status: :unprocessable_entity }
-    #     end
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @reservation.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    puts "--------------------CREATE------------------------"
+    puts "---Session : Reservation Params:"
+    puts session[:reservation_params]
 
     if params[:back_button]
+      puts "BACK !!!!!"
       @reservation.previous_step
     else
+      puts "NEXT !!!!!"
       @reservation.next_step
     end
     session[:reservation_step] = @reservation.current_step
@@ -98,6 +84,28 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
     render "new"
+
+
+    puts "---Current Step"
+    puts @reservation.current_step
+
+    # Đặt phòng nhanh
+    # respond_to do |format|
+    #   if @reservation.save
+    #     @room = Room.find(reservation_params[:room_id])
+    #     if @room.update(status: 2)
+    #       format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
+    #       format.json { render :show, status: :created, location: @reservation }
+    #     else
+    #       format.html { render :new, status: :unprocessable_entity }
+    #       format.json { render json: @reservation.errors, status: :unprocessable_entity }
+    #     end
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @reservation.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
   end
 
   # PATCH/PUT /reservations/1 or /reservations/1.json

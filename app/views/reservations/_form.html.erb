@@ -49,7 +49,7 @@
       <br>
       <br>
       <div class="d-flex actions justify-content-center">
-        <p><%= form.submit "Continue", class:"btn btn-primary" unless @reservation.last_step?  %></p>
+        <p><%= form.submit "Continue", class:"btn btn-primary"  %></p>
         <span style="width:10px"></span>
         <p><%= form.submit "Back", :name => "back_button", class:"btn btn-secondary" unless @reservation.first_step? %></p>
       </div>

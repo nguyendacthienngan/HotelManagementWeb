@@ -13,7 +13,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     session[:reservation_params] ||= {}
-    @reservation = Reservation.new
+    @reservation = Reservation.new(session[:reservation_params])
     @room_id = (params[:room_id])? params[:room_id] : 1
     if session[:reservation_params] == nil
       session[:reservation_params][:room_id] = @room_id
@@ -56,14 +56,6 @@ class ReservationsController < ApplicationController
     puts "---Session : Reservation Params:"
     puts session[:reservation_params]
 
-    if params[:back_button]
-      puts "BACK !!!!!"
-      @reservation.previous_step
-    else
-      puts "NEXT !!!!!"
-      @reservation.next_step
-    end
-    session[:reservation_step] = @reservation.current_step
 
     @room_id = session[:reservation_params]["room_id"]
     @room_name = Room.find(@room_id).name
@@ -83,7 +75,28 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
-    render "new"
+
+
+    if @reservation.valid?
+      if params[:back_button]
+        puts "BACK !!!!!"
+        @reservation.previous_step
+      elsif @reservation.last_step?
+        @reservation.save if @reservation.all_valid?
+      else
+        puts "NEXT !!!!!"
+        @reservation.next_step
+      end
+      session[:reservation_step] = @reservation.current_step
+    end
+
+    if @reservation.new_record?
+      render "new"
+    else
+      session[:reservation_step] = session[:reservation_params] = nil
+      flash[:notice] = "Order saved"
+      redirect_to @reservation
+    end
 
 
     puts "---Current Step"

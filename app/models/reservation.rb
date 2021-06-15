@@ -11,6 +11,9 @@ class Reservation < ApplicationRecord
 
   attr_writer :current_step
 
+  # validates_presence_of :status, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults
+  # validates_presence_of :status, :if => lambda { |o| o.current_step == "shipping" }
+
   def not_using_multi_step
     @is_multi_step = false
   end
@@ -39,7 +42,15 @@ class Reservation < ApplicationRecord
   def first_step?
     current_step == steps.first
   end
+
   def last_step?
     current_step == steps.last
+  end
+
+  def all_valid?
+    steps.all? do |step|
+      self.current_step = step
+      valid?
+    end
   end
 end

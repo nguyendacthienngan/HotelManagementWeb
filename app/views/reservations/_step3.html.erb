@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Đặt cọc</p>
+      <div class="col-lg-7 form-group">
+        <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+          <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+          <%= p.hidden_field(:is_paid, :value => false)  %>
+          <%= p.number_field :deposit, min: 0, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row">
+      <p class="col-lg-3">Hình thức TT</p>
+      <div class="col-lg-7 form-group">
+        <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Tổng tiền</p>
+      <div class="col-lg-7 form-group">
+        <%= form.number_field :total, min: 0, class:"form-control", id: "total"%>
+        <%= p.hidden_field(:temp_total, :id=> "temp-total")  %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

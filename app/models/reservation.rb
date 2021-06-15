@@ -23,7 +23,7 @@ class Reservation < ApplicationRecord
   end
 
   def steps
-    [1, 2]
+    [1, 2, 3]
   end
 
   def current_step

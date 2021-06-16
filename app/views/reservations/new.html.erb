@@ -9,13 +9,5 @@
 
     })
 
-    <% if session[:reservation_params] %>
-      $('#client_name').val("<%= session[:reservation_params]["client_name"] %>")
-      $('#client_citizen_id').val("<%= session[:reservation_params]["client_citizen_id"] %>")
-      $('#arrival_date').val("<%= session[:reservation_params]["arrival_date"] %>")
-      $('#leave_date').val("<%= session[:reservation_params]["leave_date"] %>")
-      $('#_payment_attributes_deposit').val("<%= session[:reservation_params]["payment_attributes"]["deposit"] %>")
-      $('#_payment_attributes_payment_type').val("<%= session[:reservation_params]["payment_attributes"]["payment_type"] %>")
-      $('#temp-total').val("<%= session[:reservation_params]["payment_attributes"]["temp_total"] %>")
-    <% end %>
+
 </script>

@@ -80,3 +80,9 @@
   <%= customer.hidden_field(:client_type, :value => 2) %>
 </div>
 <% end %>
+<script>
+    <% if session[:reservation_params] %>
+    $('#client_name').val("<%= session[:reservation_params]["client_name"] %>")
+    $('#client_citizen_id').val("<%= session[:reservation_params]["client_citizen_id"] %>")
+    <% end %>
+</script>

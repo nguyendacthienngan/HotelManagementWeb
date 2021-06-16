@@ -81,26 +81,25 @@ class ReservationsController < ApplicationController
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
 
-    if @reservation.valid?
+    # if @reservation.valid?
       if params[:back_button]
-        puts "BACK !!!!!"
         @reservation.previous_step
-      elsif @reservation.last_step?
+      # elsif @reservation.last_step?
         # @reservation.save if @reservation.all_valid?
       else
-        puts "NEXT !!!!!"
         @reservation.next_step
       end
       session[:reservation_step] = @reservation.current_step
-    end
+    # end
+    render "new"
 
-    if @reservation.new_record?
-      render "new"
-    else
-      session[:reservation_step] = session[:reservation_params] = nil
-      flash[:notice] = "Order saved"
-      redirect_to @reservation
-    end
+    # if @reservation.new_record?
+    #   render "new"
+    # else
+    #   session[:reservation_step] = session[:reservation_params] = nil
+    #   flash[:notice] = "Order saved"
+    #   redirect_to @reservation
+    # end
 
 
     puts "---Current Step"

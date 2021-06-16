@@ -90,3 +90,10 @@
 <%= form.hidden_field(:client_id, :value => 1) %>
 <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
 <%= form.hidden_field(:room_id, :value => @room_id) %>
+<script>
+    <% if session[:reservation_params] %>
+    $('#arrival_date').val("<%= session[:reservation_params]["arrival_date"] %>")
+    $('#leave_date').val("<%= session[:reservation_params]["leave_date"] %>")
+
+     <% end %>
+</script>

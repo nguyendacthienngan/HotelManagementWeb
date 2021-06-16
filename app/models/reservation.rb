@@ -23,7 +23,7 @@ class Reservation < ApplicationRecord
   end
 
   def steps
-    [1, 2, 3]
+    [1,2,3]
   end
 
   def current_step
@@ -32,9 +32,7 @@ class Reservation < ApplicationRecord
   end
 
   def next_step
-    if steps[steps.index(current_step) + 1]
-      self.current_step = steps[steps.index(current_step) + 1]
-    end
+    self.current_step = steps[steps.index(current_step) + 1]
   end
 
   def previous_step

@@ -1,4 +1,4 @@
-<%= form.fields_for :customer_attributes, Client.new do |customer| %>
+<%= form.fields_for :client_attributes, Client.new do |customer| %>
 <div class="row">
   <div class="col-lg-6 row">
     <div class="row end-row-md">
@@ -40,7 +40,7 @@
     <div class="row row">
       <p class="col-lg-3">Giới tính</p>
       <div class="col-lg-7 form-group">
-        <%= customer.select :gender, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+        <%= customer.select :gender, options_for_select(@gender), {}, class: "form-control read-only-white" %>
 
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
@@ -72,7 +72,7 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Quốc tịch</p>
       <div class="col-lg-7 form-group">
-        <%= customer.text_field :nationality, class:"form-control", placeholder: "Nguyễn Văn A" %>
+        <%= customer.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -82,7 +82,19 @@
 <% end %>
 <script>
     <% if session[:reservation_params] %>
-    $('#client_name').val("<%= session[:reservation_params]["client_name"] %>")
-    $('#client_citizen_id').val("<%= session[:reservation_params]["client_citizen_id"] %>")
+      <% params = session[:reservation_params] %>
+      <% if session[:reservation_params]["client_attributes"] %>
+        <% client = params["client_attributes"] %>
+        $('#_client_attributes_name').val("<%= (client["name"].empty?) ? " " : client["name"]  %>")
+        $('#_client_attributes_citizen_id').val("<%= (client["citizen_id"].empty?) ? " " : client["citizen_id"] %>")
+        $('#_client_attributes_phone_number').val("<%= (client["phone_number"].empty?) ? " " : client["phone_number"] %>")
+        $('#_client_attributes_email').val("<%= (client["email"].empty?) ? " " : client["email"] %>")
+        $('#_client_attributes_nationality').val("<%= (client["nationality"].empty?) ? " " : client["nationality"] %>")
+
+        $('#client_name').val($('#_client_attributes_name').val())
+        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val())
+
+      <% end %>
+
     <% end %>
 </script>

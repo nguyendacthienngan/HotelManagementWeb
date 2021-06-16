@@ -6,7 +6,6 @@ class Reservation < ApplicationRecord
   has_many :reservation_details
   has_many :services, through: :reservation_details
 
-  accepts_nested_attributes_for :payment
   accepts_nested_attributes_for :client
 
   attr_writer :current_step

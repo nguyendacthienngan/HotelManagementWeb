@@ -26,8 +26,7 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Tổng tiền</p>
       <div class="col-lg-7 form-group">
-        <%= form.number_field :total, min: 0, class:"form-control", id: "total"%>
-        <%= p.hidden_field(:temp_total, :id=> "temp-total")  %>
+        <%= p.number_field :temp_total, min: 0, class:"form-control"%>
       </div>
     </div>
   </div>
@@ -35,5 +34,14 @@
 
 <% end %>
 <script>
+    <% if session[:reservation_params] %>
+      <% params = session[:reservation_params] %>
+      <% if params["payment_attributes"] %>
+      <% payment = params["payment_attributes"] %>
+      $('#_payment_attributes_deposit').val("<%= (payment["deposit"].empty?) ? " " : payment["deposit"] %>")
+      $('#_payment_attributes_payment_type').val("<%= (payment["payment_type"].empty?) ? " " : payment["payment_type"] %>")
+      $('#_payment_attributes_temp_total').val("<%=(payment["temp_total"].empty? ) ? " " : payment["temp_total"] %>")
+      <% end %>
 
+    <% end %>
 </script>

@@ -78,9 +78,17 @@
     </div>
   </div>
   <%= customer.hidden_field(:client_type, :value => 2) %>
+  <%= form.hidden_field(:client_name) %>
+  <%= form.hidden_field(:client_citizen_id) %>
 </div>
 <% end %>
 <script>
+    $('#_client_attributes_name').keyup(function(){
+        $('#client_name').val($('#_client_attributes_name').val());
+    })
+    $('#_client_attributes_citizen_id').keyup(function(){
+        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val());
+    })
     <% if session[:reservation_params] %>
       <% params = session[:reservation_params] %>
       <% if session[:reservation_params]["client_attributes"] %>

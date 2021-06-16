@@ -1,6 +1,12 @@
-<h1>Services</h1>
 
-<table>
+<% if notice %>
+  <div class="notification notice_success">
+    <%= notice %>
+  </div>
+<% end %>
+
+<center><h1 class="title">Services</h1></center>
+<!-- <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -28,4 +34,116 @@
 
 <br>
 
-<%= link_to 'New Service', new_service_path %>
+<%= link_to 'New Service', new_service_path %> -->
+<div class="sv-container tRow">
+  <div class="sv-box sv-list tColumn">
+    <div class="sv-navbar tRow">
+      <div class="sv-navbar-food tColumn">
+        <div class="sv-navbar-name">Đồ ăn</div>
+        <div class="sv-navbar-image"></div>
+      </div>
+      <div class="sv-navbar-drink">
+
+      </div>
+      <div class="sv-navbar-laundry">
+
+      </div>
+      <div class="sv-navbar-compensation">
+
+      </div>
+    </div>
+    <div class="sv-food tColumn">
+      <div class="tLine tRow"></div>
+      <div class="sv-food-item">
+        <div class="row cart-row">
+          <div class="tCenterHieght col-xs-12 col-md-2">
+          <%= image_tag("mySpaghetti.jpg", :alt => "mỳ spaghetti", size: "100x100") %>
+          </div>
+          <div class="col-md-6 food-detail">
+            <div class="product-articlenr">#643489</div>
+            <div class="product-name">Mỳ Spaghetti</div>
+            <div class="product-options">
+              <span>Đơn vị:</span> Dĩa<br>
+              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="3" class="form-control"></span>
+            </div>
+          </div>
+          <div class="col-md-3 cart-actions">
+            <div class="product-price-total">60000 VNĐ</div>
+            <div class="product-delete">
+              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end food-item -->
+      <div class="sv-food-item">
+        <div class="row cart-row">
+          <div class="tCenterHieght col-xs-12 col-md-2">
+          <%= image_tag("comTron.jpg", :alt => "cơm trộn", size: "100x100") %>
+          </div>
+          <div class="col-md-6 food-detail">
+            <div class="product-articlenr">#643489</div>
+            <div class="product-name">Cơm trộn Hàn Quốc</div>
+            <div class="product-options">
+              <span>Đơn vị:</span> Tô<br>
+              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+            </div>
+          </div>
+          <div class="col-md-3 cart-actions">
+            <div class="product-price-total">85000 VNĐ</div>
+            <div class="product-delete">
+              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end food-item -->
+      <div class="sv-food-item">
+        <div class="row cart-row">
+          <div class="tCenterHieght col-xs-12 col-md-2">
+          <%= image_tag("pizza.jpg", :alt => "pizza", size: "100x100") %>
+          </div>
+          <div class="col-md-6 food-detail">
+            <div class="product-articlenr">#643489</div>
+            <div class="product-name">Pizza hải sản</div>
+            <div class="product-options">
+              <span>Đơn vị:</span> Dĩa<br>
+              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+            </div>
+          </div>
+          <div class="col-md-3 cart-actions">
+            <div class="product-price-total">190000 VNĐ</div>
+            <div class="product-delete">
+              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end food-item -->
+      <div class="sv-food-item">
+        <div class="row cart-row">
+          <div class="tCenterHieght col-xs-12 col-md-2">
+          <%= image_tag("pho.png", :alt => "phở", size: "100x100") %>
+          </div>
+          <div class="col-md-6 food-detail">
+            <div class="product-articlenr">#643489</div>
+            <div class="product-name">Phở</div>
+            <div class="product-options">
+              <span>Đơn vị:</span> Tô<br>
+              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+            </div>
+          </div>
+          <div class="col-md-3 cart-actions">
+            <div class="product-price-total">70000 VNĐ</div>
+            <div class="product-delete">
+              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end food-item -->
+    </div>
+  </div>
+
+  <div class="sv-box sv-bill tColumn"></div>
+</div>

@@ -1,3 +1,102 @@
 // Place all the styles related to the Services controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.tLine {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(187, 61%, 79%);
+    margin-top: 10px;
+    box-shadow: 0px 5px 5px 0px hsl(187, 61%, 79%);
+}
+.sv-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    .sv-list {
+        .sv-navbar {
+            width: 670px;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            .sv-navbar-food {
+                width: 130px;
+                height: 100px;
+                background-color: hsl(187, 61%, 79%);
+                border-radius: 16px;
+            }
+            .sv-navbar-drink {
+                width: 130px;
+                height: 100px;
+                background-color: hsl(335, 52%, 92%);
+                border-radius: 16px;
+            }
+            .sv-navbar-laundry {
+                width: 130px;
+                height: 100px;
+                background-color: hsl(42, 97%, 85%);
+                border-radius: 16px;
+            }
+            .sv-navbar-compensation {
+                width: 130px;
+                height: 100px;
+                background-color: hsl(23, 83%, 82%);
+                border-radius: 16px;
+            }
+        }
+        .sv-food{
+            padding: 0 30px;
+            .food-detail{
+                padding-left: 20px;
+            }
+        }
+    }
+    
+    .sv-bill {
+        // background-color: hsl(100, 64%, 86%);
+        background-color: #ECECEC;
+    }
+    
+}
+
+.sv-box {
+    width: 670px;
+    height: 700px;
+    border: 1px solid #DEDEDE;
+    padding: 10px 3px ;
+}
+
+
+
+
+.tCenterHieght {display: flex; align-items: center;}
+.cart-row{padding:15px 0}
+.cart-row:nth-child(even){background:#efefef}
+.product-name{font-size:16px;font-weight:600}
+.product-options{font-size:12px;margin-bottom:5px}
+.product-options span{color:#666;font-weight:400;text-transform:uppercase}
+.product-articlenr{color:#666;font-weight:400;text-transform:uppercase}
+.product-price small{
+    color:#666;
+    font-weight:300;
+    font-size:20px;
+    margin:0;
+    padding:0;
+    line-height:initial
+    
+}
+.product-options{
+    input {
+        width: 35px;
+        height: 25px;
+    }
+}
+.cart-table .cart-row input{width:30px;height:auto;padding:2px;border-radius:0;border-color:#000;float:left;font-size:14px;text-align:center}
+.cart-table .cart-row button.update{border:0;padding:7px 8px;background:#000;color:#fff;font-size:9px;float:left;margin-right:5px}
+.cart-table .cart-row button.delete{background-color:#FFB2B2;color:#000!important;padding:7px 13px;font-size:13px;border:0;border-radius:50px}
+.product-price-total{font-size:16px;font-weight:400;width:80%;float:left}
+.cart-actions{display:flex;justify-content:center;align-items:center}
+.cart-special-holder{background:#efefef}
+.cart-special{padding:1em 1em 0;display:block;margin-top:.5em;border-top:1px solid #dadada}
+.cart-special .cart-special-content:before{content:"\21b3";font-size:1.5em;margin-right:1em;color:#6f6f6f;font-family:helvetica,arial,sans-serif}

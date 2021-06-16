@@ -4,10 +4,14 @@ class ReservationsController < ApplicationController
   # GET /reservations or /reservations.json
   def index
     @reservations = Reservation.all
+    @room_statuses = @@room_statuses
+
   end
 
   # GET /reservations/1 or /reservations/1.json
   def show
+    @room_statuses = @@room_statuses
+
   end
 
   # GET /reservations/new

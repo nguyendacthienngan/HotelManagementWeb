@@ -1,33 +1,52 @@
-<h1>Reservations</h1>
-
-<table>
+<h1>Danh sách đặt phòng khách lẻ</h1>
+<table class="table">
   <thead>
-    <tr>
-      <th>Status</th>
-      <th>Arrivaldate</th>
-      <th>Leavedate</th>
-      <th>Checkindate</th>
-      <th>Total</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th scope="col">Phòng</th>
+    <th scope="col">Ngày đặt</th>
+    <th scope="col">Giá</th>
+    <th scope="col">Trạng thái</th>
+    <th scope="col">Tên khách</th>
+    <th scope="col">Ngày đến</th>
+    <th scope="col">Ngày đi</th>
+    <th scope="col">Tiền cọc</th>
+    <th scope="col">Tổng tiền</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
   </thead>
-
   <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.status %></td>
-        <td><%= reservation.arrival_date %></td>
-        <td><%= reservation.leave_date %></td>
-        <td><%= reservation.check_in_date %></td>
-        <td><%= reservation.total %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @reservations.each do |reservation| %>
+  <tr>
+    <%  room_name = Room.find(reservation.room_id).name %>
+    <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
+    <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+    <%  arrival_date = reservation.arrival_date %>
+    <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+    <%  leave_date = reservation.leave_date %>
+    <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+    <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
+    <%  deposit = Payment.find(reservation.payment_id).deposit %>
+    <%  total = Payment.find(reservation.payment_id).temp_total %>
+    <th scope="row"><%= room_name %></th>
+    <td><%= reservation_date %></td>
+    <td><%= price %></td>
+    <td><%= @room_statuses[reservation.status][:text]%></td>
+    <td><%= reservation.client_name %></td>
+    <td><%= arrival_date %></td>
+    <td><%= leave_date %></td>
 
+    <td><%= deposit %></td>
+    <td><%= total %></td>
+    <td><%= link_to 'Show', reservation %></td>
+    <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+    <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    </tr>
+  </tbody>
+  <% end %>
+</table>
 <br>
 
 <%= link_to 'New Reservation', reservations_new_path %>

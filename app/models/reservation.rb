@@ -19,7 +19,7 @@ class Reservation < ApplicationRecord
     @is_multi_step = false
   end
 
-  def is_using_multi_step
+  def multi_step
     @is_multi_step
   end
 

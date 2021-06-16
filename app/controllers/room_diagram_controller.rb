@@ -128,6 +128,11 @@ class RoomDiagramController < ApplicationController
   end
 
   def quick_reserve_room
+    session[:reservation_params] ||= {}
+    @reservation = Reservation.new(session[:reservation_params])
+    @reservation.not_using_multi_step
+    session[:multi_step] = @reservation.multi_step
+
     @room_name = Room.find(params[:room_id]).name
     @room_type_id = Room.find(params[:room_id]).room_type_id
     @room_type_name = RoomType.find(@room_type_id).name
@@ -166,6 +171,6 @@ class RoomDiagramController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:name, :chosen_type, :filter, :room_status)
+    params.require(:room).permit(:name, :chosen_type, :filter, :room_status, :room_id)
   end
 end

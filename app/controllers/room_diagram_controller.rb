@@ -128,8 +128,11 @@ class RoomDiagramController < ApplicationController
   end
 
   def quick_reserve_room
+
     session[:reservation_params] ||= {}
     @reservation = Reservation.new(session[:reservation_params])
+    puts "RESERVATION @reservation.inspect"
+    puts @reservation.inspect
     @reservation.not_using_multi_step
     session[:multi_step] = @reservation.multi_step
 

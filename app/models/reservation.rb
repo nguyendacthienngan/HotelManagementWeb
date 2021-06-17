@@ -12,7 +12,7 @@ class Reservation < ApplicationRecord
 
   validates_presence_of :client, :if => lambda { |o| o.current_step == 2 }
   validates_presence_of :payment,:if => lambda { |o| o.current_step == 3 }
-  # validates_presence_of :status, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :if => lambda { |o| o.current_step == 1 }
+  validates_presence_of :status, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :if => lambda { |o| o.current_step == 1 }
   # validates_presence_of :status, :arrival_date, :leave_date, :children, :adults, :if => lambda { |o| o.current_step == 1 }
 
   def not_using_multi_step

@@ -4,7 +4,7 @@
 clients = Client.create([
                             {
                               name: "Khách lữ hành",
-                              citizen_id: '',
+                              citizen_id: '012345678',
                               gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,11,11,0),

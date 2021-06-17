@@ -83,12 +83,12 @@ class ReservationsController < ApplicationController
             format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
             format.json { render :show, status: :created, location: @reservation }
           else
-            format.js { render "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
+            format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
             format.html
             format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
         else
-          format.js { render "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
+          format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
           format.html
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end

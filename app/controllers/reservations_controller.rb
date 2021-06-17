@@ -80,7 +80,7 @@ class ReservationsController < ApplicationController
         room_id = reservation_params[:room_id]
         if @reservation.save
           @room = Room.find(room_id)
-          if @room.update(status: 2)
+          if @room.update(status: 4)
             format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
             format.json { render :show, status: :created, location: @reservation }
           else
@@ -121,7 +121,14 @@ class ReservationsController < ApplicationController
       @gender = convert_nested_hash_to_text(@gender)
 
       if @reservation.valid?
-        @reservation.save if @reservation.all_valid?
+        room_id = reservation_params[:room_id]
+        if @reservation.all_valid?
+          if @reservation.save
+            @room = Room.find(room_id)
+            if @room.update(status: 2)
+            end
+          end
+        end
         # if params[:back_button]
         #   @reservation.previous_step
         # elsif @reservation.last_step?

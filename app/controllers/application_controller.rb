@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
     { code: "nonempty", text: "Nhận phòng", color: "#003049" }, # Đã check in
     { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
   ]
+
+  #Nên có k?
   @@reservation_statuses = [
     { code: "wait_for_check_in", text: "Đợi để check in" },
     { code: "checked_in", text: "Đã check in" },

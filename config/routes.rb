@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :payments
   get "/reservations/new/:room_id", to: "reservations#new"
   get "/reservations/new/", to: "reservations#new"
+
+  put "/reservations/:id/change_status", to: "reservations#change_status"
   resources :reservations,except: :new
   resources :rooms
   resources :room_types
@@ -25,7 +27,9 @@ Rails.application.routes.draw do
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
   get "/individual_reservation", to: "individual_reservation#index"
+
   get "/individual_reservation/:reservation_id", to: "individual_reservation#show"
+
   get "/individual_reservation/new/:room_id", to: "individual_reservation#new"
 
   get "/cooperate_reservation", to: "cooperate_reservation#index"

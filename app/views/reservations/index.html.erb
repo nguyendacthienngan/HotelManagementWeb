@@ -15,9 +15,10 @@
 
 <br>
 <% @reservations.each do |reservation| %>
-  <%  room_name = Room.find(reservation.room_id).name %>
+  <% room = Room.find(reservation.room_id) %>
+  <%  room_name = room.name %>
   <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
-  <% room_status = @room_statuses[reservation.status][:text] %>
+  <% room_status = @room_statuses[room.status][:text] %>
 
   <% client_name = reservation.client_name %>
 
@@ -60,9 +61,18 @@
               <% end %>
             </div>
             <br>
-            <div class="btn btn-primary">
-              Nhận phòng
-            </div>
+            <%= form_with url: "/reservations/#{reservation.id}/change_status", method: :put  do |form| %>
+              <% if room.status == 2 %>
+                <%= form.submit "Nhận phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                <% value = 4 %>
+              <% else %>
+                <% if room.status == 4 %>
+                  <%= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                  <% value = 0 %>
+                <% end %>
+              <% end %>
+              <%= form.hidden_field(:status, :value => value)  %>
+            <% end %>
 
           </div>
         </div>

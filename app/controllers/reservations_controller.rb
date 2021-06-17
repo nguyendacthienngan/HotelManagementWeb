@@ -51,6 +51,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    @room_statuses = @@room_statuses
   end
 
   # POST /reservations or /reservations.json
@@ -172,6 +173,20 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def change_status
+    respond_to do |format|
+      @reservation = Reservation.find(params[:id])
+      room_id = @reservation.room_id
+      room = Room.find(room_id)
+      if room.update(:status => params[:status])
+        format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
+        format.json { render :show, status: :ok, location: @reservation }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
@@ -181,7 +196,7 @@ class ReservationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reservation_params
       # params.require(:reservation).permit(:status, :arrivalDate, :leaveDate, :checkInDate, :total)
-      params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :total,
+      params.permit(:status, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :total,
                     payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type],
                     client_attributes:[:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     end

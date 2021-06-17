@@ -1,10 +1,10 @@
-<%= form.fields_for :client_attributes, Client.new do |customer| %>
+<%= form.fields_for :client_attributes, Client.new do |client| %>
 <div class="row">
   <div class="col-lg-6 row">
     <div class="row end-row-md">
       <p class="col-lg-3">Tên khách</p>
       <div class="col-lg-7 form-group">
-        <%= customer.text_field :name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+        <%= client.text_field :name, class:"form-control", placeholder: "Nguyễn Văn A" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="row row">
       <p class="col-lg-3">CCCD</p>
       <div class="col-lg-7 form-group">
-        <%= customer.number_field   :citizen_id, class:"form-control", placeholder: "0123456789" %>
+        <%= client.number_field   :citizen_id, class:"form-control", placeholder: "0123456789" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Sinh nhật</p>
       <div class="col-lg-7 form-group">
-        <%= customer.text_field :date_of_birth,
+        <%= client.text_field :date_of_birth,
                             data: {
                               controller: "flatpickr",
                               flatpickr_date_format: "d-m-Y",
@@ -40,7 +40,7 @@
     <div class="row row">
       <p class="col-lg-3">Giới tính</p>
       <div class="col-lg-7 form-group">
-        <%= customer.select :gender, options_for_select(@gender), {}, class: "form-control read-only-white" %>
+        <%= client.select :gender, options_for_select(@gender), {}, class: "form-control read-only-white" %>
 
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
@@ -52,7 +52,7 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Số điện thoại</p>
       <div class="col-lg-7 form-group">
-        <%= customer.telephone_field   :phone_number, class:"form-control", placeholder: "0123456789" %>
+        <%= client.telephone_field   :phone_number, class:"form-control", placeholder: "0123456789" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -61,7 +61,7 @@
     <div class="row row">
       <p class="col-lg-3">Email</p>
       <div class="col-lg-7 form-group">
-        <%= customer.email_field   :email, class:"form-control", placeholder: "ngan@gmail.com" %>
+        <%= client.email_field   :email, class:"form-control", placeholder: "ngan@gmail.com" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -72,12 +72,12 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Quốc tịch</p>
       <div class="col-lg-7 form-group">
-        <%= customer.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
+        <%= client.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
 <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
   </div>
-  <%= customer.hidden_field(:client_type, :value => 2) %>
+  <%= client.hidden_field(:client_type, :value => 2) %>
   <%= form.hidden_field(:client_name) %>
   <%= form.hidden_field(:client_citizen_id) %>
 </div>
@@ -93,11 +93,11 @@
       <% params = session[:reservation_params] %>
       <% if session[:reservation_params]["client_attributes"] %>
         <% client = params["client_attributes"] %>
-        $('#_client_attributes_name').val("<%= (client["name"].empty?) ? " " : client["name"]  %>")
-        $('#_client_attributes_citizen_id').val("<%= (client["citizen_id"].empty?) ? " " : client["citizen_id"] %>")
-        $('#_client_attributes_phone_number').val("<%= (client["phone_number"].empty?) ? " " : client["phone_number"] %>")
-        $('#_client_attributes_email').val("<%= (client["email"].empty?) ? " " : client["email"] %>")
-        $('#_client_attributes_nationality').val("<%= (client["nationality"].empty?) ? " " : client["nationality"] %>")
+        $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
+        $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
+        $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")
+        $('#_client_attributes_email').val("<%= client["email"] || " " %>")
+        $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
 
         $('#client_name').val($('#_client_attributes_name').val())
         $('#client_citizen_id').val($('#_client_attributes_citizen_id').val())

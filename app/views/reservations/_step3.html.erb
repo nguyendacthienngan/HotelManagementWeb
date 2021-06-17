@@ -38,9 +38,9 @@
       <% params = session[:reservation_params] %>
       <% if params["payment_attributes"] %>
       <% payment = params["payment_attributes"] %>
-      $('#_payment_attributes_deposit').val("<%= (payment["deposit"].empty?) ? " " : payment["deposit"] %>")
-      $('#_payment_attributes_payment_type').val("<%= (payment["payment_type"].empty?) ? " " : payment["payment_type"] %>")
-      $('#_payment_attributes_temp_total').val("<%=(payment["temp_total"].empty? ) ? " " : payment["temp_total"] %>")
+      $('#_payment_attributes_deposit').val("<%= payment["deposit"] || 0 %>")
+      $('#_payment_attributes_payment_type').val("<%= payment["payment_type"] || 1 %>")
+      $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
       <% end %>
 
     <% end %>

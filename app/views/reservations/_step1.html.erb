@@ -93,9 +93,9 @@
 <script>
     <% if session[:reservation_params] %>
       <% params = session[:reservation_params] %>
-        $('#arrival_date').val("<%= params["arrival_date"] %>")
-        $('#leave_date').val("<%= params["leave_date"] %>")
-        $('#adults').val("<%= params["adults"] %>")
-        $('#children').val("<%= params["children"] %>")
+        $('#arrival_date').val("<%= params["arrival_date"] || DateTime.now %>")
+        $('#leave_date').val("<%= params["leave_date"] || DateTime.now %>")
+        $('#adults').val("<%= params["adults"] || 0 %>")
+        $('#children').val("<%= params["children"] || 0 %>")
      <% end %>
 </script>

@@ -17,6 +17,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     # reset_session
+    session[:reservation_params] = nil
     session[:reservation_params] ||= {}
     @reservation = Reservation.new(session[:reservation_params])
     @room_id = (params[:room_id])? params[:room_id] : 1
@@ -120,14 +121,15 @@ class ReservationsController < ApplicationController
       @gender = convert_nested_hash_to_text(@gender)
 
       if @reservation.valid?
-        if params[:back_button]
-          @reservation.previous_step
-        elsif @reservation.last_step?
-          @reservation.save if @reservation.all_valid?
-        else
-          @reservation.next_step
-        end
-        session[:reservation_step] = @reservation.current_step
+        @reservation.save if @reservation.all_valid?
+        # if params[:back_button]
+        #   @reservation.previous_step
+        # elsif @reservation.last_step?
+        #   @reservation.save if @reservation.all_valid?
+        # else
+        #   @reservation.next_step
+        # end
+        # session[:reservation_step] = @reservation.current_step
       end
       if @reservation.new_record?
         render "new"

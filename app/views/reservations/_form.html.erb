@@ -20,7 +20,9 @@
   </div>
     <div class="bs-stepper">
       <div class="bs-stepper-content">
-        <%= render :partial => "step#{reservation.current_step}",  :locals=>{:form=>form} %>
+        <%= render :partial => "step1",  :locals=>{:form=>form} %>
+        <%= render :partial => "step2",  :locals=>{:form=>form} %>
+        <%= render :partial => "step3",  :locals=>{:form=>form} %>
       </div>
 
       <br>

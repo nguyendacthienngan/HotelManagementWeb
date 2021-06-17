@@ -1,52 +1,75 @@
-<h1>Danh sách đặt phòng khách lẻ</h1>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Phòng</th>
-    <th scope="col">Ngày đặt</th>
-    <th scope="col">Giá</th>
-    <th scope="col">Trạng thái</th>
-    <th scope="col">Tên khách</th>
-    <th scope="col">Ngày đến</th>
-    <th scope="col">Ngày đi</th>
-    <th scope="col">Tiền cọc</th>
-    <th scope="col">Tổng tiền</th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @reservations.each do |reservation| %>
-  <tr>
-    <%  room_name = Room.find(reservation.room_id).name %>
-    <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
-    <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
-    <%  arrival_date = reservation.arrival_date %>
-    <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
-    <%  leave_date = reservation.leave_date %>
-    <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
-    <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
-    <%  deposit = Payment.find(reservation.payment_id).deposit %>
-    <%  total = Payment.find(reservation.payment_id).temp_total %>
-    <th scope="row"><%= room_name %></th>
-    <td><%= reservation_date %></td>
-    <td><%= price %></td>
-    <td><%= @room_statuses[reservation.status][:text]%></td>
-    <td><%= reservation.client_name %></td>
-    <td><%= arrival_date %></td>
-    <td><%= leave_date %></td>
+<% stylesheet_link_tag 'reservations' %>
+<h2 class="d-flex justify-content-center">Danh sách đặt phòng khách lẻ</h2>
 
-    <td><%= deposit %></td>
-    <td><%= total %></td>
-    <td><%= link_to 'Show', reservation %></td>
-    <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-    <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<div class="row">
+  <div class="col">
 
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+  </div>
+  <div class="col">
+    <%= link_to reservations_new_path, class:"d-flex justify-content-end" do %>
+      <!--  <h3>Create new</h3>-->
+      <span class="fa fa-plus-circle fa-3x"></span>
+    <% end %>
+  </div>
+</div>
+
 <br>
+<% @reservations.each do |reservation| %>
+  <%  room_name = Room.find(reservation.room_id).name %>
+  <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
+  <% room_status = @room_statuses[reservation.status][:text] %>
 
-<%= link_to 'New Reservation', reservations_new_path %>
+  <% client_name = reservation.client_name %>
+
+  <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
+  <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+  <%  arrival_date = reservation.arrival_date %>
+  <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+  <%  leave_date = reservation.leave_date %>
+  <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+
+  <%  deposit = Payment.find(reservation.payment_id).deposit %>
+  <%  total = Payment.find(reservation.payment_id).temp_total %>
+
+  <div class="row">
+    <div class="col-sm-2 card card-body right-border justify-content-center left-panel ">
+      <div class="d-flex justify-content-center">
+        <%= room_name %>
+      </div>
+    </div>
+    <div class="col-sm-10 card left-border">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-lg-9">
+            Mã <%= reservation.id %> - <%= reservation_date %>; Giá <%= price %>
+            <br>
+            <%= client_name %> | <%= arrival_date %> - <%= leave_date %>
+            <br>
+            Trạng thái: <%= room_status %>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <%= link_to reservation, class:"col" do %>
+                <span class="fa fa-eye"></span>
+              <% end %>
+              <%= link_to edit_reservation_path(reservation), class:"col" do %>
+                <span class="fa fa-edit"></span>
+              <% end %>
+              <%= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:"col" do %>
+                <span class="fa fa-trash"></span>
+              <% end %>
+            </div>
+            <br>
+            <div class="btn btn-primary">
+              Nhận phòng
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>
+

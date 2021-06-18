@@ -9,10 +9,6 @@ default: &default
 development:
   <<: *default
   database: HotelManagementWeb_development_1
-  username: postgres
-  password: 1505
 test:
   <<: *default
   database: HotelManagementWeb_test_1
-  username: postgres
-  password: 1505

@@ -4,5 +4,8 @@ class CooperateReservationController < ApplicationController
   end
   def new
     @reservation = Reservation.new
+
+
+    @search_result = {}
   end
 end

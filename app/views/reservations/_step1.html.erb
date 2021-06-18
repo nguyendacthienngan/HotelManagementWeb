@@ -3,7 +3,7 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Loại phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.label @room_type_name, class:"form-control", readonly:true %>
+        <%= form.label @room_type_name, class:"form-control", readonly:true, id:"room_type" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="row">
       <p class="col-lg-3">Phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.collection_select :room_id, Room.all.order(:id), :id, :name,{include_blank: false}, {class: 'form-select'} %>
+        <%= form.collection_select :room_id, Room.all.order(:id), :id, :name,{include_blank: false, selected: params[:room_id]}, {class: 'form-select'}%>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -39,7 +39,7 @@
     <div class="row row">
       <p class="col-lg-3">Giá phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.label @room_price, class:"form-control", readonly:true %>
+        <%= form.label @room_price, class:"form-control", readonly:true, id:"room_price" %>
       </div>
     </div>
   </div>
@@ -97,4 +97,10 @@
         $('#adults').val("<%= params["adults"] || 0 %>")
         $('#children').val("<%= params["children"] || 0 %>")
      <% end %>
+
+    $("#room_id").change(function (){
+        var theVal = $('#room_id').val();
+        var theURL = '/reservations/new/' + theVal;
+        window.location.href = theURL
+    });
 </script>

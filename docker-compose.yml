@@ -21,7 +21,6 @@ services:
   
   restarone_db:
     image: postgres:12.5-alpine
-    container_name: restarone_db
     volumes:
       - db_data:/var/lib/postgresql/data
       - shared_data:/var/shared
@@ -38,7 +37,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: restarone_app
     volumes:
       - .:/var/app
       - shared_data:/var/shared

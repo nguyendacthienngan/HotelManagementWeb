@@ -1,6 +1,6 @@
-<h1>Editing Client</h1>
+<center><h1 class="title">Chỉnh sửa thông tin khách hàng</h1></center>
 
 <%= render 'form', client: @client %>
 
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+<button class="button_back"><%= link_to 'Quay lại', clients_path %></button>
+<button class="button_show"><%= link_to 'Xem', @client %></button>

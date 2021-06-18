@@ -1,4 +1,4 @@
-<h1>Clients</h1>
+<!-- <h1>Clients</h1>
 
 <table>
   <thead>
@@ -34,4 +34,72 @@
 
 <br>
 
-<%= link_to 'New Client', new_client_path %>
+<%= link_to 'New Client', new_client_path %> -->
+
+<!--  -->
+<% if notice %>
+  <div class="notification notice_success">
+    <%= notice %>
+  </div>
+<% end %>
+
+<center><h1 class="title">KHÁCH HÀNG</h1></center>
+
+<div class="roomtype_sum_container tRow">
+  <div>
+      Danh sach khách hàng: <%= @clients.ids.count %> thành viên
+  </div>
+  <div class="searchBar tColumn">
+    <div class="tRow">
+      <select id="typeSearch tColumn">
+        <option value="name" selected>Tên</option>
+        <option value="cli_type">Loại khách hàng</option>
+        <option value="phone">Số điện thoại</option>
+        <option value="address">Địa chỉ</option>
+        <option value="gender">Giới tính</option>
+        <option value="nationality">Quốc tịch</option>
+        <option value="city">Thành phố</option>
+        <option value="DOB">Ngày sinh</option>
+        <option value="email">Email</option>
+      </select>
+      <input type="search" id="gsearch" name="gsearch" class="tColumn showInput">
+    </div>
+  </div>
+  <div class="tColumn newIcon e_tooltip">
+        <%= link_to new_client_path do%><i class="fas fa-plus-circle"></i><% end %>
+        <span class="tooltiptext">Tạo mới</span>
+  </div>
+</div>
+
+<center>
+  <div class="roomtype_list_container tColumn">
+    <% @clients.each do |client| %>
+      <div class="item tRow">
+          <div class="section tRow">
+              <div class="e_tooltip">
+                <%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-minus-circle"></i><% end %>
+                <span class="tooltiptext">Xóa</span>
+              </div>
+              <div class="tColumn employee_name">
+                  <div>
+                      <%= client.name %>
+                  </div>
+                  <div class="employee_type">
+                      <%= client.client_type %>
+                  </div>
+              </div>
+          </div>
+          <div class="section tRow">
+            <div class="icon_costom e_tooltip">
+              <%= link_to client do %> <i class="fa fa-eye"></i><% end %>
+              <span class="tooltiptext">Xem chi tiết</span>
+            </div>
+            <div class="icon_costom e_tooltip">
+                <%= link_to edit_client_path(client) do%><i class="fas fa-pencil-alt"></i><% end %>
+                <span class="tooltiptext">Sửa</span>
+            </div>
+          </div>
+      </div>
+      <% end %>
+  </div>
+  </center>

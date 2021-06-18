@@ -11,11 +11,13 @@
 
 .title{
     margin-bottom: 40px;
-    color: #6749b9;
+    color: #FFBD4A;
+    text-shadow: 2px 0 0 #07153a, -2px 0 0 #07153a, 0 2px 0 #07153a, 0 -2px 0 #07153a, 1px 1px #07153a, -1px -1px 0 #07153a, 1px -1px 0 #07153a, -1px 1px 0 #07153a;
 }
 .tColumn{
     display: flex;
     flex-direction: column;
+    
 }
 .tRow{
     display: flex;
@@ -26,21 +28,24 @@
     color: #000000;
     justify-content: space-between;
     margin: 30px 0px 30px 0px;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: 500;
     i{
         font-size: 3rem;
     }
 }
 
 .roomtype_list_container{
-    color: #000000;
+    color: #ffffff;
     font-size: 17px;
     max-width: 800px;
     .item{
         padding: 0px 10px 0px 10px;
         margin: 5px 10px 5px 10px;
-        border: solid 3px black;
+        border: solid 3px #07153a;
+        background-color: #07153a;
         justify-content: space-between;
+        // background-color: #FFFF93;
         & > div{
             padding: 10px;
         }
@@ -58,6 +63,9 @@
     }
     i{
         font-size: 2.2rem;
+        color: #FFBD4A;
+        &:hover{
+        }
     }
 }
 
@@ -69,6 +77,9 @@
     font-size: 20px;
     max-width: 700px;
     width: 100% ;
+    .field{
+        margin: 4px 0px;
+    }
     ._form_item_name{
         text-align: left;
         width: 230px;
@@ -77,13 +88,16 @@
         flex-grow: 1;
         & > input {
             width: 100%;
-            outline: none;
-            border: solid 1px gray;
+            outline: solid 1px gray;
             border-radius: 2px;
             &:focus{
                 background-color: rgb(255, 255, 255);
-                border: solid 1px #866ec7;
+                outline: solid 1px #866ec7;
             }
+        }
+        &:focus {
+            background-color: rgb(255, 255, 255);
+            outline: solid 1px #6749b9;
         }
         .error_msg{
             color: red;
@@ -94,14 +108,21 @@
             display: block;
         }
     }
+    
     .button_submit{
         margin: 15px;
     }
 }
 
+.bottom_container{
+    margin-top: 50px;
+    .button_edit_center{
+        margin-left: 630px;
+    }
+}
 .button_back{
-    background-color: #ffffff;
-    border: solid 1px #866ec7;
+    background-color: #FEF8F2;
+    border: solid 1px #07153a;
     border-radius: 4px;
     font-size: 16px;
     padding: 5px 20px;
@@ -109,8 +130,8 @@
 
 .button_show,
 .button_edit{
-    background-color: 	#ece6ff;
-    border: solid 1px #866ec7;
+    background-color: 	#FFBD4A;
+    border: solid 2px #07153a;
     border-radius: 4px;
     font-size: 16px;
     padding: 5px 20px;

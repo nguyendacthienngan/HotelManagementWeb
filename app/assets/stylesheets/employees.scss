@@ -90,7 +90,7 @@ input:checked + .label-status:after {
     justify-content: flex-end!important;
     select{
         color: #ffffff;
-        background-color: #6749b9;
+        background-color: #07153a;
     }
     .tform-group .tform-control-feedback {
         position: absolute;
@@ -104,38 +104,25 @@ input:checked + .label-status:after {
         width: 300px;
     }
     input:focus{
-        outline: 1px solid #6749b9;
+        outline: 1px solid #07153a;
+        box-shadow: #07153a;
         width: 300px;
     }
     
 }
 
-// .searchbar {
-    
-//   }
-  
-//   .has-search 
-
-//   .has-search .dropdown .btn::after {
-//     right: 10px;
-//   }
-//   .has-search .form-group input {
-//     border-left: 0 solid #ced4da;
-//     border-top-left-radius: unset;
-//     border-bottom-left-radius: unset;
-//   }
-
 .newIcon{
     i{
-        color: #866ec7 !important;
+        color: #FFBD4A !important;
         &:hover{
-            color: #6749b9 !important;
         }
     }
 }
 
-.show_container>p{
-    font-size: 17px !important;
+.show_container {
+    &>p{
+        font-size: 17px !important;
+    }
 }
 
 .e_tooltip {

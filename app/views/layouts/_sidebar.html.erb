@@ -29,8 +29,9 @@
           <% end %>
         </li>
         <li id="services">
-          <%= link_to services_path, data: { toggle: 'tooltip' }, aria: { expanded: false} do %>
-            <span class="fa fa-concierge-bell"></span> Dịch vụ
+        <li id="order_service">
+          <%= link_to order_service_index_path do %>
+            <span class="fa fa-concierge-bell"></span> Đặt dịch vụ
           <% end %>
         </li>
         <li id="individual">

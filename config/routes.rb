@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :room_prices
   resources :order_service
-  
+  resources :cooperate_reservation
   get "/room_diagram", to: "room_diagram#index"
   post "/room_diagram", to: "room_diagram#index"
 

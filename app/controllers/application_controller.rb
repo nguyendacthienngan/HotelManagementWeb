@@ -26,16 +26,10 @@ class ApplicationController < ActionController::Base
     { code: "empty", text: "Trống", color: "#000000" },
     { code: "reserved", text: "Đã đặt", color: "#fdc500" },
     { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
-    { code: "nonempty", text: "Nhận phòng", color: "#003049" }, # Đã check in
+    { code: "nonempty", text: "Đang ở", color: "#003049" }, # Đã check in
     { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
   ]
 
-  #Nên có k?
-  @@reservation_statuses = [
-    { code: "wait_for_check_in", text: "Đợi để check in" },
-    { code: "checked_in", text: "Đã check in" },
-    { code: "checked_out_payed", text: "Đã check out và thanh toán" },
-  ]
   @@service_statuses = [
     { code: "available", text: "Còn hàng" },
     { code: "out_of_stock", text: "Hết hàng" },

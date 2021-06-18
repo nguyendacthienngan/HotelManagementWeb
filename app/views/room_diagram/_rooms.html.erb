@@ -50,7 +50,9 @@
                   </div>
                   <div class="card-text d-flex justify-content-center">
                     <% index = room.status - 1 %>
-                    <span><i class="fa fa-key"  style="color: <%= @room_colors[index] %>"></i></span>
+                    <% if index > 0 %>
+                      <span><i class="fa fa-key"  style="color: <%= @room_colors[index] %>"></i></span>
+                    <% end %>
                     <h5 class="child">
                       <%= @room_statuses[index][:text] %>
                     </h5>

@@ -22,7 +22,8 @@
 
 <p>
   <strong>Trạng thái</strong>
-  <%= @room_statuses[@reservation.status][:text] %>
+  <% room_status = Room.find(@reservation.room_id).status %>
+  <%= @room_statuses[room_status][:text] %>
 </p>
 <p>
   <strong>Tên khách hàng</strong>

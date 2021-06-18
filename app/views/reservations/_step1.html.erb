@@ -87,14 +87,13 @@
     </div>
   </div>
 </div>
-<%#= form.hidden_field(:client_id, :value => 1) %>
 <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
 <%= form.hidden_field(:room_id, :value => @room_id) %>
 <script>
     <% if session[:reservation_params] %>
       <% params = session[:reservation_params] %>
-        $('#arrival_date').val("<%= params["arrival_date"] || DateTime.now %>")
-        $('#leave_date').val("<%= params["leave_date"] || DateTime.now %>")
+        $('#arrival_date').val("<%= params["arrival_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
+        $('#leave_date').val("<%= params["leave_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
         $('#adults').val("<%= params["adults"] || 0 %>")
         $('#children').val("<%= params["children"] || 0 %>")
      <% end %>

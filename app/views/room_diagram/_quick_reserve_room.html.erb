@@ -13,7 +13,7 @@
       <div class="row row">
         <p class="col-lg-3">CCCD</p>
         <div class="col-lg-7 form-group">
-          <%= form.number_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
+          <%= form.text_field   :client_citizen_id, class:"form-control", placeholder: "0123456789" %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
         </div>
       </div>
@@ -50,7 +50,7 @@
                                 flatpickr_date_format: "d-m-Y",
                                 flatpickr_min_date: Time.zone.now
                               },
-                              class: "form-control read-only-white",
+                              class: "form-select read-only-white",
                               placeholder: "Chọn ngày đến"%>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
         </div>
@@ -76,7 +76,7 @@
                                 flatpickr_date_format: "d-m-Y",
                                 flatpickr_min_date: Time.zone.now
                               },
-                              class: "form-control read-only-white",
+                              class: "form-select read-only-white",
                               placeholder: "Chọn ngày đi"%>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
         </div>
@@ -99,7 +99,7 @@
       <div class="row end-row-md">
         <p class="col-lg-3">Hình thức TT</p>
         <div class="col-lg-7 form-group">
-          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-control read-only-white" %>
+          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
 
           </div>
@@ -126,7 +126,7 @@
       <div class="row end-row-md">
         <p class="col-lg-3">Loại đặt phòng</p>
         <div class="col-lg-7 form-group">
-          <%= form.select @reservation_type_chosen, options_for_select(@reservation_type_view), {}, class: "form-control read-only-white" %>
+          <%= form.select @reservation_type_chosen, options_for_select(@reservation_type_view), {}, class: "form-select read-only-white" %>
         </div>
       </div>
     </div>
@@ -134,8 +134,7 @@
       <div class="row">
         <p class="col-lg-3">Tổng tiền</p>
         <div class="col-lg-7 form-group">
-          <%= form.number_field :total, min: 0, class:"form-control", id: "total"%>
-          <%= p.hidden_field(:temp_total, :id=> "temp-total")  %>
+          <%= p.number_field :temp_total, min: 0, class:"form-control"%>
           <% end %>
         </div>
       </div>
@@ -170,6 +169,20 @@
         $('#total').keyup(function(){
             $('#temp-total').val($('#total').val());
         })
+
+        <% if session[:reservation_params] %>
+        <% params = session[:reservation_params] %>
+        $('#arrival_date').val("<%= params["arrival_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
+        $('#leave_date').val("<%= params["leave_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
+        $('#adults').val("<%= params["adults"] || 0 %>")
+        $('#children').val("<%= params["children"] || 0 %>")
+          <% if params["payment_attributes"] %>
+          <% payment = params["payment_attributes"] %>
+          $('#_payment_attributes_deposit').val("<%= payment["deposit"] || 0 %>")
+          $('#_payment_attributes_payment_type').val("<%= payment["payment_type"] || 1 %>")
+          $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
+          <% end %>
+        <% end %>
     })
 
 </script>

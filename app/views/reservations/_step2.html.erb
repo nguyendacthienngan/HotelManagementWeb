@@ -30,7 +30,7 @@
                               flatpickr_date_format: "d-m-Y",
                               flatpickr_max_date: Time.zone.now
                             },
-                            class: "form-control read-only-white",
+                            class: "form-select read-only-white",
                             placeholder: "Chọn sinh nhật"%>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
@@ -40,7 +40,7 @@
     <div class="row row">
       <p class="col-lg-3">Giới tính</p>
       <div class="col-lg-7 form-group">
-        <%= client.select :gender, options_for_select(@gender), {}, class: "form-control read-only-white" %>
+        <%= client.select :gender, options_for_select(@gender), {}, class: "form-select read-only-white" %>
 
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>

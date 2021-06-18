@@ -4,7 +4,6 @@ class CreateReservations < ActiveRecord::Migration[6.1]
       t.datetime :arrival_date, null: false
       t.datetime :leave_date, null: false
       t.datetime :check_in_date
-      t.decimal :total
       t.string :client_name, null: false
       t.string :client_citizen_id, null:false
       t.integer :children, null:false

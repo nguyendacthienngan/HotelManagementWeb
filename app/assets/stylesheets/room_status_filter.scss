@@ -1,0 +1,42 @@
+
+.filter-wrapper {
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+.filter-wrapper a  {
+  margin: 0 .5rem 0 .5rem;
+  background-color: #436bd5;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px 10px 20px;
+  max-width: 120px;
+}
+// Trống
+[id="status1"] {
+  background-color: white !important;
+  color: #07153a !important;
+}
+
+// Đã đặt
+[id="status2"] {
+  background-color: #fdc500 !important;
+}
+
+// Quá hạn
+[id="status3"] {
+  background-color: #c1121f !important;
+}
+
+// Nhận phòng
+[id="status4"] {
+  background-color: #003049 !important;
+}
+
+// Bẩn
+[id="status5"] {
+  background-color: #fdf0d5 !important;
+  color: black !important
+}

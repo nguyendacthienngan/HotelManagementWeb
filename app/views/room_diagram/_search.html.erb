@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "searchbar" %>
+
+<div id="search" class="d-flex">
+  <div class="has-search container">
+    <%= form_with url: "/room_diagram", class:"form-group row" do |form| %>
+      <div class="dropdown col-md-4">
+        <%= form.select :chosen_type, options_for_select(@search_types), {}, class: "form-select dropdown-toggle" %>
+      </div>
+      <%= form.text_field :name, class: "form-control col-md", placeholder: "Tìm kiếm...", id: "search_name" %>
+      <%= form.submit "Search", class: "btn btn-primary col-md-3" %>
+    <% end %>
+  </div>
+</div>

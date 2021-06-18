@@ -1,0 +1,21 @@
+.row {
+  margin-top: 5px;
+}
+.read-only-white {
+  background-color: white !important;
+}
+
+@media (min-width: 900px){
+  .end-row-md {
+    justify-content: flex-end !important;
+  }
+
+  .padding-left {
+    padding-left: 25px !important;
+  }
+}
+
+.rounded-card {
+  background-color: white;
+  border-radius: 15px;
+}

@@ -12,7 +12,7 @@ body {
 }
 
 #switcher .btn{
-  border: 1px solid  #6749b9;
+  border: 1px solid  #436bd5;
   width: 120px !important;
 }
 
@@ -20,117 +20,10 @@ body {
   background-color: white;
 }
 
-#switcher .active{
-  background-color: #6749b9;
-}
-.has-search .dropdown .btn::after {
-  color: #6749b9 !important;
-}
-.has-search .dropdown .btn {
-  padding-right: 25px;
-  border: 1px solid  #ced4da;
-  border-top-right-radius: unset;
-  border-bottom-right-radius: unset;
-}
-.has-search.dropdown .btn:active{
-  box-shadow: #6749b9;
-}
-@media (max-width: 575px)
-{
-  .has-search{
-    width: 100%;
-  }
-  .has-search .dropdown{
-    //width: 50%;
-  }
-  .has-search .dropdown button {
-    text-align: left !important;
-  }
-  .has-search .dropdown .dropdown-toggle{
-    width: 100%;
-  }
-  .dropdown-menu{
-    width: 100% !important;
-  }
-  .has-search .form-group{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-  }
-  .has-search .form-group .form-control-feedback {
-    position: absolute;
-    right: 15px;
-    z-index: 2;
-  }
-
-  .has-search .dropdown .btn::after {
-    right: 20px;
-  }
-}
-@media (min-width: 576px)
-{
-  .searchbar {
-    display: flex!important;
-    justify-content: flex-end!important;
-  }
-  .has-search {
-    position: relative;
-    display: inline-flex;
-    vertical-align: middle;
-    justify-content: flex-end !important;
-
-  }
-  .has-search .form-group .form-control-feedback {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    display: block;
-  }
-
-  .has-search .dropdown .btn::after {
-    right: 10px;
-  }
-  .has-search .form-group input {
-    border-left: 0 solid #ced4da;
-    border-top-left-radius: unset;
-    border-bottom-left-radius: unset;
-  }
-}
-
-
-.has-search .dropdown {
+.room_section {
   background-color: white;
+  border-radius: 15px;
 }
-
-
-
-.has-search .form-group .form-control-feedback {
-
-  width: 2rem;
-  line-height: 2.375rem;
-  pointer-events: none;
-  color: #6749b9;
-}
-
-.filter-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  cursor: pointer;
-}
-
-.filter-wrapper .filter-item {
-  margin: 0 .5rem 0 .5rem;
-
-  background-color: #6749b9;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 20px 10px 20px;
-  max-width: 120px;
-}
-
 .room-wrapper {
   width: 250px;
   margin: 0 16px 20px 0;
@@ -160,6 +53,12 @@ body {
 .room-wrapper .card .card-body .order-btn .btn a {
   color: white !important;
 }
+
+.end-dropdown a{
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
 .active-reservation .fa {
   margin-top: 10px;
 }
@@ -253,19 +152,27 @@ body {
 //#quickResModal .modal-dialog .modal-content .modal-body .row .col-6 .d-flex p {
 //  padding-left: 15px;
 //}
-#quickResModal .modal-dialog .modal-content .modal-body .row{
-  margin-top: 15px;
-}
+//#quickResModal .modal-dialog .modal-content .modal-body .row{
+//  margin-top: 15px;
+//}
 
 .modal-lg {
   max-width: 70% !important;
 }
 
-#quickResModal .modal-dialog .modal-content .modal-body .table {
-  border: 0 white;
-  margin-top: 10px;
+#quickResModal .modal-dialog .modal-content .modal-body .row {
+  margin-top: 5px;
 }
-#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td:nth-child(2) .d-flex{
-  margin-left: 15px;
+.read-only-white {
+  background-color: white !important;
 }
-//#quickResModal .modal-dialog .modal-content .modal-body .table tbody tr td {}
+
+@media (min-width: 900px){
+  .end-row-md {
+    justify-content: flex-end !important;
+  }
+
+  .padding-left {
+    padding-left: 25px !important;
+  }
+}

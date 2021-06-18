@@ -59,8 +59,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
-    t.string "client_name", null: false
-    t.string "client_citizen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -78,16 +76,16 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "status", default: 0, null: false
     t.datetime "arrival_date", null: false
     t.datetime "leave_date", null: false
-    t.datetime "check_in_date", null: false
-    t.decimal "total"
+    t.datetime "check_in_date"
+    t.integer "status", default: 1, null: false
     t.string "client_name", null: false
     t.string "client_citizen_id", null: false
     t.integer "children", default: 0, null: false
     t.integer "adults", default: 0, null: false
     t.string "description"
+    t.integer "reservation_type", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"

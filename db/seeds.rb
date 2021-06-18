@@ -1,13 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
 
-  clients = Client.create([
+clients = Client.create([
                             {
                               name: "Khách lữ hành",
-                              citizen_id: '',
+                              citizen_id: '012345678',
                               gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,11,11,0),
@@ -44,7 +41,7 @@
                             },
                           ])
 
-  employees = Employee.create([
+employees = Employee.create([
                                 {
                                   name: 'Nguyễn Đắc Thiên Ngân',
                                   citizen_id: '0123456786',
@@ -485,77 +482,77 @@ prices = RoomPrice.create!([
 Room.create!([
                       {
                         name: "101",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "102",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "103",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
                         name: "104",
-                        status: 0,
+                        status: 1,
                         floor: 1,
                         description: "Phòng tiêu chuẩn",
                         room_type_id: 1
                       },
                       {
-                        name: "106",
-                        status: 0,
+                        name: "105",
+                        status: 1,
                         floor: 1,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 2,
                       },
                       {
-                        name: "107",
-                        status: 0,
-                        floor: 2,
+                        name: "106",
+                        status: 1,
+                        floor: 1,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 3
                       },
                       {
                         name: "201",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 4
                       },
                       {
                         name: "202",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 4
                       },
                       {
                         name: "203",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 5
                       },
                       {
                         name: "204",
-                        status: 0,
+                        status: 1,
                         floor: 2,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 5
                       },
                       {
                         name: "301",
-                        status: 0,
+                        status: 1,
                         floor: 3,
                         description: "Phòng sang xịn mịn",
                         room_type_id: 6

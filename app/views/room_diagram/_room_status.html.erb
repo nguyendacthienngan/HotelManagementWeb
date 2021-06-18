@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'room_status_filter' %>
+<div class="filter-wrapper row">
+  <%= link_to room_diagram_path(:room_status => "all"), id:"status", class: "col-md" do %>
+    <span class="filter-item">
+        Tất cả <br> (<%= Room.all.count %>)
+    </span>
+  <% end %>
+  <% index = 1 %>
+  <% if @room_statuses %>
+    <% @room_statuses.each do |rs| %>
+      <% color =  rs[:color] %>
+      <% id = "status" + index.to_s %>
+      <%= link_to room_diagram_path(:room_status => index), id:id, class: "col-md"  do %>
+        <span class="filter-item">
+          <% count = Room.where(status: index).count %>
+            <%= rs[:text] %> <br> (<%= count %>)
+        </span>
+        <% index +=1 %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+
+</div>

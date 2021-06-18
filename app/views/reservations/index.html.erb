@@ -1,33 +1,86 @@
-<h1>Reservations</h1>
+<% stylesheet_link_tag 'reservations' %>
+<h2 class="d-flex justify-content-center">Danh sách đặt phòng khách lẻ</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Arrivaldate</th>
-      <th>Leavedate</th>
-      <th>Checkindate</th>
-      <th>Total</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col">
 
-  <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.status %></td>
-        <td><%= reservation.arrivalDate %></td>
-        <td><%= reservation.leaveDate %></td>
-        <td><%= reservation.checkInDate %></td>
-        <td><%= reservation.total %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  </div>
+  <div class="col">
+    <%= link_to reservations_new_path, class:"d-flex justify-content-end" do %>
+      <!--  <h3>Create new</h3>-->
+      <span class="fa fa-plus-circle fa-3x"></span>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
 <br>
+<% @reservations.each do |reservation| %>
+  <% room = Room.find(reservation.room_id) %>
+  <%  room_name = room.name %>
+  <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
+  <%# room_status = @room_statuses[room.status - 1][:text] %>
+  <% room_status = @room_statuses[reservation.status - 1][:text] %>
 
-<%= link_to 'New Reservation', new_reservation_path %>
+  <% client_name = reservation.client_name %>
+
+  <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
+  <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+  <%  arrival_date = reservation.arrival_date %>
+  <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+  <%  leave_date = reservation.leave_date %>
+  <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+
+  <%  deposit = Payment.find(reservation.payment_id).deposit %>
+  <%  total = Payment.find(reservation.payment_id).temp_total %>
+
+  <div class="row">
+    <div class="col-sm-2 card card-body right-border justify-content-center left-panel ">
+      <div class="d-flex justify-content-center">
+        <%= room_name %>
+      </div>
+    </div>
+    <div class="col-sm-10 card left-border">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-lg-9">
+            Mã <%= reservation.id %> - <%= reservation_date %>; Giá <%= price %>
+            <br>
+            <%= client_name %> | <%= arrival_date %> - <%= leave_date %>
+            <br>
+            Trạng thái: <%= room_status %>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <%= link_to reservation, class:"col" do %>
+                <span class="fa fa-eye"></span>
+              <% end %>
+              <%= link_to edit_reservation_path(reservation), class:"col" do %>
+                <span class="fa fa-edit"></span>
+              <% end %>
+              <%= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:"col" do %>
+                <span class="fa fa-trash"></span>
+              <% end %>
+            </div>
+            <br>
+            <%= form_with url: "/reservations/#{reservation.id}/change_status", method: :put  do |form| %>
+              <% if room.status == 2 %>
+                <%= form.submit "Nhận phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                <% value = 4 %>
+              <% else %>
+                <% if room.status == 4 %>
+                  <%= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                  <% value = 0 %>
+                <% end %>
+              <% end %>
+              <%= form.hidden_field(:status, :value => value)  %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>
+

@@ -1,0 +1,2 @@
+module CooperateReservationHelper
+end

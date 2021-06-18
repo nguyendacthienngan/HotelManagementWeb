@@ -1,3 +1,20 @@
 // Place all the styles related to the Reservations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@media (max-width: 575.98px) {
+  .left-panel {
+    background-color: #07153a;
+    color: #ffffff;
+  }
+}
+.right-border {
+  border-right: 1px solid rgba(0,0,0,.125);
+  border-bottom-right-radius: 0px 0px;
+  border-top-right-radius: 0px 0px;
+}
+.left-border {
+  border-bottom-left-radius: 0px 0px;
+  border-top-left-radius: 0px 0px;
+}
+

@@ -1,26 +1,56 @@
+<%  room_name = Room.find(@reservation.room_id).name %>
+<%  reservation_date = Payment.find(@reservation.payment_id).reservation_date %>
+<%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+<%  arrival_date = @reservation.arrival_date %>
+<%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+<%  leave_date = @reservation.leave_date %>
+<%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+<%  price = RoomPrice.find(RoomType.find(Room.find(@reservation.room_id).id).id).price %>
+<%  deposit = Payment.find(@reservation.payment_id).deposit %>
+<%  total = Payment.find(@reservation.payment_id).temp_total %>
+
+
+
 <p>
-  <strong>Status:</strong>
-  <%= @reservation.status %>
+  <strong>Phòng:</strong>
+  <%= room_name %>
+</p>
+<p>
+  <strong>Giá</strong>
+  <%= price %>
 </p>
 
 <p>
-  <strong>Arrival date:</strong>
-  <%= @reservation.arrival_date %>
+  <strong>Trạng thái</strong>
+  <% room_status = Room.find(@reservation.room_id).status %>
+  <%= @room_statuses[@reservation.status -1][:text] %>
+</p>
+<p>
+  <strong>Tên khách hàng</strong>
+  <%= @reservation.client_name %>
+</p>
+<p>
+  <strong>Ngày đặt:</strong>
+  <%= reservation_date %>
 </p>
 
 <p>
-  <strong>Leave date:</strong>
-  <%= @reservation.leave_date %>
+  <strong>Ngày đến:</strong>
+  <%= arrival_date %>
 </p>
 
 <p>
-  <strong>Check in date:</strong>
-  <%= @reservation.check_in_date %>
+  <strong>Ngày đến:</strong>
+  <%= leave_date %>
 </p>
 
 <p>
-  <strong>Total:</strong>
-  <%= @reservation.total %>
+  <strong>Đặt cọc:</strong>
+  <%= deposit %>
+</p>
+<p>
+  <strong>Tổng tiền:</strong>
+  <%= total %>
 </p>
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |

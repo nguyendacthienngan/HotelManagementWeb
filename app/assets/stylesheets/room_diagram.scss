@@ -20,8 +20,9 @@ body {
   background-color: white;
 }
 
-#switcher .active{
-  background-color: #436bd5;
+.room_section {
+  background-color: white;
+  border-radius: 15px;
 }
 .room-wrapper {
   width: 250px;
@@ -52,6 +53,12 @@ body {
 .room-wrapper .card .card-body .order-btn .btn a {
   color: white !important;
 }
+
+.end-dropdown a{
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
 .active-reservation .fa {
   margin-top: 10px;
 }
@@ -163,5 +170,9 @@ body {
 @media (min-width: 900px){
   .end-row-md {
     justify-content: flex-end !important;
+  }
+
+  .padding-left {
+    padding-left: 25px !important;
   }
 }

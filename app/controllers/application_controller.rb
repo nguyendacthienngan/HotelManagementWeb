@@ -1,3 +1,4 @@
+include ActionView::Helpers::NumberHelper
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -5,22 +6,39 @@ class ApplicationController < ActionController::Base
     { code: "cash", text: "Tiền mặt" },
     { code: "momo", text: "Momo"     }
   ]
-  @@gender = {
-    "0" => "male",
-    "1" => "female"
-  }
+  @@gender = [
+    { code: "male", text: "Nam" },
+    { code: "female", text: "Nữ" }
+  ]
   @@employee_types = [
+    { code: "manager", text: "Quản lý" },
+    { code: "receptionist", text: "Nhân viên lễ tân" }
+  ]
+  @@employee_statuses = [
     { code: "working", text: "Đi làm" },
     { code: "left", text: "Nghỉ làm" }
   ]
   @@client_types = [
     { code: "traveller", text: "Khách lữ hành" },
-    { code: "client", text: "Khách hàng" }
+    { code: "client", text: "Khách hàng thành viên" }
   ]
+  @@room_statuses = [
+    { code: "empty", text: "Trống", color: "#000000" },
+    { code: "reserved", text: "Đã đặt", color: "#fdc500" },
+    { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
+    { code: "nonempty", text: "Đang ở", color: "#003049" }, # Đã check in
+    { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
+  ]
+
   @@reservation_statuses = [
     { code: "wait_for_check_in", text: "Đợi để check in" },
     { code: "checked_in", text: "Đã check in" },
     { code: "checked_out_payed", text: "Đã check out và thanh toán" },
+  ]
+
+  @@reservation_types = [
+    { code: "individual_reservation", text: "Khách lẻ" },
+    { code: "cooperate_reservation", text: "Khách đoàn" },
   ]
   @@service_statuses = [
     { code: "available", text: "Còn hàng" },
@@ -57,6 +75,14 @@ class ApplicationController < ActionController::Base
     hash.each do |h|
       result[h[:text]] = index
       index +=1
+    end
+    return result
+  end
+
+  def convert_nested_hash_to_color (hash)
+    result = []
+    hash.each do |h|
+      result.push(h[:color])
     end
     return result
   end

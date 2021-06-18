@@ -1,6 +1,47 @@
 <h1>Editing Reservation</h1>
+<%  room_name = Room.find(@reservation.room_id).name %>
+<%  reservation_date = Payment.find(@reservation.payment_id).reservation_date %>
+<%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+<%  arrival_date = @reservation.arrival_date %>
+<%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+<%  leave_date = @reservation.leave_date %>
+<%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+<%  price = RoomPrice.find(RoomType.find(Room.find(@reservation.room_id).id).id).price %>
+<%  deposit = Payment.find(@reservation.payment_id).deposit %>
+<%  total = Payment.find(@reservation.payment_id).temp_total %>
 
-<%= render 'form', reservation: @reservation %>
+
+<%= form_with(model: @reservation) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this @reservation from being saved:</h2>
+
+      <ul>
+        <% @reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.fields_for :room_attributes, Room.new do |room| %>
+    <div class="field">
+      <%= room.label :status %>
+      <%= room.text_field :status %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
+
+  <script>
+  <% if @reservation %>
+    <% room_status = Room.find(@reservation.room_id).status %>
+    $('#reservation_room_attributes_status').val(<%= room_status %>)
+  <% end %>
+  </script>
+<% end %>
 
 <%= link_to 'Show', @reservation %> |
 <%= link_to 'Back', reservations_path %>

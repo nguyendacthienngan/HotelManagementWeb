@@ -145,11 +145,10 @@
     <%= customer.hidden_field(:name, :value => Client.find(1).name) %>
     <%= customer.hidden_field(:citizen_id, :value => Client.find(1).citizen_id) %>
   <% end %>
-  <%#= form.hidden_field(:client_attributes, :value => Client.find(1)) %>
-  <%#= form.hidden_field(:client_id, :value => 1) %>
+  <%= form.hidden_field(:check_in_date, :value => Date.today) %>
   <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
   <%= form.hidden_field(:room_id, :value => params[:room_id]) %>
-  <%#= form.hidden_field(:payment_id, :value => 1) %>
+  <%= form.hidden_field(:status, :value => 2) %>
   <br>
   <div class="d-flex actions justify-content-end">
     <%= form.submit "Save changes", class: "btn btn-primary add_reservation", data: { disable_with: false } %>

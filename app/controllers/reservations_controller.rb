@@ -192,7 +192,7 @@ class ReservationsController < ApplicationController
       @reservation = Reservation.find(params[:id])
       room_id = @reservation.room_id
       room = Room.find(room_id)
-      if room.update(:status => params[:status])
+      if room.update(:status => params[:status]) && @reservation.update(:status => params[:status])
         format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else
@@ -210,7 +210,7 @@ class ReservationsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reservation_params
       # params.require(:reservation).permit(:status, :arrivalDate, :leaveDate, :checkInDate, :total)
-      params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :reservation_type,
+      params.permit(:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,
                     payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type],
                     client_attributes:[:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     end

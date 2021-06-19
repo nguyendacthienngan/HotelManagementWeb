@@ -42,8 +42,9 @@
     .item{
         padding: 0px 10px 0px 10px;
         margin: 5px 10px 5px 10px;
-        border: solid 3px #07153a;
-        background-color: #07153a;
+        border: solid 1px #07153a;
+        background-color: #ffffff;
+        color: #07153a !important;
         justify-content: space-between;
         // background-color: #FFFF93;
         & > div{
@@ -63,7 +64,7 @@
     }
     i{
         font-size: 2.2rem;
-        color: #FFBD4A;
+        color: #07153a;
         &:hover{
         }
     }

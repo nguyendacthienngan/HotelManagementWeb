@@ -5,8 +5,13 @@
   </div>
 <% end %>
 
-<center><h1 class="title">DỊCH VỤ</h1></center>
-
+<!--<center><h1 class="title">DỊCH VỤ</h1></center>-->
+<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Lễ Tân", order_service_index_path %></li>
+    <li class="breadcrumb-item" aria-current="page"><a>Đặt dịch vụ</a></li>
+  </ol>
+</nav>
 <div class="sv-container tRow">
   <div class="sv-box sv-list tColumn">
     <div class="sv-navbar tRow">

@@ -1,3 +1,9 @@
+<div class="d-flex justify-content-start">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Cấu hình", clients_path %></li>
+    <li class="breadcrumb-item" aria-current="page"><a>Khách hàng</a></li>
+  </ol>
+</div>
 <!-- <h1>Clients</h1>
 
 <table>
@@ -43,28 +49,28 @@
   </div>
 <% end %>
 
-<center><h1 class="title">KHÁCH HÀNG</h1></center>
+<!--<center><h1 class="title">KHÁCH HÀNG</h1></center>-->
 
 <div class="roomtype_sum_container tRow">
   <div>
       Danh sach khách hàng: <%= @clients.ids.count %> thành viên
   </div>
-  <div class="searchBar tColumn">
-    <div class="tRow">
-      <select id="typeSearch tColumn">
-        <option value="name" selected>Tên</option>
-        <option value="cli_type">Loại khách hàng</option>
-        <option value="phone">Số điện thoại</option>
-        <option value="address">Địa chỉ</option>
-        <option value="gender">Giới tính</option>
-        <option value="nationality">Quốc tịch</option>
-        <option value="city">Thành phố</option>
-        <option value="DOB">Ngày sinh</option>
-        <option value="email">Email</option>
-      </select>
-      <input type="search" id="gsearch" name="gsearch" class="tColumn showInput">
-    </div>
-  </div>
+<!--  <div class="searchBar tColumn">-->
+<!--    <div class="tRow">-->
+<!--      <select id="typeSearch tColumn">-->
+<!--        <option value="name" selected>Tên</option>-->
+<!--        <option value="cli_type">Loại khách hàng</option>-->
+<!--        <option value="phone">Số điện thoại</option>-->
+<!--        <option value="address">Địa chỉ</option>-->
+<!--        <option value="gender">Giới tính</option>-->
+<!--        <option value="nationality">Quốc tịch</option>-->
+<!--        <option value="city">Thành phố</option>-->
+<!--        <option value="DOB">Ngày sinh</option>-->
+<!--        <option value="email">Email</option>-->
+<!--      </select>-->
+<!--      <input type="search" id="gsearch" name="gsearch" class="tColumn showInput">-->
+<!--    </div>-->
+<!--  </div>-->
   <div class="tColumn newIcon e_tooltip">
         <%= link_to new_client_path do%><i class="fas fa-plus-circle"></i><% end %>
         <span class="tooltiptext">Tạo mới</span>
@@ -85,7 +91,7 @@
                       <%= client.name %>
                   </div>
                   <div class="employee_type">
-                      <%= client.client_type %>
+                    <%#= @types[client.client_type - 1][:text] %>
                   </div>
               </div>
           </div>

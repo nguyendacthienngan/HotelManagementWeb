@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   resources :cooperate_reservation
   get "/room_diagram", to: "room_diagram#index"
   post "/room_diagram", to: "room_diagram#index"
-  post "/room_diagram", to: "room_diagram#index"
 
   get "/room_diagram/quick_reserve_room", to: "room_diagram#quick_reserve_room"
   get "/room_diagram/quick_reserve_room/:room_id/", to: "room_diagram#quick_reserve_room"
+
 
   get "/room_diagram/room_info/", to: "room_diagram#room_info"
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"

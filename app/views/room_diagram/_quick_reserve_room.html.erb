@@ -24,7 +24,7 @@
       <div class="row end-row-md">
         <p class="col-lg-3">Loại phòng</p>
         <div class="col-lg-7 form-group">
-          <%= form.label @room_type_name, class:"form-control", readonly:true %>
+          <%= form.label @room_type_name, class:"form-control", readonly:true, id:"room_type"  %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="row">
         <p class="col-lg-3">Phòng</p>
         <div class="col-lg-7 form-group">
-          <%= form.label @room_name, class:"form-control", readonly:true %>
+          <%= form.label @room_name, class:"form-control", readonly:true, id:"room_name" %>
           <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
         </div>
       </div>
@@ -41,7 +41,33 @@
   </div>
   <div class="row">
     <div class="col-lg-6 row">
-      <div class="row row end-row-md">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Loại giá</p>
+        <div class="col-lg-7 form-group">
+          <select id="price_type" onchange="window.location = this.value;" class="form-select read-only-white">
+            <% @reservation_type.each do |c| %>
+              <% index = @reservation_type.index(c) + 1%>
+              <option value=/room_diagram/quick_reserve_room?room_id=<%= @room_id %>&price_type_id=<%= index %>>
+                <%= c[:text] %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Giá phòng</p>
+        <div class="col-lg-7 form-group">
+         <%= form.label @room_price, class:"form-control", readonly:true, id:"room_price" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
         <p class="col-lg-3">Ngày đến</p>
         <div class="col-lg-7 form-group">
           <%= form.text_field :arrival_date,
@@ -57,10 +83,13 @@
       </div>
     </div>
     <div class="col-lg-6 row">
-      <div class="row row">
-        <p class="col-lg-3">Giá phòng</p>
+      <div class="row">
+        <p class="col-lg-3">Đặt cọc</p>
         <div class="col-lg-7 form-group">
-         <%= form.label @room_price, class:"form-control", readonly:true %>
+          <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+            <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+            <%= p.hidden_field(:is_paid, :value => false)  %>
+            <%= p.number_field :deposit, min: 0, class:"form-control"%>
         </div>
       </div>
     </div>
@@ -84,29 +113,6 @@
     </div>
     <div class="col-lg-6 row">
       <div class="row">
-        <p class="col-lg-3">Đặt cọc</p>
-        <div class="col-lg-7 form-group">
-          <%= form.fields_for :payment_attributes, Payment.new do |p| %>
-            <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
-            <%= p.hidden_field(:is_paid, :value => false)  %>
-            <%= p.number_field :deposit, min: 0, class:"form-control"%>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6 row">
-      <div class="row end-row-md">
-        <p class="col-lg-3">Hình thức TT</p>
-        <div class="col-lg-7 form-group">
-          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
-          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-
-          </div>
-      </div>
-    </div>
-    <div class="col-lg-6 row">
-      <div class="row">
         <p class="col-lg-3">Người lớn</p>
         <div class="col-lg-7 row" style="padding-right: 0; margin-right: 0">
           <div class="col-lg-4  form-group"  style="padding-right: 0; margin-right: 0">
@@ -122,11 +128,15 @@
     </div>
   </div>
   <div class="row">
+
+
     <div class="col-lg-6 row">
       <div class="row end-row-md">
-        <p class="col-lg-3">Loại đặt phòng</p>
+        <p class="col-lg-3">Hình thức TT</p>
         <div class="col-lg-7 form-group">
-          <%= form.select @reservation_type_chosen, options_for_select(@reservation_type_view), {}, class: "form-select read-only-white" %>
+          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+
         </div>
       </div>
     </div>
@@ -182,6 +192,8 @@
           $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
           <% end %>
         <% end %>
+
+
     })
 
 </script>

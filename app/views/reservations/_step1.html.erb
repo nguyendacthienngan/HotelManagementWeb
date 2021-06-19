@@ -27,7 +27,7 @@
       <div class="col-lg-7 form-group">
         <select id="price_type" onchange="window.location.href=this.value" class="form-select read-only-white">
           <% @reservation_type.each do |c| %>
-            <option value=/reservations/new/<%= params[:room_id] || 1  %>?price_type_id=<%= @reservation_type.index(c) + 1 %>>
+            <option value=/reservations/new/<%=     params[:room_id] || 1  %>?price_type_id=<%= @reservation_type.index(c) + 1 %>>
               <%= c[:text] %>
             </option>
           <% end %>

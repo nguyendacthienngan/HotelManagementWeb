@@ -62,7 +62,7 @@
                 <div class="card-body" style="padding-top: 0; ">
                   <div class="d-flex order-btn">
                     <div class="btn btn-primary">
-                      <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id), remote: true do %>
+                      <%= link_to room_diagram_quick_reserve_room_path(:room_id => room.id, :price_type_id => 2), remote: true do %>
                         Đặt nhanh
                       <% end %>
                     </div>

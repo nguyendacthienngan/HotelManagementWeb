@@ -1,3 +1,4 @@
+<h5>Bước 2: Đăng ký thông tin khách hàng</h5>
 <%= form.fields_for :client_attributes, Client.new do |client| %>
 <div class="row">
   <div class="col-lg-6 row">
@@ -93,6 +94,7 @@
       <% params = session[:reservation_params] %>
       <% if session[:reservation_params]["client_attributes"] %>
         <% client = params["client_attributes"] %>
+        $('#_client_attributes_date_of_birth').val("<%= client["date_of_birth"] || (DateTime.now).strftime("%d/%m/%Y")  %>")
         $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
         $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
         $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")

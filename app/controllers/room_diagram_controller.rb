@@ -2,6 +2,7 @@
 
 class RoomDiagramController < ApplicationController
   def index
+    # reset_session
     @floors = [1,2,3]
     @search_types = {
       "Tên phòng" => "0",
@@ -150,7 +151,11 @@ class RoomDiagramController < ApplicationController
     @room_price = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type)
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
-    @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
+    @room_price_name = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
+    @room_price_value = @room_price_name.tr('VND','')
+    @room_price_value = @room_price_value.tr(',','')
+    @room_price_value = @room_price_value.tr('.','')
+    @room_price_value = @room_price_value.tr(' ','')
   end
 
   def room_info

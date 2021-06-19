@@ -1,4 +1,14 @@
 <%= form_with url: "/reservations", method: :post  do |form| %>
+  <% if @reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <ul>
+        <% @reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="row">
     <div class="col-lg-6 row">
       <div class="row end-row-md">
@@ -59,7 +69,7 @@
       <div class="row">
         <p class="col-lg-3">Giá phòng</p>
         <div class="col-lg-7 form-group">
-         <%= form.label @room_price, class:"form-control", readonly:true, id:"room_price" %>
+         <%= form.label @room_price_name, class:"form-control", readonly:true, id:"room_price" %>
         </div>
       </div>
     </div>
@@ -171,6 +181,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+        console.log("<%= @room_price_value %>");
+        $('#_payment_attributes_temp_total').val("<%= @room_price_value %>");
+
         $('#quickResModal').on('hidden.bs.modal', function () {
             $('#quickResModal').remove()
         })
@@ -188,13 +202,9 @@
           <% payment = params["payment_attributes"] %>
           $('#_payment_attributes_deposit').val("<%= payment["deposit"] || 0 %>")
           $('#_payment_attributes_payment_type').val("<%= payment["payment_type"] || 1 %>")
-          $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
           <% end %>
         <% end %>
-
-
     })
-
 </script>
 
 <% end %>

@@ -151,7 +151,6 @@
     </div>
   </div>
   <%= form.fields_for :client_attributes, Client.new do |customer| %>
-    <%= customer.hidden_field(:client_id, :value => 1) %>
     <%= customer.hidden_field(:name, :value => Client.find(1).name) %>
     <%= customer.hidden_field(:citizen_id, :value => Client.find(1).citizen_id) %>
   <% end %>

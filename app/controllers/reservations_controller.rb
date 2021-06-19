@@ -87,13 +87,12 @@ class ReservationsController < ApplicationController
             format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
             format.json { render :show, status: :created, location: @reservation }
           else
-            format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
-            format.html
+            format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: 2}, status: :unprocessable_entity}
             format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
         else
-          format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
-          format.html
+          # format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
+          format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: 2}, status: :unprocessable_entity}
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       end
@@ -204,7 +203,7 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,
+      params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
                     payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type],
                     client_attributes:[:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     end

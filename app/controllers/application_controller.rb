@@ -63,6 +63,18 @@ class ApplicationController < ActionController::Base
   ]
   protected
 
+  def currency_name (currency)
+    result = currency.tr('[]', '')
+    result = number_to_currency(result, precision: 0, unit: "VND",  format: "%n %u")
+    return result
+  end
+
+  def currency_value(currency)
+    result = currency.tr('VND','')
+    result = result.tr(',','')
+    result = result.tr(' ','')
+    return result
+  end
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:employee_id, :email, :password)}
 

@@ -150,19 +150,16 @@ class RoomDiagramController < ApplicationController
     @price_type = params[:price_type_id] || 2
 
     @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
-    # @adults_price = currency_name(@adults_price)
-    # @adults_price = currency_value(@adults_price)
+    @adults_price = currency_name(@adults_price)
+    @adults_price = currency_value(@adults_price)
 
     @children_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 7).pluck(:price).to_s
-    # @children_price = currency_name(@children_price)
-    # @children_price = currency_value(@children_price)
+    @children_price = currency_name(@children_price)
+    @children_price = currency_value(@children_price)
 
     @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
     @room_price_name = currency_name(@room_price_name)
-
     @room_price_value = currency_value(@room_price_name)
-
-    @total = @room_price_value
   end
 
   def room_info

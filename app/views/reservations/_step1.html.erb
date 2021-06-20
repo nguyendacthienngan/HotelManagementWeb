@@ -40,7 +40,7 @@
     <div class="row row">
       <p class="col-lg-3">Giá phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.label @room_price, class:"form-control", readonly:true, id:"room_price" %>
+        <%= form.label @room_price_name, class:"form-control", readonly:true, id:"room_price" %>
       </div>
     </div>
   </div>
@@ -97,27 +97,123 @@
   </div>
 </div>
 <%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
-<%#= form.hidden_field(:room_id, :value => @room_id) %>
 <script>
-    <% if session[:reservation_params] %>
-      <% params = session[:reservation_params] %>
+    $(document).ready(function(){
+        updateValuesBySession()
+        switchRoomID()
+        switchPriceType()
+        var total = updateTotal()
+        $('#_payment_attributes_temp_total').val(total)
+        $('#_payment_attributes_deposit').val(total/2)
+    })
+
+    function updateValuesBySession(){
+        <% if session[:reservation_params] %>
+        <% params = session[:reservation_params] %>
         $('#arrival_date').val("<%= params["arrival_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
         $('#leave_date').val("<%= params["leave_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")
         $('#adults').val("<%= params["adults"] || 0 %>")
         $('#children').val("<%= params["children"] || 0 %>")
-     <% end %>
+        <% end %>
+    }
 
-    $("#room_id").change(function (){
-        var theVal = $('#room_id').val();
-        var theURL = '/reservations/new/' + theVal;
+    function switchRoomID()
+    {
+        $("#room_id").change(function (){
+            var theVal = $('#room_id').val();
+            var theURL = '/reservations/new/' + theVal;
+            window.location.href = theURL
+        });
+    }
+
+    function switchPriceType()
+    {
+        var price_type_id = window.location.search
+        const urlParams = new URLSearchParams(price_type_id);
+        var price_type_id = urlParams.get('price_type_id')
+        price_type_id = price_type_id ? price_type_id : 2;
+        price_type_id -= 1;
+        var string = 'select#price_type>option:eq(' + price_type_id + ')'
+        $(string).attr('selected', true);
+    }
+
+    function passAdultsValue(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        var price_type_id
+        if (urlParams.get('price_type_id'))
+            price_type_id = urlParams.get('price_type_id')
+        else
+            price_type_id = 2
+        const adults = $('#adults').val()
+        const children = $('#children').val()
+        console.log(queryString);
+
+        var theURL = '/reservations/new?room_id=<%= @room_id %>&price_type_id=' + price_type_id +'&adults='+adults+'&children='+children;
         window.location.href = theURL
-    });
+    }
 
-    var price_type_id = window.location.search
-    const urlParams = new URLSearchParams(price_type_id);
-    var price_type_id = urlParams.get('price_type_id')
-    price_type_id = price_type_id ? price_type_id : 2;
-    price_type_id -= 1;
-    var string = 'select#price_type>option:eq(' + price_type_id + ')'
-    $(string).attr('selected', true);
+    $('#adults').mouseup(function(e)
+    {
+        var container = $("#adults");
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0)
+        {
+            passAdultsValue()
+        }
+    });
+    $('#adults').focusout(function(){
+        passAdultsValue()
+    })
+    $('#children').mouseup(function(e)
+    {
+        var container = $("#adults");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0)
+        {
+            passAdultsValue()
+        }
+    });
+    $('#children').focusout(function(){
+        passAdultsValue()
+    })
+    function updateTotal()
+    {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        if (urlParams.get('adults'))
+            $('#adults').val(urlParams.get('adults'))
+        else
+            $('#adults').val(0)
+        if (urlParams.get('children'))
+            $('#children').val(urlParams.get('children'))
+        else
+            $('#children').val(0)
+        if (urlParams.get('price_type_id'))
+        {
+            var price_type_id = urlParams.get('price_type_id') - 1
+            var string = 'select#price_type>option:eq(' + price_type_id + ')'
+            $(string).attr('selected', true);
+        }
+        else
+            $('select#price_type>option:eq(1)').attr('selected', true);
+
+        var room_price = (<%= @room_price_value %>);
+        var children = $('#children').val()
+        var children_price = <%=@children_price %>
+
+        children= parseInt(children) *children_price
+
+        var adults = $('#adults').val();
+        var adults_price = <%=@adults_price %>
+        adults = parseInt(adults) * adults_price
+
+        return room_price + children + adults
+    }
+
+
+
 </script>

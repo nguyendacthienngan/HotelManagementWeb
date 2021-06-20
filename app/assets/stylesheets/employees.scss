@@ -4,7 +4,6 @@
 .employee_type{
     font-size: 14px;
     font-weight: bold;
-    color: blue;
 }
 
 ._form_checkbox{
@@ -89,8 +88,8 @@ input:checked + .label-status:after {
     display: flex!important;
     justify-content: flex-end!important;
     select{
-        color: #ffffff;
-        background-color: #07153a;
+        color: #07153a;
+        background-color: #ffffff;
     }
     .tform-group .tform-control-feedback {
         position: absolute;
@@ -113,7 +112,7 @@ input:checked + .label-status:after {
 
 .newIcon{
     i{
-        color: #FFBD4A !important;
+        color: #07153a !important;
         &:hover{
         }
     }

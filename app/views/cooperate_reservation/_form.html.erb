@@ -1,0 +1,38 @@
+
+<%= form_with url: "/reservations", method: :post do |form| %>
+
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-start">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Lễ tân</a></li>
+      <li class="breadcrumb-item" aria-current="page"><a href="#">Khách lẻ</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a>Đặt phòng</a></li>
+    </ol>
+  </div>
+  <div class="bs-stepper">
+    <div class="bs-stepper-content">
+      <%= render :partial => "step1",  :locals=>{:form=>form} %>
+      <%#= render :partial => "step2",  :locals=>{:form=>form} %>
+      <%#= render :partial => "step3",  :locals=>{:form=>form} %>
+    </div>
+
+    <br>
+    <br>
+    <div class="d-flex actions justify-content-center">
+      <p><%= form.submit "Continue", class:"btn btn-primary"  %></p>
+      <span style="width:10px"></span>
+      <p><%= form.submit "Back", :name => "back_button", class:"btn btn-secondary" unless @reservation.first_step? %></p>
+    </div>
+  </div>
+
+<% end %>

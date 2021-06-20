@@ -2,12 +2,18 @@
 
   <% if reservation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+      <br>
+      <div class="alert alert-danger p-2" role="alert">
+        <h4><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h4>
+      </div>
 
       <ul>
-        <% reservation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+        <div class="alert alert-warning" role="alert">
+          <% reservation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </div>
+
       </ul>
     </div>
   <% end %>
@@ -20,8 +26,11 @@
   </div>
     <div class="bs-stepper">
       <div class="bs-stepper-content">
+        <br>
         <%= render :partial => "step1",  :locals=>{:form=>form} %>
+        <br>
         <%= render :partial => "step2",  :locals=>{:form=>form} %>
+        <br>
         <%= render :partial => "step3",  :locals=>{:form=>form} %>
       </div>
 

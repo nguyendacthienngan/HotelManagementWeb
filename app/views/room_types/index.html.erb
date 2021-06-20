@@ -3,11 +3,16 @@
     <%= notice %>
   </div>
 <% end %>
-
-<center><h1 class="title">Room Types</h1></center>
+<div class="d-flex justify-content-start">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Cấu hình", room_types_path %></li>
+    <li class="breadcrumb-item" aria-current="page"><a>Loại phòng</a></li>
+  </ol>
+</div>
+<!--<center><h1 class="title">Room Types</h1></center>-->
 <div class="roomtype_sum_container tRow">
     <div>
-        Danh sach loai phong ( <%= @room_types.ids.count %> )
+        Danh sách loại phòng (<%= @room_types.ids.count %>)
     </div>
     <div>
         <%= link_to new_room_type_path do%><i class="fas fa-plus-circle"></i><% end %>

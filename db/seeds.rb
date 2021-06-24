@@ -471,7 +471,7 @@ prices = RoomPrice.create!([
                              },
                              {
                                #Suite Double (Giá thêm con nít -> PriceType: 7)
-                               room_type_id: 1,
+                               room_type_id: 6,
                                price: 70000, #/ngày/người
                                price_type: 7,
                                date: DateTime.new(2021,6,3,0),

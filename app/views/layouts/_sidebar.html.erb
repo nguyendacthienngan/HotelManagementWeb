@@ -29,17 +29,18 @@
           <% end %>
         </li>
         <li id="services">
-          <%= link_to services_path, data: { toggle: 'tooltip' }, aria: { expanded: false} do %>
-            <span class="fa fa-concierge-bell"></span> Dịch vụ
-          <% end %>
-        </li>
+<!--        <li id="order_service">-->
+          <%#= link_to order_service_index_path do %>
+<!--            <span class="fa fa-concierge-bell"></span> Đặt dịch vụ-->
+          <%# end %>
+<!--        </li>-->
         <li id="individual">
           <%= link_to reservations_path do %>
             <span class="fa fa-briefcase"></span> Khách lẻ
           <% end %>
         </li>
         <li id="cooperate">
-          <%= link_to reservations_path do %>
+          <%= link_to cooperate_reservation_index_path do %>
             <span class="fa fa-users"></span> Khách đoàn
           <% end %>
         </li>
@@ -64,11 +65,11 @@
             <span class="fa fa-money-bill-wave-alt"></span> Giá Phòng
           <% end %>
         </li>
-        <li id="setting_services">
-          <%= link_to services_path do %>
-            <span class="fa fa-utensils"></span> Dịch vụ
-          <% end %>
-        </li>
+<!--        <li id="setting_services">-->
+          <%#= link_to services_path do %>
+<!--            <span class="fa fa-utensils"></span> Dịch vụ-->
+          <%# end %>
+<!--        </li>-->
         <li id="setting_employees">
           <%= link_to employees_path do %>
             <span class="fa fa-id-card-alt"></span> Nhân viên

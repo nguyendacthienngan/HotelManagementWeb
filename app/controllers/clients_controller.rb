@@ -4,6 +4,7 @@ class ClientsController < ApplicationController
   # GET /clients or /clients.json
   def index
     @clients = Client.all
+    @types = @@client_types
   end
 
   # GET /clients/1 or /clients/1.json

@@ -1,1 +1,95 @@
-<h1></h1>
+<% stylesheet_link_tag 'reservations' %>
+<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Khách đoàn", cooperate_reservation_index_path %></li>
+    <li class="breadcrumb-item" aria-current="page"><a>Khách lẻ</a></li>
+  </ol>
+</nav>
+<h2 class="d-flex justify-content-center">Danh sách đặt phòng khách đoàn</h2>
+
+<div class="row">
+  <div class="col">
+
+  </div>
+  <div class="col">
+    <%= link_to new_cooperate_reservation_path, class:"d-flex justify-content-end" do %>
+      <!--  <h3>Create new</h3>-->
+      <span class="fa fa-plus-circle fa-3x"></span>
+    <% end %>
+  </div>
+</div>
+
+<br>
+<% if @reservations %>
+  <% @reservations.each do |reservation| %>
+    <% room = Room.find(reservation.room_id) %>
+    <%  room_name = room.name %>
+    <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
+    <%# room_status = @room_statuses[room.status - 1][:text] %>
+    <% room_status = @room_statuses[reservation.status - 1][:text] %>
+
+    <% client_name = reservation.client_name %>
+
+    <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
+    <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+    <%  arrival_date = reservation.arrival_date %>
+    <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+    <%  leave_date = reservation.leave_date %>
+    <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+
+    <%  deposit = Payment.find(reservation.payment_id).deposit %>
+    <%  total = Payment.find(reservation.payment_id).temp_total %>
+
+    <div class="row">
+      <div class="col-sm-2 card card-body right-border justify-content-center left-panel ">
+        <div class="d-flex justify-content-center">
+          <%= room_name %>
+        </div>
+      </div>
+      <div class="col-sm-10 card left-border">
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-lg-9">
+              Mã <%= reservation.id %> - <%= reservation_date %>; Giá <%= price %>
+              <br>
+              <%= client_name %> | <%= arrival_date %> - <%= leave_date %>
+              <br>
+              Trạng thái: <%= room_status %>
+            </div>
+            <div class="col-lg-3">
+              <div class="row">
+                <%= link_to cooperate_reservation_path(reservation), class:"col" do %>
+                  <span class="fa fa-eye"></span>
+                <% end %>
+                <%= link_to edit_cooperate_reservation_path(reservation), class:"col" do %>
+                  <span class="fa fa-edit"></span>
+                <% end %>
+                <%= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:"col" do %>
+                  <span class="fa fa-trash"></span>
+                <% end %>
+              </div>
+              <br>
+              <%= form_with url: "/reservations/#{reservation.id}/change_status", method: :put  do |form| %>
+                <% if room.status == 2 %>
+                  <%= form.submit "Nhận phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                  <% value = 4 %>
+                <% else %>
+                  <% if room.status == 4 %>
+                    <%= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                    <% value = 0 %>
+                  <% end %>
+                <% end %>
+                <%= form.hidden_field(:status, :value => value)  %>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <% end %>
+
+<% end %>
+

@@ -1,4 +1,10 @@
 <% stylesheet_link_tag 'reservations' %>
+<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Lễ Tân", reservations_path %></li>
+    <li class="breadcrumb-item" aria-current="page"><a>Khách lẻ</a></li>
+  </ol>
+</nav>
 <h2 class="d-flex justify-content-center">Danh sách đặt phòng khách lẻ</h2>
 
 <div class="row">
@@ -18,7 +24,6 @@
   <% room = Room.find(reservation.room_id) %>
   <%  room_name = room.name %>
   <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
-  <%# room_status = @room_statuses[room.status - 1][:text] %>
   <% room_status = @room_statuses[reservation.status - 1][:text] %>
 
   <% client_name = reservation.client_name %>

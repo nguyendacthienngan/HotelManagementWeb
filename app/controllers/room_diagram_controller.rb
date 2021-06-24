@@ -51,11 +51,12 @@ class RoomDiagramController < ApplicationController
   end
 
   def get_room_type_names
-    room_types = RoomType.all
+    room_types = RoomType.all # [ {id: 1, text, ...}]
     results =  []
     if room_types
       room_types.each do |r|
         temp = {}
+        # { code: 1, text: "Standard" }
         temp[:code] = r.id
         temp[:text] = r.name
         results.push(temp)

@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.datetime "leave_date", null: false
     t.datetime "check_in_date"
     t.integer "status", default: 1, null: false
-    t.string "client_name", null: false
-    t.string "client_citizen_id", null: false
+    t.string "client_name"
+    t.string "client_citizen_id"
     t.integer "children", default: 0, null: false
     t.integer "adults", default: 0, null: false
     t.string "description"

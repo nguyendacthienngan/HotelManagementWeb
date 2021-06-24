@@ -1,9 +1,25 @@
-<center><h1 class="title">Chỉnh sửa thông tin nhân viên</h1></center>
+<div class="employee_top_breadcrumb">
+    <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </nav>
+</div>
 
 <%= render 'form', employee: @employee %>
 
-<button class="button_back"><%= link_to 'Quay lại', employees_path %></button>
-<button class="button_show"><%= link_to 'Xem', @employee %></button>
+<div class="bottom_container">
+    <%= link_to employees_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+    <%= link_to @employee do%><div class="functionality_add btn btn-primary">Xem</div><% end %>
+</div>
 
 
 

@@ -5,95 +5,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.tLine {
-    width: 100%;
-    height: 1px;
-    background-color: hsl(187, 61%, 79%);
-    margin-top: 10px;
-    box-shadow: 0px 5px 5px 0px hsl(187, 61%, 79%);
-}
-.sv-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 100px;
-    .sv-list {
-        .sv-navbar {
-            width: 670px;
-            height: 100px;
-            display: flex;
-            justify-content: space-around;
-            .sv-navbar-item {
-                
-            }
-            .sv-navbar-food {
-                width: 130px;
-                height: 100px;
-                border-radius: 16px;
-                text-align: center;
-                background-color: hsl(187, 61%, 79%);
-                
-            }
-            .sv-navbar-drink {
-                width: 130px;
-                height: 100px;
-                border-radius: 16px;
-                text-align: center;
-                background-color: hsl(335, 52%, 92%);
-                
-            }
-            .sv-navbar-laundry {
-                width: 130px;
-                height: 100px;
-                border-radius: 16px;
-                text-align: center;
-                background-color: hsl(42, 97%, 85%);
-            }
-            .sv-navbar-compensation {
-                width: 130px;
-                height: 100px;
-                border-radius: 16px;
-                text-align: center;
-                background-color: hsl(23, 83%, 82%);
-                .sv-navbar-image {
-                    color: red !important;
-                }
-            }
-            .sv-navbar-name {
-                font-size: 20px;
-                color: #07153a;
-                text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-            }
-            .sv-navbar-image {
-                color: #FD7E14;
-                font-size: 2.5rem;
-                // color: #FFBD4A;
-            }
-        }
-        .sv-food{
-            padding: 0 30px;
-            .food-detail{
-                padding-left: 20px;
-            }
-        }
-    }
-    
-    .sv-bill {
-        // background-color: hsl(100, 64%, 86%);
-        background-color: #ECECEC;
-    }
-    
-}
-
-.sv-box {
-    width: 670px;
-    height: 700px;
-    border: 1px solid #DEDEDE;
-    padding: 10px 3px ;
-}
-
-
-
 
 .tCenterHieght {display: flex; align-items: center;}
 .cart-row{padding:15px 0}
@@ -119,9 +30,331 @@
 }
 .cart-table .cart-row input{width:30px;height:auto;padding:2px;border-radius:0;border-color:#000;float:left;font-size:14px;text-align:center}
 .cart-table .cart-row button.update{border:0;padding:7px 8px;background:#000;color:#fff;font-size:9px;float:left;margin-right:5px}
-.cart-table .cart-row button.delete{background-color:#FFB2B2;color:#000!important;padding:7px 13px;font-size:13px;border:0;border-radius:50px}
+.cart-table .cart-row button.plus{background-color:#FFB2B2;color:#000!important;padding:7px 13px;font-size:13px;border:0;border-radius:50px}
 .product-price-total{font-size:16px;font-weight:400;width:80%;float:left}
 .cart-actions{display:flex;justify-content:center;align-items:center}
 .cart-special-holder{background:#efefef}
 .cart-special{padding:1em 1em 0;display:block;margin-top:.5em;border-top:1px solid #dadada}
 .cart-special .cart-special-content:before{content:"\21b3";font-size:1.5em;margin-right:1em;color:#6f6f6f;font-family:helvetica,arial,sans-serif}
+
+
+
+.tLine {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(187, 61%, 79%);
+    margin-top: 20px;
+    box-shadow: 0px 5px 5px 0px hsl(187, 61%, 79%);
+}
+
+.sv-list {
+    .sv-navbar {
+        padding: 10px;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        .sv-navbar-item {
+            
+        }
+        .sv-navbar-food {
+            width: 130px;
+            height: 100px;
+            border-radius: 16px;
+            text-align: center;
+            background-color: hsl(187, 61%, 79%);
+            
+        }
+        .sv-navbar-drink {
+            width: 130px;
+            height: 100px;
+            border-radius: 16px;
+            text-align: center;
+            background-color: hsl(335, 52%, 92%);
+            
+        }
+        .sv-navbar-laundry {
+            width: 130px;
+            height: 100px;
+            border-radius: 16px;
+            text-align: center;
+            background-color: hsl(42, 97%, 85%);
+        }
+        .sv-navbar-compensation {
+            width: 130px;
+            height: 100px;
+            border-radius: 16px;
+            text-align: center;
+            background-color: hsl(23, 83%, 82%);
+            .sv-navbar-image {
+                color: red !important;
+            }
+        }
+        .sv-navbar-name {
+            font-size: 20px;
+            color: #07153a;
+            text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+        }
+        .sv-navbar-image {
+            color: #FD7E14;
+            font-size: 2.5rem;
+            // color: #FFBD4A;
+        }
+    }
+    .sv-food{
+        padding: 0 30px;
+        .food-detail{
+            padding-left: 20px;
+        }
+    }
+}
+
+.sv-bill {
+    // background-color: hsl(100, 64%, 86%);
+    background-color: #ECECEC;
+    z-index: 5;
+    padding: 10px 30px;
+    .sv-box-title {
+        font-size: 20px;
+        color: #07153a;
+        text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+        margin-bottom: 10px;
+    }
+    .select-roomType {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+        
+    #service-tab {
+        color: #FFBD4A;
+        display: table;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: black;
+        margin-bottom: 10px;
+    }
+        
+        
+       
+}
+    .tTextRight{
+        justify-content: flex-end;
+    }
+    
+    .sv-bill-total-value {
+        font-weight: 600;
+    }
+    
+
+.sv-box {
+    width: 670px;
+    height: 700px;
+    border: 1px solid #DEDEDE;
+    padding: 10px 3px ;
+}
+
+
+.top_breadcrumb{
+    font-weight: 700;
+    font-size: 0.9375rem;
+    
+}
+
+.orderservice_main_view{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+    width: 100%;
+
+    .left_container{
+        padding-top: 10px;
+        min-height: 300px;
+        flex-grow: 1;
+        border-right: solid 1px grey;
+    }
+    
+    .right_container{
+        position: relative;
+        width: 30%;
+        max-width: 460px;
+        
+        padding: 10px 0px 10px 0px;
+        width: calc(100% - 10px);
+        padding: 5px;
+        z-index: 5;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        tr:hover {
+            background-color: pink;
+            cursor: pointer;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    }
+
+    .section_name{
+        font-weight: 700;
+        font-size: 1rem;
+        margin-left: 5px;
+        color: purple;
+    }
+
+    .functionalities{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .functionality_item{
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px black;
+        text-align: center;
+
+    }
+
+    .functionality_item:hover{
+        background-color: pink;
+        cursor: pointer;
+    }
+
+    .timkiem_container{
+        width: 100%;
+    }
+
+    .timkiem_container input {
+        margin: 5px;
+        width: calc(100% - 10px);
+        padding: 8px 5px 8px 5px;
+        background-color: lightgray;
+        outline: none;
+        border: solid 1px transparent;
+        font-size: 0.9375rem;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .timkiem_container input:focus{
+        background-color: inherit;
+        border: solid 1px purple !important;
+    }
+
+    .boloc_container{
+        margin-left: 5px;
+    }
+
+
+    .sv-food-list{
+        max-height: 500px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    
+
+    .sv-bill-total-container{
+        margin-top: 10px;
+        .sv-bill-total-label{
+
+        }
+        .sv-bill-total-value{
+            font-weight: 700;
+        }
+    }
+
+    .sv-bill-responsive{
+        margin-top: 10px;
+        padding: 10px;
+        background-color: lightseagreen;
+        text-align: center;
+        display: none;
+        cursor: pointer;
+    }
+    
+    .sv-bill-close-responsive{
+        display: none;
+        font-weight: 700;
+    }
+    .sv-bill-total-blurred-background{
+        display: none;
+    }
+    @media only screen and (max-width: 1400px) {
+        flex-direction: column;
+        .functionality_item{
+            max-width: 120px;
+        }
+        
+        .left_container{
+            border-right: none;
+        }
+        .right_container{
+            display: none;
+        }
+        .sv-bill-responsive{
+            display: block;
+        }
+        .sv-bill-responsive-content .sv-bill-total-blurred-background{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0, 0.3);
+            z-index: -3;
+        }
+        .sv-bill-responsive-content{
+            display: block;
+            position: absolute;
+            max-width: none;
+            
+            max-width: 100%;
+            top: 50%;
+            left: 50%;
+            margin-top: -200px; /* Negative half of height. */
+            margin-left: -50%; /* Negative half of width. */
+            z-index: 5;
+        }
+        .sv-bill-close-responsive{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            background-color: #FFB2B2;
+            cursor: pointer;
+            z-index: 5;
+        }
+    }
+    
+
+}
+
+
+
+
+
+   
+  
+
+
+

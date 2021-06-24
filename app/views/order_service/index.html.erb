@@ -1,132 +1,287 @@
 
 <% if notice %>
-  <div class="notification notice_success">
-    <%= notice %>
-  </div>
+<div class="notification notice_success">
+  <%= notice %>
+</div>
 <% end %>
 
 <center><h1 class="title">DỊCH VỤ</h1></center>
 
-<div class="sv-container tRow">
-  <div class="sv-box sv-list tColumn">
-    <div class="sv-navbar tRow">
-      <div class="sv-navbar-item sv-navbar-food tColumn">
-        <div class="sv-navbar-name">Đồ ăn</div>
-        <div class="sv-navbar-image">
-          <i class="fas fa-concierge-bell"></i>
-        </div>
+
+
+
+
+
+
+<div class="employee_top_breadcrumb">
+<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="d-flex justify-content-start">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
+        </ol>
       </div>
-      <div class="sv-navbar-drink">
-        <div class="sv-navbar-name">Thức uống</div>
-        <div class="sv-navbar-image">
-          <i class="fas fa-glass-cheers"></i>
-        </div>
-      </div>
-      <div class="sv-navbar-laundry">
-        <div class="sv-navbar-name">Giặt là</div>
-        <div class="sv-navbar-image">
-          <i class="fas fa-tshirt"></i>
-        </div>
-      </div>
-      <div class="sv-navbar-compensation">
-        <div class="sv-navbar-name">Bồi thường</div>
-        <div class="sv-navbar-image">
-          <i class="fas fa-file-invoice-dollar"></i>
-        </div>
-      </div>
-    </div>
-    <div class="sv-food tColumn">
-      <div class="tLine tRow"></div>
-      <div class="sv-food-item">
-        <div class="row cart-row">
-          <div class="tCenterHieght col-xs-12 col-md-2">
-          <%= image_tag("mySpaghetti.jpg", :alt => "mỳ spaghetti", size: "100x100") %>
-          </div>
-          <div class="col-md-6 food-detail">
-            <div class="product-articlenr">#643489</div>
-            <div class="product-name">Mỳ Spaghetti</div>
-            <div class="product-options">
-              <span>Đơn vị:</span> Dĩa<br>
-              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="3" class="form-control"></span>
-            </div>
-          </div>
-          <div class="col-md-3 cart-actions">
-            <div class="product-price-total">60000 VNĐ</div>
-            <div class="product-delete">
-              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end food-item -->
-      <div class="sv-food-item">
-        <div class="row cart-row">
-          <div class="tCenterHieght col-xs-12 col-md-2">
-          <%= image_tag("comTron.jpg", :alt => "cơm trộn", size: "100x100") %>
-          </div>
-          <div class="col-md-6 food-detail">
-            <div class="product-articlenr">#643489</div>
-            <div class="product-name">Cơm trộn Hàn Quốc</div>
-            <div class="product-options">
-              <span>Đơn vị:</span> Tô<br>
-              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
-            </div>
-          </div>
-          <div class="col-md-3 cart-actions">
-            <div class="product-price-total">85000 VNĐ</div>
-            <div class="product-delete">
-              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end food-item -->
-      <div class="sv-food-item">
-        <div class="row cart-row">
-          <div class="tCenterHieght col-xs-12 col-md-2">
-          <%= image_tag("pho.png", :alt => "phở", size: "100x100") %>
-          </div>
-          <div class="col-md-6 food-detail">
-            <div class="product-articlenr">#643489</div>
-            <div class="product-name">Phở</div>
-            <div class="product-options">
-              <span>Đơn vị:</span> Tô<br>
-              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
-            </div>
-          </div>
-          <div class="col-md-3 cart-actions">
-            <div class="product-price-total">70000 VNĐ</div>
-            <div class="product-delete">
-              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end food-item -->
-      <div class="sv-food-item">
-        <div class="row cart-row">
-          <div class="tCenterHieght col-xs-12 col-md-2">
-          <%= image_tag("caHop.jpg", :alt => "cá hộp", size: "100x100") %>
-          </div>
-          <div class="col-md-6 food-detail">
-            <div class="product-articlenr">#643489</div>
-            <div class="product-name">Cá hộp 3 cô gái</div>
-            <div class="product-options">
-              <span>Đơn vị:</span> Lon<br>
-              <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
-            </div>
-          </div>
-          <div class="col-md-3 cart-actions">
-            <div class="product-price-total">25000 VNĐ</div>
-            <div class="product-delete">
-              <button type="button" data-toggle="tooltip" title="Ta bort" class="delete" onclick="cart.remove('5');"><i class="fas fa-times-circle"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end food-item -->
     </div>
   </div>
+</nav>
 
-  <div class="sv-box sv-bill tColumn"></div>
 </div>
+
+<div class="orderservice_main_view">
+
+    <div class="left_container">
+        <div class="sv-list tColumn">
+            <div class="sv-navbar tRow">
+                <div class="sv-navbar-item sv-navbar-food tColumn">
+                    <div class="sv-navbar-name">Đồ ăn</div>
+                    <div class="sv-navbar-image">
+                    <i class="fas fa-concierge-bell"></i>
+                    </div>
+                </div>
+                <div class="sv-navbar-drink">
+                    <div class="sv-navbar-name">Thức uống</div>
+                    <div class="sv-navbar-image">
+                    <i class="fas fa-glass-cheers"></i>
+                    </div>
+                </div>
+                <div class="sv-navbar-laundry">
+                    <div class="sv-navbar-name">Giặt là</div>
+                    <div class="sv-navbar-image">
+                    <i class="fas fa-tshirt"></i>
+                    </div>
+                </div>
+                <div class="sv-navbar-compensation">
+                    <div class="sv-navbar-name">Bồi thường</div>
+                    <div class="sv-navbar-image">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                </div>
+                </div>
+                <div class="sv-food tColumn">
+                <div class="tLine tRow"></div>
+
+                <div class="sv-food-list">
+
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("mySpaghetti.jpg", :alt => "mỳ spaghetti", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Mỳ Spaghetti</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Dĩa<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="3" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">60000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("comTron.jpg", :alt => "cơm trộn", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Cơm trộn Hàn Quốc</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Tô<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">85000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("pho.png", :alt => "phở", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Phở</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Tô<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">70000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("caHop.jpg", :alt => "cá hộp", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Cá hộp 3 cô gái</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Lon<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">25000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("caHop.jpg", :alt => "cá hộp", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Cá hộp 3 cô gái</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Lon<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">25000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("caHop.jpg", :alt => "cá hộp", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Cá hộp 3 cô gái</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Lon<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">25000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                    <div class="sv-food-item">
+                        <div class="row cart-row">
+                        <div class="tCenterHieght col-xs-12 col-md-2">
+                        <%= image_tag("caHop.jpg", :alt => "cá hộp", size: "100x100") %>
+                        </div>
+                        <div class="col-md-6 food-detail">
+                            <div class="product-articlenr">#643489</div>
+                            <div class="product-name">Cá hộp 3 cô gái</div>
+                            <div class="product-options">
+                            <span>Đơn vị:</span> Lon<br>
+                            <span class="tRow tCenterHieght">Số lượng: <input type="text" name="quantity[4]" value="1" size="1" class="form-control"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-actions">
+                            <div class="product-price-total">25000 VNĐ</div>
+                            <div class="product-delete">
+                            <button type="button" data-toggle="tooltip" title="Thêm" class="plus" onclick="cart.add('5');"><i class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- end food-item -->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div id="right-container" class="right_container ">
+        <div class="sv-bill-total-blurred-background"></div>
+        <div class="sv-bill tColumn">
+            <div class="sv-box-title">Thông tin đặt dịch vụ</div>
+            <div class="sv-bill-close-responsive" onclick="hideBillDetaisResponsive()">X</div>
+            <div class="select-roomType">chọn phòng</div>
+            <table>
+            <tr>
+                <th>Dịch vụ</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Điều chỉnh</th>
+            </tr>
+            <tr>
+                <td>Mỳ ý</td>
+                <td>60000</td>
+                <td>1</td>
+                <td>
+                <div class="select" id="0" onclick="callup_arrays(this.id)">Select</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mỳ ý</td>
+                <td>60000</td>
+                <td>1</td>
+                <td>
+                <div class="select" id="0" onclick="callup_arrays(this.id)">Select</div>
+                </td>
+            </tr>
+            </table>
+            <div class="sv-bill-total-container">
+                <span class="sv-bill-total-label">Tổng tiền: </span>
+                <span class="sv-bill-total-value"> 120000 VND </span>
+            </div>
+            
+            
+        </div>
+
+    </div>
+    
+    <div class="sv-bill-responsive" onclick="showBillDetaisResponsive()">
+        
+        <div class="sv-bill-total-container">
+            <span class="sv-bill-total-label">Tổng tiền: </span>
+            <span class="sv-bill-total-value"> 120000 VND </span>
+        </div>
+        
+    </div>
+
+</div>
+
+
+<script>
+    function showBillDetaisResponsive(){
+        document.getElementById("right-container").classList.add("sv-bill-responsive-content");
+    }
+    function hideBillDetaisResponsive(){
+        document.getElementById("right-container").classList.remove("sv-bill-responsive-content");
+    }
+</script>

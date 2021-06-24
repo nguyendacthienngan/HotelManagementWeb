@@ -1,4 +1,18 @@
-<center><h1 class="title">New Room Type</h1></center>
+<div class="employee_top_breadcrumb">
+<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="d-flex justify-content-start">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+          <li class="breadcrumb-item"><a href="#">Loại phòng</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Thêm</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
 <%= render 'form', room_type: @room_type %>
 
-<button class="button_back"><%= link_to 'Back', room_types_path %></button>
+<%= link_to room_types_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>

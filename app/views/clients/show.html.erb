@@ -1,7 +1,22 @@
 <center>
+<div class="employee_top_breadcrumb">
+    <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                <li class="breadcrumb-item"><a href="#">Khách hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Xem</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </nav>
+</div>
   <p id="notice"><%= notice %></p>
-  
-  <div class="show_container tColumn">
+  <div class="show_container">
+  <div class="show_content tColumn">
   <p class="tRow">
     <strong class="show_employee_name">Họ tên</strong>
     <strong class="show_sign">:</strong>
@@ -56,9 +71,9 @@
     <%= @client.nationality %>
   </p>
   </div>
-</center>
-  
   <div class="bottom_container">
-    <button class="button_back"><%= link_to 'Quay lại', clients_path %></button>
-    <button class="button_edit button_edit_center"><%= link_to 'Chỉnh sửa', edit_client_path(@client) %></button>
+    <%= link_to clients_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+    <%= link_to edit_client_path(@client) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
   </div>
+  </div>
+</center>

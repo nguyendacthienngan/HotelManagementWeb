@@ -1,71 +1,89 @@
 <center>
+<div class="employee_top_breadcrumb">
+    <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Xem</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </nav>
+</div>
 <p id="notice"><%= notice %></p>
+<div class="show_container">
+  <div class="show_content tColumn">
+  <p class="tRow">
+    <strong class="show_employee_name">Họ tên</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.name %>
+  </p>
 
-<div class="show_container tColumn">
-<p class="tRow">
-  <strong class="show_employee_name">Họ tên</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.name %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Loại</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.employee_type %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Loại</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.employee_type %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Giới tính</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.gender %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Giới tính</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.gender %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Số điện thoại</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.phone_number %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Số điện thoại</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.phone_number %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Địa chỉ</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.address %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Địa chỉ</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.address %>
-</p>
+  <p class="tRow">
+    <strong  class="show_employee_name">Email</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.email %>
+  </p>
 
-<p class="tRow">
-  <strong  class="show_employee_name">Email</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.email %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Ngày sinh</strong>
+    <strong class="show_sign">:</strong>
+    <%= Date.parse(@employee.date_of_birth.to_s) %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Ngày sinh</strong>
-  <strong class="show_sign">:</strong>
-  <%= Date.parse(@employee.date_of_birth.to_s) %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Thành Phố</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.citizen_id %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Thành Phố</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.citizen_id %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Quốc tịch</strong>
+    <strong class="show_sign">:</strong>
+    <%= @employee.nationality %>
+  </p>
 
-<p class="tRow">
-  <strong class="show_employee_name">Quốc tịch</strong>
-  <strong class="show_sign">:</strong>
-  <%= @employee.nationality %>
-</p>
+  <p class="tRow">
+    <strong class="show_employee_name">Status</strong>
+    <strong class="show_sign">:</strong>
+    <input type="checkbox" id="switch" name="isWorking" value="1" class="employee_status_checkbox" checked /><label class="label-status" for="switch">Toggle</label>
+  </p>
+  </div>
 
-<p class="tRow">
-  <strong class="show_employee_name">Status</strong>
-  <strong class="show_sign">:</strong>
-    <input type="checkbox" id="switch" name="isWorking" value="1" checked /><label class="label-status" for="switch">Toggle</label>
-</p>
+  <div class="bottom_container">
+    <%= link_to employees_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+    <%= link_to edit_employee_path(@employee) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
+  </div>
 </div>
 </center>
 
-<div class="bottom_container">
-  <button class="button_back"><%= link_to 'Quay lại', employees_path %></button>
-  <button class="button_edit button_edit_center"><%= link_to 'Chỉnh sửa', edit_employee_path(@employee) %></button>
-</div>
+
 

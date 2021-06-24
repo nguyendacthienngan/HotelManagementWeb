@@ -1,111 +1,107 @@
-<div class="d-flex justify-content-start">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to "Cấu hình", clients_path %></li>
-    <li class="breadcrumb-item" aria-current="page"><a>Khách hàng</a></li>
-  </ol>
-</div>
-<!-- <h1>Clients</h1>
+	<div class="employee_top_breadcrumb">
+		<nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="d-flex justify-content-start">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Khách hàng</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</nav>
+	
+	</div>
+	
+	<div class="client_main_view">
+	
+			<div class="left_container">
+				<div class="section_name" >
+					Danh sách: <%= @clients.ids.count %> khách hàng
+				</div>
+				<table>
+						<tr>
+							<th>Mã số</th>
+							<th>Họ tên</th>
+							<th>Loại khách hàng</th>
+							<th>Số điện thoại</th>
+						</tr>
+	
+						<% @clients.each do |client| %>
+								<tr class="client_row">
+									<td id="client_row_id"> <%= client.id %> </td>
+									<td> <%= client.name %> </td>
+									<td> <%= client.client_type %></td>
+									<td> <%= client.phone_number %></td>
+								</tr>
+						<% end %>
+				</table>
+			</div>
+	
+	
+			<div class="right_container">
+					<div class="section_name">Hành động</div>
+					<div class="functionalities ">
+					<%= link_to new_client_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+					</div>
+					<div class="functionalities">
+							<div id="client_btn_show" class="functionality_item">Xem</div>
+							<div id="client_btn_delete" class=" functionality_item ">Xóa</div>
+							<div id="client_btn_edit" class="functionality_item ">Sửa</div>
+					</div>
+	
+					<div class="section_name">Tìm kiếm</div>
+					<div class="timkiem_container">
+							<input />
+					</div>
+	
+					<div class="section_name">Bộ lọc</div>
+	
+					<div class="boloc_container">
+							<div class="boloc_item">
+									<input type="checkbox" value="male" />
+									<span class="boloc_label">Nam</span>
+							</div>
+							<div class="boloc_item">
+								<input type="checkbox" value="female" />
+								<span class="boloc_label">Nữ</span>
+							</div>
+					</div>
+	
+			</div>
+	</div>
+	
+	<script>
+	let selectedID;
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Citizen</th>
-      <th>Gender</th>
-      <th>Nationality</th>
-      <th>Date of birth</th>
-      <th>Email</th>
-      <th>Type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+	let allClients = document.querySelectorAll(".client_row");
+	let allButtonNotClick = document.querySelectorAll(".functionality_item");
+	
+	for(let i=0; i<allClients.length; i++){
+		allClients[i].addEventListener('click', function(){
+					for (let previousSelectedRow of document.querySelectorAll(".row_selected")) {
+							previousSelectedRow.classList.remove("row_selected");
+					}
+					
+					selectedID = allClients[i].querySelector("#client_row_id").innerHTML * 1;
+					this.classList.add("row_selected");
+					for(let i=0; i<allButtonNotClick.length; i++){
+							allButtonNotClick[i].classList.remove("functionality_item");
+							allButtonNotClick[i].classList.add("button_selected");
+					}
+			});
+	}
 
-  <tbody>
-    <% @clients.each do |client| %>
-      <tr>
-        <td><%= client.name %></td>
-        <td><%= client.citizen_id %></td>
-        <td><%= client.gender %></td>
-        <td><%= client.nationality %></td>
-        <td><%= client.date_of_birth %></td>
-        <td><%= client.email %></td>
-        <td><%= client.client_type %></td>
-        <td><%= link_to 'Show', client %></td>
-        <td><%= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Client', new_client_path %> -->
-
-<!--  -->
-<% if notice %>
-  <div class="notification notice_success">
-    <%= notice %>
-  </div>
-<% end %>
-
-<!--<center><h1 class="title">KHÁCH HÀNG</h1></center>-->
-
-<div class="roomtype_sum_container tRow">
-  <div>
-      Danh sach khách hàng: <%= @clients.ids.count %> thành viên
-  </div>
-<!--  <div class="searchBar tColumn">-->
-<!--    <div class="tRow">-->
-<!--      <select id="typeSearch tColumn">-->
-<!--        <option value="name" selected>Tên</option>-->
-<!--        <option value="cli_type">Loại khách hàng</option>-->
-<!--        <option value="phone">Số điện thoại</option>-->
-<!--        <option value="address">Địa chỉ</option>-->
-<!--        <option value="gender">Giới tính</option>-->
-<!--        <option value="nationality">Quốc tịch</option>-->
-<!--        <option value="city">Thành phố</option>-->
-<!--        <option value="DOB">Ngày sinh</option>-->
-<!--        <option value="email">Email</option>-->
-<!--      </select>-->
-<!--      <input type="search" id="gsearch" name="gsearch" class="tColumn showInput">-->
-<!--    </div>-->
-<!--  </div>-->
-  <div class="tColumn newIcon e_tooltip">
-        <%= link_to new_client_path do%><i class="fas fa-plus-circle"></i><% end %>
-        <span class="tooltiptext">Tạo mới</span>
-  </div>
-</div>
-
-<center>
-  <div class="roomtype_list_container tColumn">
-    <% @clients.each do |client| %>
-      <div class="item tRow">
-          <div class="section tRow">
-              <div class="e_tooltip">
-                <%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-minus-circle"></i><% end %>
-                <span class="tooltiptext">Xóa</span>
-              </div>
-              <div class="tColumn employee_name">
-                  <div>
-                      <%= client.name %>
-                  </div>
-                  <div class="employee_type">
-                    <%#= @types[client.client_type - 1][:text] %>
-                  </div>
-              </div>
-          </div>
-          <div class="section tRow">
-            <div class="icon_costom e_tooltip">
-              <%= link_to client do %> <i class="fa fa-eye"></i><% end %>
-              <span class="tooltiptext">Xem chi tiết</span>
-            </div>
-            <div class="icon_costom e_tooltip">
-                <%= link_to edit_client_path(client) do%><i class="fas fa-pencil-alt"></i><% end %>
-                <span class="tooltiptext">Sửa</span>
-            </div>
-          </div>
-      </div>
-      <% end %>
-  </div>
-  </center>
+	document.querySelector("#client_btn_edit").addEventListener('click', function(){
+			if (selectedID > 0) {
+					window.location = `${window.location}/${selectedID}/edit`;
+			}
+			
+	});
+	document.querySelector("#client_btn_show").addEventListener('click', function(){
+			if (selectedID > 0) {
+					window.location = `${window.location}/${selectedID}`;
+			}
+	});
+	</script>

@@ -1,51 +1,150 @@
-// Place all the styles related to the Employees controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-.employee_type{
-    font-size: 14px;
-    font-weight: bold;
-}
 
-._form_checkbox{
-    font-size: 17px;
-}
-
-.show_container{
-    color: black;
-    & > div{
-        width: 100%;
-    }
-    font-size: 20px;
-    max-width: 500px;
-    width: 100% ;
-    text-align: left;
-    margin-left: 200px;
-    .show_employee_name{
-        width: 150px;
-    }
-    .show_roomtype_name{
-        width: 200px;
-    }
-    .show_sign{
-        width: 50px;
-    }
-}
-
-.field_with_errors{
-    input {
-        width: 100%;
-        border: solid 2px red;
-    }
+.top_breadcrumb{
+    font-weight: 700;
+    font-size: 0.9375rem;
     
 }
-.error_explanation{
-    background-color: red;
-}
 
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
+.employee_main_view{
+    display: flex;
+    flex-direction: row;
+    border: solid 1px black;
+    width: 100%;
+
+    .left_container{
+        min-height: 300px;
+        flex-grow: 1;
+        border-right: solid 1px grey;
+    }
+    
+    .right_container{
+        width: 30%;
+        max-width: 360px;
+        
+        padding: 10px 0px 10px 0px;
+        width: calc(100% - 10px);
+        padding: 5px;
+    }
+
+    table { 
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        tr:hover {
+            background-color: #A5B8EA;
+            cursor: pointer;
+        }
+        tr.row_selected{
+            background-color: #7895E0;
+            cursor: pointer;
+        }
+    }
+    
+
+    .functionalities_choised {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .section_name{
+        font-weight: 700;
+        font-size: 1rem;
+        margin-left: 5px;
+        color: #436BD5;
+    }
+
+    .functionalities{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+    .functionality_add {
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px back;
+        text-align: center;
+        border-radius: 4px;
+    }
+    .functionality_item{
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px gray;
+        text-align: center;
+        border-radius: 4px;
+        color: gray;
+        background-color: #bfbfbf;
+    }
+    .button_selected {
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px black;
+        text-align: center;
+        border-radius: 4px;
+        &:hover {
+            background-color: #7895E0;
+            cursor: pointer;
+        }
+        color: black;
+    }
+
+    
+
+    .timkiem_container{
+        width: 100%;
+    }
+
+    .timkiem_container input {
+        margin: 5px;
+        width: calc(100% - 10px);
+        padding: 8px 5px 8px 5px;
+        background-color: lightgray;
+        outline: none;
+        border: solid 1px transparent;
+        font-size: 0.9375rem;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .timkiem_container input:focus{
+        background-color: inherit;
+        border: solid 1px #436BD5 !important;
+    }
+
+    .boloc_container{
+        margin-left: 5px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        flex-direction: column-reverse;
+            .functionality_item{
+                max-width: 120px;
+            }
+            .button_selected{
+                max-width: 120px;
+            }
+            
+            .left_container{
+                border-right: none;
+            }
+            .right_container{
+                width: 100%;
+                max-width: 100%;
+            }
+    }
 }
 
 .label-status {
@@ -71,6 +170,11 @@ input[type=checkbox]{
 	transition: 0.3s;
 }
 
+
+.employee_status_checkbox{
+    display:none;
+}
+
 input:checked + .label-status {
 	background: #bada55;
 }
@@ -84,70 +188,50 @@ input:checked + .label-status:after {
 	width: 130px*0.3;
 }
 
-.searchBar{
-    display: flex!important;
-    justify-content: flex-end!important;
-    select{
-        color: #07153a;
-        background-color: #ffffff;
-    }
-    .tform-group .tform-control-feedback {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 2;
-        display: block;
-      }
-    input{
-        border: solid 0.5px gray;
-        width: 300px;
-    }
-    input:focus{
-        outline: 1px solid #07153a;
-        box-shadow: #07153a;
-        width: 300px;
-    }
-    
-}
-
-.newIcon{
-    i{
-        color: #07153a !important;
-        &:hover{
+.show_container{
+    .show_content{
+        color: black;
+        & > div{
+            width: 100%;
         }
+        max-width: 400px;
+        text-align: left;
+        .show_employee_name{
+            width: 40%;
+        }
+        .show_roomtype_name{
+            width: 50%;
+        }
+        .show_sign{
+            width: 10%;
+        }
+        p {
+            font-size: 1.1rem !important;
+        }
+        margin-bottom: 50px;
     }
+    width: 50%;
+    padding: 50px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 8px;
+    @media only screen and (max-width: 1200px) {
+        flex-direction: column-reverse;
+            .show_content{
+                max-width: 250px;
+                margin-bottom: 20px !important;
+                p {
+                    font-size: 0.95rem !important;
+                }
+            }
+        width: 80%;
+        padding: 30px;
+    }
+            
 }
 
-.show_container {
-    &>p{
-        font-size: 17px !important;
-    }
-}
 
-.e_tooltip {
-    position: relative;
-    display: inline-block;
-  }
+
+   
   
-  .e_tooltip .tooltiptext {
-    visibility: hidden;
-    width: 50px;
-    background-color: white;
-    color: #000000;
-    text-align: center;
-    border: solid 1px #000000;
-    border-radius: 6px;
-    padding: 5px 0;
-    font-size: 13px;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
-  }
-  
-  .e_tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+

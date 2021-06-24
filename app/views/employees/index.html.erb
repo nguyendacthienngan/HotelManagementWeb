@@ -1,78 +1,113 @@
-<% if notice %>
-  <div class="notification notice_success">
-    <%= notice %>
-  </div>
-<% end %>
 
-<!--<center><h1 class="title">NHÂN VIÊN</h1></center>-->
-<div class="d-flex justify-content-start">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to "Cấu hình", employees_path %></li>
-    <li class="breadcrumb-item" aria-current="page"><a>Nhân viên</a></li>
-  </ol>
-</div>
-<div class="roomtype_sum_container tRow">
-  <div class="tColumn" >
-      Danh sách nhân viên: <%= @employees.ids.count %> nhân viên
-  </div>
-<!--  <div class="searchBar tColumn">-->
-<!--    <div class="tRow">-->
-<!--      <select id="typeSearch tColumn">-->
-<!--        <option value="name" selected>Tên</option>-->
-<!--        <option value="emp_type">Loại nhân viên</option>-->
-<!--        <option value="phone">Số điện thoại</option>-->
-<!--        <option value="address">Địa chỉ</option>-->
-<!--        <option value="gender">Giới tính</option>-->
-<!--        <option value="nationality">Quốc tịch</option>-->
-<!--        <option value="city">Thành phố</option>-->
-<!--        <option value="DOB">Ngày sinh</option>-->
-<!--        <option value="email">Email</option>-->
-<!--      </select>-->
-<!--      <div class="tform-group">-->
-<!--        <input  aria-label="Search" type="text" class="tform-control tColumn" placeholder="Tìm kiếm...">-->
-<!--        <span class="fa fa-search tform-control-feedback"></span>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-  <div class="tColumn newIcon e_tooltip">
-      <%= link_to new_employee_path do%><i class="fas fa-plus-circle"></i><% end %>
-        <span class="tooltiptext">Tạo mới</span>
-  </div>
+<div class="employee_top_breadcrumb">
+    <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </nav>
+
 </div>
 
+<div class="employee_main_view">
 
-<center>
+    <div class="left_container">
+        <div class="section_name" >
+            Danh sách: <%= @employees.ids.count %> nhân viên
+        </div>
+        <table>
+            <tr>
+                <th>Mã số</th>
+                <th>Họ Tên</th>
+                <th>Loại Nhân Viên</th>
+            </tr>
 
-  <div class="roomtype_list_container tColumn">
-    <% @employees.each do |employee| %>
-      <div class="item tRow">
-          <div class="section tRow">
-              <div class="e_tooltip">
-                  <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fas fa-minus-circle"></i><% end %>
-                  <span class="tooltiptext">Xóa</span>
-              </div>
-              <div class="tColumn employee_name">
-                  <div>
-                      <%= employee.name %>
-                  </div>
-                  <div class="employee_type">
-                      <%= @types[employee.employee_type - 1][:text] %>
-                  </div>
-              </div>
-          </div>
-          <div class="section tRow">
-            <div class="icon_costom e_tooltip">
-              <%= link_to  employee do %> <i class="fa fa-eye"></i><% end %>
-              <span class="tooltiptext">Xem chi tiết</span>
+            <% @employees.each do |employee| %>
+                <tr class="employee_row">
+                    <td id="employee_row_id"> <%= employee.id %> </td>
+                    <td id="employee_row_name"> <%= employee.name %> </td>
+                    <td> <%= employee.employee_type %> </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+
+
+    <div class="right_container">
+        <div class="section_name">Hành động</div>
+        <div class="functionalities ">
+        <%= link_to new_employee_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+        </div>
+        <div class="functionalities">
+            <div id="employee_btn_show" class="functionality_item">Xem</div>
+            <div id="employee_btn_delete" class="functionality_item ">Xóa</div>
+            <div id="employee_btn_edit" class="functionality_item ">Sửa</div>
+        </div>
+
+        <div class="section_name">Tìm kiếm</div>
+        <div class="timkiem_container">
+            <input />
+        </div>
+
+        <div class="section_name">Bộ lọc</div>
+
+        <div class="boloc_container">
+            <div class="boloc_item">
+                <input type="checkbox" value="nam" />
+                <span class="boloc_label">Nam</span>
             </div>
-            <div class="icon_costom e_tooltip">
-                <%= link_to edit_employee_path(employee) do%><i class="fas fa-pencil-alt"></i><% end %>
-                  <span class="tooltiptext">Sửa</span>
+            <div class="boloc_item">
+              <input type="checkbox" value="nu" />
+              <span class="boloc_label">Nữ</span>
             </div>
-          </div>
-      </div>
-      <% end %>
-  </div>
+        </div>
 
-</center>
+    </div>
+</div>
 
+<script>
+    let selectedID;
+
+    // Map all HTML Row to Array JS
+    let allEmployees = document.querySelectorAll(".employee_row");
+    let allButtonNotClick = document.querySelectorAll(".functionality_item");
+    
+    // Add onclick listener to each row
+    for(let i=0; i<allEmployees.length; i++){
+        allEmployees[i].addEventListener('click', function(){
+            // Remove all color of previous selected row
+            for (let previousSelectedRow of document.querySelectorAll(".row_selected")) {
+                previousSelectedRow.classList.remove("row_selected");
+            }
+            
+            selectedID = allEmployees[i].querySelector("#employee_row_id").innerHTML * 1;
+            this.classList.add("row_selected");
+            for(let i=0; i<allButtonNotClick.length; i++){
+                allButtonNotClick[i].classList.remove("functionality_item");
+                allButtonNotClick[i].classList.add("button_selected");
+            }
+        });
+    }
+
+    document.querySelector("#employee_btn_edit").addEventListener('click', function(){
+        if (selectedID > 0) {
+            window.location = `${window.location}/${selectedID}/edit`;
+        }
+        
+    });
+    document.querySelector("#employee_btn_show").addEventListener('click', function(){
+        if (selectedID > 0) {
+            window.location = `${window.location}/${selectedID}`;
+        }
+    });
+
+
+
+
+</script>

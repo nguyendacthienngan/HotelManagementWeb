@@ -19,19 +19,20 @@ Rails.application.routes.draw do
   resources :room_prices
   resources :order_service
   resources :cooperate_reservation
+
   get "/room_diagram", to: "room_diagram#index"
   post "/room_diagram", to: "room_diagram#index"
 
   get "/room_diagram/quick_reserve_room", to: "room_diagram#quick_reserve_room"
   get "/room_diagram/quick_reserve_room/:room_id/", to: "room_diagram#quick_reserve_room"
-
-
   get "/room_diagram/room_info/", to: "room_diagram#room_info"
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
-  get "/cooperate_reservation", to: "individual_reservation#index"
-  get "/cooperate_reservation/:reservation_id", to: "individual_reservation#show"
-  get "/cooperate_reservation/new/:room_id", to: "individual_reservation#new"
+  get "/cooperate_reservation", to: "cooperate_reservation#index"
+  get "/cooperate_reservation/:reservation_id", to: "cooperate_reservation#show"
+  get "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
+  post "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
+  post "/cooperate_reservation/new/", to: "cooperate_reservation#new"
 
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

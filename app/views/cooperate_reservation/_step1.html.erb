@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_with url: "/cooperate_reservation/new", class:"form-group" do |form| %>
+  <%#= form_with url: "/cooperate_reservation/new", class:"form-group row w-100" do |search| %>
     <div class="dropdown col-md">
       <%= form.collection_select :room_type_id, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id], prompt: 'Loại phòng'}, {class: 'form-select'}%>
     </div>
@@ -27,8 +27,8 @@
 
     </div>
 
-    <%= form.submit "Tìm kiếm", class: "btn btn-primary col-md-2 " %>
-  <% end %>
+    <div class="btn btn-primary col-md-2 ">Tìm kiếm</div>
+  <%# end %>
 </div>
 
 <br>

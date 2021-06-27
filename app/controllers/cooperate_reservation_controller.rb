@@ -21,13 +21,13 @@ class CooperateReservationController < ApplicationController
     if arrival_date
       @arrival_date = Time.parse(arrival_date).getutc
     else
-      @arrival_date = Date.today
+      @arrival_date = DateTime.now
     end
 
     if leave_date
       @leave_date = Time.parse(leave_date).getutc
     else
-      @leave_date = Date.today
+      @leave_date = DateTime.now
     end
 
     #Xem lại trạng thái của đặt: Là đang đặt thôi chứ chưa nhận phòng?
@@ -46,6 +46,11 @@ class CooperateReservationController < ApplicationController
         @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
       end
     end
+
+    #Sessions
+
+
+
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
   end

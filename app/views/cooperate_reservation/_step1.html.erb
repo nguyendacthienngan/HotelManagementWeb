@@ -7,7 +7,7 @@
       <%= form.text_field :arrival_date,
                           data: {
                             controller: "flatpickr",
-                            flatpickr_date_format: "d-m-Y",
+                            flatpickr_date_format: "d/m/Y",
                             flatpickr_min_date: Time.zone.now
                           },
                           class: "form-select read-only-white",
@@ -18,7 +18,7 @@
       <%= form.text_field :leave_date,
                           data: {
                             controller: "flatpickr",
-                            flatpickr_date_format: "d-m-Y",
+                            flatpickr_date_format: "d/m/Y",
                             flatpickr_min_date: Time.zone.now
                           },
                           class: "form-select read-only-white",
@@ -63,7 +63,7 @@
   <div class="col-lg  card h-100">
     <div id="result_header" class="card-header">
       <h4>Phòng đã chọn</h4>
-      <div> Từ ngày - Đến ngày</div>
+      <div> Từ ngày <%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %> - Đến ngày <%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %> </div>
     </div>
     <% @room_types.each do |room_results| %>
       <div class="card-body">
@@ -87,6 +87,10 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+        $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+    })
     function searchRooms(){
       var room_type_id = $('#choose_room_type').val();
       var arrival_date = $('#arrival_date').val();
@@ -100,7 +104,6 @@
       window.location.href = theURL
   }
     $('.toggle-list').on('click' ,function(e) {
-      e.preventDefault();
       var toggleButton = $(e.target);
       var card = $(this).closest('.card');
       var cardBody = card.find('.card-body');

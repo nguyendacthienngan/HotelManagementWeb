@@ -43,7 +43,7 @@
     <% @room_types.each do |room_type| %>
       <div class="card" id="<%= room_type.id %>">
         <div id="rooms_header"class="card-header">
-          Loại <%= room_type.id %>
+          Loại <%= room_type.name %>
           <span class="fa fa-sort-down toggle-list"></span>
         </div>
         <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
@@ -74,11 +74,8 @@
           <div class="">
             <h5><%= room_results.name %></h5>
           </div>
-
         </div>
-
-
-        <p>SL: <span id="amount_<%=room_results.id%>_price">2</span> - <%= @room_prices["#{room_results.name}"] %></p>
+        <p>SL: <span id="amount_<%=room_results.id%>">0</span> - <%= @room_prices["#{room_results.name}"] %></p>
         <div id="result_<%= room_results.id  %>" class="row results_chip">
 <!--          <div class="col-md-3 chip">101</div>-->
         </div>
@@ -129,6 +126,14 @@
         var target = $(e.target)
         var id = e.target.id
         var result_id = "result_" + id
+
+        var room_type = $(this).closest('.card')
+        var room_type_id = "#result_" + room_type.attr('id').toString()
+
+        var amount_reserve_id = '#amount_' + room_type.attr('id').toString()
+        var amount_reserve = $(amount_reserve_id).text()
+        amount_reserve = parseInt(amount_reserve)
+
         if (target.text() != "✓")
         {
             target.removeClass('inactive-room')
@@ -136,10 +141,9 @@
             target.text("✓")
             // Add to results
             var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
-            var room_type = $(this).closest('.card')
-            var room_type_id = "#result_" + room_type.attr('id').toString()
-            console.log(room_type_id)
+
             $(room_type_id).append(string)
+            $(amount_reserve_id).text(++amount_reserve)
         }
         else
         {
@@ -147,6 +151,8 @@
             target.addClass('inactive-room')
             target.removeClass('active-room')
             $('#' + result_id).remove()
+
+            $(amount_reserve_id).text(--amount_reserve)
         }
 
 

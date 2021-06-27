@@ -47,14 +47,9 @@
           <span class="fa fa-sort-down toggle-list"></span>
         </div>
         <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
-        <%# @rooms = @rooms + @rooms_status_2 %>
+        <% @rooms = @rooms + @rooms_status_2 %>
          <div class="row card-body">
            <% @rooms.each do |room| %>
-             <%# @@unreserved_rooms.each do |unreserved_room_id| %>
-                <%# if room.id == unreserved_room_id %>
-                  <%# break %>
-                <%# end %>
-             <%# end %>
              <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">
                <%= room.name %>
              </div>
@@ -124,4 +119,21 @@
 
 
   });
+    $('.room').click(function(e){
+        var target = $(e.target)
+        if (target.text() != "✓")
+        {
+            target.removeClass('inactive-room')
+            target.addClass('active-room')
+
+            target.text("✓")
+        }
+        else
+        {
+            target.text(e.target.id)
+            target.addClass('inactive-room')
+            target.removeClass('active-room')
+        }
+
+    })
 </script>

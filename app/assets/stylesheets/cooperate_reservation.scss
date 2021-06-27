@@ -22,3 +22,17 @@
 .room:hover{
   background-color: #ffbd4a;
 }
+
+.active-room{
+  background-color: #436bd5 !important;
+  color: white;
+}
+
+.active-room:hover{
+  background-color: #ffbd4a !important;
+  color:white
+}
+.inactive-room{
+  background-color: #CED4DA !important;
+  color: black;
+}

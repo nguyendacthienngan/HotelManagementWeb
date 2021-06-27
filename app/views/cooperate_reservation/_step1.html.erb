@@ -1,7 +1,7 @@
 <div class="row">
   <%#= form_with url: "/cooperate_reservation/new", class:"form-group row w-100" do |search| %>
     <div class="dropdown col-md">
-      <%= form.collection_select :room_type_id, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id], prompt: 'Loại phòng'}, {class: 'form-select'}%>
+      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id], prompt: 'Loại phòng'}, {class: 'form-select'}%>
     </div>
 
     <div class="dropdown col-md">
@@ -27,44 +27,41 @@
 
     </div>
 
-    <div class="btn btn-primary col-md-2 ">Tìm kiếm</div>
+    <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
   <%# end %>
+</div>
+
+<br>
+
+<div>
+
 </div>
 
 <br>
 <div class="row w-100">
   <div class="col-lg">
     <!--    Bảng kết quả tìm kiếm -->
-    <% if @search_result %>
-      <div class="card  p-4">
-        <table class="table card-body">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">Loại</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Phòng trống</th>
-            <th scope="col">Người lớn</th>
-            <th scope="col">Trẻ em</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
+    <% @room_types.each do |room_type| %>
+      <div class="card" id="<%= room_type.name %>">
+        <div class="card-header">
+          Loại <%= room_type.name %>
+          <span class="fa fa-sort-down toggle-list"></span>
+        </div>
+        <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
+<!--        #Tạm thời thôi, còn cần tính toán cụ thể hơn về ngày đến & đi & trạng thái-->
+         <div class="row card-body">
+           <% @rooms.each do |room| %>
+             <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">
+               <%= room.name %>
+             </div>
+           <% end %>
+         </div>
 
-          </tbody>
-        </table>
       </div>
-
-
     <% end %>
+
+
+
   </div>
 
   <!--    Kết quả lựa chọn -->
@@ -87,3 +84,31 @@
 
   </div>
 </div>
+
+<script>
+  function searchRooms(){
+      alert("Hello")
+  }
+  $('.toggle-list').on('click' ,function(e) {
+      e.preventDefault();
+      var toggleButton = $(e.target);
+      var card = $(this).closest('.card');
+      var cardBody = card.find('.card-body');
+
+      if (toggleButton.hasClass('fa-sort-down'))
+      {
+          toggleButton.removeClass('fa-sort-down')
+          toggleButton.addClass('fa-sort-up row align-items-center')
+          cardBody.hide("fast")
+
+      }
+      else if (toggleButton.hasClass('fa-sort-up'))
+      {
+          toggleButton.removeClass('fa-sort-up row align-items-center')
+          toggleButton.addClass('fa-sort-down')
+          cardBody.show("fast")
+      }
+
+
+  });
+</script>

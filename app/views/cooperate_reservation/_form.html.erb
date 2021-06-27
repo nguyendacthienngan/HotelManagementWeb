@@ -1,5 +1,6 @@
+<%= stylesheet_link_tag 'cooperate_reservation' %>
 
-  <% if reservation.errors.any? %>
+<% if reservation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
@@ -21,7 +22,7 @@
     <div class="bs-stepper-content">
       <%= form_with url: "/reservations", method: :post do |form| %>
       <%= render :partial => "step1",  :locals=>{:form=>form} %>
-      <%= render :partial => "step2",  :locals=>{:form=>form} %>
+      <%#= render :partial => "step2",  :locals=>{:form=>form} %>
       <%#= render :partial => "step3",  :locals=>{:form=>form} %>
     </div>
 

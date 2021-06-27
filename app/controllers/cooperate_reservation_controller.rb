@@ -1,3 +1,4 @@
+include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
   def index
     @reservation = Reservation.all
@@ -38,9 +39,14 @@ class CooperateReservationController < ApplicationController
       @rooms_status_2.push(Room.find(r))
     end
 
+    @room_prices = {}
+    @room_types.each do |r_t|
+      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price)
+      if room_price
+        @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
+      end
+    end
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
-
-
   end
 end

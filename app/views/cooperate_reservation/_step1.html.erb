@@ -41,9 +41,9 @@
   <div class="col-lg">
     <!--    Bảng kết quả tìm kiếm -->
     <% @room_types.each do |room_type| %>
-      <div class="card" id="<%= room_type.name %>">
-        <div class="card-header">
-          Loại <%= room_type.name %>
+      <div class="card" id="<%= room_type.id %>">
+        <div id="rooms_header"class="card-header">
+          Loại <%= room_type.id %>
           <span class="fa fa-sort-down toggle-list"></span>
         </div>
         <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
@@ -55,30 +55,35 @@
              </div>
            <% end %>
          </div>
-
       </div>
     <% end %>
-
-
-
   </div>
 
   <!--    Kết quả lựa chọn -->
   <div class="col-lg  card h-100">
-    <div class="card-body">
+    <div id="result_header" class="card-header">
       <h4>Phòng đã chọn</h4>
-      <h5>Deluxe - 700,000VND</h5>
-      <div class="row">
-        <div class="col-lg">
-          7/7/21 - 9/7/21 <br>
-          2 người lớn 1 trẻ em
+      <div> Từ ngày - Đến ngày</div>
+    </div>
+    <% @room_types.each do |room_results| %>
+      <div class="card-body">
+        <div class="">
+          <div class="" style="float:right">
+            <span class="fa fa-close"></span>
+          </div>
+          <div class="">
+            <h5><%= room_results.name %></h5>
+          </div>
+
         </div>
-        <div class="col-lg">
-          Hello
+
+
+        <p>SL: <span id="amount_<%=room_results.id%>_price">2</span> - <%= @room_prices["#{room_results.name}"] %></p>
+        <div id="result_<%= room_results.id  %>" class="row results_chip">
+<!--          <div class="col-md-3 chip">101</div>-->
         </div>
       </div>
-
-    </div>
+    <% end %>
 
 
   </div>
@@ -97,7 +102,7 @@
       var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
       window.location.href = theURL
   }
-  $('.toggle-list').on('click' ,function(e) {
+    $('.toggle-list').on('click' ,function(e) {
       e.preventDefault();
       var toggleButton = $(e.target);
       var card = $(this).closest('.card');
@@ -120,20 +125,31 @@
 
   });
     $('.room').click(function(e){
+        // Change button state
         var target = $(e.target)
+        var id = e.target.id
+        var result_id = "result_" + id
         if (target.text() != "✓")
         {
             target.removeClass('inactive-room')
             target.addClass('active-room')
-
             target.text("✓")
+            // Add to results
+            var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
+            var room_type = $(this).closest('.card')
+            var room_type_id = "#result_" + room_type.attr('id').toString()
+            console.log(room_type_id)
+            $(room_type_id).append(string)
         }
         else
         {
             target.text(e.target.id)
             target.addClass('inactive-room')
             target.removeClass('active-room')
+            $('#' + result_id).remove()
         }
 
+
     })
+
 </script>

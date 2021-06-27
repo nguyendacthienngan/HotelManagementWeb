@@ -1,9 +1,8 @@
 <div class="row">
   <%#= form_with url: "/cooperate_reservation/new", class:"form-group row w-100" do |search| %>
     <div class="dropdown col-md">
-      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id], prompt: 'Loại phòng'}, {class: 'form-select'}%>
+      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
     </div>
-
     <div class="dropdown col-md">
       <%= form.text_field :arrival_date,
                           data: {
@@ -48,9 +47,14 @@
           <span class="fa fa-sort-down toggle-list"></span>
         </div>
         <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
-<!--        #Tạm thời thôi, còn cần tính toán cụ thể hơn về ngày đến & đi & trạng thái-->
+        <%# @rooms = @rooms + @rooms_status_2 %>
          <div class="row card-body">
            <% @rooms.each do |room| %>
+             <%# @@unreserved_rooms.each do |unreserved_room_id| %>
+                <%# if room.id == unreserved_room_id %>
+                  <%# break %>
+                <%# end %>
+             <%# end %>
              <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">
                <%= room.name %>
              </div>
@@ -86,8 +90,17 @@
 </div>
 
 <script>
-  function searchRooms(){
-      alert("Hello")
+    function searchRooms(){
+      var room_type_id = $('#choose_room_type').val();
+      var arrival_date = $('#arrival_date').val();
+      var leave_date = $('#leave_date').val();
+      if (!arrival_date)
+          arrival_date = "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
+      if (!leave_date)
+          leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
+
+      var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+      window.location.href = theURL
   }
   $('.toggle-list').on('click' ,function(e) {
       e.preventDefault();

@@ -40,6 +40,9 @@
       <%= render :partial => "step3",  :locals=>{:form=>form} %>
     </div>
   </div>
+  <div id="choosen_rooms">
+
+  </div>
   <br>
   <br>
   <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  %>
@@ -58,10 +61,10 @@
         // Using Session
         if (typeof(Storage) !== "undefined") {
             sessionStorage.setItem("rooms", rooms);
-            console.log(sessionStorage.getItem('rooms'));
+            // console.log(sessionStorage.getItem('rooms'));
         }
     }
-    function getRooms(rooms){
+    function getRooms(){
         if (typeof(Storage) !== "undefined") {
             return sessionStorage.getItem('rooms')
         }
@@ -72,6 +75,18 @@
         {
             if ($("#step3").is(":visible"))
             {
+                console.log("Chosen Rooms:")
+                var chosen_rooms = getRooms()
+                // var chosen_rooms = rooms
+                var chosen_rooms_array = chosen_rooms.split(',');
+                console.log(chosen_rooms_array)
+                for (const i in chosen_rooms_array)
+                {
+                    // console.log(chosen_rooms_array[i])
+                    var string = '<input id="${chosen_rooms_array[i]}" value="${chosen_rooms_array[i]}" multiple="multiple" type="hidden" name="room_form[room_ids][]">'
+                    $('#choosen_rooms').append(string)
+                }
+
                 $('#finish_button').click()
                 current_step = 0;
                 return;
@@ -80,7 +95,7 @@
         $("#step" + current_step).hide()
         current_step++;
         $("#step" + current_step).show()
-        console.log(current_step)
+        // console.log(current_step)
 
     })
     $("#prev_button").click(function() {

@@ -1,29 +1,4 @@
-<%# filter_room_type = params[:room_type_id]%>
-<%#  if filter_room_type %>
-  <%#  @room_types = RoomType.where(id: filter_room_type) %>
-<%#  else  %>
-  <%#  @room_types = RoomType.all? { ||  }%>
-<%# end %>
-<% arrival_date = params[:arrival_date] %>
-<% leave_date = params[:leave_date] %>
-<% if arrival_date %>
-  <% @arrival_date = Time.parse(arrival_date).getutc %>
-<% else %>
-  <% @arrival_date = DateTime.now %>
-<% end %>
 
-<% if leave_date %>
-  <% @leave_date = Time.parse(leave_date).getutc %>
-<% else %>
-  <% @leave_date = DateTime.now %>
-<% end %>
-
-<% @unreserved_rooms = Reservation.where(["status = 1 and (arrival_date < ? and leave_date > ?)", "#{@arrival_date}", "#{@leave_date}"]) %>
-<% @unreserved_rooms = @unreserved_rooms.pluck(:room_id) %>
-<% @rooms_status_2 = [] %>
-<% @unreserved_rooms.each do |r| %>
-  <% @rooms_status_2.push(Room.find(r)) %>
-<% end %>
 <div class="row">
     <div class="dropdown col-md">
       <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>

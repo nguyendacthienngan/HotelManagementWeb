@@ -27,13 +27,11 @@ Rails.application.routes.draw do
   get "/room_diagram/room_info/", to: "room_diagram#room_info"
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
-  get "/cooperate_reservation", to: "cooperate_reservation#index"
-
   get "/cooperate_reservation/choose_rooms", to: "cooperate_reservation#choose_rooms"
-  get "/cooperate_reservation/:reservation_id", to: "cooperate_reservation#show"
 
   get "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
     post "/cooperate_reservation/new/", to: "cooperate_reservation#create"
+
   resources :cooperate_reservation
 
   root "home#index"

@@ -1,212 +1,107 @@
 
 <div class="row">
-    <div class="dropdown col-md">
-      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Tên trưởng đoàn</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
     </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :arrival_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đến"%>
-    </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :leave_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đi"%>
-
-    </div>
-
-    <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
-  <%# end %>
-</div>
-<br>
-<div class="card">
-  <div class="card-header">
-    <h5>Chọn phòng nhanh</h5>
   </div>
-  <div class="card-body">
-    <span class="btn btn-primary" style="float:right">Thêm</span>
-    <div class="row">
-      <div class="dropdown col-md">
-        <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">CCCD</p>
+      <div class="col-lg-7 form-group">
+        <%= client.number_field   :citizen_id, class:"form-control", placeholder: "0123456789" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
-      <div class="dropdown col-md">
-        <%= form.text_field :arrival_date,
-                            data: {
-                              controller: "flatpickr",
-                              flatpickr_date_format: "d/m/Y",
-                              flatpickr_min_date: Time.zone.now
-                            },
-                            class: "form-select read-only-white",
-                            placeholder: "Ngày đến"%>
-      </div>
-      <div class="dropdown col-md">
-        <%= form.text_field :leave_date,
-                            data: {
-                              controller: "flatpickr",
-                              flatpickr_date_format: "d/m/Y",
-                              flatpickr_min_date: Time.zone.now
-                            },
-                            class: "form-select read-only-white",
-                            placeholder: "Ngày đi"%>
-
-      </div>
-
-      <div>
-
-      </div>
-
-      <br>
     </div>
-    <span class="btn btn-primary">Chọn nhanh</span>
   </div>
 </div>
-<br>
-
-<div class="row w-100">
-  <div class="col-lg">
-    <!--    Bảng kết quả tìm kiếm -->
-
-    <% @room_types.each do |room_type| %>
-      <div class="card" id="<%= room_type.id %>">
-        <div id="rooms_header"class="card-header">
-          Loại <%= room_type.name %>
-          <span class="fa fa-sort-down toggle-list"></span>
-        </div>
-        <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
-        <% @rooms = @rooms + @rooms_status_2 %>
-         <div class="row card-body">
-           <% @rooms.each do |room| %>
-             <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">
-               <%= room.name %>
-             </div>
-           <% end %>
-         </div>
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Sinh nhật</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :date_of_birth,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_max_date: Time.zone.now
+                              },
+                              class: "form-select read-only-white",
+                              placeholder: "Chọn sinh nhật"%>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
-    <% end %>
-  </div>
-
-  <!--    Kết quả lựa chọn -->
-  <div class="col-lg  card h-100">
-    <div id="result_header" class="card-header">
-      <h4>Phòng đã chọn</h4>
-      <div> Từ ngày <%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %> - Đến ngày <%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %> </div>
     </div>
-    <% @room_types.each do |room_results| %>
-      <div class="card-body">
-        <div class="">
-          <div class="" style="float:right">
-            <span class="fa fa-close"></span>
-          </div>
-          <div class="">
-            <h5><%= room_results.name %></h5>
-          </div>
-        </div>
-        <p>SL: <span id="amount_<%=room_results.id%>">0</span> - <%= @room_prices["#{room_results.name}"] %></p>
-        <div id="result_<%= room_results.id  %>" class="row results_chip">
-        </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">Giới tính</p>
+      <div class="col-lg-7 form-group">
+        <%= client.select :gender, options_for_select(@gender), {}, class: "form-select read-only-white" %>
+
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
-
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Số điện thoại</p>
+      <div class="col-lg-7 form-group">
+        <%= client.telephone_field   :phone_number, class:"form-control", placeholder: "0123456789" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">Email</p>
+      <div class="col-lg-7 form-group">
+        <%= client.email_field   :email, class:"form-control", placeholder: "ngan@gmail.com" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Quốc tịch</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+  <%= client.hidden_field(:client_type, :value => 2) %>
+  <%= form.hidden_field(:client_name) %>
+  <%= form.hidden_field(:client_citizen_id) %>
+</div>
 <script>
-    var rooms = [];
-    $(document).ready(function(){
-        $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
-        $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+    $('#_client_attributes_name').keyup(function(){
+        $('#client_name').val($('#_client_attributes_name').val());
     })
-
-    function searchRooms(){
-      var room_type_id = $('#choose_room_type').val();
-      var arrival_date = $('#arrival_date').val();
-      var leave_date = $('#leave_date').val();
-      if (!arrival_date)
-          arrival_date = "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
-      if (!leave_date)
-          leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
-
-      var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
-      window.location.href = theURL
-    }
-    $('.toggle-list').on('click' ,function(e) {
-      var toggleButton = $(e.target);
-      var card = $(this).closest('.card');
-      var cardBody = card.find('.card-body');
-
-      if (toggleButton.hasClass('fa-sort-down'))
-      {
-          toggleButton.removeClass('fa-sort-down')
-          toggleButton.addClass('fa-sort-up row align-items-center')
-          cardBody.hide("fast")
-
-      }
-      else if (toggleButton.hasClass('fa-sort-up'))
-      {
-          toggleButton.removeClass('fa-sort-up row align-items-center')
-          toggleButton.addClass('fa-sort-down')
-          cardBody.show("fast")
-      }
-
-
-  });
-    $('.room').click(function(e){
-        // Change button state
-        var target = $(e.target)
-        var id = e.target.id
-        var result_id = "result_" + id
-
-        var room_type = $(this).closest('.card')
-        var room_type_id = "#result_" + room_type.attr('id').toString()
-
-        var amount_reserve_id = '#amount_' + room_type.attr('id').toString()
-        var amount_reserve = $(amount_reserve_id).text()
-        amount_reserve = parseInt(amount_reserve)
-
-        if (target.text() != "✓")
-        {
-            rooms.push(id)
-            setRooms(rooms)
-            target.removeClass('inactive-room')
-            target.addClass('active-room')
-            target.text("✓")
-            // Add to results
-            var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
-
-            $(room_type_id).append(string)
-            $(amount_reserve_id).text(++amount_reserve)
-        }
-        else
-        {
-            const index = rooms.indexOf(id);
-            if (index > -1) {
-                rooms.splice(index, 1);
-            }
-            target.text(e.target.id)
-            target.addClass('inactive-room')
-            target.removeClass('active-room')
-            $('#' + result_id).remove()
-
-            $(amount_reserve_id).text(--amount_reserve)
-        }
-
-        // if (typeof(Storage) !== "undefined") {
-        //     // Store
-        //     sessionStorage.setItem("lastname", "Smith");
-        //     // Retrieve
-        //     // $('') = sessionStorage.getItem("lastname");
-        // } else {
-        //     // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-        // }
+    $('#_client_attributes_citizen_id').keyup(function(){
+        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val());
     })
+    <% if session[:reservation_params] %>
+    <% params = session[:reservation_params] %>
+    <% if session[:reservation_params]["client_attributes"] %>
+    <% client = params["client_attributes"] %>
+    $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
+    $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
+    $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")
+    $('#_client_attributes_email').val("<%= client["email"] || " " %>")
+    $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
 
+    $('#client_name').val($('#_client_attributes_name').val())
+    $('#client_citizen_id').val($('#_client_attributes_citizen_id').val())
+
+    <% end %>
+
+    <% end %>
 </script>

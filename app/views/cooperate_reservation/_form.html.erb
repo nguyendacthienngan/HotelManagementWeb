@@ -30,15 +30,18 @@
 <div class="bs-stepper">
   <div class="bs-stepper-content">
   <%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
-    <div id="step1">
-      <%= render :partial => "step1",  :locals=>{:form=>form} %>
-    </div>
-    <div id="step2">
-      <%= render :partial => "step2",  :locals=>{:form=>form} %>
-    </div>
-    <div id="step3">
-      <%= render :partial => "step3",  :locals=>{:form=>form} %>
-    </div>
+    <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+        <%= form.fields_for :client_attributes, Client.new do |client| %>
+          <div id="step1">
+            <%= render :partial => "step1",  :locals=>{:client=>client, :form=>form} %>
+          </div>
+        <% end %>
+        <div id="step2">
+          <%= render :partial => "step2",  :locals=>{:p=>p, :form=>form} %>
+        </div>
+    <% end %>
+
+
   </div>
   <div id="choosen_rooms">
 
@@ -57,36 +60,11 @@
         $("#step3").hide()
         $('#finish_button').hide()
     })
-    function setRooms(rooms){
-        // Using Session
-        if (typeof(Storage) !== "undefined") {
-            sessionStorage.setItem("rooms", rooms);
-            // console.log(sessionStorage.getItem('rooms'));
-        }
-    }
-    function getRooms(){
-        if (typeof(Storage) !== "undefined") {
-            return sessionStorage.getItem('rooms')
-        }
-        return null
-    }
     $("#next_button").click(function(){
         if (current_step >= 3)
         {
             if ($("#step3").is(":visible"))
             {
-                console.log("Chosen Rooms:")
-                var chosen_rooms = getRooms()
-                // var chosen_rooms = rooms
-                var chosen_rooms_array = chosen_rooms.split(',');
-                console.log(chosen_rooms_array)
-                for (const i in chosen_rooms_array)
-                {
-                    // console.log(chosen_rooms_array[i])
-                    var string = '<input id="${chosen_rooms_array[i]}" value="${chosen_rooms_array[i]}" multiple="multiple" type="hidden" name="room_form[room_ids][]">'
-                    $('#choosen_rooms').append(string)
-                }
-
                 $('#finish_button').click()
                 current_step = 0;
                 return;

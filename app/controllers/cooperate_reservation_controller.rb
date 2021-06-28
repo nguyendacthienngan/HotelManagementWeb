@@ -3,8 +3,12 @@ class CooperateReservationController < ApplicationController
   def index
     @reservation = Reservation.all
   end
-  def new
-    @reservation = Reservation.new
+
+  def show
+
+  end
+
+  def choose_rooms
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     filter_room_type = params[:room_type_id]
@@ -46,57 +50,17 @@ class CooperateReservationController < ApplicationController
         @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
       end
     end
+  end
+
+  def new
+    @reservation = Reservation.new
+
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
   end
 
-
   def create
     @reservation = Reservation.new(reservation_params)
-
-    @payment_type = @@payment_type
-    @payment_type_view = convert_nested_hash_to_text(@payment_type)
-    filter_room_type = reservation_params["room_type_id"]
-    if filter_room_type
-      @room_types = RoomType.where(id: filter_room_type)
-    else
-      @room_types = RoomType.all
-    end
-
-    arrival_date = reservation_params["arrival_date"]
-    leave_date = reservation_params["leave_date"]
-
-    if arrival_date.nil?
-      @arrival_date = Time.parse(arrival_date).getutc
-    else
-      @arrival_date = DateTime.now
-    end
-
-    if leave_date.nil?
-      @leave_date = Time.parse(leave_date).getutc
-    else
-      @leave_date = DateTime.now
-    end
-
-    #Xem lại trạng thái của đặt: Là đang đặt thôi chứ chưa nhận phòng?
-    @unreserved_rooms = Reservation.where(["status = 1 and (arrival_date < ? and leave_date > ?)", "#{@arrival_date}", "#{@leave_date}"])
-    @unreserved_rooms = @unreserved_rooms.pluck(:room_id)
-
-    @rooms_status_2 = []
-    @unreserved_rooms.each do |r|
-      @rooms_status_2.push(Room.find(r))
-    end
-
-    @room_prices = {}
-    @room_types.each do |r_t|
-      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price)
-      if room_price
-        @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
-      end
-    end
-    @gender = @@gender
-    @gender = convert_nested_hash_to_text(@gender)
-
 
     respond_to do |format|
       if @reservation.save

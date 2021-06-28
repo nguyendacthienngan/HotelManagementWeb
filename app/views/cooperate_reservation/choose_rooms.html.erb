@@ -1,0 +1,229 @@
+<%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
+
+  <div class="row">
+    <div class="dropdown col-md">
+      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+    </div>
+    <div class="dropdown col-md">
+      <%= form.text_field :arrival_date,
+                          data: {
+                            controller: "flatpickr",
+                            flatpickr_date_format: "d/m/Y",
+                            flatpickr_min_date: Time.zone.now
+                          },
+                          class: "form-select read-only-white",
+                          placeholder: "Ngày đến"%>
+    </div>
+    <div class="dropdown col-md">
+      <%= form.text_field :leave_date,
+                          data: {
+                            controller: "flatpickr",
+                            flatpickr_date_format: "d/m/Y",
+                            flatpickr_min_date: Time.zone.now
+                          },
+                          class: "form-select read-only-white",
+                          placeholder: "Ngày đi"%>
+
+    </div>
+
+    <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
+    <%# end %>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      <h5>Chọn phòng nhanh</h5>
+    </div>
+    <div class="card-body">
+      <span class="btn btn-primary" style="float:right">Thêm</span>
+      <div class="row">
+        <div class="dropdown col-md">
+          <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+        </div>
+        <div class="dropdown col-md">
+          <%= form.text_field :arrival_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d/m/Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-select read-only-white",
+                              placeholder: "Ngày đến"%>
+        </div>
+        <div class="dropdown col-md">
+          <%= form.text_field :leave_date,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d/m/Y",
+                                flatpickr_min_date: Time.zone.now
+                              },
+                              class: "form-select read-only-white",
+                              placeholder: "Ngày đi"%>
+
+        </div>
+
+        <div>
+
+        </div>
+
+        <br>
+      </div>
+      <span class="btn btn-primary">Chọn nhanh</span>
+    </div>
+  </div>
+  <br>
+
+  <div class="row w-100">
+    <div class="col-lg">
+      <!--    Bảng kết quả tìm kiếm -->
+
+      <% @room_types.each do |room_type| %>
+        <div class="card" id="<%= room_type.id %>">
+          <div id="rooms_header"class="card-header">
+            Loại <%= room_type.name %>
+            <span class="fa fa-sort-down toggle-list"></span>
+          </div>
+          <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
+          <% @rooms = @rooms + @rooms_status_2 %>
+          <div class="row card-body">
+            <% @rooms.each do |room| %>
+              <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">
+                <%= room.name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!--    Kết quả lựa chọn -->
+    <div class="col-lg  card h-100">
+      <div id="result_header" class="card-header">
+        <h4>Phòng đã chọn</h4>
+        <div> Từ ngày <%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %> - Đến ngày <%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %> </div>
+      </div>
+      <% @room_types.each do |room_results| %>
+        <div class="card-body">
+          <div class="">
+            <div class="" style="float:right">
+              <span class="fa fa-close"></span>
+            </div>
+            <div class="">
+              <h5><%= room_results.name %></h5>
+            </div>
+          </div>
+          <p>SL: <span id="amount_<%=room_results.id%>">0</span> - <%= @room_prices["#{room_results.name}"] %></p>
+          <div id="result_<%= room_results.id  %>" class="row results_chip">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
+
+
+<script>
+    var rooms = [];
+    $(document).ready(function(){
+        $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+        $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+    })
+
+    function setRooms(rooms){
+        // Using Session
+        if (typeof(Storage) !== "undefined") {
+            sessionStorage.setItem("rooms", rooms);
+            // console.log(sessionStorage.getItem('rooms'));
+        }
+    }
+    function getRooms(){
+        if (typeof(Storage) !== "undefined") {
+            return sessionStorage.getItem('rooms')
+        }
+        return null
+    }
+    function searchRooms(){
+        var room_type_id = $('#choose_room_type').val();
+        var arrival_date = $('#arrival_date').val();
+        var leave_date = $('#leave_date').val();
+        if (!arrival_date)
+            arrival_date = "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
+        if (!leave_date)
+            leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
+
+        var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+        window.location.href = theURL
+    }
+    $('.toggle-list').on('click' ,function(e) {
+        var toggleButton = $(e.target);
+        var card = $(this).closest('.card');
+        var cardBody = card.find('.card-body');
+
+        if (toggleButton.hasClass('fa-sort-down'))
+        {
+            toggleButton.removeClass('fa-sort-down')
+            toggleButton.addClass('fa-sort-up row align-items-center')
+            cardBody.hide("fast")
+
+        }
+        else if (toggleButton.hasClass('fa-sort-up'))
+        {
+            toggleButton.removeClass('fa-sort-up row align-items-center')
+            toggleButton.addClass('fa-sort-down')
+            cardBody.show("fast")
+        }
+
+
+    });
+    $('.room').click(function(e){
+        // Change button state
+        var target = $(e.target)
+        var id = e.target.id
+        var result_id = "result_" + id
+
+        var room_type = $(this).closest('.card')
+        var room_type_id = "#result_" + room_type.attr('id').toString()
+
+        var amount_reserve_id = '#amount_' + room_type.attr('id').toString()
+        var amount_reserve = $(amount_reserve_id).text()
+        amount_reserve = parseInt(amount_reserve)
+
+        if (target.text() != "✓")
+        {
+            rooms.push(id)
+            setRooms(rooms)
+            target.removeClass('inactive-room')
+            target.addClass('active-room')
+            target.text("✓")
+            // Add to results
+            var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
+
+            $(room_type_id).append(string)
+            $(amount_reserve_id).text(++amount_reserve)
+        }
+        else
+        {
+            const index = rooms.indexOf(id);
+            if (index > -1) {
+                rooms.splice(index, 1);
+            }
+            target.text(e.target.id)
+            target.addClass('inactive-room')
+            target.removeClass('active-room')
+            $('#' + result_id).remove()
+
+            $(amount_reserve_id).text(--amount_reserve)
+        }
+
+        // if (typeof(Storage) !== "undefined") {
+        //     // Store
+        //     sessionStorage.setItem("lastname", "Smith");
+        //     // Retrieve
+        //     // $('') = sessionStorage.getItem("lastname");
+        // } else {
+        //     // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        // }
+    })
+
+</script>

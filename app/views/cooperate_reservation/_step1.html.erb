@@ -1,5 +1,30 @@
+<%# filter_room_type = params[:room_type_id]%>
+<%#  if filter_room_type %>
+  <%#  @room_types = RoomType.where(id: filter_room_type) %>
+<%#  else  %>
+  <%#  @room_types = RoomType.all? { ||  }%>
+<%# end %>
+<% arrival_date = params[:arrival_date] %>
+<% leave_date = params[:leave_date] %>
+<% if arrival_date %>
+  <% @arrival_date = Time.parse(arrival_date).getutc %>
+<% else %>
+  <% @arrival_date = DateTime.now %>
+<% end %>
+
+<% if leave_date %>
+  <% @leave_date = Time.parse(leave_date).getutc %>
+<% else %>
+  <% @leave_date = DateTime.now %>
+<% end %>
+
+<% @unreserved_rooms = Reservation.where(["status = 1 and (arrival_date < ? and leave_date > ?)", "#{@arrival_date}", "#{@leave_date}"]) %>
+<% @unreserved_rooms = @unreserved_rooms.pluck(:room_id) %>
+<% @rooms_status_2 = [] %>
+<% @unreserved_rooms.each do |r| %>
+  <% @rooms_status_2.push(Room.find(r)) %>
+<% end %>
 <div class="row">
-  <%#= form_with url: "/cooperate_reservation/new", class:"form-group row w-100" do |search| %>
     <div class="dropdown col-md">
       <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
     </div>
@@ -13,7 +38,6 @@
                           class: "form-select read-only-white",
                           placeholder: "Ngày đến"%>
     </div>
-
     <div class="dropdown col-md">
       <%= form.text_field :leave_date,
                           data: {
@@ -29,17 +53,54 @@
     <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
   <%# end %>
 </div>
-
 <br>
+<div class="card">
+  <div class="card-header">
+    <h5>Chọn phòng nhanh</h5>
+  </div>
+  <div class="card-body">
+    <button class="btn btn-primary" style="float:right">Thêm</button>
+    <div class="row">
+      <div class="dropdown col-md">
+        <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :arrival_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đến"%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :leave_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đi"%>
 
-<div>
+      </div>
 
+      <div>
+
+      </div>
+
+      <br>
+    </div>
+    <button class="btn btn-primary">Chọn nhanh</button>
+  </div>
 </div>
-
 <br>
+
 <div class="row w-100">
   <div class="col-lg">
     <!--    Bảng kết quả tìm kiếm -->
+
     <% @room_types.each do |room_type| %>
       <div class="card" id="<%= room_type.id %>">
         <div id="rooms_header"class="card-header">
@@ -77,12 +138,9 @@
         </div>
         <p>SL: <span id="amount_<%=room_results.id%>">0</span> - <%= @room_prices["#{room_results.name}"] %></p>
         <div id="result_<%= room_results.id  %>" class="row results_chip">
-<!--          <div class="col-md-3 chip">101</div>-->
         </div>
       </div>
     <% end %>
-
-
   </div>
 </div>
 
@@ -90,6 +148,7 @@
     $(document).ready(function(){
         $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
         $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
+
     })
     function searchRooms(){
       var room_type_id = $('#choose_room_type').val();
@@ -102,6 +161,15 @@
 
       var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
       window.location.href = theURL
+
+      // var refresh = window.location.protocol + "//" + window.location.host + window.location.pathname + '?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+      // window.history.pushState({ path: refresh }, '', refresh);
+
+      // const url = new URL(window.location);
+      // url.searchParams.set('room_type_id', room_type_id);
+      // url.searchParams.set('arrival_date', arrival_date);
+      // url.searchParams.set('leave_date', leave_date);
+      // window.history.pushState({}, '', url);
   }
     $('.toggle-list').on('click' ,function(e) {
       var toggleButton = $(e.target);
@@ -158,7 +226,14 @@
             $(amount_reserve_id).text(--amount_reserve)
         }
 
-
+        // if (typeof(Storage) !== "undefined") {
+        //     // Store
+        //     sessionStorage.setItem("lastname", "Smith");
+        //     // Retrieve
+        //     // $('') = sessionStorage.getItem("lastname");
+        // } else {
+        //     // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        // }
     })
 
 </script>

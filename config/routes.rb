@@ -31,8 +31,7 @@ Rails.application.routes.draw do
   get "/cooperate_reservation", to: "cooperate_reservation#index"
   get "/cooperate_reservation/:reservation_id", to: "cooperate_reservation#show"
   get "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
-  post "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
-  post "/cooperate_reservation/new/", to: "cooperate_reservation#new"
+  post "/cooperate_reservation/new/", to: "cooperate_reservation#create"
 
   root "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

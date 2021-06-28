@@ -34,7 +34,7 @@
     <h5>Chọn phòng nhanh</h5>
   </div>
   <div class="card-body">
-    <button class="btn btn-primary" style="float:right">Thêm</button>
+    <span class="btn btn-primary" style="float:right">Thêm</span>
     <div class="row">
       <div class="dropdown col-md">
         <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
@@ -67,7 +67,7 @@
 
       <br>
     </div>
-    <button class="btn btn-primary">Chọn nhanh</button>
+    <span class="btn btn-primary">Chọn nhanh</span>
   </div>
 </div>
 <br>
@@ -120,11 +120,12 @@
 </div>
 
 <script>
+    var rooms = [];
     $(document).ready(function(){
         $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
         $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
-
     })
+
     function searchRooms(){
       var room_type_id = $('#choose_room_type').val();
       var arrival_date = $('#arrival_date').val();
@@ -136,16 +137,7 @@
 
       var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
       window.location.href = theURL
-
-      // var refresh = window.location.protocol + "//" + window.location.host + window.location.pathname + '?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
-      // window.history.pushState({ path: refresh }, '', refresh);
-
-      // const url = new URL(window.location);
-      // url.searchParams.set('room_type_id', room_type_id);
-      // url.searchParams.set('arrival_date', arrival_date);
-      // url.searchParams.set('leave_date', leave_date);
-      // window.history.pushState({}, '', url);
-  }
+    }
     $('.toggle-list').on('click' ,function(e) {
       var toggleButton = $(e.target);
       var card = $(this).closest('.card');
@@ -182,6 +174,8 @@
 
         if (target.text() != "✓")
         {
+            rooms.push(id)
+            setRooms(rooms)
             target.removeClass('inactive-room')
             target.addClass('active-room')
             target.text("✓")
@@ -193,6 +187,10 @@
         }
         else
         {
+            const index = rooms.indexOf(id);
+            if (index > -1) {
+                rooms.splice(index, 1);
+            }
             target.text(e.target.id)
             target.addClass('inactive-room')
             target.removeClass('active-room')

@@ -54,12 +54,28 @@
         $("#step3").hide()
         $('#finish_button').hide()
     })
+    function setRooms(rooms){
+        // Using Session
+        if (typeof(Storage) !== "undefined") {
+            sessionStorage.setItem("rooms", rooms);
+            console.log(sessionStorage.getItem('rooms'));
+        }
+    }
+    function getRooms(rooms){
+        if (typeof(Storage) !== "undefined") {
+            return sessionStorage.getItem('rooms')
+        }
+        return null
+    }
     $("#next_button").click(function(){
         if (current_step >= 3)
         {
-            current_step = 0;
-            $('#finish_button').click()
-            return;
+            if ($("#step3").is(":visible"))
+            {
+                $('#finish_button').click()
+                current_step = 0;
+                return;
+            }
         }
         $("#step" + current_step).hide()
         current_step++;

@@ -1,4 +1,4 @@
 class Client < ApplicationRecord
-  has_many :reservations
+  has_many :payments
   validates :name, length: { minimum: 2 }
 end

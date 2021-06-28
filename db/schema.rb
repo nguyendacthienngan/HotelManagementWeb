@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_payments_on_client_id"
   end
 
   create_table "reservation_details", force: :cascade do |t|
@@ -88,11 +90,9 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "reservation_type", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "client_id"
     t.bigint "employee_id"
     t.bigint "room_id"
     t.bigint "payment_id"
-    t.index ["client_id"], name: "index_reservations_on_client_id"
     t.index ["employee_id"], name: "index_reservations_on_employee_id"
     t.index ["payment_id"], name: "index_reservations_on_payment_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"

@@ -1,89 +1,107 @@
+
 <div class="row">
-  <%#= form_with url: "/cooperate_reservation/new", class:"form-group row w-100" do |search| %>
-    <div class="dropdown col-md">
-      <%= form.collection_select :room_type_id, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id], prompt: 'Loại phòng'}, {class: 'form-select'}%>
-    </div>
-
-    <div class="dropdown col-md">
-      <%= form.text_field :arrival_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d-m-Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đến"%>
-    </div>
-
-    <div class="dropdown col-md">
-      <%= form.text_field :leave_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d-m-Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đi"%>
-
-    </div>
-
-    <div class="btn btn-primary col-md-2 ">Tìm kiếm</div>
-  <%# end %>
-</div>
-
-<br>
-<div class="row w-100">
-  <div class="col-lg">
-    <!--    Bảng kết quả tìm kiếm -->
-    <% if @search_result %>
-      <div class="card  p-4">
-        <table class="table card-body">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">Loại</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Phòng trống</th>
-            <th scope="col">Người lớn</th>
-            <th scope="col">Trẻ em</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
-
-          </tbody>
-        </table>
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Tên trưởng đoàn</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
+    </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">CCCD</p>
+      <div class="col-lg-7 form-group">
+        <%= client.number_field   :citizen_id, class:"form-control", placeholder: "0123456789" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Sinh nhật</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :date_of_birth,
+                              data: {
+                                controller: "flatpickr",
+                                flatpickr_date_format: "d-m-Y",
+                                flatpickr_max_date: Time.zone.now
+                              },
+                              class: "form-select read-only-white",
+                              placeholder: "Chọn sinh nhật"%>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">Giới tính</p>
+      <div class="col-lg-7 form-group">
+        <%= client.select :gender, options_for_select(@gender), {}, class: "form-select read-only-white" %>
 
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Số điện thoại</p>
+      <div class="col-lg-7 form-group">
+        <%= client.telephone_field   :phone_number, class:"form-control", placeholder: "0123456789" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 row">
+    <div class="row row">
+      <p class="col-lg-3">Email</p>
+      <div class="col-lg-7 form-group">
+        <%= client.email_field   :email, class:"form-control", placeholder: "ngan@gmail.com" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 row">
+    <div class="row end-row-md">
+      <p class="col-lg-3">Quốc tịch</p>
+      <div class="col-lg-7 form-group">
+        <%= client.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
+        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+      </div>
+    </div>
+  </div>
+  <%= client.hidden_field(:client_type, :value => 2) %>
+  <%= form.hidden_field(:client_name) %>
+  <%= form.hidden_field(:client_citizen_id) %>
+</div>
+<script>
+    $('#_client_attributes_name').keyup(function(){
+        $('#client_name').val($('#_client_attributes_name').val());
+    })
+    $('#_client_attributes_citizen_id').keyup(function(){
+        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val());
+    })
+    <% if session[:reservation_params] %>
+    <% params = session[:reservation_params] %>
+    <% if session[:reservation_params]["client_attributes"] %>
+    <% client = params["client_attributes"] %>
+    $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
+    $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
+    $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")
+    $('#_client_attributes_email').val("<%= client["email"] || " " %>")
+    $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
+
+    $('#client_name').val($('#_client_attributes_name').val())
+    $('#client_citizen_id').val($('#_client_attributes_citizen_id').val())
 
     <% end %>
-  </div>
 
-  <!--    Kết quả lựa chọn -->
-  <div class="col-lg  card h-100">
-    <div class="card-body">
-      <h4>Phòng đã chọn</h4>
-      <h5>Deluxe - 700,000VND</h5>
-      <div class="row">
-        <div class="col-lg">
-          7/7/21 - 9/7/21 <br>
-          2 người lớn 1 trẻ em
-        </div>
-        <div class="col-lg">
-          Hello
-        </div>
-      </div>
-
-    </div>
-
-
-  </div>
-</div>
+    <% end %>
+</script>

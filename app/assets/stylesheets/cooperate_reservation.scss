@@ -1,3 +1,52 @@
 // Place all the styles related to the cooperate_reservation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#rooms_header.card-header {
+  background-color: #07153a;
+  color: white;
+}
+#result_header.card-header{
+  padding-top: 20px;
+  background-color: white;
+}
+.card {
+  margin-bottom: 20px;
+}
+.toggle-list {
+  float: right;
+  cursor: pointer;
+}
+.room{
+  width: 70px;
+  //border: 1px solid grey;
+  background-color: #CED4DA;
+
+}
+.room:hover{
+  background-color: #ffbd4a;
+}
+
+.active-room{
+  background-color: #436bd5 !important;
+  color: white;
+}
+
+.active-room:hover{
+  background-color: #ffbd4a !important;
+  color:white
+}
+.inactive-room{
+  background-color: #CED4DA !important;
+  color: black;
+}
+
+.chip{
+  font-weight: 500;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  text-align: center;
+  padding: 5px;
+  margin-right: 2px;
+  margin-bottom: 5px;
+}

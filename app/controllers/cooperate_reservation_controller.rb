@@ -69,6 +69,15 @@ class CooperateReservationController < ApplicationController
     @chosen_rooms = session[:chosen_rooms]["rooms"]
     @arrival_date = session[:chosen_rooms]["arrival_date"]
     @leave_date = session[:chosen_rooms]["leave_date"]
+
+    @room_prices = {}
+    @room_types = RoomType.all
+    @room_types.each do |r_t|
+      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price)
+      if room_price
+        @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
+      end
+    end
   end
 
   def create

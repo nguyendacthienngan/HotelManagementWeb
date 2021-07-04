@@ -2,19 +2,25 @@
 
 <div class="row">
   <div class="col-lg">
-    <div class="card">
-      <div class="card-header">
+    <div class="card ">
+      <div class="card-header bg-dark text-white">
         <h4>Tổng hợp thông tin</h4>
       </div>
       <div class="card-body">
-        <div class="card">
-          <div class="card-body">
-            <p>(4) DL - VND 700000</p>
-            <p>7/8/2021 - 7/8/2021</p>
-            <p>2 NL - 1 TE</p>
-
+        <% @chosen_rooms.each do |r| %>
+          <div class="card">
+            <div class="card-body">
+              <% room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s %>
+              <% room_type = room_type.tr('[]', '') %>
+              <% room_type_name = RoomType.find(room_type).name %>
+              <% room_price = @room_prices["#{room_type_name}"] %>
+              <p><%= room_type_name %> - <%= room_price %></p>
+              <p><%= @arrival_date %>- <%= @leave_date %></p>
+<!--              <p>2 NL - 1 TE</p>-->
+            </div>
           </div>
-        </div>
+        <% end %>
+
         <p>Ghi chú</p>
       </div>
     </div>
@@ -22,7 +28,7 @@
   </div>
   <div class="col-lg">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header bg-dark text-white">
         <h4>Thanh toán</h4>
       </div>
       <div class="card-body">

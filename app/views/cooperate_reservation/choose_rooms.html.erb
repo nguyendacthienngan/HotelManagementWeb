@@ -89,7 +89,9 @@
 
 
 <script>
-    var rooms = [];
+    // [{room_type: {id: 1, count: x, rooms: []  }}]
+    let room_types = {}
+    let rooms = [];
     $(document).ready(function(){
         $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
         $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
@@ -109,20 +111,20 @@
         return null
     }
     function searchRooms(){
-        var room_type_id = $('#choose_room_type').val();
-        var arrival_date = $('#arrival_date').val();
-        var leave_date = $('#leave_date').val();
+        let room_type_id = $('#choose_room_type').val();
+        let arrival_date = $('#arrival_date').val();
+        let leave_date = $('#leave_date').val();
         if (!arrival_date)
             arrival_date = "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
         if (!leave_date)
             leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
 
-        var theURL = '/cooperate_reservation/choose_rooms?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+        let theURL = '/cooperate_reservation/choose_rooms?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
         window.location.href = theURL
     }
 
     function pay(){
-        var chosen_rooms = []
+        let chosen_rooms = []
         let i = 0
         if (rooms.length > 0)
         {
@@ -150,9 +152,9 @@
         }
     }
     $('.toggle-list').on('click' ,function(e) {
-        var toggleButton = $(e.target);
-        var card = $(this).closest('.card');
-        var cardBody = card.find('.card-body');
+        let toggleButton = $(e.target);
+        let card = $(this).closest('.card');
+        let cardBody = card.find('.card-body');
 
         if (toggleButton.hasClass('fa-sort-down'))
         {
@@ -172,35 +174,66 @@
     });
     $('.room').click(function(e){
         // Change button state
-        var target = $(e.target)
-        var id = e.target.id
-        var result_id = "result_" + id
+        let target = $(e.target)
+        let id = e.target.id
+        let result_id = "result_" + id
 
-        var room_type = $(this).closest('.card')
-        var room_type_id = "#result_" + room_type.attr('id').toString()
+        let room_type = $(this).closest('.card')
+        let room_type_id = "#result_" + room_type.attr('id').toString()
+        let room_type_name = room_type.attr('id').toString()
 
-        var amount_reserve_id = '#amount_' + room_type.attr('id').toString()
-        var amount_reserve = $(amount_reserve_id).text()
+
+
+        let amount_reserve_id = '#amount_' + room_type.attr('id').toString()
+        let amount_reserve = $(amount_reserve_id).text()
         amount_reserve = parseInt(amount_reserve)
 
         if (target.text() != "✓")
         {
+            amount_reserve = ++amount_reserve
             rooms.push(id)
+            let rooms_string =  '[' +  rooms.toString() + ']'
+            console.log("COUNT: " , amount_reserve)
+            let room_type_object = {id: room_type_name, count: amount_reserve, chosen_rooms:  rooms.toString()}
+            room_types[room_type_name] = room_type_object
+
             setRooms(rooms)
             target.removeClass('inactive-room')
             target.addClass('active-room')
             target.text("✓")
             // Add to results
-            var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
+            let string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
 
             $(room_type_id).append(string)
-            $(amount_reserve_id).text(++amount_reserve)
+            $(amount_reserve_id).text(amount_reserve)
         }
         else
         {
-            const index = rooms.indexOf(id);
-            if (index > -1) {
-                rooms.splice(index, 1);
+            let room_index = rooms.indexOf(id);
+            if (room_index > -1) {
+                rooms.splice(room_index, 1);
+            }
+            if (room_index > -1)
+            {
+                const r_type = room_types[room_type_name]
+                if (r_type)
+                {
+                    let rs = r_type.chosen_rooms
+                    rs = rs.split(', ')
+                    if (rs.length > 0)
+                    {
+                        console.log("id", id)
+                        console.log("room_index", room_index)
+                        console.log("count", r_type["count"])
+                        r_type["count"] = r_type["count"] - 1
+                        rs.splice(room_index, 1)
+                        if (r_type["count"] <= 0)
+                            delete room_types[room_type_name]
+                        console.log("room_types: ", room_types)
+                    }
+                }
+
+
             }
             target.text(e.target.id)
             target.addClass('inactive-room')

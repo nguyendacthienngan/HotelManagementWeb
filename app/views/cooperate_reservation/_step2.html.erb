@@ -4,6 +4,7 @@
 <div class="row">
   <div class="col-lg">
     <% if @chosen_rooms %>
+
       <% @chosen_rooms.each do |r| %>
         <div class="card border-0 ">
           <div class="card-body padding-bottom-20 ">
@@ -11,7 +12,7 @@
             <% room_type = room_type.tr('[]', '') %>
             <% room_type_name = RoomType.find(room_type).name %>
             <% room_price = @room_prices["#{room_type_name}"] %>
-            <p><%= room_type_name %> - <%= room_price %></p>
+            <p><b><%= r["id"] %> - <%= room_type_name %> - <%= room_price %></b></p>
             <p><%= @arrival_date %>- <%= @leave_date %></p>
             <!--              <p>2 NL - 1 TE</p>-->
           </div>
@@ -44,9 +45,7 @@
             <%= p.number_field :temp_total, min: 0, class:"form-control"%>
           </div>
         </div>
-
-        <br>
-        <div class="container">
+        <div class="">
           <p>Ghi chú</p>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>

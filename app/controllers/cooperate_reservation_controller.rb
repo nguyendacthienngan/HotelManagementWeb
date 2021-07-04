@@ -70,6 +70,17 @@ class CooperateReservationController < ApplicationController
     @arrival_date = session[:chosen_rooms]["arrival_date"]
     @leave_date = session[:chosen_rooms]["leave_date"]
 
+    @room_types_json = []
+    # [{room_type: {id: 1, count: x, rooms: []  }}]
+    # @chosen_rooms.each do |r|
+    #   room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s
+    #   room_type = room_type.tr('[]', '')
+    #   room_type = RoomType.find(room_type).name
+    #
+    #   #Tính số lượng
+    #
+    #   @room_types_json["#{room_type}"] = 0
+    # end
     @room_prices = {}
     @room_types = RoomType.all
     @room_types.each do |r_t|

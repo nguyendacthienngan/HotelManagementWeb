@@ -98,30 +98,33 @@
   </tr>
   </thead>
   <tbody>
-<% @chosen_rooms.each do |r|%>
+  <% if @chosen_rooms %>
+    <% @chosen_rooms.each do |r|%>
 
-  <tr>
-    <th>
-      <div class="form-check">
-        <% if r == @chosen_rooms[0] %>
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-        <% else %>
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+      <tr>
+        <th>
+          <div class="form-check">
+            <% if r == @chosen_rooms[0] %>
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <% else %>
+              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
 
-      <% end %>
+            <% end %>
 
-      </div>
+          </div>
 
-    </th>
-    <td><%= r["id"] %></td>
-    <td><%= @arrival_date %></td>
-    <td><%= @leave_date %></td>
-    <td>0</td>
-    <td>0</td>
-    <td>N/A</td>
-    <td>N/A</td>
-  </tr>
+        </th>
+        <td><%= r["id"] %></td>
+        <td><%= @arrival_date %></td>
+        <td><%= @leave_date %></td>
+        <td>0</td>
+        <td>0</td>
+        <td>N/A</td>
+        <td>N/A</td>
+      </tr>
+    <% end %>
   <% end %>
+
   </tbody>
 </table>
 

@@ -29,6 +29,7 @@
 </div>
 <div class="bs-stepper">
   <div class="bs-stepper-content">
+    <br>
   <%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
     <%= form.fields_for :payment_attributes, Payment.new do |p| %>
         <%= form.fields_for :client_attributes, Client.new do |client| %>

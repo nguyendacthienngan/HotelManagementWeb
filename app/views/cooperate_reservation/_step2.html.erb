@@ -1,36 +1,27 @@
 
 
+<h4 class="p-3">Thanh toán</h4>
 <div class="row">
   <div class="col-lg">
-    <div class="card ">
-      <div class="card-header bg-dark text-white">
-        <h4>Tổng hợp thông tin</h4>
-      </div>
-      <div class="card-body">
-        <% @chosen_rooms.each do |r| %>
-          <div class="card">
-            <div class="card-body">
-              <% room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s %>
-              <% room_type = room_type.tr('[]', '') %>
-              <% room_type_name = RoomType.find(room_type).name %>
-              <% room_price = @room_prices["#{room_type_name}"] %>
-              <p><%= room_type_name %> - <%= room_price %></p>
-              <p><%= @arrival_date %>- <%= @leave_date %></p>
-<!--              <p>2 NL - 1 TE</p>-->
-            </div>
+    <% if @chosen_rooms %>
+      <% @chosen_rooms.each do |r| %>
+        <div class="card border-0 ">
+          <div class="card-body padding-bottom-20 ">
+            <% room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s %>
+            <% room_type = room_type.tr('[]', '') %>
+            <% room_type_name = RoomType.find(room_type).name %>
+            <% room_price = @room_prices["#{room_type_name}"] %>
+            <p><%= room_type_name %> - <%= room_price %></p>
+            <p><%= @arrival_date %>- <%= @leave_date %></p>
+            <!--              <p>2 NL - 1 TE</p>-->
           </div>
-        <% end %>
-
-        <p>Ghi chú</p>
-      </div>
-    </div>
+        </div>
+      <% end %>
+    <% end %>
 
   </div>
   <div class="col-lg">
     <div class="card">
-      <div class="card-header bg-dark text-white">
-        <h4>Thanh toán</h4>
-      </div>
       <div class="card-body">
         <div class="row">
           <p class="col-lg-3">Đặt cọc</p>
@@ -53,6 +44,13 @@
             <%= p.number_field :temp_total, min: 0, class:"form-control"%>
           </div>
         </div>
+
+        <br>
+        <div class="container">
+          <p>Ghi chú</p>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
       </div>
     </div>
 

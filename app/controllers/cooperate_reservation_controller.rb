@@ -10,6 +10,10 @@ class CooperateReservationController < ApplicationController
   end
 
   def choose_rooms_post
+    # Set session?
+    session[:chosen_rooms] = params[:cooperate_reservation]
+    puts "session[:chosen_rooms] = "
+    puts session[:chosen_rooms]
     redirect_to :controller => 'cooperate_reservation', :action => 'new'
   end
   def choose_rooms
@@ -61,6 +65,10 @@ class CooperateReservationController < ApplicationController
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
+
+    @chosen_rooms = session[:chosen_rooms]["rooms"]
+    @arrival_date = session[:chosen_rooms]["arrival_date"]
+    @leave_date = session[:chosen_rooms]["leave_date"]
   end
 
   def create

@@ -124,23 +124,30 @@
     function pay(){
         var chosen_rooms = []
         let i = 0
-        for (i in rooms)
+        if (rooms.length > 0)
         {
-            let room = {id: rooms[i]};
-            chosen_rooms.push(room)
+            for (i in rooms)
+            {
+                let room = {id: rooms[i]};
+                chosen_rooms.push(room)
+            }
+            $.ajax({
+                type: "POST",
+                url: "/cooperate_reservation/choose_rooms",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(
+                    {
+                        arrival_date: $('#arrival_date').val(),
+                        leave_date: $('#leave_date').val(),
+                        rooms: chosen_rooms
+                    }),
+                contentType: "application/json; charset=utf-8"
+            });
         }
-        $.ajax({
-            type: "POST",
-            url: "/cooperate_reservation/choose_rooms",
-            // The key needs to match your method's input parameter (case-sensitive).
-            data: JSON.stringify(
-                {
-                    arrival_date: $('#arrival_date').val(),
-                    leave_date: $('#leave_date').val(),
-                    rooms: chosen_rooms
-                }),
-            contentType: "application/json; charset=utf-8"
-        });
+        else
+        {
+            alert("Please choose at least 1 room")
+        }
     }
     $('.toggle-list').on('click' ,function(e) {
         var toggleButton = $(e.target);
@@ -203,14 +210,6 @@
             $(amount_reserve_id).text(--amount_reserve)
         }
 
-        // if (typeof(Storage) !== "undefined") {
-        //     // Store
-        //     sessionStorage.setItem("lastname", "Smith");
-        //     // Retrieve
-        //     // $('') = sessionStorage.getItem("lastname");
-        // } else {
-        //     // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-        // }
     })
 
 </script>

@@ -1,5 +1,6 @@
 include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @reservation = Reservation.all
   end
@@ -8,6 +9,9 @@ class CooperateReservationController < ApplicationController
 
   end
 
+  def choose_rooms_post
+    redirect_to :controller => 'cooperate_reservation', :action => 'new'
+  end
   def choose_rooms
 
     filter_room_type = params[:room_type_id]

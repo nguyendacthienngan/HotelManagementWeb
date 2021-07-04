@@ -25,13 +25,14 @@
                           placeholder: "Ngày đi"%>
 
     </div>
+<% end %>
 
     <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
   </div>
   <br>
-  <%= render :partial => 'quick_choose_rooms', :locals=>{:form=>form} %>
+  <%#= render :partial => 'quick_choose_rooms', :locals=>{:form=>form} %>
   <br>
-  <div class="btn btn-primary", style="float:right">
+  <div class="btn btn-primary", style="float:right" onclick="pay()">
     Thanh toán
   </div>
 
@@ -85,7 +86,6 @@
   </div>
 
 
-<% end %>
 
 
 <script>
@@ -117,8 +117,30 @@
         if (!leave_date)
             leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
 
-        var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+        var theURL = '/cooperate_reservation/choose_rooms?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
         window.location.href = theURL
+    }
+
+    function pay(){
+
+        // var markers = [{ "position": "128.3657142857143", "markerPosition": "7" },
+        //     { "position": "235.1944023323615", "markerPosition": "19" },
+        //     { "position": "42.5978231292517", "markerPosition": "-3" }];
+        $.ajax({
+            type: "POST",
+            url: "/cooperate_reservation/choose_rooms",
+            // The key needs to match your method's input parameter (case-sensitive).
+            data: JSON.stringify({ Rooms: rooms }),
+
+            contentType: "application/json; charset=utf-8",
+            // dataType: "json",
+            // success: function(data){
+            //     // alert(data);
+            //     },
+            // error: function(errMsg) {
+            //     // alert(errMsg);
+            // }
+        });
     }
     $('.toggle-list').on('click' ,function(e) {
         var toggleButton = $(e.target);

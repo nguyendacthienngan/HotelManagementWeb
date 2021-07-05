@@ -23,7 +23,7 @@
 <% @reservations.each do |reservation| %>
   <% room = Room.find(reservation.room_id) %>
   <%  room_name = room.name %>
-  <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).id).id).price %>
+  <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).room_type_id).id).price %>
   <% room_status = @room_statuses[reservation.status - 1][:text] %>
 
   <% client_name = reservation.client_name %>

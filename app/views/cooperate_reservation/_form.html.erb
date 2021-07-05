@@ -19,18 +19,18 @@
     </ol>
   </div>
 
-<div class="action">
-  <button id="prev_button" class="btn btn-primary">
-    Back
-  </button>
-  <button id="next_button" class="btn btn-primary" style="float: right">
-    Next
-  </button>
 
-</div>
 <%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
+  <div class="action">
+    <div id="prev_button" class="btn btn-primary">
+      Back
+    </div>
+    <div id="next_button" class="btn btn-primary" style="float: right">
+      Next
+    </div>
+    <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  ,style:"float: right"%>
 
-  <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  %>
+  </div>
 
   <div class="bs-stepper">
   <div class="bs-stepper-content">
@@ -66,9 +66,6 @@
         $("#step2").hide()
         $('#finish_button').hide()
     })
-    $('#finish_button').click(function(){
-        alert("CREATE")
-    })
     $("#next_button").click(function(){
         if (current_step >= 2)
         {
@@ -84,22 +81,20 @@
                 $('#finish_button').show()
                 $("#next_button").hide()
             }
-            else
-            {
-                // $('#finish_button').hide()
-                // $("#next_button").show()
-            }
 
-            // console.log(current_step)
         }
 
 
     })
     $("#prev_button").click(function() {
-        if (current_step <= 1)
-            return;
         $("#step" + current_step).hide()
         current_step--;
         $("#step" + current_step).show()
+        if (current_step <= 0)
+        {
+            let theURL = '/cooperate_reservation/choose_rooms'
+            window.location.href = theURL
+        }
+
     })
 </script>

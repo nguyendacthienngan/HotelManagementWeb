@@ -1,38 +1,41 @@
-<%= form_with url: "/cooperate_reservation/new", method: :get do |form| %>
+<%= javascript_pack_tag 'choose_rooms' %>
 
-  <div class="row">
-    <div class="dropdown col-md">
-      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
-    </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :arrival_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đến"%>
-    </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :leave_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đi"%>
+<div data-turbolinks="false" id="choose_rooms">
+  <%= form_with url: "/cooperate_reservation/new", method: :get do |form| %>
 
-    </div>
-<% end %>
+    <div class="row" >
+      <div class="dropdown col-md">
+        <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :arrival_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đến"%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :leave_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đi"%>
 
-    <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
+      </div>
+  <% end %>
+
+  <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
   </div>
   <br>
   <%#= render :partial => 'quick_choose_rooms', :locals=>{:form=>form} %>
   <br>
-  <div class="btn btn-primary", style="float:right" onclick="pay()">
+  <div id="pay-button" class="btn btn-primary", style="float:right" >
     Thanh toán
   </div>
 
@@ -85,14 +88,21 @@
     </div>
   </div>
 
+</div>
 
 
 
-<script>
+
+<script  type="text/javascript">
+
     // [{room_type: {id: 1, count: x, rooms: []  }}]
-    let room_types = {}
-    let rooms = [];
+
     $(document).ready(function(){
+        if ('<%=  session[:chosen_rooms] %>')
+        {
+            <% session.delete(:chosen_rooms) %>
+            location.reload();
+        }
         $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
         $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
     })
@@ -123,34 +133,37 @@
         window.location.href = theURL
     }
 
-    function pay(){
-        let chosen_rooms = []
-        let i = 0
-        if (rooms.length > 0)
-        {
-            for (i in rooms)
-            {
-                let room = {id: rooms[i]};
-                chosen_rooms.push(room)
-            }
-            $.ajax({
-                type: "POST",
-                url: "/cooperate_reservation/choose_rooms",
-                // The key needs to match your method's input parameter (case-sensitive).
-                data: JSON.stringify(
-                    {
-                        arrival_date: $('#arrival_date').val(),
-                        leave_date: $('#leave_date').val(),
-                        rooms: chosen_rooms
-                    }),
-                contentType: "application/json; charset=utf-8"
-            });
-        }
-        else
-        {
-            alert("Please choose at least 1 room")
-        }
-    }
+    // function pay(){
+    //     let chosen_rooms = []
+    //     let i = 0
+    //     if (rooms.length > 0)
+    //     {
+    //         for (i in rooms)
+    //         {
+    //             let room = {id: rooms[i]};
+    //             chosen_rooms.push(room)
+    //         }
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/cooperate_reservation/choose_rooms",
+    //             // The key needs to match your method's input parameter (case-sensitive).
+    //             data: JSON.stringify(
+    //                 {
+    //                     arrival_date: $('#arrival_date').val(),
+    //                     leave_date: $('#leave_date').val(),
+    //                     rooms: chosen_rooms
+    //                 }),
+    //             contentType: "application/json; charset=utf-8",
+    //             success: function(res){
+    //
+    //             }
+    //         });
+    //     }
+    //     else
+    //     {
+    //         alert("Please choose at least 1 room")
+    //     }
+    // }
     $('.toggle-list').on('click' ,function(e) {
         let toggleButton = $(e.target);
         let card = $(this).closest('.card');
@@ -172,77 +185,6 @@
 
 
     });
-    $('.room').click(function(e){
-        // Change button state
-        let target = $(e.target)
-        let id = e.target.id
-        let result_id = "result_" + id
 
-        let room_type = $(this).closest('.card')
-        let room_type_id = "#result_" + room_type.attr('id').toString()
-        let room_type_name = room_type.attr('id').toString()
-
-
-
-        let amount_reserve_id = '#amount_' + room_type.attr('id').toString()
-        let amount_reserve = $(amount_reserve_id).text()
-        amount_reserve = parseInt(amount_reserve)
-
-        if (target.text() != "✓")
-        {
-            amount_reserve = ++amount_reserve
-            rooms.push(id)
-            let rooms_string =  '[' +  rooms.toString() + ']'
-            console.log("COUNT: " , amount_reserve)
-            let room_type_object = {id: room_type_name, count: amount_reserve, chosen_rooms:  rooms.toString()}
-            room_types[room_type_name] = room_type_object
-
-            setRooms(rooms)
-            target.removeClass('inactive-room')
-            target.addClass('active-room')
-            target.text("✓")
-            // Add to results
-            let string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
-
-            $(room_type_id).append(string)
-            $(amount_reserve_id).text(amount_reserve)
-        }
-        else
-        {
-            let room_index = rooms.indexOf(id);
-            if (room_index > -1) {
-                rooms.splice(room_index, 1);
-            }
-            if (room_index > -1)
-            {
-                const r_type = room_types[room_type_name]
-                if (r_type)
-                {
-                    let rs = r_type.chosen_rooms
-                    rs = rs.split(', ')
-                    if (rs.length > 0)
-                    {
-                        console.log("id", id)
-                        console.log("room_index", room_index)
-                        console.log("count", r_type["count"])
-                        r_type["count"] = r_type["count"] - 1
-                        rs.splice(room_index, 1)
-                        if (r_type["count"] <= 0)
-                            delete room_types[room_type_name]
-                        console.log("room_types: ", room_types)
-                    }
-                }
-
-
-            }
-            target.text(e.target.id)
-            target.addClass('inactive-room')
-            target.removeClass('active-room')
-            $('#' + result_id).remove()
-
-            $(amount_reserve_id).text(--amount_reserve)
-        }
-
-    })
 
 </script>

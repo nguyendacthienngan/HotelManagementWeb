@@ -18,6 +18,7 @@
       <li class="breadcrumb-item active" aria-current="page"><a>Đặt phòng</a></li>
     </ol>
   </div>
+
 <div class="action">
   <button id="prev_button" class="btn btn-primary">
     Back
@@ -27,12 +28,19 @@
   </button>
 
 </div>
-<div class="bs-stepper">
+<%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
+
+  <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  %>
+
+  <div class="bs-stepper">
   <div class="bs-stepper-content">
     <br>
-  <%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
-    <%= form.fields_for :payment_attributes, Payment.new do |p| %>
-        <%= form.fields_for :client_attributes, Client.new do |client| %>
+      <%= form.hidden_field(:employee_id, :value => current_user.employee_id)  %>
+      <%= form.hidden_field(:arrival_date, :value => @arrival_date)  %>
+      <%= form.hidden_field(:leave_date, :value => @leave_date)  %>
+
+      <%= form.fields_for :payment_attributes, Payment.new do |p| %>
+        <%= p.fields_for :client_attributes, Client.new do |client| %>
           <div id="step1">
             <%= render :partial => "step1",  :locals=>{:client=>client, :form=>form} %>
           </div>
@@ -49,7 +57,6 @@
   </div>
   <br>
   <br>
-  <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  %>
 </div>
 <% end %>
 
@@ -57,23 +64,36 @@
     var current_step;
     $(document).ready(function(){
         current_step = 1
-        $("#step1").hide()
+        $("#step2").hide()
         $('#finish_button').hide()
+    })
+    $('#finish_button').click(function(){
+        alert("CREATE")
     })
     $("#next_button").click(function(){
         if (current_step >= 2)
         {
-            if ($("#step2").is(":visible"))
-            {
-                $('#finish_button').click()
-                current_step = 0;
-                return;
-            }
+            current_step = 0
         }
-        $("#step" + current_step).hide()
-        current_step++;
-        $("#step" + current_step).show()
-        // console.log(current_step)
+        else
+        {
+            $("#step" + current_step).hide()
+            current_step++;
+            $("#step" + current_step).show()
+            if (current_step >= 2)
+            {
+                $('#finish_button').show()
+                // $("#next_button").hide()
+            }
+            else
+            {
+                // $('#finish_button').hide()
+                // $("#next_button").show()
+            }
+
+            // console.log(current_step)
+        }
+
 
     })
     $("#prev_button").click(function() {

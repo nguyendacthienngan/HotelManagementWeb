@@ -133,24 +133,24 @@ class CooperateReservationController < ApplicationController
     if @chosen_rooms
       successFlag = true
       @chosen_rooms.each do |chosen_room|
-
-        puts "-------- room_id: "
-        puts room_id
-
         room_id = Room.where(name: chosen_room["id"]).pluck(:id)
         room_id = room_id.to_s
         room_id = room_id.tr('[]', '')
         reservation_params.merge(room_id: room_id) #IMPORTANT
         @reservation = Reservation.new(reservation_params)
-        respond_to do |format|
-          if !@reservation.save
-            puts "FAILED"
-              format.html { render :new, status: :unprocessable_entity }
-              format.json { render json: @reservation.errors, status: :unprocessable_entity }
-            successFlag = false
-            break
+        puts '-------------- ROOM ID: '
+        puts room_id
 
+        if !@reservation.save
+          puts "FAILED"
+
+          successFlag = false
+          respond_to do |format|
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
+          break
+
         end
       end
       if successFlag == true

@@ -33,6 +33,7 @@
         <br>
         <%= render :partial => "step3",  :locals=>{:form=>form} %>
       </div>
+      <%= form.hidden_field(:status, :value => 1) %>
 
       <br>
       <br>

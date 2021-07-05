@@ -71,16 +71,6 @@ class CooperateReservationController < ApplicationController
     @leave_date = session[:chosen_rooms]["leave_date"]
 
     @room_types_json = []
-    # [{room_type: {id: 1, count: x, rooms: []  }}]
-    # @chosen_rooms.each do |r|
-    #   room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s
-    #   room_type = room_type.tr('[]', '')
-    #   room_type = RoomType.find(room_type).name
-    #
-    #   #Tính số lượng
-    #
-    #   @room_types_json["#{room_type}"] = 0
-    # end
     @room_prices = {}
     @room_types = RoomType.all
     @room_types.each do |r_t|
@@ -112,24 +102,8 @@ class CooperateReservationController < ApplicationController
       end
     end
 
-    # Test
-    # first_room = @chosen_rooms[0]
-    # room_id = Room.where(name: first_room["id"]).pluck(:id)
-    # room_id = room_id.to_s
-    # room_id = room_id.tr('[]', '')
-    # reservation_params.merge(room_id: room_id) #IMPORTANT
-    #
-    # @reservation = Reservation.new(reservation_params)
-    # @reservation.room_id = room_id
-    # respond_to do |format|
-    #   if !@reservation.save
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @reservation.errors, status: :unprocessable_entity }
-    #   else
-    #       format.html { redirect_to cooperate_reservation_index_path, notice: "Reservation was successfully created." }
-    #       format.json { render :show, status: :created, location: @reservation }
-    #   end
-    # end
+    room_id = 0
+    @room = {}
     if @chosen_rooms
       successFlag = true
       # reservation_params.merge(room_id: 1) #IMPORTANT
@@ -137,32 +111,20 @@ class CooperateReservationController < ApplicationController
         room_id = Room.where(name: chosen_room["id"]).pluck(:id)
         room_id = room_id.to_s
         room_id = room_id.tr('[]', '')
-
-        # puts '-------------- room_id (NOT ROOM NAME): '
-        # puts room_id
-
+        @room = Room.find(room_id)
         reservation_params[:room_id] = room_id
-        # reservation_params["room_id"] = room_id.to_s
-        # reservation_params.to_hash.symbolize_keys.merge(:room_id => room_id)
-        # reservation_params.deep_merge!({"room_id" => room_id.to_s})
-
-
         @reservation = Reservation.new(reservation_params)
         @reservation.room_id = room_id
-
-        puts @reservation.inspect
-
-
         if !@reservation.save
           puts "FAILED"
-
           successFlag = false
           respond_to do |format|
             format.html { render :new, status: :unprocessable_entity }
             format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
           break
-
+        else
+          @room.update(status: 2)
         end
       end
       if successFlag == true
@@ -183,7 +145,6 @@ class CooperateReservationController < ApplicationController
   def reservation_params
     params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
                   payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
-    # client_attributes:[:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
   end
 end
 

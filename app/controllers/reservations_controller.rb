@@ -53,10 +53,6 @@ class ReservationsController < ApplicationController
     @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
     @room_price_name = currency_name(@room_price_name)
     @room_price_value = currency_value(@room_price_name)
-
-
-
-
   end
 
   # GET /reservations/1/edit
@@ -151,14 +147,6 @@ class ReservationsController < ApplicationController
               end
             end
           end
-          # if params[:back_button]
-          #   @reservation.previous_step
-          # elsif @reservation.last_step?
-          #   @reservation.save if @reservation.all_valid?
-          # else
-          #   @reservation.next_step
-          # end
-          # session[:reservation_step] = @reservation.current_step
         end
         if @reservation.new_record?
           render "new"

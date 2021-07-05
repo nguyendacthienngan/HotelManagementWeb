@@ -132,14 +132,26 @@ class CooperateReservationController < ApplicationController
     # end
     if @chosen_rooms
       successFlag = true
+      # reservation_params.merge(room_id: 1) #IMPORTANT
       @chosen_rooms.each do |chosen_room|
         room_id = Room.where(name: chosen_room["id"]).pluck(:id)
         room_id = room_id.to_s
         room_id = room_id.tr('[]', '')
-        reservation_params.merge(room_id: room_id) #IMPORTANT
+
+        # puts '-------------- room_id (NOT ROOM NAME): '
+        # puts room_id
+
+        reservation_params[:room_id] = room_id
+        # reservation_params["room_id"] = room_id.to_s
+        # reservation_params.to_hash.symbolize_keys.merge(:room_id => room_id)
+        # reservation_params.deep_merge!({"room_id" => room_id.to_s})
+
+
         @reservation = Reservation.new(reservation_params)
-        puts '-------------- ROOM ID: '
-        puts room_id
+        @reservation.room_id = room_id
+
+        puts @reservation.inspect
+
 
         if !@reservation.save
           puts "FAILED"

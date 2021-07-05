@@ -100,7 +100,6 @@
   <tbody>
   <% if @chosen_rooms %>
     <% @chosen_rooms.each do |r|%>
-
       <tr>
         <th>
           <div class="form-check">
@@ -108,11 +107,8 @@
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
             <% else %>
               <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-
             <% end %>
-
           </div>
-
         </th>
         <td><%= r["id"] %></td>
         <td><%= @arrival_date %></td>
@@ -130,11 +126,11 @@
 
 
 <script>
-    $('#_client_attributes_name').keyup(function(){
-        $('#client_name').val($('#_client_attributes_name').val());
+    $('#_payment_attributes_client_attributes_name').keyup(function(){
+        $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
     })
-    $('#_client_attributes_citizen_id').keyup(function(){
-        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val());
+    $('#_payment_attributes_client_attributes_citizen_id').keyup(function(){
+        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
     })
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>

@@ -60,7 +60,9 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new
+    @payment = Payment.new
+
+    # @reservation = Reservation.new
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
@@ -83,6 +85,7 @@ class CooperateReservationController < ApplicationController
 
   def create
     @chosen_rooms = session[:chosen_rooms]["rooms"]
+    @payment = Payment.new
 
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
@@ -102,38 +105,6 @@ class CooperateReservationController < ApplicationController
       end
     end
 
-    room_id = 0
-    @room = {}
-    if @chosen_rooms
-      successFlag = true
-      # reservation_params.merge(room_id: 1) #IMPORTANT
-      @chosen_rooms.each do |chosen_room|
-        room_id = Room.where(name: chosen_room["id"]).pluck(:id)
-        room_id = room_id.to_s
-        room_id = room_id.tr('[]', '')
-        @room = Room.find(room_id)
-        reservation_params[:room_id] = room_id
-        @reservation = Reservation.new(reservation_params)
-        @reservation.room_id = room_id
-        if !@reservation.save
-          puts "FAILED"
-          successFlag = false
-          respond_to do |format|
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @reservation.errors, status: :unprocessable_entity }
-          end
-          break
-        else
-          @room.update(status: 2)
-        end
-      end
-      if successFlag == true
-        respond_to do |format|
-          format.html { redirect_to cooperate_reservation_index_path, notice: "Reservation was successfully created." }
-        end
-      end
-      return
-    end
 
   end
 
@@ -142,9 +113,13 @@ class CooperateReservationController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
+
   def reservation_params
-    params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
-                  payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
+    params.require(:payment).permit(:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id,
+    :reservation_attributes => [:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date],
+    :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
+    # params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
+    #               payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
   end
 end
 

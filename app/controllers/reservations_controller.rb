@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
     # reset_session
     session[:reservation_params] = nil
     session[:reservation_params] ||= {}
+
     @reservation = Reservation.new(session[:reservation_params])
     @room_id = (params[:room_id])? params[:room_id] : 1
     if session[:reservation_params] == nil

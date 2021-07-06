@@ -4,76 +4,284 @@
 clients = Client.create([
                             {
                               name: "Khách lữ hành",
-                              citizen_id: '012345678',
+                              citizen_id: '221489036',
                               gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,11,11,0),
                               email: 'khachluhanh@gmail.com',
                               client_type: '0',
-                              phone_number: '0123456789'
+                              phone_number: '0984123444'
                             },
                             { name: 'Nguyễn Lê Bách' ,
-                              citizen_id: '0123456789',
+                              citizen_id: '221467092',
                               gender: 0,
                               nationality: 'Viet Nam',
-                              date_of_birth: DateTime.new(2000,11,11,0),
+                              date_of_birth: DateTime.new(2000,12,11,0),
                               email: 'nlebachnlb@gmail.com',
                               client_type: '0',
-                              phone_number: '0123456789'
+                              phone_number: '0987222489'
                             },
                             { name: 'Tăng Khánh Chương',
-                              citizen_id: '0123456788',
+                              citizen_id: '221468039',
                               gender: 0,
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,4,21,0),
                               email: 'tangkhanhchuong@gmail.com',
                               client_type: '0',
-                              phone_number: '0123456788'
+                              phone_number: '0945678092'
                             },
                             { name: 'Đỗ Ngọc Cường',
-                              citizen_id: '0123456787',
+                              citizen_id: '221478246',
                               gender: 0,
                               nationality: 'Viet Nam',
-                              date_of_birth: DateTime.new(2000,4,10,0),
+                              date_of_birth: DateTime.new(2000,7,10,0),
                               email: 'dongoccuong@gmail.com',
                               client_type: '0',
-                              phone_number: '0123456787'
+                              phone_number: '0169352557'
                             },
+                            {
+                              name: 'Nguyễn Thị Thúy',
+                              citizen_id: '221467334',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,2,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0987666544',
+                            },
+                            {
+                              name: 'Trần Thanh Thanh',
+                              citizen_id: '221467334',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,9,19,0),
+                              email: 'tranthanhthanh@gmail.com',
+                              client_type: '1',
+                              phone_number: '0987666577',
+                            },
+                            {
+                              name: 'Võ Bảo Hoa',
+                              citizen_id: '221467335',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,3,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0987888657',
+                            },
+                            {
+                              name: 'Nguyễn Văn Tuấn',
+                              citizen_id: '221467555',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,2,19,0),
+                              email: 'nguyenvantuan@gmail.com',
+                              client_type: '1',
+                              phone_number: '0924578356',
+                            },
+                            {
+                              name: 'Nguyễn Văn Tuấn',
+                              citizen_id: '221467555',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,5,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0924578355',
+                            },
+                            {
+                              name: 'Phạm Duy Hùng',
+                              citizen_id: '221467345',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,6,19,0),
+                              email: 'phamduyhung@gmail.com',
+                              client_type: '1',
+                              phone_number: '0987456666',
+                            },
+                            {
+                              name: 'Nguyễn Thị Lệ',
+                              citizen_id: '221467334',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,1,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0987666544',
+                            },
+                            {
+                              name: 'Nguyễn Thanh Thanh',
+                              citizen_id: '221467334',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,7,19,0),
+                              email: 'nguyenthanhthanh@gmail.com',
+                              client_type: '1',
+                              phone_number: '0987666577',
+                            },
+                            {
+                              name: 'Võ Hồng Hoa',
+                              citizen_id: '221467335',
+                              gender: 1,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,10,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0987888657',
+                            },
+                            {
+                              name: 'Nguyễn Văn Tân',
+                              citizen_id: '221467555',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,8,19,0),
+                              email: 'nguyenvantan@gmail.com',
+                              client_type: '1',
+                              phone_number: '0924578356',
+                            },
+                            {
+                              name: 'Nguyễn Văn Tấn',
+                              citizen_id: '221467555',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,3,19,0),
+                              email: '',
+                              client_type: '0',
+                              phone_number: '0924578355',
+                            },
+                            {
+                              name: 'Phạm Duy Tuấn',
+                              citizen_id: '221467389',
+                              gender: 0,
+                              nationality: 'Viet Nam',
+                              date_of_birth: DateTime.new(1962,5,19,0),
+                              email: 'phamduytuan@gmail.com',
+                              client_type: '1',
+                              phone_number: '0987456666',
+                            },
+                            
                           ])
 
 employees = Employee.create([
                                 {
-                                  name: 'Nguyễn Đắc Thiên Ngân',
-                                  citizen_id: '0123456786',
+                                  name: 'Vũ Khả Âu',
+                                  citizen_id: '221489036',
                                   gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(2000,5,15,0),
-                                  email: 'nguyendacthienngan@gmail.com',
+                                  email: 'vkAu@gmail.com',
                                   employee_type: '0',
-                                  phone_number: '0123456786',
+                                  phone_number: '0984123444',
+                                  address: '12A Đinh Tiên Hoàng, Quận 1, TP.Hồ Chí Minh',
                                   status: 0
                                 },
                                 {
-                                  name: 'Ung Bao Tien',
-                                  citizen_id: '0123456785',
-                                  gender: 1,
+                                  name: 'Trần Thanh Nhã',
+                                  citizen_id: '221467092',
+                                  gender: 0,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1999,12,25,0),
-                                  email: 'ungbaotien@gmail.com',
-                                  employee_type: '0',
-                                  phone_number: '0123456785',
+                                  email: 'ttNha@gmail.com',
+                                  employee_type: '1',
+                                  phone_number: '0987222489',
+                                  address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
                                   status: 0
                                 },
                                 {
-                                  name: 'Nguyễn Thị Quỳnh Ngân',
-                                  citizen_id: '0123456784',
+                                  name: 'Nguyễn Ái My',
+                                  citizen_id: '221468039',
                                   gender: 1,
                                   nationality: 'Viet Nam',
-                                  date_of_birth: DateTime.new(2000,9,25,0),
-                                  email: 'nguyenthiquynhngan@gmail.com',
-                                  employee_type: '0',
-                                  phone_number: '0123456784',
+                                  date_of_birth: DateTime.new(1999,1,5,0),
+                                  email: 'naMy@gmail.com',
+                                  employee_type: '1',
+                                  phone_number: '0945678092',
+                                  address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
+                                  status: 1
+                                },
+                                {
+                                  name: 'Trần Ngọc Hân',
+                                  citizen_id: '221478246',
+                                  gender: 1,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1989,3,8,0),
+                                  email: 'tnHan@gmail.com',
+                                  employee_type: '1',
+                                  phone_number: '0169352557',
+                                  address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
                                   status: 0
+                                },
+                                {
+                                  name: 'Nguyễn Thị Thúy',
+                                  citizen_id: '221467334',
+                                  gender: 1,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '2',
+                                  phone_number: '0987666544',
+                                  address: '33 Đông Khởi, Quận 6, TP.Hồ Chí Minh',
+                                  status: 0
+                                },
+                                {
+                                  name: 'Trần Thanh Thanh',
+                                  citizen_id: '221467334',
+                                  gender: 1,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '2',
+                                  phone_number: '0987666577',
+                                  address: '113 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
+                                  status: 0
+                                },
+                                {
+                                  name: 'Võ Bảo Hoa',
+                                  citizen_id: '221467335',
+                                  gender: 1,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '2',
+                                  phone_number: '0987888657',
+                                  address: '256 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
+                                  status: 0
+                                },
+                                {
+                                  name: 'Phạm Duy Hùng',
+                                  citizen_id: '221467345',
+                                  gender: 0,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '3',
+                                  phone_number: '0987456666',
+                                  address: '123 Trần Nhật Duật, Quận 9, TP.Hồ Chí Minh',
+                                  status: 0
+                                },
+                                {
+                                  name: 'Nguyễn Văn Tuấn',
+                                  citizen_id: '221467555',
+                                  gender: 0,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '3',
+                                  phone_number: '0924578356',
+                                  address: '125 Trần Phú, Quận 9, TP.Hồ Chí Minh',
+                                  status: 0
+                                },
+                                {
+                                  name: 'Nguyễn Văn Tuấn',
+                                  citizen_id: '221467555',
+                                  gender: 0,
+                                  nationality: 'Viet Nam',
+                                  date_of_birth: DateTime.new(1962,7,19,0),
+                                  email: '',
+                                  employee_type: '3',
+                                  phone_number: '0924578355',
+                                  address: '245 Đông Khởi, Quận 10, TP.Hồ Chí Minh',
+                                  status: 1
                                 },
                               ])
 
@@ -98,39 +306,39 @@ services = Service.create([
 roomTypes = RoomType.create!([
                               {
                                 name: "Standard",
-                                description: "Phòng tiêu chuẩn trong khách sạn với trang bị tối thiểu, tầng thấp, không có view đẹp",
+                                description: "Phòng tiêu chuẩn trong khách sạn, giường đôi, nước đóng chai miễn phí, máy lạnh, tầng thấp, không có view đẹp",
                                 beds: 1,
-                                available_rooms: 4
+                                available_rooms: 2
                               },
                               {
                                 name: "Superior Twin",
-                                description: "Chất lượng cao hơn Standard, diện tích lớn hơn, trang bị nhiều thiết bị tiện nghi, view đẹp",
+                                description: "Diện tích lớn hơn Standard, giường đơn, nước đóng chai miễn phí, máy lạnh, tủ lạnh, view đẹp",
                                 beds: 2,
-                                available_rooms: 6
+                                available_rooms: 4
                               },
                               {
                                 name: "Superior Double",
-                                description: "Chất lượng cao hơn Standard, diện tích lớn hơn, trang bị nhiều thiết bị tiện nghi, view đẹp",
-                                beds: 1,
-                                available_rooms: 10
+                                description: "Diện tích lớn hơn Superior Twin, giường đôi, diện tích lớn hơn, nước đóng chai miễn phí, máy lạnh, tủ lạnh, view đẹp",
+                                beds: 2,
+                                available_rooms: 4
                               },
                               {
                                 name: "Deluxe Twin",
-                                description: "Thường ở trên tầng cao với chất lượng tốt hơn Superior. Diện tích rộng, tầm nhìn đẹp với trang thiết bị cao cấp",
+                                description: "Nằm ở trên tầng cao với diện tích lớn hơn Superior. 1 giường đôi & 1 giường đơn, nước đóng chai miễn phí, máy lạnh, tủ lạnh, bồn tắm, view đẹp",
                                 beds: 2,
-                                available_rooms: 9
+                                available_rooms: 4
                               },
                               {
                                 name: "Deluxe Double",
-                                description: "Thường ở trên tầng cao với chất lượng tốt hơn Superior. Diện tích rộng, tầm nhìn đẹp với trang thiết bị cao cấp",
-                                beds: 1,
-                                available_rooms: 15
+                                description: "Diện tích lớn hơn Superior, giường đôi, nước đóng chai miễn phí, máy lạnh, bếp nhỏ, lò vi sóng, tủ lạnh, view đẹp",
+                                beds: 2,
+                                available_rooms: 4
                               },
                               {
                                 name: "Suite Double",
-                                description: "Loại phòng cao cấp nhất trong khác sạn. Thường thì phòng khách và phòng ngủ riêng biệt, có ban công, view đẹp nhất. Tương tự phòng Tổng Thống, Hoàng Gia",
-                                beds: 1,
-                                available_rooms: 15
+                                description: "Loại phòng cao cấp nhất trong khác sạn, phòng khách và phòng ngủ riêng biệt, và các tiện nghi ấn tượng, trang trí và các dịch vụ được thiết kế riêng, có ban công, view đẹp nhất.",
+                                beds: 3,
+                                available_rooms: 6
                               }
                             ])
 
@@ -512,49 +720,49 @@ Room.create!([
                         name: "105",
                         status: 1,
                         floor: 1,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng độc lập",
                         room_type_id: 2,
                       },
                       {
                         name: "106",
                         status: 1,
                         floor: 1,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng tiện nghi",
                         room_type_id: 3
                       },
                       {
                         name: "201",
                         status: 1,
                         floor: 2,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng cao cấp",
                         room_type_id: 4
                       },
                       {
                         name: "202",
                         status: 1,
                         floor: 2,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng cao cấp",
                         room_type_id: 4
                       },
                       {
                         name: "203",
                         status: 1,
                         floor: 2,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng thượng hạng",
                         room_type_id: 5
                       },
                       {
                         name: "204",
                         status: 1,
                         floor: 2,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng thượng hạng",
                         room_type_id: 5
                       },
                       {
                         name: "301",
                         status: 1,
                         floor: 3,
-                        description: "Phòng sang xịn mịn",
+                        description: "Phòng tổng thống",
                         room_type_id: 6
                       },
                     ])

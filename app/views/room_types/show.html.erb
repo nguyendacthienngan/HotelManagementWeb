@@ -14,24 +14,35 @@
         </div>
     </nav>
 </div>
-  <p id="notice"><%= notice %></p>
-  <div class="show_container">
+  <div class="show_roomType_container">
   <div class="show_content tColumn">
   <p class="tRow">
-    <strong class="show_roomtype_name">Name</strong>
-    <strong class="show_sign">:</strong>
-    <%= @room_type.name %>
+    <span class="show_roomtype_name">Loại phòng</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @room_type.name %></strong>
   </p>
 
   <p class="tRow">
-    <strong class="show_roomtype_name">Description</strong>
-    <strong class="show_sign">:</strong>
-    <%= @room_type.description %>
+    <span class="show_roomtype_name">Số giường</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @room_type.beds %> giường</strong>
+  </p>
+
+  <p class="tRow">
+    <span class="show_roomtype_name">Sức chứa</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @room_type.available_rooms %> người lớn</strong>
+  </p>
+
+  <p class="tRow">
+    <span class="show_roomtype_name">Mô tả</span>
+    <span class="show_sign">:</span>
+    <strong class="show_roomtype_value"><%= @room_type.description %></strong>
   </p>
   </div>
-  <div class="bottom_container">
-    <%= link_to room_types_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+  <div class="tBotton">
     <%= link_to edit_room_type_path(@room_type) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
   </div>
   </div>
 </center>
+<%= link_to room_types_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>

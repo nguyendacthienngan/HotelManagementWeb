@@ -12,12 +12,14 @@ class ApplicationController < ActionController::Base
   ]
   @@employee_types = [
     { code: "manager", text: "Quản lý" },
-    { code: "receptionist", text: "Nhân viên lễ tân" }
+    { code: "receptionist", text: "Lễ tân" },
+    { code: "vs", text: "Vệ sinh" },
+    { code: "bv", text: "Bảo vệ" }
   ]
   @@employee_statuses = [
     { code: "working", text: "Đi làm" },
     { code: "left", text: "Nghỉ làm" }
-  ]
+  ] 
   @@client_types = [
     { code: "traveller", text: "Khách lữ hành" },
     { code: "client", text: "Khách hàng thành viên" }

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 <div class="d-flex justify-content-start">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><%= link_to "Cấu hình", room_prices_path %></li>
@@ -28,6 +28,7 @@
       <td><%= link_to 'Show', room_price %></td>
       <td><%= link_to 'Edit', edit_room_price_path(room_price) %></td>
       <td><%= link_to 'Destroy', room_price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
     </tr>
   <% end %>
   </tbody>
@@ -36,4 +37,338 @@
 <div class="d-flex justify-content-end">
   Tổng: <%= @room_prices.ids.count %>
 </div>
-<%= link_to 'New Room Price', new_room_price_path %>
+<%= link_to 'New Room Price', new_room_price_path %> -->
+
+<div class="employee_top_breadcrumb">
+  <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-start">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Giá phòng</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="roomPrice_main_view">
+
+  <div class="left_container">
+      <div class="section_name" >
+      Danh sách chi tiết giá của các loại phòng
+      </div>
+      <table>
+          <tr>
+              <th class="roomPrice_row_title_roomType">LOẠI PHÒNG</th>
+              <th class="roomPrice_row_title_infoBasic">LOẠI GIÁ</th>
+              <th class="roomPrice_row_title_price">GIÁ</th>
+              <th class="roomPrice_row_title_date">NGÀY ÁP DỤNG</th>
+              <th class="roomPrice_row_title_is_available">TRẠNG THÁI</th>
+          </tr>
+
+          <% @room_prices.each do |room_price| %>
+              <tr class="roomPrice_row">
+                  <td class="roomPrice_row_roomType">
+                    <span class="roomPrice_roomTypeId hide" ><%= room_price.room_type_id %></span>
+                    <span id="roomPrice_roomTypeName" ><%= RoomType.find(room_price.room_type_id).name %></span>
+                  </td>
+                  <td class="roomPrice_row_infoBasic">
+                      <div class="info_basic_container">
+                          <span class="roomPrice_row_price_type">
+                            <span class="roomPrice_roomPriceId hide"><%= room_price.price_type %></span>
+                            <% if room_price.price_type == 1 %>
+                                <span>Giá theo giờ</span>
+                            <% elsif room_price.price_type == 2 %>
+                                <span>Giá theo ngày</span>
+                            <% elsif room_price.price_type == 3 %>
+                              <span>Giá theo tuần</span>
+                            <% elsif room_price.price_type == 4 %>
+                              <span>Giá theo tháng</span>
+                            <% elsif room_price.price_type == 5 %>
+                              <span>Giá theo năm</span>
+                            <% elsif room_price.price_type == 6 %>
+                              <span>Giá thêm người lớn</span>
+                            <% elsif room_price.price_type == 7 %>
+                              <span>Giá thêm trẻ em</span>
+                            <% end %>
+                          </span>
+                          <span class="roomPrice_row_id hide"><%= room_price.id %></span>
+                      </div>
+                  </td>
+                  <td id="roomPrice_priceId" class="roomPrice_row_price"><%= room_price.price %></td>
+                  <td class="roomPrice_row_date"><%= Date.parse(room_price.date.to_s) %></td>
+                  <td class="roomPrice_row_is_available">
+                    <span id="roomPrice_availableId" class="hide"><%= room_price.is_available %></span>
+                    <% if room_price.is_available == true %>
+                        <span class="badge rounded-pill bg-primary roomPrice_status_doing">Đang áp dụng</span>
+                    <% elsif room_price.is_available == flase %>
+                        <span class="badge rounded-pill bg-danger roomPrice_status_off">Ngưng áp dụng</span>
+                    <% end %>
+                  </td>
+              </tr>
+          <% end %>
+          
+      </table>
+      <div id="roomPrice_row_empty" class="hide_empty">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>No row matched !</span>
+      </div>
+  </div>
+
+
+  <div class="right_container">
+      <div class="section_name">Hành động</div>
+      <div class="functionalities ">
+      <%= link_to new_room_price_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+      </div>
+      <div class="functionalities">
+          <div id="roomPrice_btn_show" class="functionality_item ">Xem</div>
+          <div id="roomPrice_btn_delete" class="functionality_item ">Xóa</div>
+          <div id="roomPrice_btn_edit" class="functionality_item ">Sửa</div>
+      </div>
+
+      <div class="section_name">Tìm kiếm</div>
+      <div class="timkiem_container">
+          <input id="roomPrice_input_filter"/>
+      </div>
+
+      <div class="section_name">Bộ lọc tìm kiếm</div>
+
+      <div class="boloc_container">
+          <div id="boloc_roomPrice_roomType"><strong> > Loại phòng</strong>
+          </div>
+          <div id="boloc_roomPrice_price_type"><strong> > Loại giá</strong>
+          </div>
+          <div id="boloc_roomPrice_available"><strong> > Trạng thái</strong>
+          </div>
+          <div id="boloc_roomPrice_price"><strong> > Giá</strong>
+          <div class="timkiem_price">
+            <input id="room_input_filter_priceFroom" placeholder="Tối thiểu"/>
+            _
+            <input id="room_input_filter_priceTo" placeholder="Tối đa"/>
+            <div id="btn_ApDungChoised" class="btn_ApDung">Áp dụng</div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  let selectedID;
+  let allRoomPrices = document.querySelectorAll(".roomPrice_row");
+  let allButtonNotClick = document.querySelectorAll(".functionality_item");
+  let filterByString = '';
+  let  filterByPriceType= [
+      {
+          label: "Giá theo giờ",
+          status: false
+      },
+      {
+          label: "Giá theo ngày",
+          status: false
+      },
+      {
+          label: "Giá theo tuần",
+          status: false
+      },
+      {
+          label: "Giá theo tháng",
+          status: false
+      },
+      {
+          label: "Giá theo năm",
+          status: false
+      },
+      {
+          label: "Giá thêm người lớn",
+          status: false
+      },
+      {
+          label: "Giá thêm trẻ em",
+          status: false
+      },
+  ];
+  let filterByRoomType = [
+      {
+          label: "Standard",
+          status: false
+      },
+      {
+          label: "Superior Twin",
+          status: false
+      },
+      {
+          label: "Superior Double",
+          status: false
+      },
+      {
+          label: "Deluxe Twin",
+          status: false
+      },
+      {
+          label: "Deluxe Double",
+          status: false
+      },
+      {
+          label: "Suite Double",
+          status: false
+      },
+  ];
+  let filterByAvailable = [
+      {
+          label: "Đang áp dụng",
+          status: false
+      },
+      {
+          label: "Ngưng áp dụng",
+          status: false
+      },
+  ];
+  let filterByPriceMin = 0;
+    let filterByPriceMax = 0;
+    btn_ApDungChoised.addEventListener('click', function() {
+        let minPrice = document.querySelector("#room_input_filter_priceFroom").value * 1;
+        let maxPrice = document.querySelector("#room_input_filter_priceTo").value * 1;
+        if (minPrice<maxPrice) {
+            filterByPriceMin = minPrice ; 
+            filterByPriceMax = maxPrice;
+            updateTable();
+        } else {
+            alert('Giá trị giá tối thiểu phải bé hơn giá trị giá tối đa');
+        }
+    });
+  // RenderFilterRoomTypeCheckboxes
+  filterByRoomType.forEach((e,i) => {
+      let divTag = document.createElement("div");
+      divTag.setAttribute("class", "boloc_item");
+      divTag.innerHTML = `
+          <input class="boloc_checkbox" type="checkbox"/>
+          <span class="boloc_label">${e.label}</span>
+      `
+      divTag.addEventListener('change', function() {
+        filterByRoomType[i].status = this.querySelector(".boloc_checkbox").checked;
+          updateTable();
+      });
+      document.querySelector("#boloc_roomPrice_roomType").append(divTag);
+      
+  })
+  // RenderFilterPriceTypeCheckboxes
+  filterByPriceType.forEach((e,i) => {
+      let divTag = document.createElement("div");
+      divTag.setAttribute("class", "boloc_item"); 
+      divTag.innerHTML = `
+          <input class="boloc_checkbox" type="checkbox"/>
+          <span class="boloc_label">${e.label}</span>
+      `
+      divTag.addEventListener('change', function() {
+        filterByPriceType[i].status = this.querySelector(".boloc_checkbox").checked;
+          updateTable();
+      });
+      document.querySelector("#boloc_roomPrice_price_type").append(divTag);
+      
+  })
+  // RenderFilterAvailableCheckboxes
+  filterByAvailable.forEach((e,i) => {
+      let divTag = document.createElement("div");
+      divTag.setAttribute("class", "boloc_item");
+      divTag.innerHTML = `
+          <input class="boloc_checkbox" type="checkbox"/>
+          <span class="boloc_label">${e.label}</span>
+      `
+      divTag.addEventListener('change', function() {
+        filterByAvailable[i].status = this.querySelector(".boloc_checkbox").checked;
+          updateTable();
+      });
+      document.querySelector("#boloc_roomPrice_available").append(divTag);
+      
+  })
+
+  
+  for(let i=0; i<allRoomPrices.length; i++){
+    allRoomPrices[i].addEventListener('click', function(){
+          for (let previousSelectedRow of document.querySelectorAll(".row_selected")) {
+              previousSelectedRow.classList.remove("row_selected");
+          }
+          selectedID = allRoomPrices[i].querySelector(".roomPrice_row_id").innerHTML * 1;
+          this.classList.add("row_selected");
+          for(let i=0; i<allButtonNotClick.length; i++){
+              allButtonNotClick[i].classList.remove("functionality_item");
+              allButtonNotClick[i].classList.add("button_selected");
+          }
+      });
+  }
+
+  document.querySelector("#roomPrice_btn_edit").addEventListener('click', function(){
+      if (selectedID > 0) {
+          window.location = `${window.location}/${selectedID}/edit`;
+      }
+      
+  });
+  document.querySelector("#roomPrice_btn_show").addEventListener('click', function(){
+      if (selectedID > 0) {
+          window.location = `${window.location}/${selectedID}`;
+      }
+  });
+
+  function isUsingFilterRoomType(){
+      for(let i=0; i<filterByRoomType.length; i++){
+          if(filterByRoomType[i].status) return true;
+      }
+      return false;
+  }
+  function isUsingFilterPriceType(){
+      for(let i=0; i<filterByPriceType.length; i++){
+          if(filterByPriceType[i].status) return true;
+      }
+      return false;
+  }
+  function isUsingFilterAvailable(){
+      for(let i=0; i<filterByAvailable.length; i++){
+          if(filterByAvailable[i].status) return true;
+      }
+      return false;
+  }
+
+  document.querySelector("#roomPrice_input_filter").addEventListener('input', function(e){
+      filterByString = e.target.value;
+      updateTable();
+  });
+
+  function updateTable(){
+      let hasAtLeastOneMatchedRow = false;
+      for(let i=0; i<allRoomPrices.length; i++){
+          
+          let tRow = allRoomPrices[i];
+          let tColumnDate = tRow.querySelector(".roomPrice_row_date").innerHTML;
+          let tColumnRoomType = tRow.querySelector(".roomPrice_roomTypeId").innerHTML * 1;
+          let tColumnPriceType = tRow.querySelector(".roomPrice_roomPriceId").innerHTML * 1;
+          let tColumnAvailable = tRow.querySelector("#roomPrice_availableId").innerHTML;
+          let tColumnPrice = tRow.querySelector("#roomPrice_priceId").innerHTML * 1;
+          console.log(tColumnPrice);
+
+          if(!(tColumnDate.toLowerCase().includes(filterByString.toLowerCase()) 
+                && filterByString.length > 0)
+                || (((tColumnPrice < filterByPriceMin && filterByPriceMin > 0) || (tColumnPrice > filterByPriceMax && filterByPriceMax > 0)) )){
+              tRow.classList.add("hide_row");
+          }
+          else if((!filterByRoomType[tColumnRoomType-1].status && isUsingFilterRoomType())
+                  ||(!filterByPriceType[tColumnPriceType-1].status && isUsingFilterPriceType())
+                  ){
+              tRow.classList.add("hide_row");
+          }
+          else{
+              tRow.classList.remove("hide_row");
+              hasAtLeastOneMatchedRow = true;
+          }
+      }
+      
+      if (hasAtLeastOneMatchedRow) {
+          document.querySelector("#roomPrice_row_empty").classList.add("hide_empty");
+      }else{
+          document.querySelector("#roomPrice_row_empty").classList.remove("hide_empty");
+      }
+  }
+</script>

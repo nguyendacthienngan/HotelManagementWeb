@@ -8,16 +8,20 @@
     
 }
 
+.tColumn {
+    display: flex;
+    flex-direction: column;
+}
+
 .client_main_view{
     display: flex;
     flex-direction: row;
-    border: solid 1px black;
+    background-color: #FEFEFE;
     width: 100%;
 
     .left_container{
         min-height: 300px;
         flex-grow: 1;
-        border-right: solid 1px grey;
     }
     
     .right_container{
@@ -34,14 +38,52 @@
         border-collapse: collapse;
         width: 100%;
         margin-top: 10px;
-        td, th {
-            border: 1px solid #dddddd;
+        th {
+            color: #555555;
             text-align: left;
             padding: 8px;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            background-color: #FAFBFD;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .hide{
+            display: none;
+        }
+        td {
+            text-align: left;
+            padding: 8px;
+            .info_basic_container{
+                display: flex;
+                flex-direction: column;
+                .hide{
+                    display: none;
+                }
+            }
+            &.client_row_infoBasic {
+                width: 15%;
+            }
+            &.client_row_type {
+                width: 10%;
+            }
+            &.client_row_gender {
+                width: 10%;
+            }
+            &.client_row_phone{
+                width: 10%;
+            }
+            &.client_row_email {
+                width: 20%;
+            }
+            &.client_row_dob {
+                width: 10%;
+            }
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        tr {
+            border-bottom: 1px solid #dddddd;
+            width: 100%;
         }
         tr:hover {
             background-color: #A5B8EA;
@@ -50,6 +92,23 @@
         tr.row_selected{
             background-color: #7895E0;
             cursor: pointer;
+        }
+        tr.hide_row{
+            display: none;
+        }
+    }
+    #client_row_empty{
+        display: flex;
+        padding-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        i{
+            font-size: 1.5rem; 
+            color: #FFBD4A;
+        }
+        &.hide_empty{
+            display: none;
         }
     }
 
@@ -114,12 +173,12 @@
         margin: 5px;
         width: calc(100% - 10px);
         padding: 8px 5px 8px 5px;
-        background-color: lightgray;
+        background-color: #FAFBFD;
+        border: solid 1px #07153A;
+        border-radius: 4px;
         outline: none;
-        border: solid 1px transparent;
         font-size: 0.9375rem;
         margin-bottom: 10px;
-        cursor: pointer;
     }
 
     .timkiem_container input:focus{
@@ -129,6 +188,11 @@
 
     .boloc_container{
         margin-left: 5px;
+    }
+    .menu_dob{
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
     }
 
     @media only screen and (max-width: 1200px) {
@@ -143,6 +207,48 @@
             .right_container{
                 width: 100%;
                 max-width: 100%;
+            }
+            table {
+                th {
+                    &.client_row_title_infoBasic {
+                        width: 20%;
+                    }
+                    &.client_row_title_type {
+                        width: 10%;
+                    }
+                    &.client_row_title_gender {
+                        display: none;
+                    }
+                    &.client_row_title_phone{
+                        display: none;
+                    }
+                    &.client_row_title_email {
+                        display: none;
+                    }
+                    &.client_row_title_dob {
+                        display: none;
+                    }
+                }
+                td {
+                    &.client_row_infoBasic {
+                        width: 20%;
+                    }
+                    &.client_row_type {
+                        width: 10%;
+                    }
+                    &.client_row_gender {
+                        display: none;
+                    }
+                    &.client_row_phone{
+                        display: none;
+                    }
+                    &.client_row_email {
+                        display: none;
+                    }
+                    &.client_row_dob {
+                        display: none;
+                    }
+                }
             }
     }
 }

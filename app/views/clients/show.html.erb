@@ -11,69 +11,76 @@
             </ol>
             </div>
         </div>
-        </div>
+        </div> 
     </nav>
 </div>
-  <p id="notice"><%= notice %></p>
   <div class="show_container">
   <div class="show_content tColumn">
   <p class="tRow">
-    <strong class="show_employee_name">Họ tên</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.name %>
+    <span class="show_employee_name">Họ tên</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @client.name %></strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Loại</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.client_type %>
+    <span class="show_employee_name">Loại</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value">
+      <% if @client.client_type == 0 %>
+        <span>Khách lữ hành</span>
+      <% elsif @client.client_type == 1 %>
+        <span>Thành viên</span>
+      <% end %>
+    </strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Giới tính</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.gender %>
+    <span class="show_employee_name">Giới tính</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value">
+      <% if @client.gender == 0 %>
+        <span>Nam</span>
+      <% elsif @client.gender == 1 %>
+        <span>Nữ</span>
+      <% elsif @client.gender == 2 %>
+        <span>Khác</span>
+    <% end %>
+    </strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Số điện thoại</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.phone_number %>
+    <span class="show_employee_name">Số điện thoại</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @client.phone_number %></strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Địa chỉ</strong>
-    <strong class="show_sign">:</strong>
-    
+    <span  class="show_employee_name">Email</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @client.email %></strong>
   </p>
   
   <p class="tRow">
-    <strong  class="show_employee_name">Email</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.email %>
+    <span class="show_employee_name">Ngày sinh</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= Date.parse(@client.date_of_birth.to_s) %></strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Ngày sinh</strong>
-    <strong class="show_sign">:</strong>
-    <%= Date.parse(@client.date_of_birth.to_s) %>
+    <span class="show_employee_name">CCCD</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @client.citizen_id %></strong>
   </p>
   
   <p class="tRow">
-    <strong class="show_employee_name">Thành Phố</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.citizen_id %>
-  </p>
-  
-  <p class="tRow">
-    <strong class="show_employee_name">Quốc tịch</strong>
-    <strong class="show_sign">:</strong>
-    <%= @client.nationality %>
+    <span class="show_employee_name">Quốc tịch</span>
+    <span class="show_sign">:</span>
+    <strong class="show_employee_value"><%= @client.nationality %></strong>
   </p>
   </div>
-  <div class="bottom_container">
-    <%= link_to clients_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+  <div class="tBotton">
     <%= link_to edit_client_path(@client) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
   </div>
   </div>
 </center>
+<%= link_to clients_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>

@@ -14,10 +14,14 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    @employee_type = @@employee_types
+    @employee_type_view = convert_nested_hash_to_text(@employee_type)
   end
 
   # GET /employees/1/edit
   def edit
+    @employee_type = @@employee_types
+    @employee_type_view = convert_nested_hash_to_text(@employee_type)
   end
 
   # POST /employees or /employees.json

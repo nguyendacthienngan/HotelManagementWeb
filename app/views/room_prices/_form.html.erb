@@ -8,30 +8,50 @@
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+    </div> 
   <% end %>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+<center>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Loại phòng </p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :room_type_id, class:"form-control" %>
+        </div>
+    </div>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Loại giá </p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.select :price_type,[0, 1, 2, 3], {}, class: "form-select read-only-white" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :price_type %>
-    <%= form.number_field :price_type %>
+  <div class="row justify-content-center">
+  <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Ngày áp dụng</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :date, class:"form-control" %>
+      </div>
+    </div>
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Giá</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :price, class:"form-control" %>
+        </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.select :is_available,[0, 1], {}, class: "form-select read-only-white" %>
+        </div>
+    </div>
+    <div class="col-xl-5 row">
   </div>
-
-  <div class="field">
-    <%= form.label :is_available %>
-    <%= form.check_box :is_available %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="tBotton">
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
+</center>
 <% end %>

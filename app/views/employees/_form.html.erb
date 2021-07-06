@@ -12,130 +12,85 @@
   <% end %>
 
 <center>
-<div class="_form_container">
-<div class="_form_centent tColumn">
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :employee_type, "Loại nhân viên" %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Tên nhân viên </p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :name, class:"form-control" %>
+        </div>
     </div>
-    <div class="">
-      <%= form.select :employee_type, ['Quản Lý', 'Nhân viên Lễ Tân', 'Nhân viên Vệ Sinh', 'Bảo vệ'] %>
-    </div>
-  </div>
-
-  <!-- <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :username, "Tên đăng nhập" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :username %>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Loại nhân viên </p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.select :employee_type, options_for_select(@employee_type_view), {}, class: "form-select read-only-white" %>
+      </div>
     </div>
   </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :password, "Mật khẩu" %>
+  <div class="row justify-content-center">
+  <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">CCCD</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :citizen_id, class:"form-control" %>
+      </div>
     </div>
-    <div class="_form_item_input">
-      <%= form.text_field :password %>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :Confirm_Password, "Nhập lại mật khẩu"%>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :password %>
-    </div>
-  </div> -->
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :name, "Họ tên" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :name %>
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Số điện thoại</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :phone_number, class:"form-control" %>
+        </div>
     </div>
   </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :Gender, "Giới tính" %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Địa chỉ</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :address, class:"form-control" %>
+        </div>
     </div>
-    <div class="">
-      <%= form.select :gender, ['Male', 'Female', 'Other'] %>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Quốc tịch</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :nationality, class:"form-control" %>
+      </div>
+  </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row"> 
+      <p class="col-xl-5 col-sm-4 row">Giới tính</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.select :gender, ['Nam', 'Nữ', 'Khác'], {}, class: "form-select read-only-white" %>
+      </div>
+    </div>
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Ngày sinh</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :date_of_birth,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d-m-Y",
+                              flatpickr_max_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Chọn sinh nhật"%>
+        </div>
     </div>
   </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :phone_number, "Số điện thoại" %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Email</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :email, class:"form-control" %>
+      </div>
     </div>
-    <div class="_form_item_input">
-      <%= form.text_field :phone_number %>
-    </div>
-  </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :address, "Địa chỉ" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :address %>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+      <%= form.select :status, ['Đang làm', 'Nghỉ việc'], {}, class: "form-select read-only-white" %>
+      </div>
     </div>
   </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :email %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :email %>
-    </div>
-  </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :date_of_birth, "Ngày sinh" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.date_select :date_of_birth, order: [:day, :month, :year] %>
-    </div>
-  </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :citizen_id, "Thành phố" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :citizen_id %>
-    </div>
-  </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :nationality, "Quốc tịch" %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :nationality %>
-    </div>
-  </div>
-  
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :status, "Trạng thái" %>
-    </div>
-    <div class="">
-      <input class="employee_status_checkbox" type="checkbox" id="switch" name="isWorking" value="1" checked />
-      <label class="label-status" for="switch">Toggle</label>
-    </div>
-  </div>
-
-  <div class="actions button_submit">
+  <div class="tBotton">
     <%= form.submit :class => 'btn btn-primary' %>
   </div>
-</div>
-</div>
 </center>
 <% end %>

@@ -6,11 +6,13 @@ class EmployeesController < ApplicationController
     @employees = Employee.all
     # @types = @@employee_types
     @employeee_type =  @@employee_types
+    @employee_gender = @@gender
   end
 
   # GET /employees/1 or /employees/1.json
   def show
     @employeee_type =  @@employee_types
+    @employee_gender = @@gender
   end
 
   # GET /employees/new
@@ -18,12 +20,16 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
     @employee_type = @@employee_types
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
+    @employee_gender = @@gender
+    @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
   end
 
   # GET /employees/1/edit
   def edit
     @employee_type = @@employee_types
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
+    @employee_gender = @@gender
+    @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
   end
 
   # POST /employees or /employees.json
@@ -71,6 +77,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:name, :employee_type, :citizen_id, :gender, :nationality, :date_of_birth, :email, :status, :address)
+      params.require(:employee).permit(:name, :employee_type, :citizen_id, :gender, :nationality, :date_of_birth, :email, :status, :address, :phone_number)
     end
 end

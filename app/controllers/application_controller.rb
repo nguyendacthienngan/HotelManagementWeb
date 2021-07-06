@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   ]
   @@gender = [
     { code: "male", text: "Nam" },
-    { code: "female", text: "Nữ" }
+    { code: "female", text: "Nữ" },
+    { code: "order", text: "Khác" }
   ]
   @@employee_types = [
     { code: "manager", text: "Quản lý" },

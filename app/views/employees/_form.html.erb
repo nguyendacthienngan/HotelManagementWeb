@@ -58,7 +58,7 @@
     <div class="col-xl-5 row"> 
       <p class="col-xl-5 col-sm-4 row">Giới tính</p>
       <div class="col-xl-7 col-sm-7 row form-group">
-        <%= form.select :gender, ['Nam', 'Nữ', 'Khác'], {}, class: "form-select read-only-white" %>
+        <%= form.select :gender, options_for_select(@employee_gender_view), {}, class: "form-select read-only-white" %>
       </div>
     </div>
     <div class="col-xl-5 row">

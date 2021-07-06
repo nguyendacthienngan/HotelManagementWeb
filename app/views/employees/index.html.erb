@@ -44,25 +44,11 @@
                         <span id="employee_typeId" class="hide"><%= employee.employee_type %></span>
                         <% index =  employee.employee_type - 1 %>
                             <span><%= @employeee_type[index][:text] %></span>
-                        <!-- <% if employee.employee_type == 0 %>
-                            <span>Quản lý</span>
-                        <% elsif employee.employee_type == 1 %>
-                            <span>Lễ tân</span>
-                        <% elsif employee.employee_type == 2 %>
-                            <span>Vệ sinh</span>
-                        <% elsif employee.employee_type == 3 %>
-                            <span>Bảo vệ</span>
-                        <% end %> -->
                     </td>
                     <td class="employee_row_gender">
                         <span id="employee_genderId" class="hide"><%= employee.gender %></span>
-                        <% if employee.gender == 0 %>
-                            <span>Nam</span>
-                        <% elsif employee.gender == 1 %>
-                            <span>Nữ</span>
-                        <% elsif employee.gender == 2 %>
-                        <span>Khác</span>
-                        <% end %>
+                        <% index =  employee.gender - 1%>
+                            <span><%= @employee_gender[index][:text] %></span>
                     </td>
 
                     <td class="employee_row_phone"> <%= employee.phone_number %> </td>

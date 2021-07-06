@@ -103,7 +103,9 @@
     <span class="show_employee_name">Loại</span>
     <span class="show_sign">:</span>
     <strong class="show_employee_value">
-      <% if @employee.employee_type == 0 %>
+      <% index =  @employee.employee_type - 1 %>
+          <span><%= @employeee_type[index][:text] %></span>
+      <!-- <% if @employee.employee_type == 0 %>
         <span>Quản lý</span>
     <% elsif @employee.employee_type == 1 %>
         <span>Lễ tân</span>
@@ -111,7 +113,7 @@
         <span>Vệ sinh</span>
     <% elsif @employee.employee_type == 3 %>
         <span>Bảo vệ</span>
-    <% end %>
+    <% end %> -->
       </strong>
   </p>
 

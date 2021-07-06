@@ -42,7 +42,9 @@
                     </td>
                     <td class="employee_row_type">
                         <span id="employee_typeId" class="hide"><%= employee.employee_type %></span>
-                        <% if employee.employee_type == 0 %>
+                        <% index =  employee.employee_type - 1 %>
+                            <span><%= @employeee_type[index][:text] %></span>
+                        <!-- <% if employee.employee_type == 0 %>
                             <span>Quản lý</span>
                         <% elsif employee.employee_type == 1 %>
                             <span>Lễ tân</span>
@@ -50,7 +52,7 @@
                             <span>Vệ sinh</span>
                         <% elsif employee.employee_type == 3 %>
                             <span>Bảo vệ</span>
-                        <% end %>
+                        <% end %> -->
                     </td>
                     <td class="employee_row_gender">
                         <span id="employee_genderId" class="hide"><%= employee.gender %></span>

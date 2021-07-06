@@ -4,11 +4,13 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @employees = Employee.all
-    @types = @@employee_types
+    # @types = @@employee_types
+    @employeee_type =  @@employee_types
   end
 
   # GET /employees/1 or /employees/1.json
   def show
+    @employeee_type =  @@employee_types
   end
 
   # GET /employees/new
@@ -69,6 +71,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:name, :employee_type, :citizen_id, :isFemale, :nationality, :date_of_birth, :email, :status)
+      params.require(:employee).permit(:name, :employee_type, :citizen_id, :gender, :nationality, :date_of_birth, :email, :status, :address)
     end
 end

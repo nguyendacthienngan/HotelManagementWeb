@@ -170,7 +170,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(2000,5,15,0),
                                   email: 'vkAu@gmail.com',
-                                  employee_type: '0',
+                                  employee_type: '1',
                                   phone_number: '0984123444',
                                   address: '12A Đinh Tiên Hoàng, Quận 1, TP.Hồ Chí Minh',
                                   status: 0
@@ -182,7 +182,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1999,12,25,0),
                                   email: 'ttNha@gmail.com',
-                                  employee_type: '1',
+                                  employee_type: '2',
                                   phone_number: '0987222489',
                                   address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
                                   status: 0
@@ -194,7 +194,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1999,1,5,0),
                                   email: 'naMy@gmail.com',
-                                  employee_type: '1',
+                                  employee_type: '2',
                                   phone_number: '0945678092',
                                   address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
                                   status: 1
@@ -206,7 +206,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1989,3,8,0),
                                   email: 'tnHan@gmail.com',
-                                  employee_type: '1',
+                                  employee_type: '2',
                                   phone_number: '0169352557',
                                   address: '177 Tôn Thất Thuyết, Quận 3, TP.Hồ Chí Minh',
                                   status: 0
@@ -218,7 +218,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '2',
+                                  employee_type: '3',
                                   phone_number: '0987666544',
                                   address: '33 Đông Khởi, Quận 6, TP.Hồ Chí Minh',
                                   status: 0
@@ -230,7 +230,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '2',
+                                  employee_type: '3',
                                   phone_number: '0987666577',
                                   address: '113 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
                                   status: 0
@@ -242,7 +242,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '2',
+                                  employee_type: '3',
                                   phone_number: '0987888657',
                                   address: '256 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
                                   status: 0
@@ -254,7 +254,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '3',
+                                  employee_type: '4',
                                   phone_number: '0987456666',
                                   address: '123 Trần Nhật Duật, Quận 9, TP.Hồ Chí Minh',
                                   status: 0
@@ -266,7 +266,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '3',
+                                  employee_type: '4',
                                   phone_number: '0924578356',
                                   address: '125 Trần Phú, Quận 9, TP.Hồ Chí Minh',
                                   status: 0
@@ -278,7 +278,7 @@ employees = Employee.create([
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
                                   email: '',
-                                  employee_type: '3',
+                                  employee_type: '4',
                                   phone_number: '0924578355',
                                   address: '245 Đông Khởi, Quận 10, TP.Hồ Chí Minh',
                                   status: 1

@@ -12,21 +12,21 @@
             <% room_type = room_type.tr('[]', '') %>
             <% room_type_name = RoomType.find(room_type).name %>
             <% room_price = @room_prices["#{room_type_name}"] %>
-            <p><b><%= r["id"] %> - <%= room_type_name %> - <%= room_price %></b></p>
+            <p><b><%= r["id"] %> - <span class="room_type"><%= room_type_name %></span>  - <span class="room_price"><%= room_price %></span></b></p>
             <p><%= @arrival_date %>- <%= @leave_date %></p>
             <% room_id = Room.where(name: r["id"]).pluck(:id) %>
             <% room_id = room_id.to_s %>
             <% room_id = room_id.tr('[]', '') %>
 
 
-            <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"] do |form| %>
+            <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"], class:"parent" do |form| %>
               <div class="row">
                 <div class="col row">
                   <div class="col-3">
                     <p class="text-center">NL</p>
                   </div>
                   <div class="col-7">
-                    <%= form.number_field :adults, in: 0 .. 20 ,class:"form-control " %>
+                    <%= form.number_field :adults, in: 0 .. 20 ,class:"form-control adults" %>
                   </div>
                 </div>
                 <div class="col row">
@@ -34,7 +34,7 @@
                     <p class="text-center">TE</p>
                   </div>
                   <div class="col-7">
-                    <%= form.number_field :children, in: 0 .. 20 ,class:"form-control " %>
+                    <%= form.number_field :children, in: 0 .. 20 ,class:"form-control children" %>
                   </div>
                 </div>
               </div>
@@ -87,6 +87,40 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+      calculateTotal()
+    })
+    function convertCurrencyToPrice(currency)
+    {
+        return currency.replace('VND','').replace(',','')
+    }
+    function calculateTotal()
+    {
+      console.log("ROOM PRICE")
+      let prices = $('.room_price')
+        prices.each(function (i, obj){
+          let price = convertCurrencyToPrice($( this ).text())
+          console.log(price);
+        })
+      console.log("ADUTLS")
+      let adults = $('.children')
+        adults.each(function (i, obj){
+            let children = $( this ).closest('.card-body').find('.room_type')
+
+            console.log("CHILDREN")
+            console.log(children.text())
+            // console.log($( this ).val());
+        }
+      )
+
+      // let children = $('.children');
+      // console.log("CHILDREN")
+      //   children.each(function (i, obj){
+      //       console.log($( this ).val());
+      //   })
+
+    }
+
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>
     <% if params["payment_attributes"] %>

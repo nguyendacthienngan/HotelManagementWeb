@@ -64,6 +64,6 @@ class RoomTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_type_params
-      params.require(:room_type).permit(:name, :hour_price, :date_price, :past_night_price, :week_price, :month_price, :add_adult_price, :add_child_price, :description)
+      params.require(:room_type).permit(:name, :hour_price, :date_price, :past_night_price, :week_price, :month_price, :add_adult_price, :add_child_price, :description, :beds, :available_rooms)
     end
 end

@@ -14,20 +14,20 @@
             <% room_price = @room_prices["#{room_type_name}"] %>
             <p><b><%= r["id"] %> - <%= room_type_name %> - <%= room_price %></b></p>
             <p><%= @arrival_date %>- <%= @leave_date %></p>
-            <%= p.fields_for :reservation_attributes, Reservation.new do |form| %>
+            <% room_id = Room.where(name: r["id"]).pluck(:id) %>
+            <% room_id = room_id.to_s %>
+            <% room_id = room_id.tr('[]', '') %>
+
+
+            <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => room_id do |form| %>
               <%= form.number_field :children, in: 0 .. 20 ,class:"form-control " %>
               <%= form.number_field :adults, in: 0 .. 20 ,class:"form-control " %>
 
-              <% room_name = r["id"] %>
-              <% room_id = room_id = Room.where(name: r["id"]).pluck(:id) %>
-              <% room_id = room_id.to_s %>
-              <% room_id = room_id.tr('[]', '') %>
 
               <%= form.hidden_field(:room_id, :value => room_id)  %>
               <%= form.hidden_field(:employee_id, :value => current_user.employee_id)  %>
               <%= form.hidden_field(:arrival_date, :value => @arrival_date)  %>
               <%= form.hidden_field(:leave_date, :value => @leave_date)  %>
-              <%= form.hidden_field(:room_id, :value => @chosen_rooms[0]["id"])  %>
               <%= form.hidden_field(:status, :value => 1) %>
 
 
@@ -77,6 +77,7 @@
 </div>
 
 <script>
+
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>
     <% if params["payment_attributes"] %>

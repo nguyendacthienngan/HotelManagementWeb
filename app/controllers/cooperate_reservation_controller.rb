@@ -12,8 +12,6 @@ class CooperateReservationController < ApplicationController
   def choose_rooms_post
     # Set session?
     session[:chosen_rooms] = params[:cooperate_reservation]
-    puts "session[:chosen_rooms] = "
-    puts session[:chosen_rooms]
     redirect_to :controller => 'cooperate_reservation', :action => 'new'
   end
   def choose_rooms
@@ -60,15 +58,19 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
-    @payment = Payment.new
+    @chosen_rooms = session[:chosen_rooms]["rooms"]
 
+    @payment = Payment.new
+    # @chosen_rooms.each do
+    #   puts "Hello"
+    #   @payment.reservations.build
+    # end
     # @reservation = Reservation.new
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
 
-    @chosen_rooms = session[:chosen_rooms]["rooms"]
     @arrival_date = session[:chosen_rooms]["arrival_date"]
     @leave_date = session[:chosen_rooms]["leave_date"]
 
@@ -85,8 +87,6 @@ class CooperateReservationController < ApplicationController
 
   def create
     @chosen_rooms = session[:chosen_rooms]["rooms"]
-    @payment = Payment.new
-
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
@@ -105,7 +105,24 @@ class CooperateReservationController < ApplicationController
       end
     end
 
+    puts "------------ RESERVATION PARAMS"
+    puts payment_params
+    @payment = Payment.new(payment_params)
 
+    respond_to do |format|
+      if @payment.save
+        format.html { redirect_to @payment, notice: "Reservations were successfully created." }
+        format.json { render :show, status: :created, location: @payment }
+
+        # room_id = reservation_params[:payment][:reservation_attributes][:room_id]
+        # @room = Room.find(room_id)
+        # if @room.update(status: 4)
+        #  end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def set_reservation
@@ -114,10 +131,10 @@ class CooperateReservationController < ApplicationController
 
   # Only allow a list of trusted parameters through.
 
-  def reservation_params
-    params.require(:payment).permit(:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id,
-    :reservation_attributes => [:arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date],
-    :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
+  def payment_params
+    params.permit(:temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id,
+                  :reservations_attributes => [:id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date],
+                  :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     # params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
     #               payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
   end

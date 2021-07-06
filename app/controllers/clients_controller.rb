@@ -4,20 +4,32 @@ class ClientsController < ApplicationController
   # GET /clients or /clients.json
   def index
     @clients = Client.all
-    @types = @@client_types
+    # @types = @@client_types
+    @client_type =  @@client_types
+    @client_gender = @@gender
   end
 
   # GET /clients/1 or /clients/1.json
   def show
+    @client_type =  @@client_types
+    @client_gender = @@gender
   end
 
   # GET /clients/new
   def new
     @client = Client.new
+    @client_type = @@client_types
+    @client_type_view = convert_nested_hash_to_text(@client_type)
+    @client_gender = @@gender
+    @client_gender_view = convert_nested_hash_to_text(@client_gender)
   end
 
   # GET /clients/1/edit
   def edit
+    @client_type = @@client_types
+    @client_type_view = convert_nested_hash_to_text(@client_type)
+    @client_gender = @@gender
+    @client_gender_view = convert_nested_hash_to_text(@client_gender)
   end
 
   # POST /clients or /clients.json
@@ -65,6 +77,6 @@ class ClientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:name, :citizen_id, :is_female, :nationality, :date_of_birth, :email, :client_type)
+      params.require(:client).permit(:name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number)
     end
 end

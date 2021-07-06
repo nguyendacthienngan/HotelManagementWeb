@@ -26,11 +26,8 @@
     <span class="show_employee_name">Loại</span>
     <span class="show_sign">:</span>
     <strong class="show_employee_value">
-      <% if @client.client_type == 0 %>
-        <span>Khách lữ hành</span>
-      <% elsif @client.client_type == 1 %>
-        <span>Thành viên</span>
-      <% end %>
+      <% index =  @client.client_type - 1 %>
+          <span><%= @client_type[index][:text] %></span>
     </strong>
   </p>
   
@@ -38,13 +35,8 @@
     <span class="show_employee_name">Giới tính</span>
     <span class="show_sign">:</span>
     <strong class="show_employee_value">
-      <% if @client.gender == 0 %>
-        <span>Nam</span>
-      <% elsif @client.gender == 1 %>
-        <span>Nữ</span>
-      <% elsif @client.gender == 2 %>
-        <span>Khác</span>
-    <% end %>
+        <% index =  @client.gender - 1 %>
+        <span><%= @client_gender[index][:text] %></span>
     </strong>
   </p>
   

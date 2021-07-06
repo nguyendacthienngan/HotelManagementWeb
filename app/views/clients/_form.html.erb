@@ -23,7 +23,7 @@
     <div class="col-xl-5 row">
       <p class="col-xl-5 col-sm-4 row">Loại khách hàng</p>
       <div class="col-xl-7 col-sm-7 row form-group">
-        <%= form.select :client_type, ['Thành viên', 'Khách lữ hành'], {}, class: "form-select read-only-white" %>
+        <%= form.select :client_type, options_for_select(@client_type_view), {}, class: "form-select read-only-white" %>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="col-xl-5 row">
-      <p class="col-xl-5 col-sm-4 row">Email</p>
+      <p class="col-xl-5 col-sm-4 row">Email</p> 
       <div class="col-xl-7 col-sm-7 row form-group">
         <%= form.text_field :email, class:"form-control" %>
       </div>
@@ -59,8 +59,9 @@
     <div class="col-xl-5 row">
       <p class="col-xl-5 col-sm-4 row">Giới tính</p>
       <div class="col-xl-7 col-sm-7 row form-group">
-        <%= form.select :gender, ['Nam', 'Nữ', 'Khác'], {}, class: "form-select read-only-white" %>
-      </div>
+        <%= form.select :gender, options_for_select(@client_gender_view), {}, class: "form-select read-only-white" %>
+        
+        </div>
     </div>
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Ngày sinh</p>

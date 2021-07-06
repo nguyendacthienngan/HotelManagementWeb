@@ -110,6 +110,11 @@
             let theURL = '/cooperate_reservation/choose_rooms'
             window.location.href = theURL
         }
+        else if (current_step == 1)
+        {
+            $('#finish_button').hide()
+            $("#next_button").show()
+        }
 
     })
 </script>

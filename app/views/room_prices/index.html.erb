@@ -73,13 +73,16 @@
               <tr class="roomPrice_row">
                   <td class="roomPrice_row_roomType">
                     <span class="roomPrice_roomTypeId hide" ><%= room_price.room_type_id %></span>
-                    <span id="roomPrice_roomTypeName" ><%= RoomType.find(room_price.room_type_id).name %></span>
+                    <% index =  room_price.room_type_id - 1 %>
+                    <span><%= @room_type[index][:text] %></span>
                   </td>
                   <td class="roomPrice_row_infoBasic">
                       <div class="info_basic_container">
                           <span class="roomPrice_row_price_type">
                             <span class="roomPrice_roomPriceId hide"><%= room_price.price_type %></span>
-                            <% if room_price.price_type == 1 %>
+                            <% index =  room_price.price_type - 1 %>
+                            <span><%= @price_types[index][:text] %></span>
+                            <!-- <% if room_price.price_type == 1 %>
                                 <span>Giá theo giờ</span>
                             <% elsif room_price.price_type == 2 %>
                                 <span>Giá theo ngày</span>
@@ -93,7 +96,7 @@
                               <span>Giá thêm người lớn</span>
                             <% elsif room_price.price_type == 7 %>
                               <span>Giá thêm trẻ em</span>
-                            <% end %>
+                            <% end %> -->
                           </span>
                           <span class="roomPrice_row_id hide"><%= room_price.id %></span>
                       </div>

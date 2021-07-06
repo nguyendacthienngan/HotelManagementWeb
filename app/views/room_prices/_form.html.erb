@@ -16,13 +16,13 @@
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Loại phòng </p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= form.text_field :room_type_id, class:"form-control" %>
+          <%= form.select :room_type_id, options_for_select(@room_type_view), {}, class: "form-select read-only-white" %>
         </div>
     </div>
     <div class="col-xl-5 row">
       <p class="col-xl-5 col-sm-4 row">Loại giá </p>
       <div class="col-xl-7 col-sm-7 row form-group">
-        <%= form.select :price_type,[0, 1, 2, 3], {}, class: "form-select read-only-white" %>
+        <%= form.select :price_type, options_for_select(@price_type_view), {}, class: "form-select read-only-white" %>
       </div>
     </div>
   </div>

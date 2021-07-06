@@ -45,13 +45,15 @@
     <p class="tRow">
       <span class="show_roomPrice_name">Loại phòng</span>
       <span class="show_sign">:</span>
-      <strong class="show_employee_value"><%= RoomType.find(@room_price.room_type_id).name %></strong>
+          <% index =  @room_price.room_type_id - 1 %>
+          <strong><%= @room_type[index][:text] %></strong>
     </p>
   
     <p class="tRow">
       <span class="show_roomPrice_name">Loại giá</span>
       <span class="show_sign">:</span>
-      <strong class="show_employee_value"><%= @room_price.price_type %></strong>
+      <% index =  @room_price.price_type - 1 %>
+      <strong><%= @price_types[index][:text] %></strong>
     </p>
   
     <p class="tRow">

@@ -63,7 +63,6 @@
     $('#_client_attributes_citizen_id').keyup(function(){
         let client_citizen_id = $('#_client_attributes_citizen_id').val()
         $(reservation_attributes_id + radioCheckedValue + '_client_citizen_id').val(client_citizen_id)
-
     })
 
     $("input[type='radio']").click(function(){
@@ -100,10 +99,7 @@
                 $('#finish_button').show()
                 $("#next_button").hide()
             }
-
         }
-
-
     })
     $("#prev_button").click(function() {
         $("#step" + current_step).hide()

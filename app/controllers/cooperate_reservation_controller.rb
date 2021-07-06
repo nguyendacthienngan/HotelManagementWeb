@@ -61,11 +61,7 @@ class CooperateReservationController < ApplicationController
     @chosen_rooms = session[:chosen_rooms]["rooms"]
 
     @payment = Payment.new
-    # @chosen_rooms.each do
-    #   puts "Hello"
-    #   @payment.reservations.build
-    # end
-    # @reservation = Reservation.new
+
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
@@ -92,7 +88,6 @@ class CooperateReservationController < ApplicationController
     @gender = @@gender
     @gender = convert_nested_hash_to_text(@gender)
 
-    @chosen_rooms = session[:chosen_rooms]["rooms"]
     @arrival_date = session[:chosen_rooms]["arrival_date"]
     @leave_date = session[:chosen_rooms]["leave_date"]
 
@@ -105,19 +100,20 @@ class CooperateReservationController < ApplicationController
       end
     end
 
-    puts "------------ RESERVATION PARAMS"
-    puts payment_params
     @payment = Payment.new(payment_params)
 
     respond_to do |format|
       if @payment.save
+        @chosen_rooms.each do |r|
+          room_id = Room.where(name: r["id"]).pluck(:id)
+          room_id = room_id.to_s
+          room_id = room_id.tr('[]', '')
+
+          @room = Room.find(room_id)
+          @room.update(status: 2)
+        end
         format.html { redirect_to @payment, notice: "Reservations were successfully created." }
         format.json { render :show, status: :created, location: @payment }
-
-        # room_id = reservation_params[:payment][:reservation_attributes][:room_id]
-        # @room = Room.find(room_id)
-        # if @room.update(status: 4)
-        #  end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @payment.errors, status: :unprocessable_entity }

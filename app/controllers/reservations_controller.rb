@@ -80,8 +80,6 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
-    puts "SESSION MULTI_STEP ------------------"
-    puts session[:multi_step]
     if (session[:multi_step] == false)
       # Đặt phòng nhanh
       respond_to do |format|

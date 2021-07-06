@@ -102,9 +102,9 @@
         <th>
           <div class="form-check">
             <% if r == @chosen_rooms[0] %>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="leader_info" id="leader_info_<%= r["id"]%>" value="leader_info_<%= r["id"]%>" checked>
             <% else %>
-              <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+              <input class="form-check-input" type="radio" name="leader_info" id="leader_info_<%= r["id"]%>" value="leader_info_<%= r["id"]%>">
             <% end %>
           </div>
         </th>
@@ -124,12 +124,7 @@
 
 
 <script>
-    $('#_payment_attributes_client_attributes_name').keyup(function(){
-        $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
-    })
-    $('#_payment_attributes_client_attributes_citizen_id').keyup(function(){
-        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
-    })
+
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>
     <% if session[:reservation_params]["client_attributes"] %>

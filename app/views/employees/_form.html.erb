@@ -47,7 +47,7 @@
           <%= form.text_field :address, class:"form-control" %>
         </div>
     </div>
-    <div class="col-xl-5 row">
+    <div class="col-xl-5 row"> 
       <p class="col-xl-5 col-sm-4 row">Quốc tịch</p>
       <div class="col-xl-7 col-sm-7 row form-group">
         <%= form.text_field :nationality, class:"form-control" %>
@@ -85,7 +85,7 @@
     <div class="col-xl-5 row">
       <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
       <div class="col-xl-7 col-sm-7 row form-group">
-      <%= form.select :status, ['Đang làm', 'Nghỉ việc'], {}, class: "form-select read-only-white" %>
+      <%= form.select :status, options_for_select(@employee_statuses_view), {}, class: "form-select read-only-white" %>
       </div>
     </div>
   </div>

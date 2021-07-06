@@ -7,12 +7,14 @@ class EmployeesController < ApplicationController
     # @types = @@employee_types
     @employeee_type =  @@employee_types
     @employee_gender = @@gender
+    @employee_statuses = @@employee_statuses
   end
 
   # GET /employees/1 or /employees/1.json
   def show
     @employeee_type =  @@employee_types
     @employee_gender = @@gender
+    @employee_statuses = @@employee_statuses
   end
 
   # GET /employees/new
@@ -22,6 +24,8 @@ class EmployeesController < ApplicationController
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
     @employee_gender = @@gender
     @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
+    @employee_statuses = @@employee_statuses
+    @employee_statuses_view = convert_nested_hash_to_text(@employee_statuses)
   end
 
   # GET /employees/1/edit
@@ -30,6 +34,8 @@ class EmployeesController < ApplicationController
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
     @employee_gender = @@gender
     @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
+    @employee_statuses = @@employee_statuses
+    @employee_statuses_view = convert_nested_hash_to_text(@employee_statuses)
   end
 
   # POST /employees or /employees.json

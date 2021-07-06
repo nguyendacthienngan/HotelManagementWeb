@@ -55,9 +55,9 @@
                     <td class="employee_row_address"> <%= employee.address %> </td>
                     <td class="employee_row_status">
                         <span id="employee_statusId" class="hide"><%= employee.status %></span>
-                        <% if employee.status == 0 %>
+                        <% if employee.status == 1 %>
                             <span class="badge rounded-pill bg-primary employee_status_doing">Đang làm</span>
-                        <% elsif employee.status == 1 %>
+                        <% elsif employee.status == 2 %>
                             <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
                         <% end %>
                     </td>
@@ -276,9 +276,9 @@
                 tRow.classList.add("hide_row");
             }
             // Filter by Gender
-            else if((!filterByType[tColumnType].status && isUsingFilterType())
-                    || (!filterByGender[tColumnGender].status && isUsingFilterGender())
-                    || (!filterByStatus[tColumnStatus].status && isUsingFilterStatus())){
+            else if((!filterByType[tColumnType - 1].status && isUsingFilterType())
+                    || (!filterByGender[tColumnGender - 1].status && isUsingFilterGender())
+                    || (!filterByStatus[tColumnStatus - 1].status && isUsingFilterStatus())){
                 tRow.classList.add("hide_row");
             }
             else{

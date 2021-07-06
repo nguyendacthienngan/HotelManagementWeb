@@ -18,12 +18,12 @@ class ApplicationController < ActionController::Base
     { code: "bv", text: "Bảo vệ" }
   ]
   @@employee_statuses = [
-    { code: "working", text: "Đi làm" },
-    { code: "left", text: "Nghỉ làm" }
+    { code: "working", text: "Đang làm" },
+    { code: "left", text: "Nghỉ việc" }
   ] 
   @@client_types = [
     { code: "traveller", text: "Khách lữ hành" },
-    { code: "client", text: "Khách hàng thành viên" }
+    { code: "client", text: "Thành viên" }
   ]
   @@room_statuses = [
     { code: "empty", text: "Trống", color: "#000000" },

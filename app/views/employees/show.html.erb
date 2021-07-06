@@ -157,9 +157,9 @@
     <span class="show_employee_name">Status</span>
     <span class="show_sign">:</span>
     <span class="show_employee_value">
-      <% if @employee.status == 0 %>
+      <% if @employee.status == 1 %>
         <span class="badge rounded-pill bg-primary employee_status_doing">Đang làm</span>
-      <% elsif @employee.status == 1 %>
+      <% elsif @employee.status == 2 %>
           <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
       <% end %>
     </span>

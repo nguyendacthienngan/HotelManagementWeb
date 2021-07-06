@@ -1,42 +1,4 @@
-<!-- <div class="d-flex justify-content-start">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to "Cấu hình", rooms_path %></li>
-    <li class="breadcrumb-item" aria-current="page"><a>Phòng</a></li>
-  </ol>
-</div>
-<h3>Danh sách phòng  </h3>
-<table class="table card-body">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">Tên phòng</th>
-    <th scope="col">Giá</th>
-    <th scope="col">Loại phòng</th>
-    <th scope="col">Tầng</th>
-    <th scope="col">Trạng thái</th>
-    <th scope="col" colspan="3"></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @rooms.each do |room| %> 
-    <tr>
-      <td><%= room.name %></td>
-      <td><%= RoomPrice.find(RoomType.find(room.room_type_id).id).price %></td>
-      <td><%= RoomType.find(room.room_type_id).name %></td>
-      <td><%= room.floor %></td>
-      <td><%= @status[room.status][:text] %></td>
-      <td><%= link_to 'Show', room %></td>
-      <td><%= link_to 'Edit', edit_room_path(room) %></td>
-      <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<div class="d-flex justify-content-end">
-  Tổng: <%= @rooms.ids.count %>
-</div>
-<br>
 
-<%= link_to 'New Room', new_room_path %> -->
 
 <div class="employee_top_breadcrumb">
   <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -80,14 +42,17 @@
                       </div> 
                   </td>
                   <td class="room_row_type">
-                      <span ><%= RoomType.find(room.room_type_id).name %></span>
+                      <!-- <span ><%= RoomType.find(room.room_type_id).name %></span> -->
                       <span id="room_typeId" class="hide" ><%= room.room_type_id %></span>
+                      <% index =  room.room_type_id - 1 %>
+					    <span><%= @room_type[index][:text] %></span>
                   </td>
                   <td class="room_row_sprice">
                       <span id="room_priceId"><%= RoomPrice.find(RoomType.find(room.room_type_id).id).price %></span>
                   </td>
 
-                  <td class="room_row_floor" id="room_floorId"> <%= room.floor %> </td>
+                    <td class="room_row_floor" id="room_floorId"> <%= room.floor %> 
+                    </td>
                   <td class="room_row_description" id="room_descriptionId"> <%= room.description %> </td>
                   <td class="room_row_status">
                     <span id="room_statusId" class="hide"><%= room.status %></span>

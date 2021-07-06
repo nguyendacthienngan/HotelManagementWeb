@@ -25,12 +25,25 @@ class ApplicationController < ActionController::Base
     { code: "traveller", text: "Khách lữ hành" },
     { code: "client", text: "Thành viên" }
   ]
+  @@room_types = [
+    { code: "x", text: "Standard" },
+    { code: "a", text: "Superior Twin" },
+    { code: "b", text: "Superior Double" },
+    { code: "c", text: "Deluxe Twin" },
+    { code: "d", text: "Deluxe Double" },
+    { code: "e", text: "Suite Double" }
+  ]
   @@room_statuses = [
     { code: "empty", text: "Trống", color: "#000000" },
     { code: "reserved", text: "Đã đặt", color: "#fdc500" },
     { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
     { code: "nonempty", text: "Đang ở", color: "#003049" }, # Đã check in
     { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
+  ]
+  @@floor = [
+    { code: "mot", text: "1" },
+    { code: "hai", text: "2" },
+    { code: "ba", text: "3" }
   ]
 
   @@reservation_statuses = [

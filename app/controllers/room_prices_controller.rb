@@ -65,6 +65,6 @@ class RoomPricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_price_params
-      params.require(:room_price).permit(:price, :price_type, :begin_date, :end_date, :is_available, :room_type_id)
+      params.require(:room_price).permit(:price, :price_type, :begin_date, :end_date, :is_available, :room_type_id, :date)
     end
 end

@@ -44,7 +44,8 @@
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= form.select :is_available,[0, 1], {}, class: "form-select read-only-white" %>
+          <%= form.radio_button :is_available, 'true' %> Đang sử dụng<br />
+          <%= form.radio_button :is_available, 'false' %> Ngưng sử dụng<br />
         </div>
     </div>
     <div class="col-xl-5 row">

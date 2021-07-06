@@ -66,7 +66,7 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # DELETE /employees/1 or /employees/1.json
+  # DELETE /employees/1 or /employees/1.json 
   def destroy
     @employee.destroy
     respond_to do |format|

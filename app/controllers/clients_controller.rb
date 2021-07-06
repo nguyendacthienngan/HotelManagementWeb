@@ -62,6 +62,7 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1 or /clients/1.json
   def destroy
+    puts "----DELETE CLIENT------"
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }

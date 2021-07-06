@@ -104,7 +104,7 @@
                     <span id="roomPrice_availableId" class="hide"><%= room_price.is_available %></span>
                     <% if room_price.is_available == true %>
                         <span class="badge rounded-pill bg-primary roomPrice_status_doing">Đang áp dụng</span>
-                    <% elsif room_price.is_available == flase %>
+                    <% elsif room_price.is_available == false %>
                         <span class="badge rounded-pill bg-danger roomPrice_status_off">Ngưng áp dụng</span>
                     <% end %>
                   </td>
@@ -350,8 +350,7 @@
           console.log(tColumnPrice);
 
           if(!(tColumnDate.toLowerCase().includes(filterByString.toLowerCase()) 
-                && filterByString.length > 0)
-                || (((tColumnPrice < filterByPriceMin && filterByPriceMin > 0) || (tColumnPrice > filterByPriceMax && filterByPriceMax > 0)) )){
+                && filterByString.length > 0)){
               tRow.classList.add("hide_row");
           }
           else if((!filterByRoomType[tColumnRoomType-1].status && isUsingFilterRoomType())

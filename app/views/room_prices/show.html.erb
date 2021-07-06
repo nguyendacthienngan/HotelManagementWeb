@@ -72,7 +72,7 @@
       <strong class="show_roomPrice_value">
           <% if @room_price.is_available == true %>
               <span class="badge rounded-pill bg-primary roomPrice_status_doing">Đang áp dụng</span>
-          <% elsif @room_price.is_available == flase %>
+          <% elsif @room_price.is_available == false %>
               <span class="badge rounded-pill bg-danger roomPrice_status_off">Ngưng áp dụng</span>
           <% end %>
       </strong>

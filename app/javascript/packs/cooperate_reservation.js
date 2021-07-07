@@ -28,7 +28,10 @@ function calculateTotal()
     let leaveDate = $('#leave_date').text()
 
     let differenceBetween2Dates = calculateDifferenceBetween2Dates(arrivalDate, leaveDate)
-    total *= differenceBetween2Dates
+    if (differenceBetween2Dates >= 0)
+        total *= differenceBetween2Dates
+    else
+        alert("Ngày đi không được phép trước ngày đến")
     $('#temp_total').val(total)
     $('#deposit').val(total/2)
 }

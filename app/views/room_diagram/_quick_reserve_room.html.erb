@@ -185,10 +185,7 @@
             $('#quickResModal').remove()
         })
 
-        var total = updateTotal()
-        $('#_payment_attributes_temp_total').val(total);
-        updateValueBySession()
-        $('#_payment_attributes_deposit').val(total/2)
+        updateTotal()
     })
 
     function passAdultsValue(){
@@ -233,6 +230,26 @@
     $('#children').focusout(function(){
         passAdultsValue()
     })
+
+    function calculateDifferenceBetween2Dates(date1, date2){
+        // https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
+        date1 = convertStringToDate(date1);
+        date2 = convertStringToDate(date2);
+        if (date1 > date2)
+            return 0;
+
+        let diffTime = Math.abs(date1 - date2);
+        let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays //days
+    }
+
+    function convertStringToDate(date)
+    {
+        //DD/MM/YYYY format
+        // https://stackoverflow.com/questions/33299687/how-to-convert-dd-mm-yyyy-string-into-javascript-date-object
+        date = date.split("-");
+        return  new Date(+date[2], date[1] - 1, +date[0]);
+    }
     function updateTotal()
     {
         const queryString = window.location.search;
@@ -256,17 +273,38 @@
             $('select#price_type>option:eq(1)').attr('selected', true);
 
         var room_price = (<%= @room_price_value %>);
-        var children = $('#children').val()
-        var children_price = <%=@children_price %>
-
-            children= parseInt(children) *children_price
+        var children = $('#children').val();
+        var children_price = <%=@children_price %>;
+        children= parseInt(children) * children_price;
 
         var adults = $('#adults').val();
-        var adults_price = <%=@adults_price %>
-            adults = parseInt(adults) * adults_price
+        var adults_price = <%=@adults_price %>;
+            adults = parseInt(adults) * adults_price;
 
-        return room_price + children + adults
+        let total = room_price + children + adults
+
+        let arrivalDate = $('#arrival_date').val()
+        let leaveDate = $('#leave_date').val()
+
+        if (arrivalDate && leaveDate)
+        {
+            let differenceBetween2Dates = calculateDifferenceBetween2Dates(arrivalDate, leaveDate)
+            if (differenceBetween2Dates > 0)
+            {
+                total *= differenceBetween2Dates
+            }
+            else
+                alert("Ngày đi không được phép trước ngày đến")
+        }
+        $('#_payment_attributes_temp_total').val(total);
+        $('#_payment_attributes_deposit').val(total/2)
     }
+    $('#arrival_date').change(function(){
+        updateTotal()
+    })
+    $('#leave_date').change(function(){
+        updateTotal()
+    })
     function updateValueBySession()
     {
         <% if session[:reservation_params] %>

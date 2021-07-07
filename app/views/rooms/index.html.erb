@@ -7,7 +7,7 @@
           <div class="d-flex justify-content-start">
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
+              <li class="breadcrumb-item active" aria-current="page">Phòng</li>
           </ol>
           </div>
       </div>
@@ -190,7 +190,7 @@
     btn_ApDungChoised.addEventListener('click', function() {
         let minPrice = document.querySelector("#room_input_filter_priceFroom").value * 1;
         let maxPrice = document.querySelector("#room_input_filter_priceTo").value * 1;
-        if (minPrice<maxPrice) {
+        if (minPrice<=maxPrice || maxPrice===0) {
             filterByPriceMin = minPrice ; 
             filterByPriceMax = maxPrice;
             updateTable();

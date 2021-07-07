@@ -348,17 +348,20 @@
           let tColumnDate = tRow.querySelector(".roomPrice_row_date").innerHTML;
           let tColumnRoomType = tRow.querySelector(".roomPrice_roomTypeId").innerHTML * 1;
           let tColumnPriceType = tRow.querySelector(".roomPrice_roomPriceId").innerHTML * 1;
-          let tColumnAvailable = tRow.querySelector("#roomPrice_availableId").innerHTML;
+          let tColumnAvailable = tRow.querySelector("#roomPrice_availableId").innerHTML * 1;
           let tColumnPrice = tRow.querySelector("#roomPrice_priceId").innerHTML * 1;
 
           if((!tColumnDate.toLowerCase().includes(filterByString.toLowerCase()) 
                 && filterByString.length > 0)
                 ||(((tColumnPrice < filterByPriceMin && filterByPriceMin > 0) || (tColumnPrice > filterByPriceMax && filterByPriceMax > 0)) )) {
-              tRow.classList.add("hide_row");
+                    tRow.classList.add("hide_row");
+              
           }
           else if((!filterByRoomType[tColumnRoomType-1].status && isUsingFilterRoomType())
                   ||(!filterByPriceType[tColumnPriceType-1].status && isUsingFilterPriceType())
+                  ||(!filterByAvailable[tColumnAvailable].status && isUsingFilterAvailable())
                   ){
+                    //   console.log(!filterByAvailable[tColumnAvailable].status, "-" ,isUsingFilterAvailable())
               tRow.classList.add("hide_row");
           }
           else{

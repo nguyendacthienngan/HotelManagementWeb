@@ -20,10 +20,18 @@ function calculateTotal()
             total += children * parseInt(childrenPrice);
             total += adults * parseInt(adultPrice);
             $('#temp_total').val(total)
+            $('#deposit').val(total/2)
         }
     )
 }
 
 $(document).ready(function(){
-    calculateTotal()
+    calculateTotal();
+
+    $('.children').change(function(){
+        calculateTotal()
+    })
+    $('.adults').change(function(){
+        calculateTotal()
+    })
 });

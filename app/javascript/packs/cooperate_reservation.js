@@ -1,3 +1,5 @@
+import {calculateDifferenceBetween2Dates} from './utils';
+
 function convertCurrencyToPrice(currency)
 {
     return currency.replace('VND','').replace(',','')
@@ -19,10 +21,16 @@ function calculateTotal()
 
             total += children * parseInt(childrenPrice);
             total += adults * parseInt(adultPrice);
-            $('#temp_total').val(total)
-            $('#deposit').val(total/2)
+
         }
     )
+    let arrivalDate = $('#arrival_date').text()
+    let leaveDate = $('#leave_date').text()
+
+    let differenceBetween2Dates = calculateDifferenceBetween2Dates(arrivalDate, leaveDate)
+    total *= differenceBetween2Dates
+    $('#temp_total').val(total)
+    $('#deposit').val(total/2)
 }
 
 $(document).ready(function(){

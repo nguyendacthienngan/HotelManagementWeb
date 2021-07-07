@@ -9,7 +9,9 @@ class CreatePayments < ActiveRecord::Migration[6.1]
       t.integer :payment_type, null: false
       t.decimal :total
       t.string :description
+      t.boolean :is_cooperate_reservation
       t.timestamps
     end
+    change_column_default :payments, :is_cooperate_reservation, false
   end
 end

@@ -21,6 +21,11 @@
 
 <br>
 <% @reservations.each do |reservation| %>
+  <% payment_id =  reservation.payment_id %>
+  <% payment = Payment.find(payment_id) %>
+  <% if payment.is_cooperate_reservation == true %>
+    <% continue %>
+  <% end %>
   <% room = Room.find(reservation.room_id) %>
   <%  room_name = room.name %>
   <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).room_type_id).id).price %>

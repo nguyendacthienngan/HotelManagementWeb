@@ -123,10 +123,10 @@
 
 <% end %>
 <script>
-    $('#_payment_attributes_client_attributes_name').keyup(function(){
+    $('#_payment_attributes_client_attributes_name').change(function(){
         $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
     })
-    $('#_payment_attributes_client_attributes_citizen_id').keyup(function(){
+    $('#_payment_attributes_client_attributes_citizen_id').change(function(){
         $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
     })
     <% if session[:reservation_params] %>

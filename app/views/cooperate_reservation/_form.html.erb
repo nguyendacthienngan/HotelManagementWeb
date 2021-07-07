@@ -55,11 +55,12 @@
     let reservation_attributes_id = '#__reservations_attributes__'
     let radioCheckedValue = $("input[name='leader_info']:checked").val()
     radioCheckedValue = radioCheckedValue.slice(12,15)
-    $('#_client_attributes_name').keyup(function(){
+
+    $('#_client_attributes_name').change(function(){
         let client_name = $('#_client_attributes_name').val()
         $(reservation_attributes_id + radioCheckedValue + '_client_name').val(client_name)
     })
-    $('#_client_attributes_citizen_id').keyup(function(){
+    $('#_client_attributes_citizen_id').change(function(){
         let client_citizen_id = $('#_client_attributes_citizen_id').val()
         $(reservation_attributes_id + radioCheckedValue + '_client_citizen_id').val(client_citizen_id)
     })

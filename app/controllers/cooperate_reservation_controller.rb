@@ -58,6 +58,8 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
+
+
     @chosen_rooms = session[:chosen_rooms]["rooms"]
 
     @payment = Payment.new
@@ -72,13 +74,31 @@ class CooperateReservationController < ApplicationController
 
     @room_types_json = []
     @room_prices = {}
+    @adults_price = {}
+    @children_price = {}
     @room_types = RoomType.all
     @room_types.each do |r_t|
-      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price)
+      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price).to_s
+
+      adults_price = RoomPrice.where(room_type_id: r_t.id, price_type: 6).pluck(:price).to_s
+      adults_price = currency_name(adults_price)
+      adults_price = currency_value(adults_price)
+
+      children_price = RoomPrice.where(room_type_id: r_t.id, price_type: 7).pluck(:price).to_s
+      children_price = currency_name(children_price)
+      children_price = currency_value(children_price)
+
       if room_price
-        @room_prices["#{r_t.name}"] = currency_name(room_price.to_s)
+        @room_prices["#{r_t.name}"] = currency_name(room_price)
+      end
+      if children_price
+        @children_price["#{r_t.name}"] = children_price
+      end
+      if adults_price
+        @adults_price["#{r_t.name}"] = adults_price
       end
     end
+
   end
 
   def create

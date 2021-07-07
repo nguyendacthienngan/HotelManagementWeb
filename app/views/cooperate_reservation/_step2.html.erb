@@ -18,6 +18,13 @@
             <% room_id = room_id.to_s %>
             <% room_id = room_id.tr('[]', '') %>
 
+            <span class="adults_price hidden">
+                <%= @adults_price["#{room_type_name}"]%>
+              </span>
+            <span class="children_price hidden">
+                <%=  @children_price["#{room_type_name}"] %>
+              </span>
+
 
             <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"], class:"parent" do |form| %>
               <div class="row">
@@ -45,6 +52,8 @@
               <%= form.hidden_field(:status, :value => 1) %>
               <%= form.hidden_field(:client_name, :value=> "N/A") %>
               <%= form.hidden_field(:client_citizen_id, :value=> "N/A") %>
+
+
             <% end %>
           </div>
         </div>
@@ -96,29 +105,22 @@
     }
     function calculateTotal()
     {
-      console.log("ROOM PRICE")
       let prices = $('.room_price')
         prices.each(function (i, obj){
           let price = convertCurrencyToPrice($( this ).text())
           console.log(price);
         })
-      console.log("ADUTLS")
-      let adults = $('.children')
-        adults.each(function (i, obj){
-            let children = $( this ).closest('.card-body').find('.room_type')
-
-            console.log("CHILDREN")
-            console.log(children.text())
-            // console.log($( this ).val());
+      let children_values = $('.children')
+        children_values.each(function (i, obj){
+            let children = $( this ).val()
+            let room_type = $( this ).closest('.card-body').find('.room_type')
+            let adults = $( this ).closest('.card-body').find('.adults')
+            let adultPrice = $( this ).closest('.card-body').find('.adults_price')
+            let childrenPrice = $( this ).closest('.card-body').find('.children_price')
+            console.log(adultPrice.text())
+            console.log(childrenPrice.text())
         }
       )
-
-      // let children = $('.children');
-      // console.log("CHILDREN")
-      //   children.each(function (i, obj){
-      //       console.log($( this ).val());
-      //   })
-
     }
 
     <% if session[:reservation_params] %>

@@ -51,7 +51,13 @@
 								<td class="client_row_phone"> <%= client.phone_number %></td>
 								<td class="client_row_email"> <%= client.email %></td>
 								<td id='client_dob' class="client_row_dob"> <%= Date.parse(client.date_of_birth.to_s) %></td>
-								
+								<!-- <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+								<!-- <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+								<td>
+									<%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %>
+									<span class="fa fa-trash"></span>
+									<% end %>
+								</td>
 							</tr>
 						<% end %>
 				</table>
@@ -123,7 +129,7 @@
             status: false
         },
     ];
-	let filterByDobSelectedOption = '';
+	let filterByDobSelectedOption = 0;
 	let filterByDobOptions = [
 		{
             label: "-",
@@ -268,7 +274,6 @@
 			let tColumnType = tRow.querySelector("#client_typeId").innerHTML * 1;
             let tColumnGender = tRow.querySelector("#client_genderId").innerHTML * 1;
 			let tColumnDob = (new Date(tRow.querySelector("#client_dob").innerHTML)).getMonth() + 1;
-			console.log(!filterByType[tColumnType - 1].status && isUsingFilterType());
             
             if(!(tColumnName.toLowerCase().includes(filterByString.toLowerCase())
                 || tColumnPhone.toLowerCase().includes(filterByString.toLowerCase())

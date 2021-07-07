@@ -44,8 +44,13 @@
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= form.radio_button :is_available, 'true' %> Đang sử dụng<br />
-          <%= form.radio_button :is_available, 'false' %> Ngưng sử dụng<br />
+          <div class="tRow roomPrice_radio_container">
+            <%= form.radio_button :is_available, 'true' %><span> Đang sử dụng</span>
+          </div><br />
+          <div class="tRow roomPrice_radio_container">
+            <%= form.radio_button :is_available, 'false' %><span> Ngưng sử dụng</span>
+          </div><br />
+          
         </div>
     </div>
     <div class="col-xl-5 row">

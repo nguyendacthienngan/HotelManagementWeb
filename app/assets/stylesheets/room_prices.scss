@@ -274,6 +274,12 @@
     display: flex;
     flex-direction: row;
 }
+.roomPrice_radio_container{
+    align-items: center;
+    span {
+        margin: 0 10px 0 10px;
+    }
+}
 
 .tBotton {
     margin-top: 50px;

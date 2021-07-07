@@ -1,5 +1,5 @@
 
-
+<%= javascript_pack_tag 'cooperate_reservation.js' %>
 <h4 class="p-3">Thanh toán</h4>
 <div class="row">
   <div class="col-lg">
@@ -18,12 +18,8 @@
             <% room_id = room_id.to_s %>
             <% room_id = room_id.tr('[]', '') %>
 
-            <span class="adults_price hidden">
-                <%= @adults_price["#{room_type_name}"]%>
-              </span>
-            <span class="children_price hidden">
-                <%=  @children_price["#{room_type_name}"] %>
-              </span>
+            <span class="adults_price  d-none"><%=  @adults_price["#{room_type_name}"] %></span>
+            <span class="children_price  d-none"><%=  @children_price["#{room_type_name}"] %></span>
 
 
             <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"], class:"parent" do |form| %>
@@ -34,6 +30,10 @@
                   </div>
                   <div class="col-7">
                     <%= form.number_field :adults, in: 0 .. 20 ,class:"form-control adults" %>
+                    <p class="text-center p-1">
+                        <%= @adults_price["#{room_type_name}"]%> VNĐ
+                    </p>
+
                   </div>
                 </div>
                 <div class="col row">
@@ -42,6 +42,9 @@
                   </div>
                   <div class="col-7">
                     <%= form.number_field :children, in: 0 .. 20 ,class:"form-control children" %>
+                    <p class="text-center p-1">
+                        <%=  @children_price["#{room_type_name}"] %> VNĐ
+                    </p>
                   </div>
                 </div>
               </div>
@@ -97,31 +100,7 @@
 
 <script>
     $(document).ready(function(){
-      calculateTotal()
     })
-    function convertCurrencyToPrice(currency)
-    {
-        return currency.replace('VND','').replace(',','')
-    }
-    function calculateTotal()
-    {
-      let prices = $('.room_price')
-        prices.each(function (i, obj){
-          let price = convertCurrencyToPrice($( this ).text())
-          console.log(price);
-        })
-      let children_values = $('.children')
-        children_values.each(function (i, obj){
-            let children = $( this ).val()
-            let room_type = $( this ).closest('.card-body').find('.room_type')
-            let adults = $( this ).closest('.card-body').find('.adults')
-            let adultPrice = $( this ).closest('.card-body').find('.adults_price')
-            let childrenPrice = $( this ).closest('.card-body').find('.children_price')
-            console.log(adultPrice.text())
-            console.log(childrenPrice.text())
-        }
-      )
-    }
 
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>

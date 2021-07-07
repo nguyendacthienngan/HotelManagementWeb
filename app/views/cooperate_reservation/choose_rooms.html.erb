@@ -133,37 +133,6 @@
         window.location.href = theURL
     }
 
-    // function pay(){
-    //     let chosen_rooms = []
-    //     let i = 0
-    //     if (rooms.length > 0)
-    //     {
-    //         for (i in rooms)
-    //         {
-    //             let room = {id: rooms[i]};
-    //             chosen_rooms.push(room)
-    //         }
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "/cooperate_reservation/choose_rooms",
-    //             // The key needs to match your method's input parameter (case-sensitive).
-    //             data: JSON.stringify(
-    //                 {
-    //                     arrival_date: $('#arrival_date').val(),
-    //                     leave_date: $('#leave_date').val(),
-    //                     rooms: chosen_rooms
-    //                 }),
-    //             contentType: "application/json; charset=utf-8",
-    //             success: function(res){
-    //
-    //             }
-    //         });
-    //     }
-    //     else
-    //     {
-    //         alert("Please choose at least 1 room")
-    //     }
-    // }
     $('.toggle-list').on('click' ,function(e) {
         let toggleButton = $(e.target);
         let card = $(this).closest('.card');

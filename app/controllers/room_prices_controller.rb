@@ -4,20 +4,31 @@ class RoomPricesController < ApplicationController
   # GET /room_prices or /room_prices.json
   def index
     @room_prices = RoomPrice.all
-    @a = @@price_types;
+    @price_types = @@price_types
+    @room_type =  @@room_types
   end
 
   # GET /room_prices/1 or /room_prices/1.json
   def show
+    @room_type =  @@room_types
+    @price_types = @@price_types
   end
 
   # GET /room_prices/new
   def new
     @room_price = RoomPrice.new
+    @room_type =  @@room_types
+    @room_type_view = convert_nested_hash_to_text(@room_type)
+    @price_types = @@price_types
+    @price_type_view = convert_nested_hash_to_text(@price_types)
   end
 
   # GET /room_prices/1/edit
   def edit
+    @room_type =  @@room_types
+    @room_type_view = convert_nested_hash_to_text(@room_type)
+    @price_types = @@price_types
+    @price_type_view = convert_nested_hash_to_text(@price_types)
   end
 
   # POST /room_prices or /room_prices.json
@@ -65,6 +76,6 @@ class RoomPricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_price_params
-      params.require(:room_price).permit(:price, :price_type, :begin_date, :end_date, :is_available, :room_type_id)
+      params.require(:room_price).permit(:price, :price_type, :begin_date, :end_date, :is_available, :room_type_id, :date)
     end
 end

@@ -8,13 +8,12 @@
 .roomtypes_main_view{
     display: flex;
     flex-direction: row;
-    border: solid 1px black;
+    background-color: #FEFEFE;
     width: 100%;
 
     .left_container{
         min-height: 300px;
         flex-grow: 1;
-        border-right: solid 1px grey;
     }
     
     .right_container{
@@ -32,22 +31,69 @@
         width: 100%;
         margin-top: 10px;
 
-        td, th {
-            border: 1px solid #dddddd;
+        th {
+            color: #555555;
             text-align: left;
             padding: 8px;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            background-color: #FAFBFD;
+            padding-top: 15px;
+            padding-bottom: 15px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .hide{
+            display: none;
+        }
+        td {
+            text-align: left;
+            padding: 8px;
+            .info_basic_container{
+                display: flex;
+                flex-direction: column;
+                
+            }
+            &.roomType_row_infoBasic {
+                width: 20%;
+            }
+            &.roomType_row_beds {
+                width: 10%;
+            }
+            &.roomType_row_available{
+                width: 15%;
+            }
+            &.roomType_row_description {
+                width: 55%;
+            }
+        }
+        tr {
+            border-bottom: 1px solid #dddddd;
+            width: 100%;
         }
         tr:hover {
-            background-color: #7895E0;
+            background-color: #A5B8EA;
             cursor: pointer;
         }
         tr.row_selected{
             background-color: #7895E0;
             cursor: pointer;
+        }
+        tr.hide_row{
+            display: none;
+        }
+    }
+
+    #roomType_row_empty{
+        display: flex;
+        padding-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        i{
+            font-size: 1.5rem;
+            color: #FFBD4A;
+        }
+        &.hide_empty{
+            display: none;
         }
     }
 
@@ -104,9 +150,10 @@
         margin: 5px;
         width: calc(100% - 10px);
         padding: 8px 5px 8px 5px;
-        background-color: lightgray;
+        background-color: #FAFBFD;
+        border: solid 1px #07153A;
+        border-radius: 4px;
         outline: none;
-        border: solid 1px transparent;
         font-size: 0.9375rem;
         margin-bottom: 10px;
         cursor: pointer;
@@ -121,9 +168,6 @@
         margin-left: 5px;
     }
 
-
-    
-
     @media only screen and (max-width: 1200px) {
         flex-direction: column-reverse;
         .functionality_item{
@@ -136,12 +180,41 @@
             width: 100%;
             max-width: 100%;
         }
+        table {
+            th {
+                &.roomType_row_title_infoBasic {
+                    width: 60%;
+                }
+                &.roomType_row_title_beds{
+                    width: 40%;
+                }
+                &.roomType_row_title_available{
+                    display: none;
+                }
+                &.roomType_row_title_description{
+                    display: none;
+                }
+            }
+            td {
+                &.roomType_row_infoBasic {
+                    width: 60%;
+                }
+                &.roomType_row_beds {
+                    width: 40%;
+                }
+                &.employee_row_gender{
+                    display: none;
+                }
+                &.roomType_row_available {
+                    display: none;
+                }
+                &.roomType_row_description {
+                    display: none;
+                }
+            }
+            
+        }
     }
-
-    .t_button {
-        color: white !important;
-    }
-    
 }
 .tColumn{
     display: flex;
@@ -152,66 +225,54 @@
     display: flex;
     flex-direction: row;
 }
-._form_container {
-    ._form_centent{
+
+.tBotton {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @media only screen and (max-width: 1200px) {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+}
+
+.show_roomType_container{
+    .show_content{
+        width: 100%;
         color: black;
         & > div{
             width: 100%;
         }
-        font-size: 1.1rem;
-        max-width: 700px;
-        .field{
-            margin: 4px 0px;
+        max-width: 400px;
+        text-align: left;
+        .show_roomtype_name{
+            width: 25%;
         }
-        ._form_item_name{
-            text-align: left;
-            width: 30%;
-            font-weight: 500;
+        .show_sign{
+            width: 5%;
         }
-        ._form_item_input{
-            flex-grow: 1;
-            & > input {
-                width: 100%;
-                outline: solid 1px gray;
-                border-radius: 2px;
-                &:focus{
-                    background-color: rgb(255, 255, 255);
-                    outline: solid 1px #436BD5;
-                }
-            }
-            &:focus {
-                background-color: rgb(255, 255, 255);
-                outline: solid 1px #436BD5;
-            }
-            .error_msg{
-                color: red;
-                font-size: 0.9375rem;
-                display: none;
-            }
-            .show_error_msg ~ .error_msg{
-                display: block;
-            }
+        .show_roomtype_value{
+            width: 70%;
         }
-        
-        .button_submit{
-            margin: 15px;
+        p {
+            font-size: 1.02rem !important;
         }
+        margin-bottom: 50px;
     }
-    width: 60%;
-    padding: 50px;
+    width: 50%;
+    padding: 30px;
     background-color: #ffffff;
-    border: 1px solid black;
     border-radius: 8px;
     @media only screen and (max-width: 1200px) {
         flex-direction: column-reverse;
             .show_content{
-                max-width: 250px;
+                max-width: 300px;
                 margin-bottom: 20px !important;
                 p {
                     font-size: 0.95rem !important;
                 }
             }
-        width: 90%;
-        padding: 30px;
+        width: 100%;
+        padding: 10px;
     }
+            
 }

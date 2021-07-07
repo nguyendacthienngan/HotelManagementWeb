@@ -4,20 +4,39 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @rooms = Room.all
-    @status = @@room_statuses
+    # @status = @@room_statuses tang,loai phong, trang thai
+    @floor = @@floor
+    @room_type =  @@room_types 
+    @room_statuses = @@room_statuses
+
   end
 
   # GET /rooms/1 or /rooms/1.json
   def show
+    @room_type =  @@room_types
+    @floor = @@floor
+    @room_statuses = @@room_statuses
   end
 
   # GET /rooms/new
   def new
     @room = Room.new
+    @room_type =  @@room_types
+    @room_type_view = convert_nested_hash_to_text(@room_type)
+    @floor = @@floor
+    @floor_view = convert_nested_hash_to_text(@floor)
+    @room_statuses = @@room_statuses
+    @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
   end
 
   # GET /rooms/1/edit
   def edit
+    @room_type =  @@room_types
+    @room_type_view = convert_nested_hash_to_text(@room_type)
+    @floor = @@floor
+    @floor_view = convert_nested_hash_to_text(@floor)
+    @room_statuses = @@room_statuses
+    @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
   end
 
   # POST /rooms or /rooms.json
@@ -65,6 +84,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.require(:room).permit(:beds, :status, :floor, :capacity, :price, :roomType, :description)
+      params.require(:room).permit(:name, :beds, :status, :floor, :capacity, :price, :room_type_id, :description)
     end
 end

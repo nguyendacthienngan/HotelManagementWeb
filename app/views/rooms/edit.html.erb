@@ -1,6 +1,23 @@
-<h1>Editing Room</h1>
+<div class="employee_top_breadcrumb">
+    <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="d-flex justify-content-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                <li class="breadcrumb-item"><a href="#">Phòng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa</li>
+            </ol>
+            </div>
+        </div>
+        </div>
+    </nav>
+</div>
 
 <%= render 'form', room: @room %>
 
-<%= link_to 'Show', @room %> |
-<%= link_to 'Back', rooms_path %>
+<div class="bottom_container">
+    <%= link_to rooms_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+    <%= link_to @room do%><div class="functionality_add btn btn-primary">Xem</div><% end %>
+</div>
+ 

@@ -1,3 +1,368 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+ 
+.top_breadcrumb{
+    font-weight: 700;
+    font-size: 0.9375rem;
+    
+}
+
+.room_main_view{
+    display: flex;
+    flex-direction: row;
+    background-color: #FEFEFE;
+    width: 100%;
+
+    .left_container{
+        min-height: 300px;
+        flex-grow: 1;
+    }
+    
+    .right_container{
+        width: 30%;
+        max-width: 360px;
+        
+        padding: 10px 0px 10px 0px;
+        width: calc(100% - 10px);
+        padding: 5px;
+    }
+
+    table { 
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+        th {
+            color: #555555;
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            background-color: #FAFBFD;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .hide{
+            display: none;
+        }
+        td {
+            text-align: left;
+            padding: 8px;
+            .info_basic_container{
+                display: flex;
+                flex-direction: column;
+                
+            }
+            &.room_row_infoBasic {
+                width: 15%;
+            }
+            &.room_row_type { 
+                width: 15%;
+            }
+            &.room_row_sprice{
+                width: 15%;
+            }
+            &.room_row_floor {
+                width: 15%;
+            }
+            &.room_row_description {
+                width: 25%;
+            }
+            &.room_row_status {
+                width: 15%;
+                .room_status_empty{
+                    background-color: #0D6EFD !important;
+                }
+                .room_status_reserved {
+                    background-color: #fdc500 !important;
+                }
+                .room_status_late_arrival {
+                    background-color: #c1121f !important;
+                }
+                .room_status_nonempty {
+                    background-color: #003049 !important;
+                }
+                .room_status_dirty {
+                    background-color: #fdf0d5 !important;
+                }
+            }
+        }
+        tr {
+            border-bottom: 1px solid #dddddd;
+            width: 100%;
+        }
+        
+        tr:hover {
+            background-color: #A5B8EA;
+            cursor: pointer;
+        }
+        tr.row_selected{
+            background-color: #7895E0;
+            cursor: pointer;
+        }
+        tr.hide_row{
+            display: none;
+        }
+        
+    }
+    
+    #room_row_empty{
+        display: flex;
+        padding-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        i{
+            font-size: 1.5rem;
+            color: #FFBD4A;
+        }
+        &.hide_empty{
+            display: none;
+        }
+    }
+
+    .section_name{
+        font-weight: 700;
+        font-size: 1rem;
+        margin-left: 5px;
+        color: #436BD5;
+    }
+
+    .functionalities{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+    .functionality_add {
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px back;
+        text-align: center;
+        border-radius: 4px;
+    }
+    .functionality_item{
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px gray;
+        text-align: center;
+        border-radius: 4px;
+        color: gray;
+        background-color: #bfbfbf;
+    }
+    .button_selected {
+        flex-grow: 1; 
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px black;
+        text-align: center;
+        border-radius: 4px;
+        &:hover {
+            background-color: #7895E0;
+            cursor: pointer;
+        }
+        color: black;
+    }
+
+    
+
+    .timkiem_container{
+        width: 100%;
+    }
+
+    .timkiem_container input {
+        margin: 5px;
+        width: calc(100% - 10px);
+        padding: 8px 5px 8px 5px;
+        background-color: #FAFBFD;
+        border: solid 1px #07153A;
+        border-radius: 4px;
+        outline: none;
+        font-size: 0.9375rem;
+        margin-bottom: 10px;
+    }
+
+    .timkiem_container input:focus{
+        background-color: inherit;
+        border: solid 1px #436BD5 !important;
+    }
+
+    .timkiem_price {
+        display: flex;
+        flex-direction: row;
+        input{
+            margin: 5px;
+            width: calc(30%);
+            padding: 4px 2px 4px 2px;
+            background-color: #FAFBFD;
+            border: solid 1px #07153A;
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.9375rem;
+            margin-bottom: 10px;
+            &:focus{
+                background-color: inherit;
+                border: solid 1px #436BD5 !important;
+            }
+            
+        }
+    }
+    .btn_ApDung{
+        flex-grow: 1; 
+        padding: 2px;
+        margin: 6px;
+        border: solid 1px #436BD5;
+        text-align: center;
+        border-radius: 4px;
+        color: #ffffff;
+        background-color: #436BD5;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .boloc_container{
+        margin-left: 5px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        flex-direction: column-reverse;
+            .functionality_item{
+                max-width: 120px;
+            }
+            .button_selected{
+                max-width: 120px;
+            }
+            
+            .left_container{
+                border-right: none;
+            }
+            .right_container{
+                width: 100%;
+                max-width: 100%;
+            }
+            table {
+                th {
+                    &.room_row_title_infoBasic {
+                        width: 30%;
+                    }
+                    &.room_row_title_type{
+                        display: none;
+                    }
+                    &.room_row_title_price{
+                        width: 35%;
+                    }
+                    &.room_row_title_floor{
+                        display: none;
+                    }
+                    &.room_row_title_description{
+                        display: none;
+                    }
+                    &.room_row_title_status {
+                        width: 35%;
+                    }
+                }
+                td {
+                    &.room_row_infoBasic {
+                        width: 30%;
+                    }
+                    &.room_row_type {
+                        display: none;
+                    }
+                    &.room_row_sprice{
+                        width: 35%;
+                    }
+                    &.room_row_floor {
+                        display: none;
+                    }
+                    &.room_row_description {
+                        display: none;
+                    }
+                    &.room_row_status {
+                        width: 35%;
+                        .room_status_empty{
+                            background-color: #0D6EFD !important;
+                        }
+                        .room_status_reserved {
+                            background-color: #fdc500 !important;
+                        }
+                        .room_status_late_arrival {
+                            background-color: #c1121f !important;
+                        }
+                        .room_status_nonempty {
+                            background-color: #003049 !important;
+                        }
+                        .room_status_dirty {
+                            background-color: #fdf0d5 !important;
+                        }
+                    }
+                }
+                
+            }
+    }
+}
+
+
+.show_container{
+    .show_content{
+        color: black;
+        & > div{
+            width: 100%;
+        }
+        max-width: 400px;
+        text-align: left;
+        .show_room_name{
+            width: 35%;
+        }
+        .show_sign{
+            width: 5%;
+        }
+        .show_room_value{
+            width: 55%;
+            .room_status_empty{
+                background-color: #0D6EFD !important;
+            }
+            .room_status_reserved {
+                background-color: #fdc500 !important;
+            }
+            .room_status_late_arrival {
+                background-color: #c1121f !important;
+            }
+            .room_status_nonempty {
+                background-color: #003049 !important;
+            }
+            .room_status_dirty {
+                background-color: #fdf0d5 !important;
+            }
+        }
+        p {
+            font-size: 1.02rem !important;
+        }
+        margin-bottom: 50px;
+    }
+    width: 50%;
+    padding: 50px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    @media only screen and (max-width: 1200px) {
+        flex-direction: column-reverse;
+            .show_content{
+                max-width: 300px;
+                margin-bottom: 20px !important;
+                p {
+                    font-size: 0.95rem !important;
+                }
+            }
+        width: 100%;
+        padding: 10px;
+    }
+            
+}
+
+
+
+   
+  
+

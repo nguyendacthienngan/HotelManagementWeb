@@ -22,21 +22,49 @@
 				</div>
 				<table>
 						<tr>
-							<th>Mã số</th>
-							<th>Họ tên</th>
-							<th>Loại khách hàng</th>
-							<th>Số điện thoại</th>
+							<th class="client_row_title_infoBasic">HỌ TÊN KHÁCH HÀNG</th>
+							<th class="client_row_title_type">LOẠI</th>
+							<th class="client_row_title_gender">GIỚI TÍNH</th>
+							<th class="client_row_title_phone">SỐ ĐIỆN THOẠI</th>
+							<th class="client_row_title_email">EMAIL</th>
+							<th class="client_row_title_dob">NGÀY SINH</th> 
 						</tr>
 	
 						<% @clients.each do |client| %>
-								<tr class="client_row">
-									<td id="client_row_id"> <%= client.id %> </td>
-									<td> <%= client.name %> </td>
-									<td> <%= client.client_type %></td>
-									<td> <%= client.phone_number %></td>
-								</tr>
+							<tr class="client_row">
+								<td class="client_row_infoBasic">
+									<div class="info_basic_container">
+										<span class="client_row_name"><%= client.name %></span>
+										<span class="client_row_id hide"><%= client.id %></span>
+									</div>
+								</td>
+								<td class="client_row_type">
+								<span id="client_typeId" class="hide"><%= client.client_type %></span>
+									<% index =  client.client_type - 1 %>
+									<span><%= @client_type[index][:text] %></span>
+								</td>
+								<td class="client_row_gender">
+								<span id="client_genderId" class="hide"><%= client.gender %></span>
+									<% index =  client.gender - 1 %>
+									<span><%= @client_gender[index][:text] %></span>
+								</td>
+								<td class="client_row_phone"> <%= client.phone_number %></td>
+								<td class="client_row_email"> <%= client.email %></td>
+								<td id='client_dob' class="client_row_dob"> <%= Date.parse(client.date_of_birth.to_s) %></td>
+								<!-- <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+								<!-- <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+								<td>
+									<%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %>
+									<span class="fa fa-trash"></span>
+									<% end %>
+								</td>
+							</tr>
 						<% end %>
 				</table>
+				<div id="client_row_empty" class="hide_empty">
+					<i class="fas fa-exclamation-triangle"></i>
+					<span>No row matched !</span>
+				</div>
 			</div>
 	
 	
@@ -53,27 +81,96 @@
 	
 					<div class="section_name">Tìm kiếm</div>
 					<div class="timkiem_container">
-							<input />
+						<input id="client_input_filter"/>
 					</div>
 	
-					<div class="section_name">Bộ lọc</div>
+					<div class="section_name">Bộ lọc tìm kiếm</div>
 	
 					<div class="boloc_container">
+						<div id="boloc_client_gender"><strong> > Giới tính</strong>
+						</div>
+						<div id="boloc_client_type"><strong> > Loại</strong>
+						</div>
+						<div ><strong> > Tháng sinh nhật</strong>
 							<div class="boloc_item">
-									<input type="checkbox" value="male" />
-									<span class="boloc_label">Nam</span>
+								<select id="boloc_client_dob" ></select>
 							</div>
-							<div class="boloc_item">
-								<input type="checkbox" value="female" />
-								<span class="boloc_label">Nữ</span>
-							</div>
+						</div>
 					</div>
+				</div>
 	
 			</div>
 	</div>
 	
 	<script>
 	let selectedID;
+	let filterByString = '';
+    let filterByGender = [
+        {
+            label: "Nam",
+            status: false
+        },
+        {
+            label: "Nữ",
+            status: false
+        },
+        {
+            label: "Khác",
+            status: false
+        },
+    ];
+    let filterByType = [
+        {
+            label: "Khách lữ hành",
+            status: false
+        },
+        {
+            label: "Thành viên",
+            status: false
+        },
+    ];
+	let filterByDobSelectedOption = 0;
+	let filterByDobOptions = [
+		{
+            label: "-",
+        },
+        {
+            label: "Tháng 1",
+        },
+        {
+            label: "Tháng 2",
+        },
+		{
+            label: "Tháng 3",
+        },
+		{
+            label: "Tháng 4",
+        },
+		{
+            label: "Tháng 5",
+        },
+		{
+            label: "Tháng 6",
+        },
+		{
+            label: "Tháng 7",
+        },
+		{
+            label: "Tháng 8",
+        },
+		{
+            label: "Tháng 9",
+        },
+		{
+            label: "Tháng 10",
+        },
+		{
+            label: "Tháng 11",
+        },
+		{
+            label: "Tháng 12",
+        },
+    ];
 
 	let allClients = document.querySelectorAll(".client_row");
 	let allButtonNotClick = document.querySelectorAll(".functionality_item");
@@ -84,7 +181,7 @@
 							previousSelectedRow.classList.remove("row_selected");
 					}
 					
-					selectedID = allClients[i].querySelector("#client_row_id").innerHTML * 1;
+					selectedID = allClients[i].querySelector(".client_row_id").innerHTML * 1;
 					this.classList.add("row_selected");
 					for(let i=0; i<allButtonNotClick.length; i++){
 							allButtonNotClick[i].classList.remove("functionality_item");
@@ -104,4 +201,102 @@
 					window.location = `${window.location}/${selectedID}`;
 			}
 	});
+
+	// RenderFilterGenderCheckboxes
+    filterByGender.forEach((e,i) => {
+        let divTag = document.createElement("div");
+        divTag.setAttribute("class", "boloc_item");
+        divTag.innerHTML = `
+            <input class="boloc_checkbox" type="checkbox"/>
+            <span class="boloc_label">${e.label}</span>
+        `
+        divTag.addEventListener('change', function() {
+            filterByGender[i].status = this.querySelector(".boloc_checkbox").checked;
+            updateTable();
+        });
+        document.querySelector("#boloc_client_gender").append(divTag);
+        
+    })
+    // RenderFilterTypeCheckboxes
+    filterByType.forEach((e,i) => {
+        let divTag = document.createElement("div");
+        divTag.setAttribute("class", "boloc_item");
+        divTag.innerHTML = `
+            <input class="boloc_checkbox" type="checkbox"/>
+            <span class="boloc_label">${e.label}</span>
+        `
+        divTag.addEventListener('change', function() {
+            filterByType[i].status = this.querySelector(".boloc_checkbox").checked;
+            updateTable();
+        });
+        document.querySelector("#boloc_client_type").append(divTag);
+    })
+	let selectTag = document.getElementById("boloc_client_dob");
+	// RenderFilterDobSelect
+    filterByDobOptions.forEach((e,i) => {
+  		let option = document.createElement("option");
+		option.setAttribute("class", "boloc_select");
+		option.text = e.label;
+		option.setAttribute("value", i);
+		selectTag.add(option, selectTag[i]);
+    })
+	selectTag.addEventListener('change', function(e) {
+		filterByDobSelectedOption = e.target.value * 1;
+		updateTable();
+    });
+
+	function isUsingFilterType(){
+        for(let i=0; i<filterByType.length; i++){
+            if(filterByType[i].status) return true;
+        }
+        return false;
+    }
+    function isUsingFilterGender(){
+        for(let i=0; i<filterByGender.length; i++){
+            if(filterByGender[i].status) return true;
+        }
+        return false;
+    }
+
+
+	document.querySelector("#client_input_filter").addEventListener('input', function(e){
+        filterByString = e.target.value;
+        updateTable();
+    });
+
+	function updateTable(){
+        let hasAtLeastOneMatchedRow = false;
+        for(let i=0; i<allClients.length; i++){
+            let tRow = allClients[i];
+            let tColumnName = tRow.querySelector(".client_row_name").innerHTML;
+            let tColumnPhone = tRow.querySelector(".client_row_phone").innerHTML;
+			let tColumnEmail = tRow.querySelector(".client_row_email").innerHTML;
+			let tColumnType = tRow.querySelector("#client_typeId").innerHTML * 1;
+            let tColumnGender = tRow.querySelector("#client_genderId").innerHTML * 1;
+			let tColumnDob = (new Date(tRow.querySelector("#client_dob").innerHTML)).getMonth() + 1;
+            
+            if(!(tColumnName.toLowerCase().includes(filterByString.toLowerCase())
+                || tColumnPhone.toLowerCase().includes(filterByString.toLowerCase())
+				|| tColumnEmail.toLowerCase().includes(filterByString.toLowerCase())
+				&& filterByString.length > 0) 
+				|| (tColumnDob*1 !== filterByDobSelectedOption*1 && filterByDobSelectedOption !== 0)){
+				tRow.classList.add("hide_row");
+            }
+			else if((!filterByType[tColumnType - 1].status && isUsingFilterType())
+                    || (!filterByGender[tColumnGender - 1].status && isUsingFilterGender())){
+                tRow.classList.add("hide_row");
+            }
+			else{
+                tRow.classList.remove("hide_row");
+                hasAtLeastOneMatchedRow = true;
+            }
+        }
+
+        if (hasAtLeastOneMatchedRow) {
+            document.querySelector("#client_row_empty").classList.add("hide_empty");
+        }else{
+            document.querySelector("#client_row_empty").classList.remove("hide_empty");
+        }
+    }
+
 	</script>

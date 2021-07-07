@@ -10,100 +10,39 @@
       </ul>
     </div>
   <% end %>
-
+ 
 <center>
-<div class="_form_container">
-<div class="_form_centent tColumn">
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label :name %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Tên loại phòng</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :name, class:"form-control" %>
+        </div>
     </div>
-    <div class="_form_item_input">
-      <%= form.text_field  :name %>
-      <div class="error_msg">This name is not valid !</div>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label 'Ma loai phong' %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :add_adult_price %>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Sức chứa</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :available_rooms, class:"form-control" %>
+      </div>
     </div>
   </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label 'So nguoi lon mac dinh' %>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Số giường</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :beds, class:"form-control" %>
+        </div>
     </div>
-    <div class="_form_item_input">
-      <%= form.number_field :add_adult_price , min: 0 %>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label 'So tre em mac dinh' %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.number_field :add_adult_price , min: 0 %>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Mô tả</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :description, class:"form-control" %>
+      </div>
     </div>
   </div>
 
-  <div class="field tRow">
-    <div class="_form_item_name">
-      <%= form.label 'Gia' %>
-    </div>
-    <div class="_form_item_input">
-      <%= form.text_field :add_adult_price %>
-    </div>
-  </div>
-
-  <div class="field tRow">
-    <%= form.label :add_adult_price %>
-    <%= form.text_field :add_adult_price %>
-  </div>
-
-  <div class="field tRow">
-    <%= form.label :add_child_price %>
-    <%= form.text_field :add_child_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hour_price %>
-    <%= form.text_field :hour_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_price %>
-    <%= form.text_field :date_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :past_night_price %>
-    <%= form.text_field :past_night_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :week_price %>
-    <%= form.text_field :week_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :month_price %>
-    <%= form.text_field :month_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions button_submit">
+  <div class="tBotton">
     <%= form.submit :class => 'btn btn-primary' %>
   </div>
-</div>
-</div>
 </center>
 <% end %>

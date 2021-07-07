@@ -23,19 +23,51 @@
         </div>
         <table>
             <tr>
-                <th>Mã số</th>
-                <th>Họ Tên</th>
-                <th>Loại Nhân Viên</th>
+                <th class="employee_row_title_infoBasic">HỌ TÊN NHÂN VIÊN</th>
+                <th class="employee_row_title_type">LOẠI</th>
+                <th class="employee_row_title_gender">GIỚI TÍNH</th>
+                <th class="employee_row_title_phone">SĐT</th>
+                <th class="employee_row_title_address">ĐỊA CHỈ</th>
+                <th class="employee_row_title_status">TRẠNG THÁI</th>
             </tr>
+
 
             <% @employees.each do |employee| %>
                 <tr class="employee_row">
-                    <td id="employee_row_id"> <%= employee.id %> </td>
-                    <td id="employee_row_name"> <%= employee.name %> </td>
-                    <td> <%= employee.employee_type %> </td>
+                    <td class="employee_row_infoBasic">
+                        <div class="info_basic_container">
+                            <span class="employee_row_name"><%= employee.name %></span>
+                            <span class="employee_row_id hide"><%= employee.id %></span>
+                        </div>
+                    </td>
+                    <td class="employee_row_type">
+                        <span id="employee_typeId" class="hide"><%= employee.employee_type %></span>
+                        <% index =  employee.employee_type - 1 %>
+                            <span><%= @employeee_type[index][:text] %></span>
+                    </td>
+                    <td class="employee_row_gender">
+                        <span id="employee_genderId" class="hide"><%= employee.gender %></span>
+                        <% index =  employee.gender - 1%>
+                            <span><%= @employee_gender[index][:text] %></span>
+                    </td>
+
+                    <td class="employee_row_phone"> <%= employee.phone_number %> </td>
+                    <td class="employee_row_address"> <%= employee.address %> </td>
+                    <td class="employee_row_status">
+                        <span id="employee_statusId" class="hide"><%= employee.status %></span>
+                        <% if employee.status == 1 %>
+                            <span class="badge rounded-pill bg-primary employee_status_doing">Đang làm</span>
+                        <% elsif employee.status == 2 %>
+                            <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
+                        <% end %>
+                    </td>
                 </tr>
             <% end %>
         </table>
+        <div id="employee_row_empty" class="hide_empty">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>No row matched !</span>
+        </div>
     </div>
 
 
@@ -52,19 +84,17 @@
 
         <div class="section_name">Tìm kiếm</div>
         <div class="timkiem_container">
-            <input />
+            <input id="employee_input_filter"/>
         </div>
 
-        <div class="section_name">Bộ lọc</div>
+        <div class="section_name">Bộ lọc tìm kiếm</div>
 
         <div class="boloc_container">
-            <div class="boloc_item">
-                <input type="checkbox" value="nam" />
-                <span class="boloc_label">Nam</span>
+            <div id="boloc_employee_gender"><strong> > Giới tính</strong>
             </div>
-            <div class="boloc_item">
-              <input type="checkbox" value="nu" />
-              <span class="boloc_label">Nữ</span>
+            <div id="boloc_employee_type"><strong> > Loại nhân viên</strong>
+            </div>
+            <div id="boloc_employee_status"><strong> > Trạng thái</strong>
             </div>
         </div>
 
@@ -78,6 +108,98 @@
     let allEmployees = document.querySelectorAll(".employee_row");
     let allButtonNotClick = document.querySelectorAll(".functionality_item");
     
+    let filterByString = '';
+    let filterByGender = [
+        {
+            label: "Nam",
+            status: false
+        },
+        {
+            label: "Nữ",
+            status: false
+        },
+        {
+            label: "Khác",
+            status: false
+        },
+    ];
+    let filterByType = [
+        {
+            label: "Quản Lý",
+            status: false
+        },
+        {
+            label: "Lễ Tân",
+            status: false
+        },
+        {
+            label: "Vệ Sinh",
+            status: false
+        },
+        {
+            label: "Bảo Vệ",
+            status: false
+        }
+    ];
+    let filterByStatus = [
+        {
+            label: "Đang làm",
+            status: false
+        },
+        {
+            label: "Nghỉ việc",
+            status: false
+        },
+    ];
+
+    // RenderFilterGenderCheckboxes
+    filterByGender.forEach((e,i) => {
+        let divTag = document.createElement("div");
+        divTag.setAttribute("class", "boloc_item");
+        divTag.innerHTML = `
+            <input class="boloc_checkbox" type="checkbox"/>
+            <span class="boloc_label">${e.label}</span>
+        `
+        divTag.addEventListener('change', function() {
+            filterByGender[i].status = this.querySelector(".boloc_checkbox").checked;
+            updateTable();
+        });
+        document.querySelector("#boloc_employee_gender").append(divTag);
+        
+    })
+    // RenderFilterTypeCheckboxes
+    filterByType.forEach((e,i) => {
+        let divTag = document.createElement("div");
+        divTag.setAttribute("class", "boloc_item");
+        divTag.innerHTML = `
+            <input class="boloc_checkbox" type="checkbox"/>
+            <span class="boloc_label">${e.label}</span>
+        `
+        divTag.addEventListener('change', function() {
+            filterByType[i].status = this.querySelector(".boloc_checkbox").checked;
+            updateTable();
+        });
+        document.querySelector("#boloc_employee_type").append(divTag);
+    })
+    // RenderFilterStatusCheckboxes
+    filterByStatus.forEach((e,i) => {
+        let divTag = document.createElement("div");
+        divTag.setAttribute("class", "boloc_item");
+        divTag.innerHTML = `
+            <input class="boloc_checkbox" type="checkbox"/>
+            <span class="boloc_label">${e.label}</span>
+        `
+        divTag.addEventListener('change', function() {
+            filterByStatus[i].status = this.querySelector(".boloc_checkbox").checked;
+            updateTable();
+        });
+        document.querySelector("#boloc_employee_status").append(divTag);
+        
+    })
+    
+
+
+
     // Add onclick listener to each row
     for(let i=0; i<allEmployees.length; i++){
         allEmployees[i].addEventListener('click', function(){
@@ -86,7 +208,7 @@
                 previousSelectedRow.classList.remove("row_selected");
             }
             
-            selectedID = allEmployees[i].querySelector("#employee_row_id").innerHTML * 1;
+            selectedID = allEmployees[i].querySelector(".employee_row_id").innerHTML * 1;
             this.classList.add("row_selected");
             for(let i=0; i<allButtonNotClick.length; i++){
                 allButtonNotClick[i].classList.remove("functionality_item");
@@ -107,7 +229,68 @@
         }
     });
 
+    document.querySelector("#employee_input_filter").addEventListener('input', function(e){
+        filterByString = e.target.value;
+        updateTable();
+    });
 
+    
+    function isUsingFilterType(){
+        for(let i=0; i<filterByType.length; i++){
+            if(filterByType[i].status) return true;
+        }
+        return false;
+    }
+    function isUsingFilterGender(){
+        for(let i=0; i<filterByGender.length; i++){
+            if(filterByGender[i].status) return true;
+        }
+        return false;
+    }
+    function isUsingFilterStatus(){
+        for(let i=0; i<filterByStatus.length; i++){
+            if(filterByStatus[i].status) return true;
+        }
+        return false;
+    }
 
+    function updateTable(){
+        let hasAtLeastOneMatchedRow = false;
+        //  console.log(isUsingFilterStatus());
+        for(let i=0; i<allEmployees.length; i++){
+            let tRow = allEmployees[i];
+            let tColumnName = tRow.querySelector(".employee_row_name").innerHTML;
+            let tColumnPhone = tRow.querySelector(".employee_row_phone").innerHTML;
+            let tColumnAddress = tRow.querySelector(".employee_row_address").innerHTML;
+            let tColumnType = tRow.querySelector("#employee_typeId").innerHTML * 1;
+            let tColumnGender = tRow.querySelector("#employee_genderId").innerHTML * 1;
+            let tColumnStatus = tRow.querySelector("#employee_statusId").innerHTML * 1;
 
+            // Fiter by String
+            if(!(tColumnName.toLowerCase().includes(filterByString.toLowerCase())
+                || tColumnPhone.toLowerCase().includes(filterByString.toLowerCase()) 
+                || tColumnAddress.toLowerCase().includes(filterByString.toLowerCase()))
+                && filterByString.length > 0){
+                tRow.classList.add("hide_row");
+            }
+            // Filter by Gender
+            else if((!filterByType[tColumnType - 1].status && isUsingFilterType())
+                    || (!filterByGender[tColumnGender - 1].status && isUsingFilterGender())
+                    || (!filterByStatus[tColumnStatus - 1].status && isUsingFilterStatus())){
+                tRow.classList.add("hide_row");
+            }
+            else{
+                tRow.classList.remove("hide_row");
+                hasAtLeastOneMatchedRow = true;
+            }
+        }
+
+        
+        if (hasAtLeastOneMatchedRow) {
+            document.querySelector("#employee_row_empty").classList.add("hide_empty");
+        }else{
+            document.querySelector("#employee_row_empty").classList.remove("hide_empty");
+        }
+    }
+    
 </script>

@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     @room_type_id = Room.find(@room_id).room_type_id
     @room_type_name = RoomType.find(@room_type_id).name
     @payment_type = @@payment_type
-    @payment_type_view = convert_nested_hash_to_text(@payment_type)
+    @payment_type_view = convert_nested_hash_to_text(@payment_type) 
     @reservation_type = @@reservation_types
     @reservation_type_view = convert_nested_hash_to_text(@reservation_type)
 

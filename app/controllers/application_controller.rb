@@ -8,19 +8,30 @@ class ApplicationController < ActionController::Base
   ]
   @@gender = [
     { code: "male", text: "Nam" },
-    { code: "female", text: "Nữ" }
+    { code: "female", text: "Nữ" },
+    { code: "order", text: "Khác" }
   ]
   @@employee_types = [
     { code: "manager", text: "Quản lý" },
-    { code: "receptionist", text: "Nhân viên lễ tân" }
+    { code: "receptionist", text: "Lễ tân" },
+    { code: "vs", text: "Vệ sinh" },
+    { code: "bv", text: "Bảo vệ" }
   ]
   @@employee_statuses = [
-    { code: "working", text: "Đi làm" },
-    { code: "left", text: "Nghỉ làm" }
-  ]
+    { code: "working", text: "Đang làm" },
+    { code: "left", text: "Nghỉ việc" }
+  ] 
   @@client_types = [
     { code: "traveller", text: "Khách lữ hành" },
-    { code: "client", text: "Khách hàng thành viên" }
+    { code: "client", text: "Thành viên" }
+  ]
+  @@room_types = [
+    { code: "x", text: "Standard" },
+    { code: "a", text: "Superior Twin" },
+    { code: "b", text: "Superior Double" },
+    { code: "c", text: "Deluxe Twin" },
+    { code: "d", text: "Deluxe Double" },
+    { code: "e", text: "Suite Double" }
   ]
   @@room_statuses = [
     { code: "empty", text: "Trống", color: "#000000" },
@@ -28,6 +39,11 @@ class ApplicationController < ActionController::Base
     { code: "late_arrival", text: "Quá hạn", color: "#c1121f" },
     { code: "nonempty", text: "Đang ở", color: "#003049" }, # Đã check in
     { code: "dirty", text: "Bẩn", color: "#fdf0d5" } #Đã check out
+  ]
+  @@floor = [
+    { code: "mot", text: "1" },
+    { code: "hai", text: "2" },
+    { code: "ba", text: "3" }
   ]
 
   @@reservation_statuses = [

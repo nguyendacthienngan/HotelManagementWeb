@@ -10,29 +10,49 @@
       </ul>
     </div>
   <% end %>
-
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+<center>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Phòng</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.text_field :name, class:"form-control" %>
+        </div>
+    </div>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Loại phòng</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.number_field :room_type_id, class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Tầng</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.number_field :floor, class:"form-control" %>
+        </div>
+    </div>
+    <div class="col-xl-5 row">
+      <p class="col-xl-5 col-sm-4 row">Mô tả</p>
+      <div class="col-xl-7 col-sm-7 row form-group">
+        <%= form.text_field :description, class:"form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xl-5 row">
+        <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
+        <div class="col-xl-7 col-sm-7 row form-group">
+          <%= form.number_field :status, class:"form-control" %>
+        </div>
+    </div>
+    <div class="col-xl-5 row">
+      
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :floor %>
-    <%= form.number_field :floor %>
+  <div class="tBotton">
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
-
-  <div class="field">
-    <%= form.label :room_type_id %>
-    <%= form.number_field :room_type_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</center>
 <% end %>

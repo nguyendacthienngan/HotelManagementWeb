@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Price:</strong>
@@ -22,4 +22,68 @@
 </p>
 
 <%= link_to 'Edit', edit_room_price_path(@room_price) %> |
-<%= link_to 'Back', room_prices_path %>
+<%= link_to 'Back', room_prices_path %> -->
+
+<center>
+  <div class="employee_top_breadcrumb">
+      <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <div class="row">
+          <div class="col-sm-6">
+              <div class="d-flex justify-content-start">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                  <li class="breadcrumb-item"><a href="#">Giá phòng</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Xem</li>
+              </ol>
+              </div>
+          </div>
+          </div>
+      </nav>
+  </div>
+    <div class="show_roomPrice_container">
+    <div class="show_content tColumn">
+    <p class="tRow">
+      <span class="show_roomPrice_name">Loại phòng</span>
+      <span class="show_sign">:</span>
+          <% index =  @room_price.room_type_id - 1 %>
+          <strong><%= @room_type[index][:text] %></strong>
+    </p>
+  
+    <p class="tRow">
+      <span class="show_roomPrice_name">Loại giá</span>
+      <span class="show_sign">:</span>
+      <% index =  @room_price.price_type - 1 %>
+      <strong><%= @price_types[index][:text] %></strong>
+    </p>
+  
+    <p class="tRow">
+      <span class="show_roomPrice_name">Giá</span>
+      <span class="show_sign">:</span>
+      <strong class="show_employee_value"><%= @room_price.price %> VNĐ</strong>
+    </p>
+  
+    <p class="tRow">
+      <span class="show_roomPrice_name">Ngày áp dụng</span>
+      <span class="show_sign">:</span>
+      <strong class="show_roomPrice_value"><%= Date.parse(@room_price.date.to_s) %></strong>
+    </p>
+
+    <p class="tRow">
+      <span class="show_roomPrice_name">Trạng thái</span>
+      <span class="show_sign">:</span>
+      <strong class="show_roomPrice_value">
+          <% if @room_price.is_available == true %>
+              <span class="badge rounded-pill bg-primary roomPrice_status_doing">Đang áp dụng</span>
+          <% elsif @room_price.is_available == false %>
+              <span class="badge rounded-pill bg-danger roomPrice_status_off">Ngưng áp dụng</span>
+          <% end %>
+      </strong>
+    </p>
+    </div>
+    <div class="tBotton">
+      <%= link_to edit_room_price_path(@room_price) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
+    </div>
+    </div>
+  </center>
+  <%= link_to room_prices_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>
+  

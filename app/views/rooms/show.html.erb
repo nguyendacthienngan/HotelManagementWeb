@@ -1,37 +1,73 @@
-<p>
-  <strong>Beds:</strong>
-  <%= @room.beds %>
-</p>
+<center>
+  <div class="employee_top_breadcrumb">
+      <nav class="page-section" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <div class="row">
+          <div class="col-sm-6">
+              <div class="d-flex justify-content-start">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Cấu hình</a></li>
+                  <li class="breadcrumb-item"><a href="#">Phòng</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Xem</li>
+              </ol>
+              </div>
+          </div>
+          </div> 
+      </nav>
+  </div>
+    <p id="notice"><%= notice %></p>
+    <div class="show_container">
+    <div class="show_content tColumn">
+    <p class="tRow">
+      <span class="show_room_name">Phòng</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value"><%= @room.name %></strong>
+    </p>
+    
+    <p class="tRow">
+      <span class="show_room_name">Loại phòng</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value"><%= RoomType.find(@room.room_type_id).name %></strong>
+    </p>
+    
+    <p class="tRow">
+      <span class="show_room_name">Tầng</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value"><%= @room.floor %></strong>
+    </p>
+    
+    <p class="tRow">
+      <span class="show_room_name">Mô tả</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value"><%= @room.description %></strong>
+    </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @room.status %>
-</p>
-
-<p>
-  <strong>Floor:</strong>
-  <%= @room.floor %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @room.capacity %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @room.price %>
-</p>
-
-<p>
-  <strong>Roomtype:</strong>
-  <%= @room.roomType %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+    <p class="tRow">
+      <span class="show_room_name">Giá</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value"><%= RoomPrice.find(RoomType.find(@room.room_type_id).id).price %></strong>
+    </p>
+    
+    <p class="tRow">
+      <span  class="show_room_name">Trạng thái</span>
+      <span class="show_sign">:</span>
+      <strong class="show_room_value">
+      <% if @room.status == 0 %>
+        <span class="badge rounded-pill bg-primary room_status_empty">Trống</span>
+      <% elsif @room.status == 1 %>
+          <span class="badge rounded-pill bg-danger room_status_reserved">Đã đặt</span>
+      <% elsif @room.status == 2 %>
+          <span class="badge rounded-pill bg-danger room_status_late_arrival">Quá hạn </span>
+      <% elsif @room.status == 3 %>
+          <span class="badge rounded-pill bg-danger room_status_nonempty">Đang ở</span>
+      <% elsif @room.status == 4 %>
+          <span class="badge rounded-pill bg-danger room_status_dirty">Bẩn</span>
+      <% end %>
+      </strong>
+    </p>
+    </div>
+    <div class="tBotton">
+      <%= link_to edit_room_path(@room) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
+    </div>
+    </div>
+  </center>
+  <%= link_to rooms_path do%><div class="functionality_add btn btn-primary">Quay lại</div><% end %>

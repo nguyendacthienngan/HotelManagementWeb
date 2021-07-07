@@ -4,20 +4,38 @@ class EmployeesController < ApplicationController
   # GET /employees or /employees.json
   def index
     @employees = Employee.all
-    @types = @@employee_types
+    # @types = @@employee_types
+    @employeee_type =  @@employee_types
+    @employee_gender = @@gender
+    @employee_statuses = @@employee_statuses
   end
 
   # GET /employees/1 or /employees/1.json
   def show
+    @employeee_type =  @@employee_types
+    @employee_gender = @@gender
+    @employee_statuses = @@employee_statuses
   end
 
   # GET /employees/new
   def new
     @employee = Employee.new
+    @employee_type = @@employee_types
+    @employee_type_view = convert_nested_hash_to_text(@employee_type)
+    @employee_gender = @@gender
+    @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
+    @employee_statuses = @@employee_statuses
+    @employee_statuses_view = convert_nested_hash_to_text(@employee_statuses)
   end
 
   # GET /employees/1/edit
   def edit
+    @employee_type = @@employee_types
+    @employee_type_view = convert_nested_hash_to_text(@employee_type)
+    @employee_gender = @@gender
+    @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
+    @employee_statuses = @@employee_statuses
+    @employee_statuses_view = convert_nested_hash_to_text(@employee_statuses)
   end
 
   # POST /employees or /employees.json
@@ -48,7 +66,7 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # DELETE /employees/1 or /employees/1.json
+  # DELETE /employees/1 or /employees/1.json 
   def destroy
     @employee.destroy
     respond_to do |format|
@@ -65,6 +83,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def employee_params
-      params.require(:employee).permit(:name, :employee_type, :citizen_id, :isFemale, :nationality, :date_of_birth, :email, :status)
+      params.require(:employee).permit(:name, :employee_type, :citizen_id, :gender, :nationality, :date_of_birth, :email, :status, :address, :phone_number)
     end
 end

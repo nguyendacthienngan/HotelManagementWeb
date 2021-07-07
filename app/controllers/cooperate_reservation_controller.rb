@@ -2,7 +2,8 @@ include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-    @reservation = Reservation.all
+    @reservations = Reservation.all
+    @room_statuses = @@room_statuses
   end
 
   def show
@@ -58,12 +59,8 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
-
-
     @chosen_rooms = session[:chosen_rooms]["rooms"]
-
     @payment = Payment.new
-
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender

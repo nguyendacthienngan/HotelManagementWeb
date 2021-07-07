@@ -199,9 +199,11 @@
             price_type_id = 2
         const adults = $('#adults').val()
         const children = $('#children').val()
+        const arrival_date = $('#arrival_date').val()
+        const leave_date = $('#leave_date').val()
         console.log(queryString);
 
-        var theURL = '/room_diagram/quick_reserve_room?room_id=<%= @room_id %>&price_type_id=' + price_type_id +'&adults='+adults+'&children='+children;
+        var theURL = '/room_diagram/quick_reserve_room?room_id=<%= @room_id %>&price_type_id=' + price_type_id +'&adults='+adults+'&children='+children+'&arrival_date='+arrival_date+'&leave_date='+leave_date;
         window.location.href = theURL
     }
 
@@ -271,7 +273,14 @@
         }
         else
             $('select#price_type>option:eq(1)').attr('selected', true);
-
+        if (urlParams.get('arrival_date'))
+        {
+            $('#arrival_date').val(urlParams.get('arrival_date'))
+        }
+        if (urlParams.get('leave_date'))
+        {
+            $('#leave_date').val(urlParams.get('leave_date'))
+        }
         var room_price = (<%= @room_price_value %>);
         var children = $('#children').val();
         var children_price = <%=@children_price %>;
@@ -290,9 +299,7 @@
         {
             let differenceBetween2Dates = calculateDifferenceBetween2Dates(arrivalDate, leaveDate)
             if (differenceBetween2Dates > 0)
-            {
                 total *= differenceBetween2Dates
-            }
             else
                 alert("Ngày đi không được phép trước ngày đến")
         }

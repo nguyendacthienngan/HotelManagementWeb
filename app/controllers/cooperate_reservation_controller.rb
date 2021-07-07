@@ -1,13 +1,14 @@
 include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_payment, only: %i[ show edit update destroy ]
   def index
-    @reservations = Reservation.all
+    @payments = Payment.all
     @room_statuses = @@room_statuses
   end
 
   def show
-
+    @room_statuses = @@room_statuses
   end
 
   def choose_rooms_post
@@ -141,7 +142,9 @@ class CooperateReservationController < ApplicationController
   def set_reservation
     @reservation = Reservation.find(params[:id])
   end
-
+  def set_payment
+    @payment = Payment.find(params[:id])
+  end
   # Only allow a list of trusted parameters through.
 
   def payment_params

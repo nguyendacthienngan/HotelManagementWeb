@@ -20,81 +20,81 @@
 </div>
 
 <br>
-<% if @reservations %>
-  <% @reservations.each do |reservation| %>
 
-    <% payment_id =  reservation.payment_id %>
-    <% payment = Payment.find(payment_id) %>
+<% if @payments %>
+  <% index = 1 %>
+  <% @payments.each do |payment| %>
     <% if payment.is_cooperate_reservation == true %>
-      <% room = Room.find(reservation.room_id) %>
-      <%  room_name = room.name %>
-      <%  price = RoomPrice.find(RoomType.find(Room.find(reservation.room_id).room_type_id).id).price %>
-      <%# room_status = @room_statuses[room.status - 1][:text] %>
-      <% room_status = @room_statuses[reservation.status - 1][:text] %>
+      <h4 class="p-4">Khách đoàn <%= index %></h4>
+      <% index = index + 1 %>
 
-      <% client_name = reservation.client_name %>
+      <% reservations = Reservation.where(payment_id: payment.id) %>
 
-      <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
-      <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
-      <%  arrival_date = reservation.arrival_date %>
-      <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
-      <%  leave_date = reservation.leave_date %>
-      <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+      <%# reservations.each do |reservation|  %>
+      <% reservation = reservations[0] %>
+        <% reservation_status = @room_statuses[reservation.status - 1][:text] %>
 
-      <%  deposit = Payment.find(reservation.payment_id).deposit %>
-      <%  total = Payment.find(reservation.payment_id).temp_total %>
+        <% client_name = reservation.client_name %>
 
-      <div class="row">
-        <div class="col-sm-2 card card-body right-border justify-content-center left-panel ">
-          <div class="d-flex justify-content-center">
-            <%= room_name %>
+        <%  reservation_date = Payment.find(reservation.payment_id).reservation_date %>
+        <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
+        <%  arrival_date = reservation.arrival_date %>
+        <%  arrival_date = arrival_date.strftime("%d/%m/%Y") %>
+        <%  leave_date = reservation.leave_date %>
+        <%  leave_date = leave_date.strftime("%d/%m/%Y") %>
+
+        <%  deposit = Payment.find(reservation.payment_id).deposit %>
+        <%  total = Payment.find(reservation.payment_id).temp_total %>
+
+        <div class="row">
+          <div class="col-sm-2 card card-body right-border justify-content-center left-panel ">
+            <div class="d-flex justify-content-center">
+              #<%= index %>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-10 card left-border">
-          <div class="card-body ">
-            <div class="row">
-              <div class="col-lg-9">
-                Mã <%= reservation.id %> - <%= reservation_date %>; Giá <%= price %>
-                <br>
-                <%= client_name %> | <%= arrival_date %> - <%= leave_date %>
-                <br>
-                Trạng thái: <%= room_status %>
-              </div>
-              <div class="col-lg-3">
-                <div class="row">
-                  <%= link_to cooperate_reservation_path(reservation), class:"col" do %>
-                    <span class="fa fa-eye"></span>
-                  <% end %>
-                  <%= link_to edit_cooperate_reservation_path(reservation), class:"col" do %>
-                    <span class="fa fa-edit"></span>
-                  <% end %>
-                  <%= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:"col" do %>
-                    <span class="fa fa-trash"></span>
-                  <% end %>
+          <div class="col-sm-10 card left-border">
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-lg-9">
+                  Đoàn <%= index %> - <%= reservation_date %>; Tổng <%= payment.temp_total %>
+                  <br>
+                  <%= client_name %> | <%= arrival_date %> - <%= leave_date %>
+                  <br>
+                  Trạng thái: <%= reservation_status %>
                 </div>
-                <br>
-                <%= form_with url: "/reservations/#{reservation.id}/change_status", method: :put  do |form| %>
-                  <% if room.status == 2 %>
-                    <%= form.submit "Nhận phòng", class: "btn btn-primary", data: { disable_with: false } %>
-                    <% value = 4 %>
-                  <% else %>
-                    <% if room.status == 4 %>
-                      <%= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
-                      <% value = 0 %>
+                <div class="col-lg-3">
+                  <div class="row">
+                    <%= link_to cooperate_reservation_path(payment), class:"col" do %>
+                      <span class="fa fa-eye"></span>
                     <% end %>
-                  <% end %>
-                  <%= form.hidden_field(:status, :value => value)  %>
-                <% end %>
+                    <%#= link_to edit_cooperate_reservation_path(reservation), class:"col" do %>
+<!--                      <span class="fa fa-edit"></span>-->
+                    <%# end %>
+                    <%#= link_to reservation, method: :delete, data: { confirm: 'Are you sure?' }, class:"col" do %>
+<!--                      <span class="fa fa-trash"></span>-->
+                    <%# end %>
+                  </div>
+                  <br>
+                  <%#= form_with url: "/reservations/#{reservation.id}/change_status", method: :put  do |form| %>
+                    <%# if room.status == 2 %>
+                      <%#= form.submit "Nhận phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                      <%# value = 4 %>
+                    <%# else %>
+                      <%# if room.status == 4 %>
+                        <%#= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                        <%# value = 0 %>
+                      <%# end %>
+                    <%# end %>
+                    <%#= form.hidden_field(:status, :value => value)  %>
+                  <%# end %>
 
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-
+      <%# end %>
     <% end %>
-
   <% end %>
 
 <% end %>

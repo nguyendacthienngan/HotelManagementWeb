@@ -1,37 +1,41 @@
-<%= form_with url: "/cooperate_reservation/new", method: :get do |form| %>
+<%= javascript_pack_tag 'choose_rooms' %>
 
-  <div class="row">
-    <div class="dropdown col-md">
-      <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
-    </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :arrival_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đến"%>
-    </div>
-    <div class="dropdown col-md">
-      <%= form.text_field :leave_date,
-                          data: {
-                            controller: "flatpickr",
-                            flatpickr_date_format: "d/m/Y",
-                            flatpickr_min_date: Time.zone.now
-                          },
-                          class: "form-select read-only-white",
-                          placeholder: "Ngày đi"%>
+<div data-turbolinks="false" id="choose_rooms">
+  <%= form_with url: "/cooperate_reservation/new", method: :get do |form| %>
 
-    </div>
+    <div class="row" >
+      <div class="dropdown col-md">
+        <%= form.collection_select nil, RoomType.all, :id, :name,{include_blank: false, selected: params[:room_type_id]}, {class: 'form-select', id:'choose_room_type'}%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :arrival_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đến"%>
+      </div>
+      <div class="dropdown col-md">
+        <%= form.text_field :leave_date,
+                            data: {
+                              controller: "flatpickr",
+                              flatpickr_date_format: "d/m/Y",
+                              flatpickr_min_date: Time.zone.now
+                            },
+                            class: "form-select read-only-white",
+                            placeholder: "Ngày đi"%>
 
-    <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
+      </div>
+  <% end %>
+
+  <div class="btn btn-primary col-md-2" onclick="searchRooms()">Tìm kiếm</div>
   </div>
   <br>
-  <%= render :partial => 'quick_choose_rooms', :locals=>{:form=>form} %>
+  <%#= render :partial => 'quick_choose_rooms', :locals=>{:form=>form} %>
   <br>
-  <div class="btn btn-primary", style="float:right">
+  <div id="pay-button" class="btn btn-primary", style="float:right" >
     Thanh toán
   </div>
 
@@ -84,13 +88,21 @@
     </div>
   </div>
 
+</div>
 
-<% end %>
 
 
-<script>
-    var rooms = [];
+
+<script  type="text/javascript">
+
+    // [{room_type: {id: 1, count: x, rooms: []  }}]
+
     $(document).ready(function(){
+        if ('<%=  session[:chosen_rooms] %>')
+        {
+            <% session.delete(:chosen_rooms) %>
+            location.reload();
+        }
         $('#arrival_date').val('<%= params[:arrival_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
         $('#leave_date').val('<%= params[:leave_date] || (DateTime.now).strftime("%d/%m/%Y") %>')
     })
@@ -109,21 +121,53 @@
         return null
     }
     function searchRooms(){
-        var room_type_id = $('#choose_room_type').val();
-        var arrival_date = $('#arrival_date').val();
-        var leave_date = $('#leave_date').val();
+        let room_type_id = $('#choose_room_type').val();
+        let arrival_date = $('#arrival_date').val();
+        let leave_date = $('#leave_date').val();
         if (!arrival_date)
             arrival_date = "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
         if (!leave_date)
             leave_date =  "<%= (DateTime.now).strftime("%d/%m/%Y") %>"
 
-        var theURL = '/cooperate_reservation/new?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
+        let theURL = '/cooperate_reservation/choose_rooms?room_type_id=' + room_type_id + '&arrival_date=' + arrival_date + '&leave_date=' + leave_date;
         window.location.href = theURL
     }
+
+    // function pay(){
+    //     let chosen_rooms = []
+    //     let i = 0
+    //     if (rooms.length > 0)
+    //     {
+    //         for (i in rooms)
+    //         {
+    //             let room = {id: rooms[i]};
+    //             chosen_rooms.push(room)
+    //         }
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/cooperate_reservation/choose_rooms",
+    //             // The key needs to match your method's input parameter (case-sensitive).
+    //             data: JSON.stringify(
+    //                 {
+    //                     arrival_date: $('#arrival_date').val(),
+    //                     leave_date: $('#leave_date').val(),
+    //                     rooms: chosen_rooms
+    //                 }),
+    //             contentType: "application/json; charset=utf-8",
+    //             success: function(res){
+    //
+    //             }
+    //         });
+    //     }
+    //     else
+    //     {
+    //         alert("Please choose at least 1 room")
+    //     }
+    // }
     $('.toggle-list').on('click' ,function(e) {
-        var toggleButton = $(e.target);
-        var card = $(this).closest('.card');
-        var cardBody = card.find('.card-body');
+        let toggleButton = $(e.target);
+        let card = $(this).closest('.card');
+        let cardBody = card.find('.card-body');
 
         if (toggleButton.hasClass('fa-sort-down'))
         {
@@ -141,54 +185,6 @@
 
 
     });
-    $('.room').click(function(e){
-        // Change button state
-        var target = $(e.target)
-        var id = e.target.id
-        var result_id = "result_" + id
 
-        var room_type = $(this).closest('.card')
-        var room_type_id = "#result_" + room_type.attr('id').toString()
-
-        var amount_reserve_id = '#amount_' + room_type.attr('id').toString()
-        var amount_reserve = $(amount_reserve_id).text()
-        amount_reserve = parseInt(amount_reserve)
-
-        if (target.text() != "✓")
-        {
-            rooms.push(id)
-            setRooms(rooms)
-            target.removeClass('inactive-room')
-            target.addClass('active-room')
-            target.text("✓")
-            // Add to results
-            var string = "<div id=" + result_id + " class='col-md-3 chip'>" + e.target.id + "</div>"
-
-            $(room_type_id).append(string)
-            $(amount_reserve_id).text(++amount_reserve)
-        }
-        else
-        {
-            const index = rooms.indexOf(id);
-            if (index > -1) {
-                rooms.splice(index, 1);
-            }
-            target.text(e.target.id)
-            target.addClass('inactive-room')
-            target.removeClass('active-room')
-            $('#' + result_id).remove()
-
-            $(amount_reserve_id).text(--amount_reserve)
-        }
-
-        // if (typeof(Storage) !== "undefined") {
-        //     // Store
-        //     sessionStorage.setItem("lastname", "Smith");
-        //     // Retrieve
-        //     // $('') = sessionStorage.getItem("lastname");
-        // } else {
-        //     // document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-        // }
-    })
 
 </script>

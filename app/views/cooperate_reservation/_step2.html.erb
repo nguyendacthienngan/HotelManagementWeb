@@ -1,30 +1,68 @@
 
 
+<h4 class="p-3">Thanh toán</h4>
 <div class="row">
   <div class="col-lg">
-    <div class="card">
-      <div class="card-header">
-        <h4>Tổng hợp thông tin</h4>
-      </div>
-      <div class="card-body">
-        <div class="card">
-          <div class="card-body">
-            <p>(4) DL - VND 700000</p>
-            <p>7/8/2021 - 7/8/2021</p>
-            <p>2 NL - 1 TE</p>
+    <% if @chosen_rooms %>
+      <% @chosen_rooms.each do |r| %>
+        <div class="card border-0 ">
+          <div class="card-body padding-bottom-20 ">
 
+            <% room_type = Room.where(:name => r["id"]).pluck(:room_type_id).to_s %>
+            <% room_type = room_type.tr('[]', '') %>
+            <% room_type_name = RoomType.find(room_type).name %>
+            <% room_price = @room_prices["#{room_type_name}"] %>
+            <p><b><%= r["id"] %> - <span class="room_type"><%= room_type_name %></span>  - <span class="room_price"><%= room_price %></span></b></p>
+            <p><%= @arrival_date %>- <%= @leave_date %></p>
+            <% room_id = Room.where(name: r["id"]).pluck(:id) %>
+            <% room_id = room_id.to_s %>
+            <% room_id = room_id.tr('[]', '') %>
+
+            <span class="adults_price hidden">
+                <%= @adults_price["#{room_type_name}"]%>
+              </span>
+            <span class="children_price hidden">
+                <%=  @children_price["#{room_type_name}"] %>
+              </span>
+
+
+            <%= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"], class:"parent" do |form| %>
+              <div class="row">
+                <div class="col row">
+                  <div class="col-3">
+                    <p class="text-center">NL</p>
+                  </div>
+                  <div class="col-7">
+                    <%= form.number_field :adults, in: 0 .. 20 ,class:"form-control adults" %>
+                  </div>
+                </div>
+                <div class="col row">
+                  <div class="col-3">
+                    <p class="text-center">TE</p>
+                  </div>
+                  <div class="col-7">
+                    <%= form.number_field :children, in: 0 .. 20 ,class:"form-control children" %>
+                  </div>
+                </div>
+              </div>
+              <%= form.hidden_field(:room_id, :value => room_id)  %>
+              <%= form.hidden_field(:employee_id, :value => current_user.employee_id)  %>
+              <%= form.hidden_field(:arrival_date, :value => @arrival_date)  %>
+              <%= form.hidden_field(:leave_date, :value => @leave_date)  %>
+              <%= form.hidden_field(:status, :value => 1) %>
+              <%= form.hidden_field(:client_name, :value=> "N/A") %>
+              <%= form.hidden_field(:client_citizen_id, :value=> "N/A") %>
+
+
+            <% end %>
           </div>
         </div>
-        <p>Ghi chú</p>
-      </div>
-    </div>
+      <% end %>
+    <% end %>
 
   </div>
   <div class="col-lg">
     <div class="card">
-      <div class="card-header">
-        <h4>Thanh toán</h4>
-      </div>
       <div class="card-body">
         <div class="row">
           <p class="col-lg-3">Đặt cọc</p>
@@ -47,14 +85,44 @@
             <%= p.number_field :temp_total, min: 0, class:"form-control"%>
           </div>
         </div>
+        <div class="">
+          <p>Ghi chú</p>
+          <%= p.text_area :description, class:"form-control", rows: 3 %>
+        </div>
+
       </div>
     </div>
-
   </div>
 </div>
 
-
 <script>
+    $(document).ready(function(){
+      calculateTotal()
+    })
+    function convertCurrencyToPrice(currency)
+    {
+        return currency.replace('VND','').replace(',','')
+    }
+    function calculateTotal()
+    {
+      let prices = $('.room_price')
+        prices.each(function (i, obj){
+          let price = convertCurrencyToPrice($( this ).text())
+          console.log(price);
+        })
+      let children_values = $('.children')
+        children_values.each(function (i, obj){
+            let children = $( this ).val()
+            let room_type = $( this ).closest('.card-body').find('.room_type')
+            let adults = $( this ).closest('.card-body').find('.adults')
+            let adultPrice = $( this ).closest('.card-body').find('.adults_price')
+            let childrenPrice = $( this ).closest('.card-body').find('.children_price')
+            console.log(adultPrice.text())
+            console.log(childrenPrice.text())
+        }
+      )
+    }
+
     <% if session[:reservation_params] %>
     <% params = session[:reservation_params] %>
     <% if params["payment_attributes"] %>

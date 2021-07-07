@@ -28,9 +28,10 @@ Rails.application.routes.draw do
   get "/room_diagram/room_info/:room_id", to: "room_diagram#room_info"
 
   get "/cooperate_reservation/choose_rooms", to: "cooperate_reservation#choose_rooms"
+  post "/cooperate_reservation/choose_rooms", to: "cooperate_reservation#choose_rooms_post"
 
   get "/cooperate_reservation/new/:room_id", to: "cooperate_reservation#new"
-    post "/cooperate_reservation/new/", to: "cooperate_reservation#create"
+  post "/cooperate_reservation/new/", to: "cooperate_reservation#create"
 
   resources :cooperate_reservation
 

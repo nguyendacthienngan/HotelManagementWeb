@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
     # reset_session
     session[:reservation_params] = nil
     session[:reservation_params] ||= {}
+
     @reservation = Reservation.new(session[:reservation_params])
     @room_id = (params[:room_id])? params[:room_id] : 1
     if session[:reservation_params] == nil
@@ -53,10 +54,6 @@ class ReservationsController < ApplicationController
     @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
     @room_price_name = currency_name(@room_price_name)
     @room_price_value = currency_value(@room_price_name)
-
-
-
-
   end
 
   # GET /reservations/1/edit
@@ -83,8 +80,6 @@ class ReservationsController < ApplicationController
     @room_price = @room_price.pluck(:price).to_s
     @room_price = @room_price.tr('[]', '')
     @room_price = number_to_currency(@room_price, unit: "VND",  format: "%n %u")
-    puts "SESSION MULTI_STEP ------------------"
-    puts session[:multi_step]
     if (session[:multi_step] == false)
       # Đặt phòng nhanh
       respond_to do |format|
@@ -151,14 +146,6 @@ class ReservationsController < ApplicationController
               end
             end
           end
-          # if params[:back_button]
-          #   @reservation.previous_step
-          # elsif @reservation.last_step?
-          #   @reservation.save if @reservation.all_valid?
-          # else
-          #   @reservation.next_step
-          # end
-          # session[:reservation_step] = @reservation.current_step
         end
         if @reservation.new_record?
           render "new"

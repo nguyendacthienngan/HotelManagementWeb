@@ -1,11 +1,11 @@
 <%= stylesheet_link_tag 'cooperate_reservation' %>
 
-<% if reservation.errors.any? %>
+<% if @payment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
       <ul>
-        <% reservation.errors.each do |error| %>
+        <% @payment.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -18,69 +18,138 @@
       <li class="breadcrumb-item active" aria-current="page"><a>Đặt phòng</a></li>
     </ol>
   </div>
-<div class="action">
-  <button id="prev_button" class="btn btn-primary">
-    Back
-  </button>
-  <button id="next_button" class="btn btn-primary" style="float: right">
-    Next
-  </button>
 
-</div>
-<div class="bs-stepper">
+
+<%= form_with url: "/cooperate_reservation/new", method: :post do |p| %>
+  <div class="action">
+    <div id="prev_button" class="btn btn-primary">
+      Back
+    </div>
+    <div id="next_button" class="btn btn-primary" style="float: right">
+      Next
+    </div>
+    <%= p.submit "Finish", class:"btn btn-primary", id:"finish_button"  ,style:"float: right"%>
+
+  </div>
+
+  <div class="bs-stepper">
   <div class="bs-stepper-content">
-  <%= form_with url: "/cooperate_reservation/new", method: :post do |form| %>
-    <%= form.fields_for :payment_attributes, Payment.new do |p| %>
-        <%= form.fields_for :client_attributes, Client.new do |client| %>
-          <div id="step1">
-            <%= render :partial => "step1",  :locals=>{:client=>client, :form=>form} %>
-          </div>
-        <% end %>
-        <div id="step2">
-          <%= render :partial => "step2",  :locals=>{:p=>p, :form=>form} %>
-        </div>
+    <br>
+    <%= p.fields_for :client_attributes, Client.new do |client| %>
+      <div id="step1">
+        <%= render :partial => "step1",  :locals=>{:client=>client} %>
+      </div>
     <% end %>
-
-
+      <div id="step2">
+        <%= render :partial => "step2",  :locals=>{:p=>p} %>
+      </div>
   </div>
   <div id="choosen_rooms">
 
   </div>
   <br>
   <br>
-  <%= form.submit "Finish", class:"btn btn-primary", id:"finish_button"  %>
 </div>
 <% end %>
 
 <script>
+
+    function updateTotal()
+    {
+<!--        const queryString = window.location.search;-->
+<!--        const urlParams = new URLSearchParams(queryString);-->
+
+<!--        if (urlParams.get('adults'))-->
+<!--            $('#adults').val(urlParams.get('adults'))-->
+<!--        else-->
+<!--            $('#adults').val(0)-->
+<!--        if (urlParams.get('children'))-->
+<!--            $('#children').val(urlParams.get('children'))-->
+<!--        else-->
+<!--            $('#children').val(0)-->
+<!--        if (urlParams.get('price_type_id'))-->
+<!--        {-->
+<!--            var price_type_id = urlParams.get('price_type_id') - 1-->
+<!--            var string = 'select#price_type>option:eq(' + price_type_id + ')'-->
+<!--            $(string).attr('selected', true);-->
+<!--        }-->
+<!--        else-->
+<!--            $('select#price_type>option:eq(1)').attr('selected', true);-->
+
+<!--        var room_price = (<%#= @room_price_value %>);-->
+<!--        var children = $('#children').val()-->
+<!--        var children_price = <%#=@children_price %>-->
+
+<!--            children= parseInt(children) *children_price-->
+
+<!--        var adults = $('#adults').val();-->
+<!--        var adults_price = <%#=@adults_price %>-->
+<!--            adults = parseInt(adults) * adults_price-->
+
+<!--        return room_price + children + adults-->
+    }
+    let reservation_attributes_id = '#__reservations_attributes__'
+    let radioCheckedValue = $("input[name='leader_info']:checked").val()
+    radioCheckedValue = radioCheckedValue.slice(12,15)
+    $('#_client_attributes_name').keyup(function(){
+        let client_name = $('#_client_attributes_name').val()
+        $(reservation_attributes_id + radioCheckedValue + '_client_name').val(client_name)
+    })
+    $('#_client_attributes_citizen_id').keyup(function(){
+        let client_citizen_id = $('#_client_attributes_citizen_id').val()
+        $(reservation_attributes_id + radioCheckedValue + '_client_citizen_id').val(client_citizen_id)
+    })
+
+    $("input[type='radio']").click(function(){
+        var radioValue = $("input[name='leader_info']:checked").val();
+        if(radioValue){
+            //Sample radioValue: leader_info_103
+            let client_name = $('#_client_attributes_name').val()
+            let client_citizen_id = $('#_client_attributes_citizen_id').val()
+
+            let radio_room_id = radioValue.slice(12,15)
+            let string_id = reservation_attributes_id + radio_room_id
+            $(string_id + '_client_name').val(client_name)
+            $(string_id + '_client_citizen_id').val(client_citizen_id)
+        }
+    });
     var current_step;
     $(document).ready(function(){
         current_step = 1
         $("#step2").hide()
-        $("#step3").hide()
         $('#finish_button').hide()
     })
     $("#next_button").click(function(){
         if (current_step >= 2)
         {
-            if ($("#step2").is(":visible"))
+            current_step = 0
+        }
+        else
+        {
+            $("#step" + current_step).hide()
+            current_step++;
+            $("#step" + current_step).show()
+            if (current_step >= 2)
             {
-                $('#finish_button').click()
-                current_step = 0;
-                return;
+                $('#finish_button').show()
+                $("#next_button").hide()
             }
         }
-        $("#step" + current_step).hide()
-        current_step++;
-        $("#step" + current_step).show()
-        // console.log(current_step)
-
     })
     $("#prev_button").click(function() {
-        if (current_step <= 1)
-            return;
         $("#step" + current_step).hide()
         current_step--;
         $("#step" + current_step).show()
+        if (current_step <= 0)
+        {
+            let theURL = '/cooperate_reservation/choose_rooms'
+            window.location.href = theURL
+        }
+        else if (current_step == 1)
+        {
+            $('#finish_button').hide()
+            $("#next_button").show()
+        }
+
     })
 </script>

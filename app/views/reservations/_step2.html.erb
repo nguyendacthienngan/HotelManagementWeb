@@ -123,11 +123,11 @@
 
 <% end %>
 <script>
-    $('#_client_attributes_name').keyup(function(){
-        $('#client_name').val($('#_client_attributes_name').val());
+    $('#_payment_attributes_client_attributes_name').keyup(function(){
+        $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
     })
-    $('#_client_attributes_citizen_id').keyup(function(){
-        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val());
+    $('#_payment_attributes_client_attributes_citizen_id').keyup(function(){
+        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
     })
     <% if session[:reservation_params] %>
       <% params = session[:reservation_params] %>
@@ -140,8 +140,8 @@
         $('#_client_attributes_email').val("<%= client["email"] || " " %>")
         $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
 
-        $('#client_name').val($('#_client_attributes_name').val())
-        $('#client_citizen_id').val($('#_client_attributes_citizen_id').val())
+        $('#client_name').val($('#_payment_attributes_client_attributes_name').val())
+        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val())
 
       <% end %>
 

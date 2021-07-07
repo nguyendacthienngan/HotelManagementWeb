@@ -21,7 +21,7 @@
     <div class="col-xl-5 row">
       <p class="col-xl-5 col-sm-4 row">Loại phòng</p>
       <div class="col-xl-7 col-sm-7 row form-group">
-        <%= form.number_field :room_type_id, class:"form-control" %>
+        <%= form.select :room_type_id, options_for_select(@room_type_view), {}, class: "form-select read-only-white" %>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Tầng</p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= form.number_field :floor, class:"form-control" %>
+          <%= form.select :floor, options_for_select(@floor_view), {}, class: "form-select read-only-white" %>
         </div>
     </div>
     <div class="col-xl-5 row">
@@ -39,11 +39,11 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center"> 
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Trạng thái</p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= form.number_field :status, class:"form-control" %>
+          <%= form.select :status, options_for_select(@room_statuses_view), {}, class: "form-select read-only-white" %>
         </div>
     </div>
     <div class="col-xl-5 row">

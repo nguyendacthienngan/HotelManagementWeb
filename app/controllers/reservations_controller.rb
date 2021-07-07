@@ -84,18 +84,19 @@ class ReservationsController < ApplicationController
       # Đặt phòng nhanh
       respond_to do |format|
         room_id = reservation_params[:room_id]
+        @room = Room.find(room_id)
+        room_type_id_new = RoomType.find(@room.room_type_id)
         if @reservation.save
-          @room = Room.find(room_id)
           if @room.update(status: 4)
             format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
             format.json { render :show, status: :created, location: @reservation }
           else
-            format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: 2}, status: :unprocessable_entity}
+            format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: room_type_id_new}, status: :unprocessable_entity}
             format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
         else
           # format.js { redirect_to "room_diagram/quick_reserve_room", locals: { room_id: room_id}, format: 'js', status: :unprocessable_entity}
-          format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: 2}, status: :unprocessable_entity}
+          format.html { render "room_diagram/quick_reserve_room", locals: { room_id: room_id, room_type_id: room_type_id_new}, status: :unprocessable_entity}
           format.json { render json: @reservation.errors, status: :unprocessable_entity }
         end
       end

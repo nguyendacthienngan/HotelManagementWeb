@@ -171,16 +171,20 @@
   <br>
   <div class="d-flex actions justify-content-end">
     <%= form.submit "Save changes", class: "btn btn-primary add_reservation", data: { disable_with: false } %>
-    <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation) %>
-    <%#= link_to 'Create', room_diagram_quick_reserve_room_path(@reservation, arrival_date: @reservation.arrival_date, leave_date: @reservation.leave_date, client_name: @reservation.client_name, client_citizen_id: @reservation.client_citizen_id, children: @reservation.children, adults: @reservation.adults, client_id: @reservation.client_id, employee_id: @reservation.employee_id, room_id: @reservation.room_id, payment_id: @reservation.payment_id), method: :post	 %>
     <span style="width:10px"></span>
-    <%= link_to 'Destroy', room_diagram_path, data: { dismiss: "modal", confirm:
-                                                            'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation' %>
+    <%= link_to 'Cancel', room_diagram_path, data: { dismiss: "modal", confirm:
+                                                            'Are you sure?' }, :remote => true, :class => 'btn btn-secondary delete_reservation', id:"cancel_button" %>
+
+    <%= link_to room_diagram_path do %>
+      <button id="second_cancel_button" class="btn btn-secondary">Cancel</button>
+
+  <% end %>
   </div>
 
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#second_cancel_button').hide()
         $('#quickResModal').on('hidden.bs.modal', function () {
             $('#quickResModal').remove()
         })

@@ -38,6 +38,7 @@ export function check(){
     let result = validDifferenceBetween2Dates(arrival_date, leave_date)
     if (!result)
         alert("Ngày đi không được phép trước ngày đến")
+    return result
 }
 
 $(document).ready(function(){
@@ -48,7 +49,8 @@ $(document).ready(function(){
         check()
     })
     $('#pay-button').click(function(){
-        pay()
+        if (check() == true)
+            pay()
     })
     $('.room').click(function(e){
         // Change button state

@@ -17,6 +17,35 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
+    @payment_type = @@payment_type
+    @payment_type_view = convert_nested_hash_to_text(@payment_type)
+
+    @room_prices = {}
+    @adults_price = {}
+    @children_price = {}
+    @room_types = RoomType.all
+    @room_types.each do |r_t|
+      room_price = RoomPrice.where(room_type_id: r_t.id, price_type: 2).pluck(:price).to_s
+
+      adults_price = RoomPrice.where(room_type_id: r_t.id, price_type: 6).pluck(:price).to_s
+      adults_price = currency_name(adults_price)
+      adults_price = currency_value(adults_price)
+
+      children_price = RoomPrice.where(room_type_id: r_t.id, price_type: 7).pluck(:price).to_s
+      children_price = currency_name(children_price)
+      children_price = currency_value(children_price)
+
+      if room_price
+        @room_prices["#{r_t.name}"] = currency_name(room_price)
+      end
+      if children_price
+        @children_price["#{r_t.name}"] = children_price
+      end
+      if adults_price
+        @adults_price["#{r_t.name}"] = adults_price
+      end
+    end
+
   end
 
   # POST /payments or /payments.json

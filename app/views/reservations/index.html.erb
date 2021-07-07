@@ -78,7 +78,10 @@
                     <% value = 4 %>
                   <% else %>
                     <% if room.status == 4 %>
-                      <%= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
+                      <%= link_to edit_payment_path(payment) do %>
+                        <button class="btn btn-primary">Trả phòng</button>
+                      <% end %>
+                      <%#= form.submit "Trả phòng", class: "btn btn-primary", data: { disable_with: false } %>
                       <% value = 0 %>
                     <% end %>
                   <% end %>

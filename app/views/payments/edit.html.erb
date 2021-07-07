@@ -1,6 +1,72 @@
-<h1>Editing Payment</h1>
+<!--<h1>Editing Payment</h1>-->
 
-<%= render 'form', payment: @payment %>
+<%#= render 'form', payment: @payment %>
 
-<%= link_to 'Show', @payment %> |
-<%= link_to 'Back', payments_path %>
+<!--<%#= link_to 'Show', @payment %> |-->
+<%#= link_to 'Back', payments_path %>
+
+
+<h4 class="p-3">Thanh toán</h4>
+<%= form_with(model: @payment) do |p| %>
+<!--  <p class="d-none"><span id="arrival_date"><%#= @arrival_date %></span>- <span id="leave_date"><%#= @leave_date %></span></p>-->
+  <% reservations = Reservation.where(payment_id: @payment.id) %>
+  <p class="d-none"><span id="arrival_date"><%= reservations[0].arrival_date %></span>- <span id="leave_date"><%= reservations[0].leave_date %></span></p>
+
+  <div class="row">
+    <div class="col-lg">
+      <% if reservations %>
+        <% reservations.each do |reservation| %>
+          <div class="card border-0 ">
+            <div class="card-body padding-bottom-20 ">
+              <% room_type = Room.find(reservation.room_id).room_type_id %>
+              <% room_type_name = RoomType.find(room_type).name %>
+              <% room_price = @room_prices["#{room_type_name}"] %>
+              <% room_id = reservation.room_id %>
+
+              <p><b><%= Room.find(room_id).name %> - <span class="room_type"><%= room_type_name %></span>  - <span class="room_price"><%= room_price %></span></b></p>
+
+              <span class="adults_price  d-none"><%=  @adults_price["#{room_type_name}"] %></span>
+              <span class="children_price  d-none"><%=  @children_price["#{room_type_name}"] %></span>
+
+              <p><%= (reservation.arrival_date).strftime("%d/%m/%Y") %> - <%= (reservation.leave_date).strftime("%d/%m/%Y") %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="col-lg">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <p class="col-lg-3">Đặt cọc</p>
+            <div class="col-lg form-group">
+              <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+              <%= p.hidden_field(:is_paid, :value => false)  %>
+              <%= p.number_field :deposit, min: 0, class:"form-control"%>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-lg-3">HTTT</p>
+            <div class="col-lg form-group">
+              <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
+              <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+            </div>
+          </div>
+          <div class="row">
+            <p class="col-lg-3">Tổng tiền</p>
+            <div class="col-lg form-group">
+              <%= p.number_field :temp_total, min: 0, class:"form-control"%>
+            </div>
+          </div>
+          <div class="">
+            <p>Ghi chú</p>
+            <%= p.text_area :description, class:"form-control", rows: 3 %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

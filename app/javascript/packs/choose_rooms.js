@@ -1,3 +1,4 @@
+import {validDifferenceBetween2Dates} from './utils';
 let room_types = {}
 let rooms = [];
 export function pay(){
@@ -28,12 +29,26 @@ export function pay(){
     }
     else
     {
-        alert("Please choose at least 1 room")
+        alert("Xin hãy chọn ít nhất 1 phòng")
     }
-}$(document).ready(function(){
+}
+export function check(){
+    let arrival_date = $('#arrival_date').val()
+    let leave_date = $('#leave_date').val()
+    let result = validDifferenceBetween2Dates(arrival_date, leave_date)
+    if (!result)
+        alert("Ngày đi không được phép trước ngày đến")
+}
+
+$(document).ready(function(){
+    $('#arrival_date').change(function(){
+        check()
+    })
+    $('#leave_date').change(function(){
+        check()
+    })
     $('#pay-button').click(function(){
         pay()
-
     })
     $('.room').click(function(e){
         // Change button state
@@ -44,8 +59,6 @@ export function pay(){
         let room_type = $(this).closest('.card')
         let room_type_id = "#result_" + room_type.attr('id').toString()
         let room_type_name = room_type.attr('id').toString()
-
-
 
         let amount_reserve_id = '#amount_' + room_type.attr('id').toString()
         let amount_reserve = $(amount_reserve_id).text()

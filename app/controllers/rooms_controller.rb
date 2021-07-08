@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
-    @room = Room.new
+    @room = Room.new 
     @room_type =  @@room_types
     @room_type_view = convert_nested_hash_to_text(@room_type)
     @floor = @@floor

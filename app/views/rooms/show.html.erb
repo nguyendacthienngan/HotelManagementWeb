@@ -14,7 +14,6 @@
           </div> 
       </nav>
   </div>
-    <p id="notice"><%= notice %></p>
     <div class="show_container">
     <div class="show_content tColumn">
     <p class="tRow">
@@ -51,15 +50,15 @@
       <span  class="show_room_name">Trạng thái</span>
       <span class="show_sign">:</span>
       <strong class="show_room_value">
-      <% if @room.status == 0 %>
+      <% if @room.status == 1 %>
         <span class="badge rounded-pill bg-primary room_status_empty">Trống</span>
-      <% elsif @room.status == 1 %>
-          <span class="badge rounded-pill bg-danger room_status_reserved">Đã đặt</span>
       <% elsif @room.status == 2 %>
-          <span class="badge rounded-pill bg-danger room_status_late_arrival">Quá hạn </span>
+          <span class="badge rounded-pill bg-danger room_status_reserved">Đã đặt</span>
       <% elsif @room.status == 3 %>
-          <span class="badge rounded-pill bg-danger room_status_nonempty">Đang ở</span>
+          <span class="badge rounded-pill bg-danger room_status_late_arrival">Quá hạn </span>
       <% elsif @room.status == 4 %>
+          <span class="badge rounded-pill bg-danger room_status_nonempty">Đang ở</span>
+      <% elsif @room.status == 5 %>
           <span class="badge rounded-pill bg-danger room_status_dirty">Bẩn</span>
       <% end %>
       </strong>

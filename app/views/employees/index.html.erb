@@ -46,8 +46,8 @@
                             <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
                         <% end %>
                     </td>
-                  <td class="employee_row_status">
-                    <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <td class=" hide">
+                    <%= link_to employee, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa?' }, class: 'btn_delete' do %>
                       <span class="fa fa-trash"></span>
                     <% end %>
                   </td>
@@ -68,7 +68,7 @@
         </div>
         <div class="functionalities">
             <div id="employee_btn_show" class="functionality_item">Xem</div>
-            <div id="employee_btn_delete" class="functionality_item ">Xóa</div>
+            <div id="employee_btn_delete" class="functionality_item">Xóa</div>
             <div id="employee_btn_edit" class="functionality_item ">Sửa</div>
         </div>
 

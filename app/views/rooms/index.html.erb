@@ -53,6 +53,11 @@
                             <span class="badge rounded-pill bg-danger room_status_dirty">Bẩn</span>
                         <% end %>
                   </td>
+                  <td class=" hide">
+                    <%= link_to room, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa?' }, class: 'btn_delete' do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                  </td>
               </tr>
           <% end %>
       </table>
@@ -63,14 +68,21 @@
   </div>
 
   <div class="right_container">
+  <% employee = Employee.find(current_user.employee_id) %>
     <div class="section_name">Hành động</div>
     <div class="functionalities ">
-    <%= link_to new_room_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+    <% if employee.employee_type == 1 %>
+        <%= link_to new_room_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+    <% end %>
+    
     </div>
     <div class="functionalities">
         <div id="room_btn_show" class="functionality_item">Xem</div>
-        <div id="room_btn_delete" class="functionality_item ">Xóa</div>
-        <div id="room_btn_edit" class="functionality_item ">Sửa</div>
+        <% if employee.employee_type == 1 %>
+            <div id="room_btn_delete" class="functionality_item ">Xóa</div>
+            <div id="room_btn_edit" class="functionality_item ">Sửa</div>
+        <% end %>
+        
     </div>
 
     <div class="section_name">Tìm kiếm</div>
@@ -100,4 +112,11 @@
 </div>
 
 
-<%= javascript_pack_tag 'room' %>
+
+<% if employee.employee_type == 1 %>
+	<%= javascript_pack_tag 'room_manager_actions' %>
+	<% end %>
+
+	<% if employee.employee_type == 2 %>
+		<%= javascript_pack_tag 'room' %>
+	<% end %>

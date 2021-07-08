@@ -45,7 +45,7 @@
 								<!-- <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 								<!-- <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 								<td class="hide">
-									<%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %>
+									<%= link_to client, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa ?' }, class: 'btn_delete' do %>
 									<span class="fa fa-trash"></span>
 									<% end %>
 								</td>
@@ -56,27 +56,34 @@
 					<i class="fas fa-exclamation-triangle"></i>
 					<span>No row matched !</span>
 				</div>
-			</div>
+			</div> 
 	
-	
-			<div class="right_container">
+				<% employee = Employee.find(current_user.employee_id) %>
+				<div class="right_container">
 					<div class="section_name">Hành động</div>
+
 					<div class="functionalities ">
-					<%= link_to new_client_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+						<% if employee.employee_type == 1 %>
+							<%= link_to new_client_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+						<% end %>
 					</div>
+
 					<div class="functionalities">
 							<div id="client_btn_show" class="functionality_item">Xem</div>
-							<div id="client_btn_delete" class=" functionality_item ">Xóa</div>
-							<div id="client_btn_edit" class="functionality_item ">Sửa</div>
+							<% if employee.employee_type == 1 %>
+								<div id="client_btn_delete" class=" functionality_item ">Xóa</div>
+								<div id="client_btn_edit" class="functionality_item ">Sửa</div>
+							<% end %>
+							
 					</div>
-	
+						
 					<div class="section_name">Tìm kiếm</div>
 					<div class="timkiem_container">
 						<input id="client_input_filter"/>
 					</div>
 	
 					<div class="section_name">Bộ lọc tìm kiếm</div>
-	
+	 
 					<div class="boloc_container">
 						<div id="boloc_client_gender"><strong> > Giới tính</strong>
 						</div>
@@ -89,8 +96,16 @@
 						</div>
 					</div>
 				</div>
-	
+				
 			</div>
+			
 	</div>
+
 	
-	<%= javascript_pack_tag 'client' %>
+	<% if employee.employee_type == 1 %>
+	<%= javascript_pack_tag 'client_manager_actions' %>
+	<% end %>
+
+	<% if employee.employee_type == 2 %>
+		<%= javascript_pack_tag 'client' %>
+	<% end %>

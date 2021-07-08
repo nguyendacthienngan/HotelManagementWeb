@@ -27,7 +27,11 @@
   </p>
   </div>
   <div class="tBotton">
+  <% employee = Employee.find(current_user.employee_id) %>
+  <% if employee.employee_type == 1 %>
     <%= link_to edit_room_type_path(@room_type) do%><div class="functionality_add btn btn-primary">Chỉnh sửa</div><% end %>
+    <% end %>
+    
   </div>
   </div>
 </center>

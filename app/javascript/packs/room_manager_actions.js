@@ -141,17 +141,26 @@
           btnOfSelectedRow = this.querySelector(".btn_delete");
 
           for(let i=0; i<allButtonNotClick.length; i++){
-              //allButtonNotClick[i].classList.remove("functionality_item");
+              allButtonNotClick[i].classList.remove("functionality_item");
               allButtonNotClick[i].classList.add("button_selected");
           }
       });
   }
 
+  document.querySelector("#room_btn_edit").addEventListener('click', function(){
+      if (selected_roomID > 0) {
+          window.location = `${window.location}/${selected_roomID}/edit`;
+      }
+      
+  });
   document.querySelector("#room_btn_show").addEventListener('click', function(){
       if (selected_roomID > 0) {
           window.location = `${window.location}/${selected_roomID}`;
       }
   });
+  document.querySelector("#room_btn_delete").addEventListener('click', function(){
+    btnOfSelectedRow.click();
+});
 
   document.querySelector("#room_input_filter").addEventListener('input', function(e){
       filterByString = e.target.value;

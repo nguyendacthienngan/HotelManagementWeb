@@ -67,11 +67,15 @@
 <!--            <span class="fa fa-utensils"></span> Dịch vụ-->
           <%# end %>
 <!--        </li>-->
-        <li id="setting_employees">
-          <%= link_to employees_path do %>
-            <span class="fa fa-id-card-alt"></span> Nhân viên
-          <% end %>
-        </li>
+
+        <% employee = Employee.find(current_user.employee_id) %>
+        <% if employee.employee_type == 1 %>
+          <li id="setting_employees">
+            <%= link_to employees_path do %>
+              <span class="fa fa-id-card-alt"></span> Nhân viên
+            <% end %>
+          </li>
+        <% end %>
         <li id="setting_clients">
           <%= link_to clients_path do %>
             <span class="fa fa-user-secret"></span> Khách hàng

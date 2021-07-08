@@ -5,6 +5,7 @@ class Reservation < ApplicationRecord
   has_many :reservation_details
   has_many :services, through: :reservation_details
 
+  validates_presence_of :client_citizen_id, :client_name
   accepts_nested_attributes_for :payment, :room
 
   attr_writer :current_step

@@ -52,7 +52,12 @@
             <span class="fa fa-sort-down toggle-list"></span>
           </div>
           <% @rooms = Room.where(room_type_id: room_type.id, status: 1) %>
-          <% @rooms = @rooms + @rooms_status_2 %>
+          <% @rooms = @rooms.to_a %>
+          <% @rooms_status_2.each do |r_status| %>
+            <% if (r_status).room_type_id == room_type.id  && !@rooms.include?(r_status)%>
+              <% @rooms.push(r_status) %>
+            <% end %>
+          <% end %>
           <div class="row card-body">
             <% @rooms.each do |room| %>
               <div id="<%= room.name %>" class="room btn btn-light col-md-3 m-1">

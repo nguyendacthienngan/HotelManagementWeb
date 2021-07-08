@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
+    t.boolean "is_cooperate_reservation", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"

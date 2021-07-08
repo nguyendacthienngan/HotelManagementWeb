@@ -35,6 +35,7 @@
   <div class="bs-stepper">
   <div class="bs-stepper-content">
     <br>
+    <%= p.hidden_field(:is_cooperate_reservation, :value => true) %>
     <%= p.fields_for :client_attributes, Client.new do |client| %>
       <div id="step1">
         <%= render :partial => "step1",  :locals=>{:client=>client} %>
@@ -44,9 +45,6 @@
         <%= render :partial => "step2",  :locals=>{:p=>p} %>
       </div>
   </div>
-  <div id="choosen_rooms">
-
-  </div>
   <br>
   <br>
 </div>
@@ -54,48 +52,15 @@
 
 <script>
 
-    function updateTotal()
-    {
-<!--        const queryString = window.location.search;-->
-<!--        const urlParams = new URLSearchParams(queryString);-->
-
-<!--        if (urlParams.get('adults'))-->
-<!--            $('#adults').val(urlParams.get('adults'))-->
-<!--        else-->
-<!--            $('#adults').val(0)-->
-<!--        if (urlParams.get('children'))-->
-<!--            $('#children').val(urlParams.get('children'))-->
-<!--        else-->
-<!--            $('#children').val(0)-->
-<!--        if (urlParams.get('price_type_id'))-->
-<!--        {-->
-<!--            var price_type_id = urlParams.get('price_type_id') - 1-->
-<!--            var string = 'select#price_type>option:eq(' + price_type_id + ')'-->
-<!--            $(string).attr('selected', true);-->
-<!--        }-->
-<!--        else-->
-<!--            $('select#price_type>option:eq(1)').attr('selected', true);-->
-
-<!--        var room_price = (<%#= @room_price_value %>);-->
-<!--        var children = $('#children').val()-->
-<!--        var children_price = <%#=@children_price %>-->
-
-<!--            children= parseInt(children) *children_price-->
-
-<!--        var adults = $('#adults').val();-->
-<!--        var adults_price = <%#=@adults_price %>-->
-<!--            adults = parseInt(adults) * adults_price-->
-
-<!--        return room_price + children + adults-->
-    }
     let reservation_attributes_id = '#__reservations_attributes__'
     let radioCheckedValue = $("input[name='leader_info']:checked").val()
     radioCheckedValue = radioCheckedValue.slice(12,15)
-    $('#_client_attributes_name').keyup(function(){
+
+    $('#_client_attributes_name').change(function(){
         let client_name = $('#_client_attributes_name').val()
         $(reservation_attributes_id + radioCheckedValue + '_client_name').val(client_name)
     })
-    $('#_client_attributes_citizen_id').keyup(function(){
+    $('#_client_attributes_citizen_id').change(function(){
         let client_citizen_id = $('#_client_attributes_citizen_id').val()
         $(reservation_attributes_id + radioCheckedValue + '_client_citizen_id').val(client_citizen_id)
     })

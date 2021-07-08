@@ -1,12 +1,14 @@
 include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_payment, only: %i[ show edit update destroy ]
   def index
-    @reservation = Reservation.all
+    @payments = Payment.all
+    @room_statuses = @@room_statuses
   end
 
   def show
-
+    @room_statuses = @@room_statuses
   end
 
   def choose_rooms_post
@@ -58,12 +60,8 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
-
-
     @chosen_rooms = session[:chosen_rooms]["rooms"]
-
     @payment = Payment.new
-
     @payment_type = @@payment_type
     @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @gender = @@gender
@@ -144,11 +142,13 @@ class CooperateReservationController < ApplicationController
   def set_reservation
     @reservation = Reservation.find(params[:id])
   end
-
+  def set_payment
+    @payment = Payment.find(params[:id])
+  end
   # Only allow a list of trusted parameters through.
 
   def payment_params
-    params.permit(:temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id,
+    params.permit(:description, :is_cooperate_reservation, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id,
                   :reservations_attributes => [:id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date],
                   :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     # params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,

@@ -12,7 +12,18 @@
 
         <div class="wrap-input100 alidate-input m-b-23" data-validate = "Valid email is required: ex@abc.xyz">
           <%= f.label :email, class: "label-input100" %><br />
-          <%= f.email_field :email, class:"input100", autofocus: true, autocomplete: "email" %>
+
+          <% if params[:employee_id]  %>
+            <% employee_id = params[:employee_id] %>
+            <% employee = Employee.find(employee_id) %>
+            <% employee_mail = Employee.find(employee_id).email %>
+            <% employee_mail = employee_mail.to_s %>
+            <label class="form-control"><%= employee.email%></label>
+            <%= f.hidden_field(:email, :value=>employee.email) %>
+          <% else %>
+            <%= f.email_field :email, class:"input100", autofocus: true, autocomplete: "email" %>
+
+        <% end %>
           <span class="focus-input100"></span>
         </div>
 
@@ -38,7 +49,8 @@
           <% if params[:employee_id]  %>
             <% employee_id = params[:employee_id] %>
             <% employee = Employee.find(employee_id) %>
-            <%= f.label employee.name, class:"form-control", readonly:true, id:"room_type" %>
+            <%= f.label employee.name, class:"form-control", readonly:true, id:"employee_name" %>
+            <%= f.hidden_field(:employee_id, :value=>employee_id) %>
           <% else %>
             <%= f.collection_select(:employee_id, Employee.all, :id, :name, {include_blank: false}, { class: "btn btn-light dropdown-toggle" })  %>
           <% end %>

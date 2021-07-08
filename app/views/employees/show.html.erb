@@ -52,7 +52,7 @@
     <div class="col-xl-5 row">
         <p class="col-xl-5 col-sm-4 row">Ngày sinh</p>
         <div class="col-xl-7 col-sm-7 row form-group">
-          <%= Date.parse(@employee.date_of_birth.to_s) %>
+          <%#= Date.parse(@employee.date_of_birth.to_s) %>
         </div>
     </div>
   </div>
@@ -124,7 +124,13 @@
   <p class="tRow">
     <span class="show_employee_name">Ngày sinh</span>
     <span class="show_sign">:</span>
-    <strong class="show_employee_value"><%= Date.parse(@employee.date_of_birth.to_s) %></strong>
+    <strong class="show_employee_value">
+      <% if @employee.date_of_birth %>
+        <%= Date.parse(@employee.date_of_birth.to_s) %>
+      <% else %>
+      <% end %>
+
+    </strong>
   </p>
 
   <p class="tRow">

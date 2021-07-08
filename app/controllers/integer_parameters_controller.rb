@@ -1,6 +1,6 @@
 class IntegerParametersController < ApplicationController
   before_action :set_integer_parameter, only: %i[ show edit update destroy ]
-
+  before_action :isAdmin?, only: %i[ new create edit update destroy ]
   # GET /integer_parameters or /integer_parameters.json
   def index
     @integer_parameters = IntegerParameter.all

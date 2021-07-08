@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :isAdmin?, only: %i[ new create edit update destroy ]
   add_breadcrumb "Trang chủ", :root_path
   add_breadcrumb "Phòng", :rooms_path
 

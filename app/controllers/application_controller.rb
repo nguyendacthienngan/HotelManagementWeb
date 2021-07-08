@@ -97,6 +97,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:employee_id, :email, :password, :current_password)}
   end
 
+  def isAdmin?
+    employee = Employee.find(current_user.employee_id)
+    type = employee.employee_type
+    redirect_to root_path unless (type == 1)
+  end
+
   def convert_nested_hash_to_text (hash)
     result = Hash.new
     index = 1

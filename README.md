@@ -21,6 +21,13 @@ Install dependencies:
 Config database by cange your user name and password in database.yml (development and test)
     
 
+* Init all things for Database  
+
+      rails db:setup
+
+This step will help you create database, migrate all migrations, seeding data
+
+
 * Database creation 
   
         rails db:create

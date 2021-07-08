@@ -25,7 +25,7 @@ class RoomDiagramController < ApplicationController
     # Filter Room Status
     @room_statuses = @@room_statuses
     room_status = params[:room_status]
-    @rooms = room_status_filter(room_status)
+    @rooms = room_status_filter(@rooms, room_status)
 
     @room_colors = convert_nested_hash_to_color(@@room_statuses)
 
@@ -107,15 +107,15 @@ class RoomDiagramController < ApplicationController
     return @filters
   end
 
-  def room_status_filter(room_status)
+  def room_status_filter(rooms, room_status)
     if (room_status)
       if (room_status == "all")
-        return Room.all.order(:id)
+        return rooms
       else
         return Room.where(status: room_status).order(:id)
       end
     else
-      return Room.all.order(:id)
+      return rooms
     end
   end
 

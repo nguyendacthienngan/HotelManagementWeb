@@ -46,17 +46,15 @@ class EmployeesController < ApplicationController
   # POST /employees or /employees.json
   def create
     @employee = Employee.new(employee_params)
-    redirect_to new_user_registration_path(employee_id: 1)
-    # respond_to do |format|
-    #   if @employee.save
-    #     redirect_to new_user_registration_path(employee_id: 1)
-    #     # format.html { redirect_to @employee, notice: "Employee was successfully created." }
-    #     # format.json { render :show, status: :created, location: @employee }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @employee.errors, status: :unprocessable_entity }
-    #   end
-    # end
+      if @employee.save
+        redirect_to new_user_registration_path(employee_id: @employee.id)
+      else
+        respond_to do |format|
+
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /employees/1 or /employees/1.json

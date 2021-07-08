@@ -1,5 +1,4 @@
-<%= form_with url: "/reservations", method: :post do |form| %>
-
+<%= form_with(model: reservation)do |form| %>
   <% if reservation.errors.any? %>
     <div id="error_explanation">
       <br>
@@ -20,9 +19,9 @@
   <div class="bs-stepper">
     <div class="bs-stepper-content">
       <br>
-      <%= render :partial => "new_step1", :locals=>{ :form=>form} %>
+      <%= render :partial => "new_step1", :locals=>{ :form=>form, :reservation=> reservation} %>
       <br>
-      <%= render :partial => "new_step2", :locals=>{ :form=>form} %>
+      <%= render :partial => "new_step2", :locals=>{ :form=>form, :reservation=> reservation} %>
       <br>
     </div>
     <%= form.hidden_field(:status, :value => 1) %>

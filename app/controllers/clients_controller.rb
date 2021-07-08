@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
   add_breadcrumb "Khách hàng", :clients_path
 
   # GET /clients or /clients.json

@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
   add_breadcrumb "Nhân viên", :employees_path
 
   # GET /employees or /employees.json

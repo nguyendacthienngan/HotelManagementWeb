@@ -1,5 +1,6 @@
 class RoomTypesController < ApplicationController
   before_action :set_room_type, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
   add_breadcrumb "Loại phòng", :room_types_path
 
   # GET /room_types or /room_types.json

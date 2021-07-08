@@ -46,6 +46,11 @@
                             <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
                         <% end %>
                     </td>
+                  <td class="employee_row_status">
+                    <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
         </table>

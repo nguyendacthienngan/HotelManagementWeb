@@ -41,7 +41,12 @@
   <p class="tRow">
     <span class="show_employee_name">Ngày sinh</span>
     <span class="show_sign">:</span>
-    <strong class="show_employee_value"><%= Date.parse(@client.date_of_birth.to_s) %></strong>
+    <strong class="show_employee_value">
+      <% if @client.date_of_birth %>
+        <%= Date.parse(@client.date_of_birth.to_s) %>
+        <% else %>
+      <% end %>
+    </strong>
   </p>
   
   <p class="tRow">

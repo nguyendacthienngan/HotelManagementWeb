@@ -1,4 +1,4 @@
-<h1>Editing Reservation</h1>
+
 <%  room_name = Room.find(@reservation.room_id).name %>
 <%  reservation_date = Payment.find(@reservation.payment_id).reservation_date %>
 <%  reservation_date = reservation_date.strftime("%d/%m/%Y") %>
@@ -11,7 +11,7 @@
 <%  total = Payment.find(@reservation.payment_id).temp_total %>
 
 
-<%= form_with(model: @reservation) do |form| %>
+<%= form_with(model: @reservation) do |reservation| %>
   <% if @reservation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this @reservation from being saved:</h2>
@@ -23,25 +23,30 @@
       </ul>
     </div>
   <% end %>
+<div class="card">
+  <div class="card-body">
+    <p>Trạng thái đặt phòng:</p>
+    <%= reservation.select :status, options_for_select(@reservation_statuses_view), {}, class: "form-select read-only-white" %>
 
-  <%= form.fields_for :room_attributes, Room.new do |room| %>
-    <div class="field">
-      <%= room.label :status %>
-      <%= room.text_field :status %>
-    </div>
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
+    <%= reservation.fields_for :room_attributes, Room.new do |room| %>
+      <div class="field">
+        <p>Trạng thái phòng:</p>
+        <%= room.select :status, options_for_select(@room_statuses_view), {}, class: "form-select read-only-white" %>
+      </div>
 
+    <% end %>
 
-  <script>
-  <% if @reservation %>
-    <% room_status = Room.find(@reservation.room_id).status %>
-    $('#reservation_room_attributes_status').val(<%= room_status %>)
-  <% end %>
-  </script>
+  </div>
+</div>
+
+  <div class="actions">
+    <%= reservation.submit %>
+  </div>
+
 <% end %>
 
 <%= link_to 'Show', @reservation %> |
 <%= link_to 'Back', reservations_path %>
+
+<script>
+</script>

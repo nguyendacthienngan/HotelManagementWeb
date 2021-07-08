@@ -4,13 +4,13 @@ class ReservationsController < ApplicationController
   # GET /reservations or /reservations.json
   def index
     @reservations = Reservation.all
-    @room_statuses = @@room_statuses
+    @reservation_statuses = @@reservation_statuses
 
   end
 
   # GET /reservations/1 or /reservations/1.json
   def show
-    @room_statuses = @@room_statuses
+    @reservation_statuses = @@reservation_statuses
 
   end
 
@@ -58,7 +58,11 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    @reservation_statuses = @@reservation_statuses
+    @reservation_statuses_view = convert_nested_hash_to_text(@reservation_statuses)
+
     @room_statuses = @@room_statuses
+    @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
   end
 
   # POST /reservations or /reservations.json

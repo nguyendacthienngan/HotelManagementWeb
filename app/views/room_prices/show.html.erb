@@ -26,7 +26,12 @@
     <p class="tRow">
       <span class="show_roomPrice_name">Ngày áp dụng</span>
       <span class="show_sign">:</span>
-      <strong class="show_roomPrice_value"><%= Date.parse(@room_price.date.to_s) %></strong>
+      <strong class="show_roomPrice_value">
+        <% if @room_price.date %>
+          <%= Date.parse(@room_price.date.to_s) %>
+          <% else %>
+        <% end %>
+      </strong>
     </p>
 
     <p class="tRow">

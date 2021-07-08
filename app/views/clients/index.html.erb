@@ -36,10 +36,15 @@
 								</td>
 								<td class="client_row_phone"> <%= client.phone_number %></td>
 								<td class="client_row_email"> <%= client.email %></td>
-								<td id='client_dob' class="client_row_dob"> <%= Date.parse(client.date_of_birth.to_s) %></td>
+								<td id='client_dob' class="client_row_dob">
+									<% if client.date_of_birth %>
+									<%= Date.parse(client.date_of_birth.to_s) %>
+									<% else %>
+									<% end %>
+								 </td>
 								<!-- <td><%= link_to 'Destroy', client_path(client), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
 								<!-- <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-								<td>
+								<td class="hide">
 									<%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %>
 									<span class="fa fa-trash"></span>
 									<% end %>

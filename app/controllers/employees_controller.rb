@@ -45,6 +45,12 @@ class EmployeesController < ApplicationController
 
   # POST /employees or /employees.json
   def create
+    @employee_type = @@employee_types
+    @employee_type_view = convert_nested_hash_to_text(@employee_type)
+    @employee_gender = @@gender
+    @employee_gender_view = convert_nested_hash_to_text(@employee_gender)
+    @employee_statuses = @@employee_statuses
+    @employee_statuses_view = convert_nested_hash_to_text(@employee_statuses)
     @employee = Employee.new(employee_params)
       if @employee.save
         redirect_to new_user_registration_path(employee_id: @employee.id)
@@ -55,6 +61,7 @@ class EmployeesController < ApplicationController
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # PATCH/PUT /employees/1 or /employees/1.json

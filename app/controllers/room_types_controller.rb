@@ -1,5 +1,7 @@
 class RoomTypesController < ApplicationController
   before_action :set_room_type, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
+  add_breadcrumb "Loại phòng", :room_types_path
 
   # GET /room_types or /room_types.json
   def index
@@ -8,15 +10,18 @@ class RoomTypesController < ApplicationController
 
   # GET /room_types/1 or /room_types/1.json
   def show
+    add_breadcrumb "Xem"
   end
 
   # GET /room_types/new
   def new
+    add_breadcrumb "Thêm"
     @room_type = RoomType.new
   end
 
   # GET /room_types/1/edit
   def edit
+    add_breadcrumb "Sửa"
   end
 
   # POST /room_types or /room_types.json

@@ -1,5 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
+  add_breadcrumb "Nhân viên", :employees_path
 
   # GET /employees or /employees.json
   def index
@@ -12,6 +14,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1 or /employees/1.json
   def show
+    add_breadcrumb "Xem"
     @employeee_type =  @@employee_types
     @employee_gender = @@gender
     @employee_statuses = @@employee_statuses
@@ -19,6 +22,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/new
   def new
+    add_breadcrumb "Thêm"
     @employee = Employee.new
     @employee_type = @@employee_types
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
@@ -30,6 +34,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    add_breadcrumb "Sửa"
     @employee_type = @@employee_types
     @employee_type_view = convert_nested_hash_to_text(@employee_type)
     @employee_gender = @@gender

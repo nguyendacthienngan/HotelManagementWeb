@@ -1,5 +1,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
+  add_breadcrumb "Khách hàng", :clients_path
 
   # GET /clients or /clients.json
   def index
@@ -11,12 +13,14 @@ class ClientsController < ApplicationController
 
   # GET /clients/1 or /clients/1.json
   def show
+    add_breadcrumb "Xem"
     @client_type =  @@client_types
     @client_gender = @@gender
   end
 
   # GET /clients/new
   def new
+    add_breadcrumb "Thêm"
     @client = Client.new
     @client_type = @@client_types
     @client_type_view = convert_nested_hash_to_text(@client_type)
@@ -26,6 +30,7 @@ class ClientsController < ApplicationController
 
   # GET /clients/1/edit
   def edit
+    add_breadcrumb "Sửa"
     @client_type = @@client_types
     @client_type_view = convert_nested_hash_to_text(@client_type)
     @client_gender = @@gender

@@ -7,15 +7,10 @@ Things you may want to cover:
 
 * Ruby version
   2.7.3
-* System dependencies
-  
-Chart drawing: chartkick
   
 Database: PostgreSQL
-  
 CSS framework: Bootstrap 5.0
   
-Front-end framework: VueJS 
   
 Install dependencies:
             
@@ -31,19 +26,23 @@ Config database by cange your user name and password in database.yml (developmen
         rails db:create
   
     
-* Database initialization
+* Creating default tables
   
         rails db:migrate
 
+* Inserting data
+
+        rails db:seed
+  
 * Run localhost-8000:
   
         rails s
 
-* How to run the test suite
+* Default admin account:
+        
+        email: admin@gmail.com
+        password: 123456
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * Database command:
 

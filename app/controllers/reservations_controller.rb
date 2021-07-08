@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
+  add_breadcrumb "Khách lẻ", :reservations_path
 
   # GET /reservations or /reservations.json
   def index
@@ -10,12 +12,16 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1 or /reservations/1.json
   def show
+    add_breadcrumb "Chi tiết đặt phòng"
+
     @reservation_statuses = @@reservation_statuses
 
   end
 
   # GET /reservations/new
   def new
+    add_breadcrumb "Tạo đơn đặt phòng"
+
     # reset_session
     session[:reservation_params] = nil
     session[:reservation_params] ||= {}
@@ -58,6 +64,8 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    add_breadcrumb "Chỉnh sửa đặt phòng"
+
     @reservation_statuses = @@reservation_statuses
     @reservation_statuses_view = convert_nested_hash_to_text(@reservation_statuses)
 

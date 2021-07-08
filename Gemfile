@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "chartkick"
 gem 'devise', '~> 4.8'
 gem 'jquery-rails'
+gem 'breadcrumbs_on_rails'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

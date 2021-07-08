@@ -68,6 +68,36 @@ class ReservationsController < ApplicationController
 
     @room_statuses = @@room_statuses
     @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
+
+    @reservation_status = @reservation_statuses[@reservation.status - 1][:text]
+    @room_status = Room.find(@reservation.room_id).status
+    @room_status = @room_statuses[@room_status - 1][:text]
+
+    @room_id = @reservation.room_id
+    @room_name = Room.find(@room_id).name
+    @rooms = Room.all
+    @room_type_id = Room.find(@room_id).room_type_id
+    @room_type_name = RoomType.find(@room_type_id).name
+    @payment_type = @@payment_type
+    @payment_type_view = convert_nested_hash_to_text(@payment_type)
+    @reservation_type = @@reservation_types
+    @reservation_type_view = convert_nested_hash_to_text(@reservation_type)
+
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
+
+    @price_type = params[:price_type_id] || 2
+    @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
+    @adults_price = currency_name(@adults_price)
+    @adults_price = currency_value(@adults_price)
+
+    @children_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 7).pluck(:price).to_s
+    @children_price = currency_name(@children_price)
+    @children_price = currency_value(@children_price)
+
+    @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
+    @room_price_name = currency_name(@room_price_name)
+    @room_price_value = currency_value(@room_price_name)
   end
 
   # POST /reservations or /reservations.json

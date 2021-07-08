@@ -1,0 +1,39 @@
+<%= form_with url: "/reservations", method: :post do |form| %>
+
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <br>
+      <div class="alert alert-danger p-2" role="alert">
+        <h4><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h4>
+      </div>
+
+      <ul>
+        <div class="alert alert-warning" role="alert">
+          <% reservation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </div>
+
+      </ul>
+    </div>
+  <% end %>
+  <div class="bs-stepper">
+    <div class="bs-stepper-content">
+      <br>
+      <%= render :partial => "new_step1", :locals=>{ :form=>form} %>
+      <br>
+      <%= render :partial => "new_step2", :locals=>{ :form=>form} %>
+      <br>
+    </div>
+    <%= form.hidden_field(:status, :value => 1) %>
+
+    <br>
+    <br>
+    <div class="d-flex actions justify-content-center">
+      <p><%= form.submit "Save", class:"btn btn-primary"  %></p>
+      <span style="width:10px"></span>
+      <p><%= form.submit "Back", :name => "back_button", class:"btn btn-secondary" unless @reservation.first_step? %></p>
+    </div>
+  </div>
+
+<% end %>

@@ -20,18 +20,17 @@
     <div class="bs-stepper">
       <div class="bs-stepper-content">
         <br>
-        <%= render :partial => "step1",  :locals=>{:form=>form} %>
+        <%= render :partial => "new_step1", :locals=>{ :form=>form} %>
         <br>
-        <%= render :partial => "step2",  :locals=>{:form=>form} %>
+        <%= render :partial => "new_step2", :locals=>{ :form=>form} %>
         <br>
-        <%= render :partial => "step3",  :locals=>{:form=>form} %>
       </div>
       <%= form.hidden_field(:status, :value => 1) %>
 
       <br>
       <br>
       <div class="d-flex actions justify-content-center">
-        <p><%= form.submit "Continue", class:"btn btn-primary"  %></p>
+        <p><%= form.submit "Save", class:"btn btn-primary"  %></p>
         <span style="width:10px"></span>
         <p><%= form.submit "Back", :name => "back_button", class:"btn btn-secondary" unless @reservation.first_step? %></p>
       </div>

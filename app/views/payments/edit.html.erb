@@ -19,7 +19,7 @@
   </div>
   <br>
   <p class="d-none"><span id="arrival_date"><%= (reservations[0]).arrival_date %></span>- <span id="leave_date"><%= (reservations[0]).leave_date %></span></p>
-
+  <%#= p.fields_for "[reservations_attributes][]", Reservation.new, :index => r["id"], class:"parent" do |form| %>
   <div class="row">
     <div class="col-lg">
       <% if reservations %>
@@ -41,7 +41,8 @@
           </div>
         <% end %>
       <% end %>
-
+    <%#= form.hidden_field(:status, :value => 3) %>
+<%# end %>
     </div>
     <div class="col-lg">
       <div class="card">
@@ -71,7 +72,7 @@
             <p>Ghi chú</p>
             <%= p.text_area :description, class:"form-control", rows: 3 %>
           </div>
-
+            <%= p.hidden_field(:is_paid, :value=> true) %>
         </div>
       </div>
     </div>
@@ -79,10 +80,4 @@
 
 <% end %>
 
-<script>
-  let total_caculate = $('#total_calculate').text()
-  // total_caculate.split('.')
-  total_caculate = parseFloat(total_caculate)
-  console.log(total_caculate)
-  $('#payment_total').val(total_caculate)
-</script>
+<%= javascript_pack_tag 'checkout' %>

@@ -6,11 +6,19 @@
 <%#= link_to 'Back', payments_path %>
 
 
-<h4 class="p-3">Thanh toán</h4>
+
 <%= form_with(model: @payment) do |p| %>
-<!--  <p class="d-none"><span id="arrival_date"><%#= @arrival_date %></span>- <span id="leave_date"><%#= @leave_date %></span></p>-->
   <% reservations = Reservation.where(payment_id: @payment.id) %>
-  <p class="d-none"><span id="arrival_date"><%= reservations[0].arrival_date %></span>- <span id="leave_date"><%= reservations[0].leave_date %></span></p>
+  <div class="row">
+    <h4 class="p-3 col">Thanh toán</h4>
+    <div class=" col p-3 d-flex justify-content-end">
+      <div class="">
+        <%= p.submit "Save", class:"btn btn-primary ", id:"finish_button"%>
+      </div>
+    </div>
+  </div>
+  <br>
+  <p class="d-none"><span id="arrival_date"><%= (reservations[0]).arrival_date %></span>- <span id="leave_date"><%= (reservations[0]).leave_date %></span></p>
 
   <div class="row">
     <div class="col-lg">
@@ -41,8 +49,6 @@
           <div class="row">
             <p class="col-lg-3">Đặt cọc</p>
             <div class="col-lg form-group">
-              <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
-              <%= p.hidden_field(:is_paid, :value => false)  %>
               <%= p.number_field :deposit, min: 0, class:"form-control"%>
             </div>
           </div>
@@ -54,9 +60,11 @@
             </div>
           </div>
           <div class="row">
-            <p class="col-lg-3">Tổng tiền</p>
+            <p class="col-lg-3">Chưa trả</p>
             <div class="col-lg form-group">
-              <%= p.number_field :temp_total, min: 0, class:"form-control"%>
+              <%= p.number_field :total, min: 0, class:"form-control"%>
+              <span id="total_calculate" class="d-none"><%= @payment.temp_total - @payment.deposit %></span>
+              <p id="temp_total" class="p-2">Tổng tiền: <%= @payment.temp_total %></p>
             </div>
           </div>
           <div class="">
@@ -70,3 +78,11 @@
   </div>
 
 <% end %>
+
+<script>
+  let total_caculate = $('#total_calculate').text()
+  // total_caculate.split('.')
+  total_caculate = parseFloat(total_caculate)
+  console.log(total_caculate)
+  $('#payment_total').val(total_caculate)
+</script>

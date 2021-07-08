@@ -1,0 +1,163 @@
+<%= form.fields_for :payment_attributes, Payment.new do |p| %>
+  <h5>Thông tin khách hàng</h5>
+  <%= p.fields_for :client_attributes, Client.new do |client| %>
+    <div class="row">
+      <div class="col-lg-6 row">
+        <div class="row end-row-md">
+          <p class="col-lg-3">Tên khách</p>
+          <div class="col-lg-7 form-group">
+            <%= client.text_field :name, class:"form-control", placeholder: "Nguyễn Văn A" %>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 row">
+        <div class="row row">
+          <p class="col-lg-3">CCCD</p>
+          <div class="col-lg-7 form-group">
+            <%= client.number_field   :citizen_id, class:"form-control", placeholder: "0123456789" %>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 row">
+        <div class="row end-row-md">
+          <p class="col-lg-3">Sinh nhật</p>
+          <div class="col-lg-7 form-group">
+            <%= client.text_field :date_of_birth,
+                                  data: {
+                                    controller: "flatpickr",
+                                    flatpickr_date_format: "d-m-Y",
+                                    flatpickr_max_date: Time.zone.now
+                                  },
+                                  class: "form-select read-only-white",
+                                  placeholder: "Chọn sinh nhật"%>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 row">
+        <div class="row row">
+          <p class="col-lg-3">Giới tính</p>
+          <div class="col-lg-7 form-group">
+            <%= client.select :gender, options_for_select(@gender), {}, class: "form-select read-only-white" %>
+
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 row">
+        <div class="row end-row-md">
+          <p class="col-lg-3">Số điện thoại</p>
+          <div class="col-lg-7 form-group">
+            <%= client.telephone_field   :phone_number, class:"form-control", placeholder: "0123456789" %>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 row">
+        <div class="row row">
+          <p class="col-lg-3">Email</p>
+          <div class="col-lg-7 form-group">
+            <%= client.email_field   :email, class:"form-control", placeholder: "ngan@gmail.com" %>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 row">
+        <div class="row end-row-md">
+          <p class="col-lg-3">Quốc tịch</p>
+          <div class="col-lg-7 form-group">
+            <%= client.text_field :nationality, class:"form-control", placeholder: "Việt Nam" %>
+            <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+          </div>
+        </div>
+      </div>
+      <%= client.hidden_field(:client_type, :value => 2) %>
+      <%= form.hidden_field(:client_name) %>
+      <%= form.hidden_field(:client_citizen_id) %>
+    </div>
+  <% end %>
+
+  <h5>Tổng tiền n</h5>
+
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Đặt cọc</p>
+        <div class="col-lg-7 form-group">
+          <%= p.hidden_field(:reservation_date, :value => Date.today)  %>
+          <%= p.hidden_field(:is_paid, :value => false)  %>
+          <%= p.number_field :deposit, min: 0, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 row">
+      <div class="row">
+        <p class="col-lg-3">Hình thức TT</p>
+        <div class="col-lg-7 form-group">
+          <%= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
+          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 row">
+      <div class="row end-row-md">
+        <p class="col-lg-3">Tổng tiền</p>
+        <div class="col-lg-7 form-group">
+          <%= p.number_field :temp_total, min: 0, class:"form-control"%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>
+<script>
+    $('#_payment_attributes_client_attributes_name').change(function(){
+        $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
+    })
+    $('#_payment_attributes_client_attributes_citizen_id').change(function(){
+        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
+    })
+    <% if session[:reservation_params] %>
+    <% params = session[:reservation_params] %>
+    <% if session[:reservation_params]["client_attributes"] %>
+    <% client = params["client_attributes"] %>
+    $('#_client_attributes_date_of_birth').val("<%= client["date_of_birth"] || (DateTime.now).strftime("%d/%m/%Y")  %>")
+    $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
+    $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
+    $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")
+    $('#_client_attributes_email').val("<%= client["email"] || " " %>")
+    $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
+
+    $('#client_name').val($('#_payment_attributes_client_attributes_name').val())
+    $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val())
+
+    <% end %>
+
+    <% end %>
+</script>
+
+
+<script>
+    <% if session[:reservation_params] %>
+    <% params = session[:reservation_params] %>
+    <% if params["payment_attributes"] %>
+    <% payment = params["payment_attributes"] %>
+    $('#_payment_attributes_deposit').val("<%= payment["deposit"] || 0 %>")
+    $('#_payment_attributes_payment_type').val("<%= payment["payment_type"] || 1 %>")
+    $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
+    <% end %>
+
+    <% end %>
+</script>

@@ -2,12 +2,15 @@ include ActionView::Helpers::NumberHelper
 class CooperateReservationController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_payment, only: %i[ show edit update destroy ]
+  add_breadcrumb "Trang chủ", :root_path
+  add_breadcrumb "Khách đoàn", :cooperate_reservation_index_path
   def index
     @payments = Payment.all
     @room_statuses = @@room_statuses
   end
 
   def show
+    add_breadcrumb "Chi tiết đặt phòng"
     @room_statuses = @@room_statuses
   end
 
@@ -17,7 +20,7 @@ class CooperateReservationController < ApplicationController
     redirect_to :controller => 'cooperate_reservation', :action => 'new'
   end
   def choose_rooms
-
+    add_breadcrumb "Chọn phòng"
     filter_room_type = params[:room_type_id]
 
     if filter_room_type
@@ -60,6 +63,8 @@ class CooperateReservationController < ApplicationController
   end
 
   def new
+    add_breadcrumb "Chọn phòng", :cooperate_reservation_choose_rooms_path
+    add_breadcrumb "Tạo đơn đặt phòng"
     @chosen_rooms = session[:chosen_rooms]["rooms"]
     @payment = Payment.new
     @payment_type = @@payment_type

@@ -35,6 +35,13 @@
       <!-- Page Content  -->
 
       <div id="content" class="p-4 p-md-5 pt-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+              <p><%= render_breadcrumbs separator: " > " %></p>
+            </li>
+          </ol>
+        </nav>
         <% if notice %>
           <%= render 'layouts/alerts' %>
         <% end %>

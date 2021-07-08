@@ -51,7 +51,6 @@ class PaymentsController < ApplicationController
   # POST /payments or /payments.json
   def create
     @payment = Payment.new(payment_params)
-
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: "Payment was successfully created." }
@@ -65,8 +64,16 @@ class PaymentsController < ApplicationController
 
   # PATCH/PUT /payments/1 or /payments/1.json
   def update
+
     respond_to do |format|
       if @payment.update(payment_params)
+        reservations = Reservation.where(payment_id: @payment.id)
+        reservations.each do |reservation|
+          room_id = reservation.room_id
+          room = Room.find(room_id)
+          reservation.update(status: 3)
+          room.update(status: 1)
+        end
         format.html { redirect_to @payment, notice: "Payment was successfully updated." }
         format.json { render :show, status: :ok, location: @payment }
       else

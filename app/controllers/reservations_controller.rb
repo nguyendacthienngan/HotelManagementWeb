@@ -7,15 +7,12 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @reservation_statuses = @@reservation_statuses
-
   end
 
   # GET /reservations/1 or /reservations/1.json
   def show
     add_breadcrumb "Chi tiết đặt phòng"
-
     @reservation_statuses = @@reservation_statuses
-
   end
 
   # GET /reservations/new

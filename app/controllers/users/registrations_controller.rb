@@ -1,14 +1,19 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  add_breadcrumb "Trang chủ", :root_path
-  add_breadcrumb "Thông tin cá nhân"
+
+  prepend_before_action  :require_no_authentication, :only => []
+  prepend_before_action  :authenticate_scope!
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
+    add_breadcrumb "Trang chủ", :root_path
+    add_breadcrumb "Nhân viên", :employees_path
+    add_breadcrumb "Tạo nhân viên"
     super
+
   end
 
   # POST /resource
@@ -17,9 +22,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+    add_breadcrumb "Trang chủ", :root_path
+    add_breadcrumb "Thông tin cá nhân"
+  end
 
   # PUT /resource
   # def update
@@ -53,9 +60,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    super(resource)
+    Employee.find(resource.employee_id)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

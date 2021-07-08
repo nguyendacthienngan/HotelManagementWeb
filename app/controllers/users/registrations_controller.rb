@@ -9,7 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    add_breadcrumb "Trang chủ", :root_path
+    add_breadcrumb "Nhân viên", :employees_path
+    add_breadcrumb "Tạo nhân viên"
     super
+
   end
 
   # POST /resource

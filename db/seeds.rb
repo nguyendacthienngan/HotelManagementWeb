@@ -161,7 +161,6 @@ clients = Client.create([
                             },
                             
                           ])
-
 employees = Employee.create([
                                 {
                                   name: 'Vũ Khả Âu',
@@ -169,7 +168,7 @@ employees = Employee.create([
                                   gender: 2,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(2000,5,15,0),
-                                  email: 'vkAu@gmail.com',
+                                  email: 'admin@gmail.com',
                                   employee_type: '1',
                                   phone_number: '0984123444',
                                   address: '12A Đinh Tiên Hoàng, Quận 1, TP.Hồ Chí Minh',
@@ -217,7 +216,7 @@ employees = Employee.create([
                                   gender: 2,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'ntThuy@gmail.com',
                                   employee_type: '3',
                                   phone_number: '0987666544',
                                   address: '33 Đông Khởi, Quận 6, TP.Hồ Chí Minh',
@@ -229,7 +228,7 @@ employees = Employee.create([
                                   gender: 2,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'ttThanh@gmail.com',
                                   employee_type: '3',
                                   phone_number: '0987666577',
                                   address: '113 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
@@ -241,7 +240,7 @@ employees = Employee.create([
                                   gender: 2,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'vbHoa@gmail.com',
                                   employee_type: '3',
                                   phone_number: '0987888657',
                                   address: '256 Mai Hắc Đế, Quận 7, TP.Hồ Chí Minh',
@@ -253,7 +252,7 @@ employees = Employee.create([
                                   gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'pdHung@gmail.com',
                                   employee_type: '4',
                                   phone_number: '0987456666',
                                   address: '123 Trần Nhật Duật, Quận 9, TP.Hồ Chí Minh',
@@ -265,19 +264,19 @@ employees = Employee.create([
                                   gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'nvTuan@gmail.com',
                                   employee_type: '4',
                                   phone_number: '0924578356',
                                   address: '125 Trần Phú, Quận 9, TP.Hồ Chí Minh',
                                   status: 1
                                 },
                                 {
-                                  name: 'Nguyễn Văn Tuấn',
+                                  name: 'Nguyễn Văn Tuấn Anh',
                                   citizen_id: '221467555',
                                   gender: 1,
                                   nationality: 'Viet Nam',
                                   date_of_birth: DateTime.new(1962,7,19,0),
-                                  email: '',
+                                  email: 'nvtAnh@gmail.com',
                                   employee_type: '4',
                                   phone_number: '0924578355',
                                   address: '245 Đông Khởi, Quận 10, TP.Hồ Chí Minh',
@@ -286,6 +285,68 @@ employees = Employee.create([
                               ])
 
 user = User.create! :email => 'admin@gmail.com', :password => '123456', :password_confirmation => '123456', :employee_id => 1
+users = User.create([
+                      {
+                        email: 'admin@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 1
+                      },
+                      {
+                        email: 'ttNha@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 2
+                      },
+                      {
+                        email: 'naMy@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 3
+                      },
+                      {
+                        email: 'tnHan@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 4
+                      },
+                      {
+                        email: 'ntThuy@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 5
+                      },
+                      {
+                        email: 'ttThanh@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 6
+                      },
+                      {
+                        email: 'vbHoa@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 7
+                      },
+                      {
+                        email: 'pdHung@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 8
+                      },
+                      {
+                        email: 'nvTuan@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 9
+                      },
+                      {
+                        email: 'nvtAnh@gmail.com',
+                        password: '123456',
+                        password_confirmation: '123456',
+                        employee_id: 10
+                      },
+                    ])
 
 services = Service.create([
                             { name: 'Cháo',

@@ -1,5 +1,6 @@
 class RoomPricesController < ApplicationController
   before_action :set_room_price, only: %i[ show edit update destroy ]
+  add_breadcrumb "Giá phòng", :room_prices_path
 
   # GET /room_prices or /room_prices.json
   def index
@@ -10,12 +11,14 @@ class RoomPricesController < ApplicationController
 
   # GET /room_prices/1 or /room_prices/1.json
   def show
+    add_breadcrumb "Xem"
     @room_type =  @@room_types
     @price_types = @@price_types
   end
 
   # GET /room_prices/new
   def new
+    add_breadcrumb "Thêm"
     @room_price = RoomPrice.new
     @room_type =  @@room_types
     @room_type_view = convert_nested_hash_to_text(@room_type)
@@ -25,6 +28,7 @@ class RoomPricesController < ApplicationController
 
   # GET /room_prices/1/edit
   def edit
+    add_breadcrumb "Sửa"
     @room_type =  @@room_types
     @room_type_view = convert_nested_hash_to_text(@room_type)
     @price_types = @@price_types

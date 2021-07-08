@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy ]
+  add_breadcrumb "Phòng", :rooms_path
 
   # GET /rooms or /rooms.json
   def index
@@ -13,6 +14,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
+    add_breadcrumb "Xem"
     @room_type =  @@room_types
     @floor = @@floor
     @room_statuses = @@room_statuses
@@ -20,6 +22,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   def new
+    add_breadcrumb "Thêm"
     @room = Room.new 
     @room_type =  @@room_types
     @room_type_view = convert_nested_hash_to_text(@room_type)
@@ -31,6 +34,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
+    add_breadcrumb "Sửa"
     @room_type =  @@room_types
     @room_type_view = convert_nested_hash_to_text(@room_type)
     @floor = @@floor

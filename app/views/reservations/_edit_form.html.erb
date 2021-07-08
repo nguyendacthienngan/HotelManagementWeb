@@ -19,9 +19,9 @@
   <div class="bs-stepper">
     <div class="bs-stepper-content">
       <br>
-      <%= render :partial => "new_step1", :locals=>{ :form=>form, :reservation=> reservation} %>
+      <%= render :partial => "edit_step1", :locals=>{ :form=>form, :reservation=> reservation} %>
       <br>
-      <%= render :partial => "new_step2", :locals=>{ :form=>form, :reservation=> reservation} %>
+      <%= render :partial => "edit_step2", :locals=>{ :form=>form, :reservation=> reservation} %>
       <br>
     </div>
     <%= form.hidden_field(:status, :value => 1) %>

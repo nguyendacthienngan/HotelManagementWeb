@@ -85,8 +85,11 @@
 
       <p>
         <strong>Giới tính: </strong>
-        <% index =  client.gender - 1 %>
-        <span><%= @client_gender[index][:text] %></span>
+        <% if client.gender %>
+          <% index =  client.gender - 1 %>
+          <span><%= @client_gender[index][:text] %></span>
+        <% end %>
+
       </p>
       <p>
         <strong>Quốc tịch: </strong>

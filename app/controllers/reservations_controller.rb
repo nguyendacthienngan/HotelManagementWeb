@@ -228,10 +228,21 @@ class ReservationsController < ApplicationController
 
   def change_status
     respond_to do |format|
+      room_status = params[:status]
+      reservation_status = 1
+      if room_status == 4
+        reservation_status = 2
+      end
+      if room_status == 2
+        reservation_status = 1
+      end
+      if room_status == 1
+        reservation_status = 3
+      end
       @reservation = Reservation.find(params[:id])
       room_id = @reservation.room_id
       room = Room.find(room_id)
-      if room.update(:status => params[:status]) && @reservation.update(:status => params[:status])
+      if room.update(:status => room_status) && @reservation.update(:status => reservation_status)
         format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else

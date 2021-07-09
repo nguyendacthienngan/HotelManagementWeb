@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
     session[:reservation_params] ||= {}
 
     @reservation = Reservation.new(session[:reservation_params])
-    @room_id = (params[:room_id])? params[:room_id] : 1
+    @room_id = params[:room_id]
     if session[:reservation_params] == nil
       session[:reservation_params][:room_id] = @room_id
       # session[:reservation_params].deep_merge!(params[:room_id])
@@ -34,13 +34,15 @@ class ReservationsController < ApplicationController
     @reservation.current_step
     session[:multi_step] = @reservation.multi_step
 
+    if @room_id
+      @room_name = Room.find(@room_id).name
+      @rooms = Room.all
+      @room_type_id = Room.find(@room_id).room_type_id
+      @room_type_name = RoomType.find(@room_type_id).name
 
-    @room_name = Room.find(@room_id).name
-    @rooms = Room.all
-    @room_type_id = Room.find(@room_id).room_type_id
-    @room_type_name = RoomType.find(@room_type_id).name
+    end
     @payment_type = @@payment_type
-    @payment_type_view = convert_nested_hash_to_text(@payment_type) 
+    @payment_type_view = convert_nested_hash_to_text(@payment_type)
     @reservation_type = @@reservation_types
     @reservation_type_view = convert_nested_hash_to_text(@reservation_type)
 

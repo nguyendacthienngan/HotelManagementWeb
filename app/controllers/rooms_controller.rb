@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms or /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(:id)
     # @status = @@room_statuses tang,loai phong, trang thai
     @floor = @@floor
     @room_type =  @@room_types 
@@ -75,11 +75,20 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    @room.destroy
+    reserved_rooms = Reservation.where(room_id: @room.id)
+    room_name = @room.name
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
-      format.json { head :no_content }
+      if !reserved_rooms.empty?
+        format.html { redirect_to rooms_url, :flash => { :error => "Phòng #{room_name} đang được sử dụng, không thể xóa" }}
+        format.json { head :no_content }
+      else
+        @room.destroy
+        format.html { redirect_to rooms_url, notice: "Phòng #{room_name} đã được xóa" }
+        format.json { head :no_content }
+      end
     end
+
+
   end
 
   private

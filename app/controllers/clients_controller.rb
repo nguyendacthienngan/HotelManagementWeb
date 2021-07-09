@@ -67,11 +67,22 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1 or /clients/1.json
   def destroy
-    puts "----DELETE CLIENT------"
-    @client.destroy
+    payments = Payment.where(client_id: @client.id)
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
-      format.json { head :no_content }
+      if !payments.empty?
+        format.html { redirect_to clients_url, :flash => { :error =>  "Khách hàng #{@client.name} đang sử dụng, không thể xóa" }}
+        format.json { head :no_content }
+      else
+        if @client.id != 1
+          @client.destroy
+          format.html { redirect_to clients_url, notice: "Khách hàng #{@client.name} đã được xóa" }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to clients_url, :flash => { :error =>  "Khách lữ hành không thể được xóa" }}
+          format.json { head :no_content }
+        end
+
+      end
     end
   end
 

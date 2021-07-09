@@ -25,26 +25,38 @@
                     <td class="roomType_row_beds"><%= room_type.beds %></td>
                     <td class="roomType_row_available"><%= room_type.available_rooms %></td>
                     <td class="roomType_row_description"><%= room_type.description %></td>
+                    <td class=" hide">
+                    <%= link_to room_type, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa?' }, class: 'btn_delete' do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
             
         </table>
         <div id="roomType_row_empty" class="hide_empty">
             <i class="fas fa-exclamation-triangle"></i>
-            <span>No row matched !</span>
+            <span>Không có dữ liệu phù hợp</span>
         </div>
     </div>
 
 
     <div class="right_container">
+    <% employee = Employee.find(current_user.employee_id) %>
         <div class="section_name">Hành động</div>
         <div class="functionalities ">
-        <%= link_to new_room_type_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+            <% if employee.employee_type == 1 %>
+                <%= link_to new_room_type_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+            <% end %>
         </div>
         <div class="functionalities">
             <div id="roomType_btn_show" class="functionality_item ">Xem</div>
-            <div id="roomType_btn_delete" class="functionality_item ">Xóa</div>
-            <div id="roomType_btn_edit" class="functionality_item ">Sửa</div>
+            <% if employee.employee_type == 1 %>
+                <div id="roomType_btn_delete" class="functionality_item ">Xóa</div>
+                <div id="roomType_btn_edit" class="functionality_item ">Sửa</div>
+            <% end %>
+            
+            
         </div>
 
         <div class="section_name">Tìm kiếm</div>
@@ -61,4 +73,11 @@
     </div>
 </div>
 
-<%= javascript_pack_tag 'room_type' %>
+
+<% if employee.employee_type == 1 %>
+	<%= javascript_pack_tag 'room_type_manager_actions' %>
+	<% end %>
+
+	<% if employee.employee_type == 2 %>
+		<%= javascript_pack_tag 'room_type' %>
+	<% end %>

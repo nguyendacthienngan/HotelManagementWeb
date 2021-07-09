@@ -57,26 +57,36 @@
                         <span class="badge rounded-pill bg-danger roomPrice_status_off">Ngưng áp dụng</span>
                     <% end %>
                   </td>
+                  <td class=" hide">
+                    <%= link_to room_price, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa?' }, class: 'btn_delete' do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                  </td>
               </tr>
           <% end %>
           
       </table>
       <div id="roomPrice_row_empty" class="hide_empty">
           <i class="fas fa-exclamation-triangle"></i>
-          <span>No row matched !</span>
+          <span>Không có dữ liệu phù hợp</span>
       </div>
   </div>
 
 
   <div class="right_container">
+    <% employee = Employee.find(current_user.employee_id) %>
       <div class="section_name">Hành động</div>
       <div class="functionalities ">
-      <%= link_to new_room_price_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+        <% if employee.employee_type == 1 %>
+          <%= link_to new_room_price_path do%><div class="functionality_add btn btn-primary">Thêm</div><% end %>
+        <% end %>
       </div>
       <div class="functionalities">
           <div id="roomPrice_btn_show" class="functionality_item ">Xem</div>
-          <div id="roomPrice_btn_delete" class="functionality_item ">Xóa</div>
-          <div id="roomPrice_btn_edit" class="functionality_item ">Sửa</div>
+          <% if employee.employee_type == 1 %>
+            <div id="roomPrice_btn_delete" class="functionality_item ">Xóa</div>
+            <div id="roomPrice_btn_edit" class="functionality_item ">Sửa</div>
+          <% end %>
       </div>
 
       <div class="section_name">Tìm kiếm</div>
@@ -104,4 +114,12 @@
       </div>
   </div>
 </div>
-<%= javascript_pack_tag 'price_room' %>
+
+
+<% if employee.employee_type == 1 %>
+	<%= javascript_pack_tag 'price_room_manager_actions' %>
+	<% end %>
+
+	<% if employee.employee_type == 2 %>
+		<%= javascript_pack_tag 'price_room' %>
+	<% end %>

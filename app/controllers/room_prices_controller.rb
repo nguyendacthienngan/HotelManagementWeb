@@ -67,9 +67,9 @@ class RoomPricesController < ApplicationController
 
   # DELETE /room_prices/1 or /room_prices/1.json
   def destroy
-    @room_price.destroy
     respond_to do |format|
-      format.html { redirect_to room_prices_url, notice: "Room price was successfully destroyed." }
+      @room_price.update(is_available: false)
+      format.html { redirect_to room_prices_url, notice: "Ngừng sử dụng loại giá này !" }
       format.json { head :no_content }
     end
   end

@@ -13,6 +13,10 @@
     flex-direction: column;
 }
 
+.hide{
+    display: none;
+}
+
 .client_main_view{
     display: flex;
     flex-direction: row;
@@ -47,9 +51,6 @@
             background-color: #FAFBFD;
             padding-top: 15px;
             padding-bottom: 15px;
-        }
-        .hide{
-            display: none;
         }
         td {
             text-align: left;
@@ -141,7 +142,8 @@
     }
 
     .functionality_item{
-        flex-grow: 1; 
+        flex-grow: 1;
+        max-width: calc(33.33% - 10px); 
         padding: 10px;
         margin: 5px;
         border: solid 1px gray;
@@ -154,6 +156,7 @@
         flex-grow: 1; 
         padding: 10px;
         margin: 5px;
+        background-color: #fff;
         border: solid 1px black;
         text-align: center;
         border-radius: 4px;

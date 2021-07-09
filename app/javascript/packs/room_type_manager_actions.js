@@ -45,16 +45,25 @@
             btnOfSelectedRow = this.querySelector(".btn_delete");
 
             for(let i=0; i<roomType_allButtonNotClick.length; i++){
-                //roomType_allButtonNotClick[i].classList.remove("functionality_item");
+                roomType_allButtonNotClick[i].classList.remove("functionality_item");
                 roomType_allButtonNotClick[i].classList.add("button_selected");
             }
         });
     }
 
+    document.querySelector("#roomType_btn_edit").addEventListener('click', function(){
+        if (roomType_selectedID > 0) {
+            window.location = `${window.location}/${roomType_selectedID}/edit`;
+        }
+        
+    });
     document.querySelector("#roomType_btn_show").addEventListener('click', function(){
         if (roomType_selectedID > 0) {
             window.location = `${window.location}/${roomType_selectedID}`;
         }
+    });
+    document.querySelector("#roomType_btn_delete").addEventListener('click', function(){
+        btnOfSelectedRow.click();
     });
 
     function isUsingFilterBeds(){

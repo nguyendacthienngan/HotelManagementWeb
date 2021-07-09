@@ -4,7 +4,7 @@
     // Map all HTML Row to Array JS
     let allEmployees = document.querySelectorAll(".employee_row");
     let allButtonNotClick = document.querySelectorAll(".functionality_item");
-    
+    let btnOfSelectedRow = null;
     let filterByString = '';
     let filterByGender = [
         {
@@ -107,6 +107,8 @@
             
             selected_employeeID = allEmployees[i].querySelector(".employee_row_id").innerHTML * 1;
             this.classList.add("row_selected");
+            btnOfSelectedRow = this.querySelector(".btn_delete");
+
             for(let i=0; i<allButtonNotClick.length; i++){
                 allButtonNotClick[i].classList.remove("functionality_item");
                 allButtonNotClick[i].classList.add("button_selected");
@@ -124,6 +126,9 @@
         if (selected_employeeID > 0) {
             window.location = `${window.location}/${selected_employeeID}`;
         }
+    });
+    document.querySelector("#employee_btn_delete").addEventListener('click', function(){
+        btnOfSelectedRow.click();
     });
 
     document.querySelector("#employee_input_filter").addEventListener('input', function(e){

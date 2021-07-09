@@ -83,7 +83,7 @@ for(let i=0; i<allClients.length; i++){
                 btnOfSelectedRow = this.querySelector(".btn_delete");
 
                 for(let i=0; i<allButtonNotClick.length; i++){
-                        //allButtonNotClick[i].classList.remove("functionality_item");
+                        allButtonNotClick[i].classList.remove("functionality_item");
                         allButtonNotClick[i].classList.add("button_selected");
                 }
         });
@@ -94,6 +94,16 @@ document.querySelector("#client_btn_show").addEventListener('click', function(){
     }
 });
 
+document.querySelector("#client_btn_edit").addEventListener('click', function(){
+        if (selected_clientID > 0) {
+                window.location = `${window.location}/${selected_clientID}/edit`;
+        }
+        
+});
+
+document.querySelector("#client_btn_delete").addEventListener('click', function(){
+    btnOfSelectedRow.click();
+});
 
 // RenderFilterGenderCheckboxes
 filterByGender.forEach((e,i) => {

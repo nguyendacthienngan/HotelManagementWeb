@@ -46,12 +46,17 @@
                             <span class="badge rounded-pill bg-danger employee_status_off">Nghỉ việc</span>
                         <% end %>
                     </td>
+                  <td class=" hide">
+                    <%= link_to employee, method: :delete, data: { confirm: 'Bạn thật sự muốn xóa?' }, class: 'btn_delete' do %>
+                      <span class="fa fa-trash"></span>
+                    <% end %>
+                  </td>
                 </tr>
             <% end %>
         </table>
         <div id="employee_row_empty" class="hide_empty">
             <i class="fas fa-exclamation-triangle"></i>
-            <span>No row matched !</span>
+            <span>Không có dữ liệu phù hợp</span>
         </div>
     </div>
 
@@ -63,7 +68,7 @@
         </div>
         <div class="functionalities">
             <div id="employee_btn_show" class="functionality_item">Xem</div>
-            <div id="employee_btn_delete" class="functionality_item ">Xóa</div>
+            <div id="employee_btn_delete" class="functionality_item">Xóa</div>
             <div id="employee_btn_edit" class="functionality_item ">Sửa</div>
         </div>
 

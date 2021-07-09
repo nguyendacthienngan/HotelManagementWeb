@@ -18,7 +18,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,12,11,0),
                               email: 'nlebachnlb@gmail.com',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0987222489'
                             },
                             { name: 'Tăng Khánh Chương',
@@ -27,7 +27,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,4,21,0),
                               email: 'tangkhanhchuong@gmail.com',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0945678092'
                             },
                             { name: 'Đỗ Ngọc Cường',
@@ -36,7 +36,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(2000,7,10,0),
                               email: 'dongoccuong@gmail.com',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0169352557'
                             },
                             {
@@ -46,7 +46,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,2,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0987666544',
                             },
                             {
@@ -66,7 +66,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,3,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0987888657',
                             },
                             {
@@ -86,7 +86,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,5,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0924578355',
                             },
                             {
@@ -106,7 +106,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,1,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0987666544',
                             },
                             {
@@ -126,7 +126,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,10,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0987888657',
                             },
                             {
@@ -146,7 +146,7 @@ clients = Client.create([
                               nationality: 'Viet Nam',
                               date_of_birth: DateTime.new(1962,3,19,0),
                               email: '',
-                              client_type: '1',
+                              client_type: '2',
                               phone_number: '0924578355',
                             },
                             {

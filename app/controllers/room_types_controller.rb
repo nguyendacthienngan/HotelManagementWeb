@@ -55,10 +55,24 @@ class RoomTypesController < ApplicationController
 
   # DELETE /room_types/1 or /room_types/1.json
   def destroy
-    @room_type.destroy
+    rooms = Room.where(room_type_id: @room_type.id)
+    reserved_room = []
+    rooms.each do |r|
+      reserved_room = Reservation.where(room_id: r.id)
+      if reserved_room
+        break
+      end
+    end
+    room_type_name = @room_type.name
     respond_to do |format|
-      format.html { redirect_to room_types_url, notice: "Room type was successfully destroyed." }
-      format.json { head :no_content }
+      if !reserved_room.empty?
+        format.html { redirect_to room_types_url, :flash => { :error =>   "Loại phòng #{room_type_name} đang có các phòng được sử dụng" }}
+        format.json { head :no_content }
+      else
+        @room_type.destroy
+        format.html { redirect_to room_types_url, notice: "Loại phòng #{room_type_name} đã được xóa" }
+        format.json { head :no_content }
+      end
     end
   end
 

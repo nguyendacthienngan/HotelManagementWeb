@@ -1,5 +1,7 @@
 include ActionView::Helpers::NumberHelper
 class ApplicationController < ActionController::Base
+  add_flash_types :error, :success, :info
+
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   @@payment_type = [

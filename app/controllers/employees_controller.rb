@@ -81,10 +81,16 @@ class EmployeesController < ApplicationController
 
   # DELETE /employees/1 or /employees/1.json 
   def destroy
-    @employee.destroy
+    reservations = Reservation.where(employee_id: @employee.id)
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: "Employee was successfully destroyed." }
-      format.json { head :no_content }
+      if !reservations.empty?
+        format.html { redirect_to employees_url, :flash => { :error =>  "Không thể xóa vì nhân viên này đang hoạt động" }}
+        format.json { head :no_content }
+      else
+        @employee.destroy
+        format.html { redirect_to employees_url, notice: "Nhân viên đã được xóa thành công" }
+        format.json { head :no_content }
+      end
     end
   end
 

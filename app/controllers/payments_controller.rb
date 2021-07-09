@@ -74,7 +74,7 @@ class PaymentsController < ApplicationController
           reservation.update(status: 3)
           room.update(status: 1)
         end
-        format.html { redirect_to @payment, notice: "Payment was successfully updated." }
+        format.html { redirect_to reservations_url, notice: "Check out thành công" }
         format.json { render :show, status: :ok, location: @payment }
       else
         format.html { render :edit, status: :unprocessable_entity }

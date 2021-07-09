@@ -13,6 +13,8 @@ class ReservationsController < ApplicationController
   def show
     add_breadcrumb "Chi tiết đặt phòng"
     @reservation_statuses = @@reservation_statuses
+    @client_gender = @@gender
+    @client_gender_view = convert_nested_hash_to_text(@client_gender)
   end
 
   # GET /reservations/new

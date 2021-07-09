@@ -1,6 +1,9 @@
-<%= form.fields_for :payment_attributes, Payment.new do |p| %>
+<% @payment = Payment.find(reservation.payment_id) %>
+
+<%= form.fields_for :payment_attributes, @payment do |p| %>
   <h5>Thông tin khách hàng</h5>
-  <%= p.fields_for :client_attributes, Client.new do |client| %>
+  <% @client = Client.find(@payment.client_id) %>
+  <%= p.fields_for :client_attributes, @client do |client| %>
     <div class="row">
       <div class="col-lg-6 row">
         <div class="row end-row-md">
@@ -85,7 +88,7 @@
     </div>
   <% end %>
 
-  <h5>Tổng tiền n</h5>
+  <h5>Tổng tiền</h5>
 
   <div class="row">
     <div class="col-lg-6 row">
@@ -99,19 +102,6 @@
       </div>
     </div>
     <div class="col-lg-6 row">
-      <div class="row">
-        <p class="col-lg-3">Hình thức TT</p>
-        <div class="col-lg-7 form-group">
-
-          <%#= p.select :payment_type, options_for_select(@payment_type_view), {}, class: "form-select read-only-white" %>
-          <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6 row">
       <div class="row end-row-md">
         <p class="col-lg-3">Tổng tiền</p>
         <div class="col-lg-7 form-group">
@@ -123,42 +113,3 @@
 
 
 <% end %>
-<script>
-    $('#_payment_attributes_client_attributes_name').change(function(){
-        $('#client_name').val($('#_payment_attributes_client_attributes_name').val());
-    })
-    $('#_payment_attributes_client_attributes_citizen_id').change(function(){
-        $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val());
-    })
-    <% if session[:reservation_params] %>
-    <% params = session[:reservation_params] %>
-    <% if session[:reservation_params]["client_attributes"] %>
-    <% client = params["client_attributes"] %>
-    $('#_client_attributes_date_of_birth').val("<%= client["date_of_birth"] || (DateTime.now).strftime("%d/%m/%Y")  %>")
-    $('#_client_attributes_name').val("<%= client["name"] || " "  %>")
-    $('#_client_attributes_citizen_id').val("<%= client["citizen_id"] || " " %>")
-    $('#_client_attributes_phone_number').val("<%= client["phone_number"] || " " %>")
-    $('#_client_attributes_email').val("<%= client["email"] || " " %>")
-    $('#_client_attributes_nationality').val("<%= client["nationality"] || " " %>")
-
-    $('#client_name').val($('#_payment_attributes_client_attributes_name').val())
-    $('#client_citizen_id').val($('#_payment_attributes_client_attributes_citizen_id').val())
-
-    <% end %>
-
-    <% end %>
-</script>
-
-
-<script>
-    <% if session[:reservation_params] %>
-    <% params = session[:reservation_params] %>
-    <% if params["payment_attributes"] %>
-    <% payment = params["payment_attributes"] %>
-    $('#_payment_attributes_deposit').val("<%= payment["deposit"] || 0 %>")
-    $('#_payment_attributes_payment_type').val("<%= payment["payment_type"] || 1 %>")
-    $('#_payment_attributes_temp_total').val("<%=payment["temp_total"] || 0 %>")
-    <% end %>
-
-    <% end %>
-</script>

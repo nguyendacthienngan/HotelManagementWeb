@@ -1,9 +1,16 @@
 <h5>Phòng đã đăng ký</h5>
+<% @room_id = @reservation.room_id %>
+<% @room = Room.find(@room_id) %>
+<% @room_name = @room.name %>
+<% @room_type_id = @room.room_type_id %>
+<% @arrival_date = (@reservation.arrival_date).strftime("%d/%m/%Y")  %>
+<% @leave_date = (@reservation.leave_date).strftime("%d/%m/%Y")  %>
 <div class="row">
   <div class="col-lg-6 row">
     <div class="row end-row-md">
       <p class="col-lg-3">Loại phòng</p>
       <div class="col-lg-7 form-group">
+        <% @room_type_name = RoomType.find(@room_type_id).name %>
         <%= form.label @room_type_name, class:"form-control", readonly:true, id:"room_type" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
@@ -13,34 +20,8 @@
     <div class="row">
       <p class="col-lg-3">Phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.collection_select :room_id, Room.all.order(:id), :id, :name,{include_blank: false, selected: params[:room_id]}, {class: 'form-select'}%>
+        <%= form.label @room_name, class:"form-control", readonly:true, id:"room_name" %>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-
-  <div class="col-lg-6 row">
-    <div class="row end-row-md">
-      <p class="col-lg-3">Loại giá</p>
-      <div class="col-lg-7 form-group">
-        <select id="price_type" onchange="window.location.href=this.value" class="form-select read-only-white">
-          <% @reservation_type.each do |c| %>
-            <option value=/reservations/new/<%=     params[:room_id] || 1  %>?price_type_id=<%= @reservation_type.index(c) + 1 %>>
-              <%= c[:text] %>
-            </option>
-          <% end %>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-6 row">
-    <div class="row row">
-      <p class="col-lg-3">Giá phòng</p>
-      <div class="col-lg-7 form-group">
-        <%= form.label @room_price_name, class:"form-control", readonly:true, id:"room_price" %>
       </div>
     </div>
   </div>
@@ -50,15 +31,7 @@
     <div class="row row end-row-md">
       <p class="col-lg-3">Ngày đến</p>
       <div class="col-lg-7 form-group">
-        <%= form.text_field :arrival_date,
-                            data: {
-                              controller: "flatpickr",
-                              flatpickr_date_format: "d-m-Y",
-                              flatpickr_min_date: Time.zone.now
-                            },
-                            class: "form-select read-only-white",
-                            placeholder: "Chọn ngày đến"%>
-        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        <%= form.label @arrival_date, class:"form-control", readonly:true, id:"arrival_date" %>
       </div>
     </div>
   </div>
@@ -84,20 +57,11 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Ngày đi</p>
       <div class="col-lg-7 form-group">
-        <%= form.text_field :leave_date,
-                            data: {
-                              controller: "flatpickr",
-                              flatpickr_date_format: "d-m-Y",
-                              flatpickr_min_date: Time.zone.now
-                            },
-                            class: "form-select read-only-white",
-                            placeholder: "Chọn ngày đi"%>
-        <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
+        <%= form.label @leave_date, class:"form-control", readonly:true, id:"leave_date" %>
       </div>
     </div>
   </div>
 </div>
-<%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
 <script>
     $(document).ready(function(){
         updateValuesBySession()
@@ -111,8 +75,8 @@
         <% params = session[:reservation_params] %>
         <!--        $('#arrival_date').val("<%= params["arrival_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")-->
         <!--        $('#leave_date').val("<%= params["leave_date"] || (DateTime.now).strftime("%d/%m/%Y") %>")-->
-        $('#adults').val("<%= params["adults"] || 0 %>")
-        $('#children').val("<%= params["children"] || 0 %>")
+        $('#reservation_adults').val("<%= params["adults"] || 0 %>")
+        $('#reservation_children').val("<%= params["children"] || 0 %>")
         <% end %>
     }
 
@@ -164,31 +128,33 @@
             price_type_id = urlParams.get('price_type_id')
         else
             price_type_id = 2
-        const adults = $('#adults').val()
-        const children = $('#children').val()
-        const arrival_date = $('#arrival_date').val()
-        const leave_date = $('#leave_date').val()
+        const adults = $('#reservation_adults').val()
+        const children = $('#reservation_children').val()
+        const total = $('#reservation_payment_attributes_temp_total').val()
         console.log(queryString);
-
-        var theURL = '/reservations/new?room_id=<%= @room_id %>&price_type_id=' + price_type_id +'&adults='+adults+'&children='+children+'&arrival_date='+arrival_date+'&leave_date='+leave_date;
+        const reservation_id = <%= @reservation.id %>
+        var theURL = '/reservations/' + reservation_id + '/edit?total=' + total +'&adults='+adults+'&children='+children;
         window.location.href = theURL
     }
 
-    $('#adults').mouseup(function(e)
+    $('#reservation_adults').mouseup(function(e)
     {
-        var container = $("#adults");
+        var container = $("#reservation_adults");
         // if the target of the click isn't the container nor a descendant of the container
         if (!container.is(e.target) && container.has(e.target).length === 0)
         {
             passAdultsValue()
         }
     });
-    $('#adults').focusout(function(){
+    $('#reservation_adults').change(function(){
+    })
+    $('#reservation_adults').focusout(function(){
+
         passAdultsValue()
     })
-    $('#children').mouseup(function(e)
+    $('#reservation_children').mouseup(function(e)
     {
-        var container = $("#adults");
+        var container = $("#reservation_adults");
 
         // if the target of the click isn't the container nor a descendant of the container
         if (!container.is(e.target) && container.has(e.target).length === 0)
@@ -196,7 +162,7 @@
             passAdultsValue()
         }
     });
-    $('#children').focusout(function(){
+    $('#reservation_children').focusout(function(){
         passAdultsValue()
     })
     function updateTotal()
@@ -205,53 +171,26 @@
         const urlParams = new URLSearchParams(queryString);
 
         if (urlParams.get('adults'))
-            $('#adults').val(urlParams.get('adults'))
+            $('#reservation_adults').val(urlParams.get('adults'))
         else
-            $('#adults').val(0)
+            $('#reservation_adults').val(0)
         if (urlParams.get('children'))
-            $('#children').val(urlParams.get('children'))
+            $('#reservation_children').val(urlParams.get('children'))
         else
-            $('#children').val(0)
-        if (urlParams.get('price_type_id'))
-        {
-            var price_type_id = urlParams.get('price_type_id') - 1
-            var string = 'select#price_type>option:eq(' + price_type_id + ')'
-            $(string).attr('selected', true);
-        }
-        else
-            $('select#price_type>option:eq(1)').attr('selected', true);
-        if (urlParams.get('arrival_date'))
-        {
-            $('#arrival_date').val(urlParams.get('arrival_date'))
-        }
-        if (urlParams.get('leave_date'))
-        {
-            $('#leave_date').val(urlParams.get('leave_date'))
-        }
-        var room_price = (<%= @room_price_value %>);
-        var children = $('#children').val();
-        var children_price = <%=@children_price %>;
-
+            $('#reservation_children').val(0)
+        let total = $('#reservation_payment_attributes_temp_total').val();
+        total = parseInt(total)
+        var children = $('#reservation_children').val();
+        var children_price = <%= @children_price %>;
         children= parseInt(children) *children_price;
 
-        var adults = $('#adults').val();
+        var adults = $('#reservation_adults').val();
         var adults_price = <%=@adults_price %>;
         adults = parseInt(adults) * adults_price;
 
-        let total = room_price + children + adults
-        let arrivalDate = $('#arrival_date').val()
-        let leaveDate = $('#leave_date').val()
-
-        if (arrivalDate && leaveDate)
-        {
-            let differenceBetween2Dates = calculateDifferenceBetween2Dates(arrivalDate, leaveDate)
-            if (differenceBetween2Dates > 0)
-                total *= differenceBetween2Dates
-            else
-                alert("Ngày đi không được phép trước ngày đến")
-        }
-        $('#_payment_attributes_temp_total').val(total);
-        $('#_payment_attributes_deposit').val(total/2)
+        total = total + children + adults
+        $('#reservation_payment_attributes_temp_total').val(total);
+        $('#reservation_payment_attributes_deposit').val(total/2)
     }
     $('#arrival_date').change(function(){
         updateTotal()

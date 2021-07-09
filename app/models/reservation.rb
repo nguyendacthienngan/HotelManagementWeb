@@ -4,7 +4,7 @@ class Reservation < ApplicationRecord
   belongs_to :payment
   has_many :reservation_details
   has_many :services, through: :reservation_details
-  validate :check_if_room_has_been_reserved
+  validate :check_if_room_has_been_reserved, :validate_date
   validates_presence_of :client_citizen_id, :client_name
   accepts_nested_attributes_for :payment, :room
 
@@ -18,7 +18,22 @@ class Reservation < ApplicationRecord
   def check_if_room_has_been_reserved
     reserved = Reservation.where(["status = 1 and (arrival_date >= ? and leave_date <= ?) and room_id = ?", "#{arrival_date}", "#{leave_date}", "#{room_id}"])
     if !reserved.empty?
-      errors.add(:room_id, "đã được đặt trong thời gian này, vui lòng chọn lại ngày khác hoặc chọn phòng khác vào khung thời gian này")
+      isThisRoom = false
+      reserved.each do |r|
+        if r.id == id
+          isThisRoom = true
+          break
+        end
+      end
+      if isThisRoom == false
+        errors.add(:room_id, "đã được đặt trong thời gian này, vui lòng chọn lại ngày khác hoặc chọn phòng khác vào khung thời gian này")
+      end
+    end
+  end
+
+  def validate_date
+    if arrival_date >= leave_date
+      errors.add(:arrival_date, "Ngày đến không được sau ngày đi")
     end
   end
 

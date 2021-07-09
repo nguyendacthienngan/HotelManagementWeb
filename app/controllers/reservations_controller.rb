@@ -62,28 +62,15 @@ class ReservationsController < ApplicationController
   # GET /reservations/1/edit
   def edit
     add_breadcrumb "Chỉnh sửa đặt phòng"
-
-    @reservation_statuses = @@reservation_statuses
-    @reservation_statuses_view = convert_nested_hash_to_text(@reservation_statuses)
-
-    @room_statuses = @@room_statuses
-    @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
-
-    @reservation_status = @reservation_statuses[@reservation.status - 1][:text]
-    @room_status = Room.find(@reservation.room_id).status
-    @room_status = @room_statuses[@room_status - 1][:text]
+    @reservation_type = @@reservation_types
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
 
     @room_id = @reservation.room_id
     @room = Room.find(@room_id)
     @room_name = @room.name
     @room_type_id = @room.room_type_id
-    @room_type_name = RoomType.find(@room_type_id).name
-    @reservation_type = @@reservation_types
 
-    @gender = @@gender
-
-    # IMPORTANT
-    @price_type = params[:price_type_id] || 2
     @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
     @adults_price = currency_name(@adults_price)
     @adults_price = currency_value(@adults_price)
@@ -92,9 +79,6 @@ class ReservationsController < ApplicationController
     @children_price = currency_name(@children_price)
     @children_price = currency_value(@children_price)
 
-    @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
-    @room_price_name = currency_name(@room_price_name)
-    @room_price_value = currency_value(@room_price_name)
   end
 
   # POST /reservations or /reservations.json
@@ -200,6 +184,23 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
+    @reservation_type = @@reservation_types
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
+
+    @room_id = @reservation.room_id
+    @room = Room.find(@room_id)
+    @room_name = @room.name
+    @room_type_id = @room.room_type_id
+
+    @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
+    @adults_price = currency_name(@adults_price)
+    @adults_price = currency_value(@adults_price)
+
+    @children_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 7).pluck(:price).to_s
+    @children_price = currency_name(@children_price)
+    @children_price = currency_value(@children_price)
+
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }

@@ -26,19 +26,29 @@
                       </div> 
                   </td>
                   <td class="room_row_type">
-                      <!-- <span ><%= RoomType.find(room.room_type_id).name %></span> -->
-                      <span id="room_typeId" class="hide" ><%= room.room_type_id %></span>
-                      <% index =  room.room_type_id - 1 %>
+                    <% if RoomType.exists?(id: room.room_type_id) %>
+                    <span id="room_typeId" class="hide" ><%= room.room_type_id %></span>
+                    <% index =  room.room_type_id - 1 %>
 					    <span><%= @room_type[index][:text] %></span>
+                    <% else %>
+                    <% end %>
                   </td>
                   <td class="room_row_sprice">
-                      <span id="room_priceId"><%= RoomPrice.find(RoomType.find(room.room_type_id).id).price %></span>
+                    <%  if RoomType.exists?(id: room.room_type_id) %>
+                    <span id="room_priceId"><%= RoomPrice.find(RoomType.find(room.room_type_id).id).price %></span>
+                    <% else %>
+                    <% end %>
                   </td>
 
                     <td class="room_row_floor" id="room_floorId">
                         <%= room.floor %>
                     </td>
-                  <td class="room_row_description" id="room_descriptionId"> <%= room.description %> </td>
+                  <td class="room_row_description" id="room_descriptionId">
+                       <%  if RoomType.exists?(id: room.room_type_id) %>
+                       <%= room.description %> 
+                        <% else %>
+                    <% end %>
+                    </td>
                   <td class="room_row_status">
                     <span id="room_statusId" class="hide"><%= room.status %></span>
                       <% if room.status == 1 %>
@@ -63,7 +73,7 @@
       </table>
       <div id="room_row_empty" class="hide_empty">
           <i class="fas fa-exclamation-triangle"></i>
-          <span>No row matched !</span>
+          <span>Không có dữ liệu phù hợp</span>
       </div>
   </div>
 

@@ -1,5 +1,4 @@
 <%= form_with url: "/reservations", method: :post do |form| %>
-
   <% if reservation.errors.any? %>
     <div id="error_explanation">
       <br>
@@ -25,7 +24,7 @@
         <%= render :partial => "new_step2", :locals=>{ :form=>form} %>
         <br>
       </div>
-      <%= form.hidden_field(:status, :value => 1) %>
+      <%= form.hidden_field("reservation[status]", :value => 1) %>
 
       <br>
       <br>

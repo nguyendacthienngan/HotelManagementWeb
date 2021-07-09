@@ -13,6 +13,8 @@ class ReservationsController < ApplicationController
   def show
     add_breadcrumb "Chi tiết đặt phòng"
     @reservation_statuses = @@reservation_statuses
+    @client_gender = @@gender
+    @client_gender_view = convert_nested_hash_to_text(@client_gender)
   end
 
   # GET /reservations/new
@@ -62,28 +64,15 @@ class ReservationsController < ApplicationController
   # GET /reservations/1/edit
   def edit
     add_breadcrumb "Chỉnh sửa đặt phòng"
-
-    @reservation_statuses = @@reservation_statuses
-    @reservation_statuses_view = convert_nested_hash_to_text(@reservation_statuses)
-
-    @room_statuses = @@room_statuses
-    @room_statuses_view = convert_nested_hash_to_text(@room_statuses)
-
-    @reservation_status = @reservation_statuses[@reservation.status - 1][:text]
-    @room_status = Room.find(@reservation.room_id).status
-    @room_status = @room_statuses[@room_status - 1][:text]
+    @reservation_type = @@reservation_types
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
 
     @room_id = @reservation.room_id
     @room = Room.find(@room_id)
     @room_name = @room.name
     @room_type_id = @room.room_type_id
-    @room_type_name = RoomType.find(@room_type_id).name
-    @reservation_type = @@reservation_types
 
-    @gender = @@gender
-
-    # IMPORTANT
-    @price_type = params[:price_type_id] || 2
     @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
     @adults_price = currency_name(@adults_price)
     @adults_price = currency_value(@adults_price)
@@ -92,9 +81,6 @@ class ReservationsController < ApplicationController
     @children_price = currency_name(@children_price)
     @children_price = currency_value(@children_price)
 
-    @room_price_name = RoomPrice.where(room_type_id: @room_type_id, price_type: @price_type).pluck(:price).to_s
-    @room_price_name = currency_name(@room_price_name)
-    @room_price_value = currency_value(@room_price_name)
   end
 
   # POST /reservations or /reservations.json
@@ -200,6 +186,26 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1 or /reservations/1.json
   def update
+    @reservation_type = @@reservation_types
+    @gender = @@gender
+    @gender = convert_nested_hash_to_text(@gender)
+
+    @room_id = @reservation.room_id
+    @room = Room.find(@room_id)
+    @room_name = @room.name
+    @room_type_id = @room.room_type_id
+
+    @adults_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 6).pluck(:price).to_s
+    @adults_price = currency_name(@adults_price)
+    @adults_price = currency_value(@adults_price)
+
+    @children_price = RoomPrice.where(room_type_id: @room_type_id, price_type: 7).pluck(:price).to_s
+    @children_price = currency_name(@children_price)
+    @children_price = currency_value(@children_price)
+
+
+    puts "------------------------------ RESERVATION PARAMS"
+    puts reservation_params.inspect
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
@@ -222,10 +228,21 @@ class ReservationsController < ApplicationController
 
   def change_status
     respond_to do |format|
+      room_status = params[:status]
+      reservation_status = 1
+      if room_status == 4
+        reservation_status = 2
+      end
+      if room_status == 2
+        reservation_status = 1
+      end
+      if room_status == 1
+        reservation_status = 3
+      end
       @reservation = Reservation.find(params[:id])
       room_id = @reservation.room_id
       room = Room.find(room_id)
-      if room.update(:status => params[:status]) && @reservation.update(:status => params[:status])
+      if room.update(:status => room_status) && @reservation.update(:status => reservation_status)
         format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else
@@ -242,8 +259,11 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
-                    payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
+      params.require(:reservation).permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
+                                          payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
+
+      # params.permit(:price_type_id, :arrival_date, :leave_date, :client_name, :client_citizen_id, :children, :adults, :employee_id, :room_id, :status, :reservation_type,:check_in_date,
+      #               payment_attributes:[:id, :temp_total, :reservation_date, :deposit, :is_paid, :payment_type, :client_id, :client_attributes => [:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ]])
                     # client_attributes:[:id, :name, :citizen_id, :gender, :nationality, :date_of_birth, :email, :client_type, :phone_number ])
     end
 end

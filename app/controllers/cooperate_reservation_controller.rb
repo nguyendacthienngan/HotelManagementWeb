@@ -6,12 +6,12 @@ class CooperateReservationController < ApplicationController
   add_breadcrumb "Khách đoàn", :cooperate_reservation_index_path
   def index
     @payments = Payment.all
-    @room_statuses = @@room_statuses
+    @room_statuses = @@reservation_statuses
   end
 
   def show
     add_breadcrumb "Chi tiết đặt phòng"
-    @room_statuses = @@room_statuses
+    @room_statuses = @@reservation_statuses
   end
 
   def choose_rooms_post

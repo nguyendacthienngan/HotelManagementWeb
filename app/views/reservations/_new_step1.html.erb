@@ -13,7 +13,7 @@
     <div class="row">
       <p class="col-lg-3">Phòng</p>
       <div class="col-lg-7 form-group">
-        <%= form.collection_select :room_id, Room.all.order(:id), :id, :name,{include_blank: false, selected: params[:room_id]}, {class: 'form-select'}%>
+        <%= form.collection_select "reservation[room_id]", Room.where("status < ?", 3).to_a, :id, :name,{include_blank: false, selected: params[:room_id]}, {class: 'form-select'}%>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -50,14 +50,15 @@
     <div class="row row end-row-md">
       <p class="col-lg-3">Ngày đến</p>
       <div class="col-lg-7 form-group">
-        <%= form.text_field :arrival_date,
+        <%= form.text_field "reservation[arrival_date]",
                             data: {
                               controller: "flatpickr",
                               flatpickr_date_format: "d-m-Y",
                               flatpickr_min_date: Time.zone.now
                             },
                             class: "form-select read-only-white",
-                            placeholder: "Chọn ngày đến"%>
+                            placeholder: "Chọn ngày đến",
+        id: "arrival_date"%>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
@@ -68,11 +69,11 @@
       <div class="col-lg-7 row" style="padding-right: 0; margin-right: 0">
         <p class="col-lg-2">NL</p>
         <div class="col-lg-4  form-group"  style="padding-right: 0; margin-right: 0">
-          <%= form.number_field :adults, in: 0 .. 20, class:"form-control" %>
+          <%= form.number_field "reservation[adults]", in: 0 .. 20, class:"form-control", id:"adults" %>
         </div>
         <p class="col-lg-2 ">TE</p>
         <div class="col-lg-4 form-group"  style="padding-right: 0; margin-right: 0">
-          <%= form.number_field :children, in: 0 .. 20 ,class:"form-control " %>
+          <%= form.number_field "reservation[children]", in: 0 .. 20 ,class:"form-control ", id:"children" %>
         </div>
       </div>
 
@@ -84,20 +85,21 @@
     <div class="row end-row-md">
       <p class="col-lg-3">Ngày đi</p>
       <div class="col-lg-7 form-group">
-        <%= form.text_field :leave_date,
+        <%= form.text_field "reservation[leave_date]",
                             data: {
                               controller: "flatpickr",
                               flatpickr_date_format: "d-m-Y",
                               flatpickr_min_date: Time.zone.now
                             },
                             class: "form-select read-only-white",
-                            placeholder: "Chọn ngày đi"%>
+                            placeholder: "Chọn ngày đi",
+        id: "leave_date"%>
         <!--            <small id="emailHelp" class="form-text text-muted">Email helpers</small>-->
       </div>
     </div>
   </div>
 </div>
-<%= form.hidden_field(:employee_id, :value => current_user.employee_id) %>
+<%= form.hidden_field("reservation[employee_id]", :value => current_user.employee_id) %>
 <script>
     $(document).ready(function(){
         updateValuesBySession()

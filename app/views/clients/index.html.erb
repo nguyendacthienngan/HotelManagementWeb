@@ -26,13 +26,19 @@
 								</td>
 								<td class="client_row_type">
 								<span id="client_typeId" class="hide"><%= client.client_type %></span>
-									<% index =  client.client_type - 1 %>
-									<span><%= @client_type[index][:text] %></span>
+                  <% if client.client_type  %>
+                    <% index =  client.client_type - 1 %>
+                    <span><%= @client_type[index][:text] %></span>
+                  <% end %>
+
 								</td>
 								<td class="client_row_gender">
 								<span id="client_genderId" class="hide"><%= client.gender %></span>
-									<% index =  client.gender - 1 %>
-									<span><%= @client_gender[index][:text] %></span>
+                  <% if client.gender %>
+                    <% index =  client.gender - 1 %>
+                    <span><%= @client_gender[index][:text] %></span>
+                  <% end %>
+
 								</td>
 								<td class="client_row_phone"> <%= client.phone_number %></td>
 								<td class="client_row_email"> <%= client.email %></td>

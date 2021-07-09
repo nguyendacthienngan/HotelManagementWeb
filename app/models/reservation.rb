@@ -4,8 +4,8 @@ class Reservation < ApplicationRecord
   belongs_to :payment
   has_many :reservation_details
   has_many :services, through: :reservation_details
-  validate :check_if_room_has_been_reserved, :validate_date
-  validates_presence_of :client_citizen_id, :client_name
+  # validate :check_if_room_has_been_reserved, :validate_date
+  validates_presence_of :client_citizen_id, :client_name, :arrival_date, :leave_date
   accepts_nested_attributes_for :payment, :room
 
   attr_writer :current_step

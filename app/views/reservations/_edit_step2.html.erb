@@ -106,6 +106,7 @@
         <p class="col-lg-3">Tổng tiền</p>
         <div class="col-lg-7 form-group">
           <%= p.number_field :temp_total, min: 0, class:"form-control"%>
+          <%= p.hidden_field :payment_type %>
         </div>
       </div>
     </div>

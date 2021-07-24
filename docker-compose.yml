@@ -34,7 +34,7 @@ services:
       - 5099:5432
   
   restarone_app:
-    image: postgres:12.5-alpine
+    image: nguyendacthienngan/hotel_management_rails
     volumes:
       - .:/var/app
       - shared_data:/var/shared

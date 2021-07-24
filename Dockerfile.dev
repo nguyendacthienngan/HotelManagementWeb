@@ -12,6 +12,9 @@ COPY ./dev-docker-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
 COPY ./test-docker-entrypoint.sh /usr/local/bin/test-entrypoint.sh
 RUN chmod +x /usr/local/bin/dev-entrypoint.sh && chmod +x /usr/local/bin/test-entrypoint.sh
 
+RUN chmod 777 /usr/local/bin/dev-entrypoint.sh \
+    && ln -s /usr/local/bin/dev-entrypoint.sh /
+
 # install dependencies for application
 RUN apk -U add --no-cache \
 build-base \

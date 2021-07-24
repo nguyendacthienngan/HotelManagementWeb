@@ -11,6 +11,7 @@ module HotelManagementWebRubyonrails
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.assets.enabled = false
+    config.hosts << "ip172-18-0-66-c3u2aannjsv000834ilg-3000.direct.labs.play-with-docker.com"
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

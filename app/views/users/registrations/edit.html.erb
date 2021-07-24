@@ -48,12 +48,19 @@
 
 <h2 class="p-3">Edit Profile</h2>
 <center>
+  <% employee = Employee.find(current_user.employee_id) %>
   <div class="row justify-content-center">
     <p class="col-xl-2 col-sm-3 col-4 user_name_input">Tên </p>
     <div class="col-xl-3 col-sm-5 col-8 form-group">
-      <%= Employee.find(current_user.employee_id).name  %>
+      <%= employee.name  %>
     </div>
   </div>
+<!--  <div class="row justify-content-center">-->
+<!--    <p class="col-xl-2 col-sm-3 col-4 user_name_input">Loại nhân viên </p>-->
+<!--    <div class="col-xl-3 col-sm-5 col-8 form-group">-->
+      <%#= employee.employee_type  %>
+<!--    </div>-->
+<!--  </div>-->
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="row justify-content-center">

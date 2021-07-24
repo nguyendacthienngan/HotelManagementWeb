@@ -34,9 +34,7 @@ services:
       - 5099:5432
   
   restarone_app:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    image: postgres:12.5-alpine
     volumes:
       - .:/var/app
       - shared_data:/var/shared

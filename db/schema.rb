@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
     t.integer "payment_type", null: false
     t.decimal "total"
     t.string "description"
-    t.boolean "is_cooperate_reservation", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "client_id"
@@ -79,21 +78,23 @@ ActiveRecord::Schema.define(version: 2021_06_03_124721) do
   end
 
   create_table "reservations", force: :cascade do |t|
+    t.integer "status", default: 0, null: false
     t.datetime "arrival_date", null: false
     t.datetime "leave_date", null: false
     t.datetime "check_in_date"
-    t.integer "status", default: 1, null: false
-    t.string "client_name"
-    t.string "client_citizen_id"
+    t.decimal "total"
+    t.string "client_name", null: false
+    t.string "client_citizen_id", null: false
     t.integer "children", default: 0, null: false
     t.integer "adults", default: 0, null: false
     t.string "description"
-    t.integer "reservation_type", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "client_id"
     t.bigint "employee_id"
     t.bigint "room_id"
     t.bigint "payment_id"
+    t.index ["client_id"], name: "index_reservations_on_client_id"
     t.index ["employee_id"], name: "index_reservations_on_employee_id"
     t.index ["payment_id"], name: "index_reservations_on_payment_id"
     t.index ["room_id"], name: "index_reservations_on_room_id"

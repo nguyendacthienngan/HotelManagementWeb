@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-#  host: restarone_db
+  host: restarone_db
   username: postgres
   password: 1505
   # password: <%= ENV['PG_PASSWORD'] %>
